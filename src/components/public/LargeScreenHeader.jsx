@@ -1,8 +1,9 @@
 import { makeStyles } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
 
 const LargeScreenHeader = () => {
   const classes = useStyles();
-
+  const navigate = useNavigate();
   return (
     <div className={classes.headerContainer}>
       <div className={classes.logoContainer}>
@@ -14,7 +15,12 @@ const LargeScreenHeader = () => {
         <div>Blog</div>
         <div>FAQ</div>
         <div>EN</div>
-        <div className={classes.loginButton}>Log In</div>
+        <div
+          className={classes.loginButton}
+          onClick={() => navigate('/signup')}
+        >
+          Log In
+        </div>
       </div>
     </div>
   );

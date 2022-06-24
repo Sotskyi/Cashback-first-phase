@@ -6,7 +6,11 @@ const MediumScreenHeader = () => {
   return (
     <div className={classes.mediumScreenHeaderContainer}>
       <div className={classes.mediumScreenLogoWrapper}>
-        <img className={classes.mediumScreenLogo} src='assets/images/logos/logo.svg' alt='logo' />
+        <img
+          className={classes.mediumScreenLogo}
+          src='assets/images/logos/logo.svg'
+          alt='logo'
+        />
       </div>
 
       <div className={classes.menu}>

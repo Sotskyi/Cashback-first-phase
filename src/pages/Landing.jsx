@@ -4,7 +4,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import LargeScreenHeader from '../components/public/LargeScreenHeader';
 import MediumScreenHeader from '../components/public/MediumScreenHeader';
 
-const LandingPage = () => {
+const Landing = () => {
   const classes = useStyles();
   const isMediumScreen = useMediaQuery('(max-width:1280px)');
 
@@ -22,8 +22,10 @@ const LandingPage = () => {
           <div className={classes.missionInformationWrapper}>
             <div className={classes.missionInformation}>
               We are on a mission to help reduce your phone bill.
-              {!isMediumScreen && <br />} When you shop online via our mobile app, Telco Rewards will
-              {!isMediumScreen && <br />} credit you with cash-back you apply it to your phone bill.
+              {!isMediumScreen && <br />} When you shop online via our mobile
+              app, Telco Rewards will
+              {!isMediumScreen && <br />} credit you with cash-back you apply it
+              to your phone bill.
             </div>
           </div>
         </div>
@@ -39,8 +41,8 @@ const LandingPage = () => {
           <div className={classes.card}>
             <div className={classes.cardInfo}>
               <div className={classes.cardTitle}>
-                Sign up for an account or log in to <br /> Telco Rewards. Include your Mobile Provider and Billing
-                Number.
+                Sign up for an account or log in to <br /> Telco Rewards.
+                Include your Mobile Provider and Billing Number.
               </div>
               <img src='assets/images/images/firstPhone.png' alt='' />
             </div>
@@ -49,8 +51,9 @@ const LandingPage = () => {
           <div className={classes.card}>
             <div className={classes.cardInfo}>
               <div className={classes.cardTitle}>
-                Click on your favorite store and <br /> shop. After clicking on your store of choice, shop as you
-                normally would, add to cart, and check out.
+                Click on your favorite store and <br /> shop. After clicking on
+                your store of choice, shop as you normally would, add to cart,
+                and check out.
               </div>
               <img src='assets/images/images/secondPhone.png' alt='' />
             </div>
@@ -59,7 +62,8 @@ const LandingPage = () => {
           <div className={classes.card}>
             <div className={classes.cardInfo}>
               <div className={classes.cardTitle}>
-                Earn cashback and apply it to your <br /> mobile billing account!
+                Earn cashback and apply it to your <br /> mobile billing
+                account!
               </div>
               <img src='assets/images/images/thirdPhone.png' alt='' />
             </div>
@@ -68,19 +72,25 @@ const LandingPage = () => {
       </div>
       <div className={classes.footerContainer}>
         <div className={classes.footerLogoWrapper}>
-          <img className={classes.footerLogo} src='assets/images/logos/logo.svg' alt='logo' />
+          <img
+            className={classes.footerLogo}
+            src='assets/images/logos/logo.svg'
+            alt='logo'
+          />
         </div>
         <div className={classes.footerLinksContainer}>
           <span>Shop</span> <span>Wallet</span> <span>Privacy Policy</span>
           <span>Terms & Conditions</span>
           <span>FAQ</span>
         </div>
-        <div className={classes.copyright}>Copyright Telco Rewards Inc., 2022</div>
+        <div className={classes.copyright}>
+          Copyright Telco Rewards Inc., 2022
+        </div>
       </div>
     </div>
   );
 };
-export default LandingPage;
+export default Landing;
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -104,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   titleInformtionWrapper: {
-    width: '752px',
+    width: '100%',
     height: '406px',
   },
   title: {
@@ -124,13 +134,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   subTitle: {
-    fontFamily: 'Source Sans Pro, sans-serif ',
+    fontFamily: 'Source Sans Pro, sans-serif',
     fontStyle: 'normal',
     fontWeight: '600',
     fontSize: '64px',
     height: '158px',
     lineHeight: '79px',
-    width: '752px',
+    // width: '752px',
     textAlign: 'center',
     letterSpacing: '0.01em',
     [theme.breakpoints.down('md')]: {

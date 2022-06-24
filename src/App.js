@@ -2,14 +2,17 @@ import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Layout from './components/Layouts';
-import NotFoundPage from './pages/NotFoundPage';
+import NotFoundPage from './pages/NotFound';
 
 // import Missing from "./components/Missing";
 // import Register from "./components/Register";
 // import RequireAuth from "./components/RequireAuth";
 // import Unauthorized from "./components/Unauthorized";
-const LandingPage = React.lazy(() => import('./pages/LandingPage'));
-
+const Landing = React.lazy(() => import('./pages/Landing'));
+const Stores = React.lazy(() => import('./pages/Stores'));
+const SignUp = React.lazy(() => import('./pages/SignUp/SignUp'));
+// const VerifyPhone = React.lazy(() => import('./pages/VerifyPhone'));
+// const PersonalDetails = React.lazy(() => import('./pages/PersonalDetails'));
 // const ROLES = {
 //   User: 2001,
 //   Admin: 5150,
@@ -22,7 +25,9 @@ const App = () => {
         <Routes>
           <Route path='/' element={<Layout />}>
             {/* public routes */}
-            <Route index element={<LandingPage />} />
+            <Route index element={<Landing />} />
+            <Route path='stores' element={<Stores />} />
+            <Route path='signup' element={<SignUp />} />
             {/* <Route path='register' element={<Register />} />
         <Route path='linkpage' element={<LinkPage />} />
         <Route path='unauthorized' element={<Unauthorized />} /> */}
