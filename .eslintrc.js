@@ -27,11 +27,17 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: ['error', 'always'],
     'react/prop-types': 'off',
+    'react/jsx-uses-react': 'error',
+    'react/jsx-uses-vars': 'error',
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'react/react-in-jsx-scope': 'off',
 
-    'no-use-before-define': ['error', { functions: false, classes: true, variables: false }],
+    'no-use-before-define': [
+      'error',
+      { functions: false, classes: true, variables: false },
+    ],
+    'jsx-a11y/no-autofocus': ['off', { ignoreNonDOM: true }],
 
     'react/function-component-definition': [
       2,
@@ -48,6 +54,7 @@ module.exports = {
       },
     ],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
+    'react/jsx-boolean-value': 'off',
     'react/jsx-props-no-spreading': 'off',
     'no-underscore-dangle': 'off',
     'import/prefer-default-export': 'off',
