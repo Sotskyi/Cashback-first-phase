@@ -4,10 +4,11 @@ import { useState } from 'react';
 import CreateAcount from './Tabs/CreateAcount';
 import VeriphyPhone from './Tabs/VerifyPhone';
 import PersonalDetails from './Tabs/PersonalDetails';
+import NetworkDetails from './Tabs/NetworkDetails';
 
 const SignUp = () => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(2);
 
   const next = () => {
     if (activeStep !== 3) {
@@ -53,6 +54,7 @@ const SignUp = () => {
             {activeStep === 0 && <CreateAcount next={next} />}
             {activeStep === 1 && <VeriphyPhone next={next} />}
             {activeStep === 2 && <PersonalDetails next={next} />}
+            {activeStep === 3 && <NetworkDetails next={next} />}
           </div>
         </div>
       </div>
@@ -74,7 +76,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
   },
   artSide: {
-    width: '720px',
+    minWidth: '720px',
     backgroundColor: '#D9D9D9',
     height: '100%',
   },

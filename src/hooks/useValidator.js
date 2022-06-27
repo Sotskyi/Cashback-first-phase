@@ -3,24 +3,32 @@ import { useState } from 'react';
 export const validationRuless = {
   isEmpty: (data) => data.length > 0,
   isEmail: (data) =>
-    data.match(
-      /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/,
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
+      data,
     ),
   isPhoneNumber: (data) =>
     /^(\+?1 ?)?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(data),
+  isFirstName: (data) => /^[a-zA-Z]{2,}/.test(data),
+  isLastName: (data) => /^[a-zA-Z]{2,}/.test(data),
 };
 
 export const useValidator = () => {
-  const [IsShowError, setIsShowError] = useState(false);
+  const [isShowError, setIsShowError] = useState(false);
 
   const checkIsValid = ({ nameOfData, data, showErrorSync }) => {
-    if (IsShowError || showErrorSync) {
+    if (isShowError || showErrorSync) {
       if (nameOfData === 'phone' && !validationRuless.isPhoneNumber(data)) {
         return false;
       }
-    } else return true;
+      if (nameOfData === 'firstName' && !validationRuless.isFirstName(data)) {
+        return false;
+      }
+      if (nameOfData === 'lastName' && !validationRuless.isLastName(data)) {
+        return false;
+      }
+    }
     return true;
   };
 
-  return [checkIsValid, setIsShowError, IsShowError];
+  return [checkIsValid, setIsShowError];
 };

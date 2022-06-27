@@ -29,6 +29,7 @@ module.exports = {
     'react/prop-types': 'off',
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
+    'react/no-unstable-nested-components': [{ allowAsProps: true }],
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'react/react-in-jsx-scope': 'off',
@@ -65,6 +66,7 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/mouse-events-have-key-events': 'off',
     'jsx-quotes': [2, 'prefer-single'],
+
     'react/jsx-wrap-multilines': [
       'error',
       {

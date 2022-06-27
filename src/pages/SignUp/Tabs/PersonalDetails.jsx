@@ -5,22 +5,34 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 
-// import TextField from '@mui/material/TextField';
-// import { useValidator } from '../hooks/useValidator';
+import { useValidator } from '../../../hooks/useValidator';
 
-const PersonalDetails = () => {
+const PersonalDetails = ({ next }) => {
   const classes = useStyles();
-  //   const [checkIsValid, setIsShowError] = useValidator();
-  //   const handleChange = (e) => setPhone(e.target.value);
   const [showPassword, setShowPassword] = useState(false);
+  const [creds, setCreds] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+  });
+  const [checkIsValid, setIsShowError] = useValidator();
+
+  const handleChange = (event) => {
+    const value = event.target.value.trim();
+    setCreds({ ...creds, [event.target.id]: value });
+  };
+
   const onSubmit = () => {
-    // setIsShowError(true);
+    setIsShowError(true);
+    next();
   };
 
   return (
     <div>
       <div className={classes.contentContainer}>
         <div className={classes.title}>Add personal details</div>
+        {/* <form> */}
         <div className={classes.inputContainer}>
           <div className={classes.inputWrapper}>
             <InputLabel
@@ -35,6 +47,14 @@ const PersonalDetails = () => {
               First name
             </InputLabel>
             <OutlinedInput
+              onChange={handleChange}
+              id='firstName'
+              error={
+                !checkIsValid({
+                  nameOfData: 'firstName',
+                  data: creds.firstName,
+                })
+              }
               sx={{
                 width: '216px',
                 padding: '0px 14px',
@@ -47,6 +67,10 @@ const PersonalDetails = () => {
                 borderRadius: '8px',
               }}
             />
+            {/* {!checkIsValid({
+                nameOfData: 'firstName',
+                data: creds.firstName,
+              }) && <div style={{ marginTop: '10px' }}>ENTER VALID NAME</div>} */}
           </div>
           <div className={classes.inputWrapper}>
             <InputLabel
@@ -61,6 +85,8 @@ const PersonalDetails = () => {
               Last name
             </InputLabel>
             <OutlinedInput
+              onChange={handleChange}
+              id='lastName'
               sx={{
                 width: '216px',
                 padding: '0px 14px',
@@ -88,6 +114,8 @@ const PersonalDetails = () => {
             Email
           </InputLabel>
           <OutlinedInput
+            onChange={handleChange}
+            id='email'
             sx={{
               padding: '0px 14px',
               height: '48px',
@@ -113,6 +141,8 @@ const PersonalDetails = () => {
             Password
           </InputLabel>
           <OutlinedInput
+            onChange={handleChange}
+            id='password'
             sx={{
               padding: '0px 14px',
               height: '48px',
@@ -144,6 +174,8 @@ const PersonalDetails = () => {
             }
           />
         </div>
+        {/* </form> */}
+
         <div onClick={onSubmit} className={classes.continueButton}>
           Continue
         </div>
