@@ -1,5 +1,3 @@
-image: docker:latest
-
 stages:
   - build
   - deploy
@@ -19,8 +17,10 @@ build:
   only:
     - main
 
-deploy:
+deployment_staging:
   stage: deploy
+  variables:
+    S3_BUCKET_NAME: "reviewbucket"
   image:
      name: amazon/aws-cli:latest
      entrypoint: [""]
@@ -34,3 +34,20 @@ deploy:
     name: staging
   only:
     - main
+
+deployment_production:
+  stage: deploy
+  variables:
+    S3_BUCKET_NAME: "reviewbucket"
+  image:
+     name: amazon/aws-cli:latest
+     entrypoint: [""]
+  dependencies:
+    - build
+  script:
+    - echo "$S3_BUCKET_NAME"
+    - aws s3 sync build/ s3://$S3_BUCKET_NAME --delete
+    - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
+  environment: production
+  only: 
+    - production
