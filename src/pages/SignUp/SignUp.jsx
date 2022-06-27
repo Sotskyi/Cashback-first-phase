@@ -8,7 +8,7 @@ import NetworkDetails from './Tabs/NetworkDetails';
 
 const SignUp = () => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
 
   const next = () => {
     if (activeStep !== 3) {

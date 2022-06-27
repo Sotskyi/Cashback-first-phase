@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 
 import { useValidator } from '../../../hooks/useValidator';
+import SubmitButton from '../../../components/SubmitButton';
 
 const CreateAcount = ({ next }) => {
   const [phone, setPhone] = useState('+1 ');
@@ -50,9 +51,7 @@ const CreateAcount = ({ next }) => {
             Please enter valid phone number format +1 9999999999{' '}
           </div>
         )}
-        <div onClick={onSubmit} className={classes.continueButton}>
-          Continue
-        </div>
+        <SubmitButton onSubmit={onSubmit} title='Continue' />
       </div>
       <div className={classes.alreadyHaveAcount}>
         Already have an accont?{' '}
@@ -162,24 +161,6 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
     fontFamily: 'Inter',
     fontSize: '14px',
-  },
-
-  continueButton: {
-    height: '20px',
-    background: '#33CC55',
-    borderRadius: '32px',
-    padding: '16px 10px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: '20px',
-    lineHeight: '24px',
-    letterSpacing: '-0.02em',
-    color: '#FFFFFF',
-    cursor: 'pointer',
   },
   alreadyHaveAcount: {
     marginTop: '216px',

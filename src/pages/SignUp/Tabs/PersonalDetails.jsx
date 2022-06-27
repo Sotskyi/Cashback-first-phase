@@ -6,6 +6,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 
 import { useValidator } from '../../../hooks/useValidator';
+import SubmitButton from '../../../components/SubmitButton';
 
 const PersonalDetails = ({ next }) => {
   const classes = useStyles();
@@ -175,10 +176,7 @@ const PersonalDetails = ({ next }) => {
           />
         </div>
         {/* </form> */}
-
-        <div onClick={onSubmit} className={classes.continueButton}>
-          Continue
-        </div>
+        <SubmitButton onSubmit={onSubmit} title='Continue' />
       </div>
     </div>
   );

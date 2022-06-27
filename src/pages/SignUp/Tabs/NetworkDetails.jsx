@@ -4,6 +4,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 
+import SubmitButton from '../../../components/SubmitButton';
 // import { useValidator } from '../../../hooks/useValidator';
 
 const NetworkDetails = () => {
@@ -16,6 +17,21 @@ const NetworkDetails = () => {
   //     password: '',
   //   });
   //   const [checkIsValid, setIsShowError] = useValidator();
+  const mobilesCanada = [
+    'Virgin Mobile',
+    'SaskTel Canada',
+    'Freedom Mobile',
+    'Rogers Wireless',
+    'Public Mobile',
+    'Telus Canada',
+    'Lucky Mobile',
+    'Koodo',
+    'Fido',
+    'Bell MTS',
+    'ChatR',
+    'Bell Mobility',
+  ];
+
   const handleChange = () => {
     // setMobileNetwork(e.target.value);
   };
@@ -62,22 +78,13 @@ const NetworkDetails = () => {
               border: '1px solid #EAEAEA',
               borderRadius: '8px',
             }}
-            // IconComponent={() => (
-            //   <img
-            //     onClick={handleChange}
-            //     className={classes.arrowIcon}
-            //     src='assets/images/icons/arrowDown.svg'
-            //     alt='ar'
-            //   />
-            // )}
-            // IconComponent={() => <ReactLogo />}
           >
             <MenuItem value=''>
               <em>None</em>
             </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            {mobilesCanada.map((el) => (
+              <MenuItem value={el}>{el}</MenuItem>
+            ))}
           </Select>
         </div>
         <div className={classes.inputContainer}>
@@ -125,7 +132,7 @@ const NetworkDetails = () => {
             <span> Prepaid</span>
           </div>
         </div>
-        <div className={classes.continueButton}>Sign Up</div>
+        <SubmitButton title='Sign Up' />
       </div>
     </div>
   );
