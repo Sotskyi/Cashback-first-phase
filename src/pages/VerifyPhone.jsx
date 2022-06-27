@@ -50,7 +50,6 @@ const VeriphyPhone = () => {
         }
       });
       if (counter === 5) {
-        console.log('start');
       }
     }
   };

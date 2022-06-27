@@ -18,7 +18,6 @@ const NetworkDetails = () => {
   //   const [checkIsValid, setIsShowError] = useValidator();
   const handleChange = () => {
     // setMobileNetwork(e.target.value);
-    console.log(mobileNetwork);
   };
   //   const handleChange = (event) => {
   //     const value = event.target.value.trim();
