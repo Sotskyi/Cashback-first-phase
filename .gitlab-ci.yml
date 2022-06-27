@@ -27,7 +27,7 @@ deployment-staging:
   dependencies:
     - build
   script:
-    - echo "$S3_BUCKET_NAME"
+    - echo "Deployment to $S3_BUCKET_NAME"
     - aws s3 sync build/ s3://staging.telcorewards.ca --delete
     - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
   environment:
@@ -45,7 +45,7 @@ deployment-production:
   dependencies:
     - build
   script:
-    - echo "$S3_BUCKET_NAME"
+    - echo "Deployment to $S3_BUCKET_NAME"
     - aws s3 sync build/ s3://$S3_BUCKET_NAME --delete
     - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
   environment: production
