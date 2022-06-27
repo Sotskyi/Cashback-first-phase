@@ -32,6 +32,8 @@ deploy:
     - export S3_BUCKET_NAME=$S3_BUCKET_NAME
     - export DISTRIBUTION_ID=$DISTRIBUTION_ID
     - export PATH=~/.local/bin:$PATH
+    - ls
+    - echo "$S3_BUCKET_NAME/build"
     - aws s3 sync build/ $S3_BUCKET_NAME/build --delete
     - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
   environment:
