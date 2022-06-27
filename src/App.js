@@ -9,7 +9,7 @@ import NotFoundPage from './pages/NotFound';
 // import RequireAuth from "./components/RequireAuth";
 // import Unauthorized from "./components/Unauthorized";
 const Landing = React.lazy(() => import('./pages/Landing'));
-const Stores = React.lazy(() => import('./pages/Stores'));
+// const Stores = React.lazy(() => import('./pages/Stores'));
 const SignUp = React.lazy(() => import('./pages/SignUp/SignUp'));
 // const VerifyPhone = React.lazy(() => import('./pages/VerifyPhone'));
 // const PersonalDetails = React.lazy(() => import('./pages/PersonalDetails'));
@@ -26,8 +26,8 @@ const App = () => {
           <Route path='/' element={<Layout />}>
             {/* public routes */}
             <Route index element={<Landing />} />
-            <Route path='stores' element={<Stores />} />
-            <Route path='signup' element={<SignUp />} />
+            {/* <Route path='/stores' element={<Stores />} /> */}
+            <Route path='/signup' element={<SignUp />} />
             {/* <Route path='register' element={<Register />} />
         <Route path='linkpage' element={<LinkPage />} />
         <Route path='unauthorized' element={<Unauthorized />} /> */}
