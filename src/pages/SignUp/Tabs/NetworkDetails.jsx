@@ -48,7 +48,7 @@ const NetworkDetails = () => {
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Add personal details</div>
+        <div className={classes.title}>Add network details</div>
 
         <div className={classes.inputWrapper}>
           <InputLabel
