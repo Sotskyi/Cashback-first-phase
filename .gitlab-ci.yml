@@ -32,7 +32,7 @@ deploy:
     - export DISTRIBUTION_ID=$DISTRIBUTION_ID
     - pip install awscli --upgrade --user
     - export PATH=~/.local/bin:$PATH
-    - aws s3 sync --acl public-read --delete dist $S3_BUCKET_NAME
+    - aws s3 sync --acl public-read --delete build $S3_BUCKET_NAME
     - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
   environment:
     name: staging
