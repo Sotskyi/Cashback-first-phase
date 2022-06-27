@@ -22,7 +22,7 @@ build:
 
 deploy:
   stage: deploy
-  image: python:3.5
+  image: amazon/aws-cli:latest
   dependencies:
     - build
   script:
@@ -30,7 +30,6 @@ deploy:
     - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
     - export S3_BUCKET_NAME=$S3_BUCKET_NAME
     - export DISTRIBUTION_ID=$DISTRIBUTION_ID
-    - pip install awscli --upgrade --user
     - export PATH=~/.local/bin:$PATH
     - aws s3 sync --acl public-read --delete build $S3_BUCKET_NAME
     - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
