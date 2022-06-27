@@ -21,6 +21,7 @@ deployment-staging:
   stage: deploy
   variables:
     S3_BUCKET_NAME: $STAGING_S3_BUCKET_NAME
+    DISTRIBUTION_ID: $STAGING_DISTRIBUTION_ID
   image:
      name: amazon/aws-cli:latest
      entrypoint: [""]
@@ -39,6 +40,7 @@ deployment-production:
   stage: deploy
   variables:
     S3_BUCKET_NAME: $PRODUCTION_S3_BUCKET_NAME
+    DISTRIBUTION_ID: $PRODUCTION_DISTRIBUTION_ID
   image:
      name: amazon/aws-cli:latest
      entrypoint: [""]
