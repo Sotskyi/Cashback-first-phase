@@ -13,7 +13,7 @@ build:
       - ls
   artifacts:
     paths:
-      - dist/
+      - build/
     expire_in: 20 mins
   environment:
     name: staging
