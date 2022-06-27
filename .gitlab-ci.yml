@@ -21,7 +21,9 @@ build:
 
 deploy:
   stage: deploy
-  image: amazon/aws-cli:latest
+  image:
+     name: amazon/aws-cli:latest
+     entrypoint: [""]
   dependencies:
     - build
   script:
@@ -30,8 +32,7 @@ deploy:
     - export S3_BUCKET_NAME=$S3_BUCKET_NAME
     - export DISTRIBUTION_ID=$DISTRIBUTION_ID
     - export PATH=~/.local/bin:$PATH
-    - aws s3 rm $S3_BUCKET_NAME/build --recursive
-    - aws s3 cp ./build $S3_BUCKET_NAME/build --recursive
+    - aws s3 sync build/ $S3_BUCKET_NAME/build --delete
     - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
   environment:
     name: staging
