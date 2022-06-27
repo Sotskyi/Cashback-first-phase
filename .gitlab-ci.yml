@@ -10,6 +10,7 @@ build:
   script:
       - npm i --force
       - npm run build
+      - ls
   artifacts:
     paths:
       - dist/
