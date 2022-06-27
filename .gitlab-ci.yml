@@ -6,7 +6,7 @@ build:
   stage: build
   image: node:16-alpine
   script:
-      - npm i --force
+      - npm i --force       #TO-DO fix dependencies and change to npm ci
       - npm run build
   artifacts:
     paths:
@@ -17,10 +17,10 @@ build:
   only:
     - main
 
-deployment_staging:
+deployment-staging:
   stage: deploy
   variables:
-    S3_BUCKET_NAME: "reviewbucket"
+    S3_BUCKET_NAME: $STAGING_S3_BUCKET_NAME
   image:
      name: amazon/aws-cli:latest
      entrypoint: [""]
@@ -35,10 +35,10 @@ deployment_staging:
   only:
     - main
 
-deployment_production:
+deployment-production:
   stage: deploy
   variables:
-    S3_BUCKET_NAME: "reviewbucket"
+    S3_BUCKET_NAME: $PRODUCTION_S3_BUCKET_NAME
   image:
      name: amazon/aws-cli:latest
      entrypoint: [""]
