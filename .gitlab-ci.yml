@@ -4,4 +4,4 @@ stages:
 testing:
   stage: test
   script:
-    - echo "EC2 Spot testing"
+    - echo "Runner testing"
