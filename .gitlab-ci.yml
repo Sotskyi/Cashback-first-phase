@@ -12,8 +12,6 @@ build:
     paths:
       - build/
     expire_in: 20 mins
-  environment:
-    name: staging
   only:
     - main
     - production
