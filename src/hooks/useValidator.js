@@ -10,6 +10,7 @@ export const validationRuless = {
     /^(\+?1 ?)?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(data),
   isFirstName: (data) => /^[a-zA-Z]{2,}/.test(data),
   isLastName: (data) => /^[a-zA-Z]{2,}/.test(data),
+  isPassword: (data) => /(?=.{7,})/.test(data),
 };
 
 export const useValidator = () => {
@@ -24,6 +25,12 @@ export const useValidator = () => {
         return false;
       }
       if (nameOfData === 'lastName' && !validationRuless.isLastName(data)) {
+        return false;
+      }
+      if (nameOfData === 'email' && !validationRuless.isEmail(data)) {
+        return false;
+      }
+      if (nameOfData === 'password' && !validationRuless.isPassword(data)) {
         return false;
       }
     }

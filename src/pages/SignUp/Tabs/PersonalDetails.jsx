@@ -2,15 +2,13 @@ import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import IconButton from '@mui/material/IconButton';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
+import PasswordInput from '../../../components/PasswordInput';
 
 const PersonalDetails = ({ next }) => {
   const classes = useStyles();
-  const [showPassword, setShowPassword] = useState(false);
   const [creds, setCreds] = useState({
     firstName: '',
     lastName: '',
@@ -26,14 +24,36 @@ const PersonalDetails = ({ next }) => {
 
   const onSubmit = () => {
     setIsShowError(true);
-    next();
+    if (
+      checkIsValid({
+        nameOfData: 'firstName',
+        data: creds.firstName,
+        showErrorSync: true,
+      }) &&
+      checkIsValid({
+        nameOfData: 'lastName',
+        data: creds.lastName,
+        showErrorSync: true,
+      }) &&
+      checkIsValid({
+        nameOfData: 'email',
+        data: creds.email,
+        showErrorSync: true,
+      }) &&
+      checkIsValid({
+        nameOfData: 'password',
+        data: creds.password,
+        showErrorSync: true,
+      })
+    ) {
+      next();
+    }
   };
 
   return (
     <div>
       <div className={classes.contentContainer}>
         <div className={classes.title}>Add personal details</div>
-        {/* <form> */}
         <div className={classes.inputContainer}>
           <div className={classes.inputWrapper}>
             <InputLabel
@@ -68,10 +88,15 @@ const PersonalDetails = ({ next }) => {
                 borderRadius: '8px',
               }}
             />
-            {/* {!checkIsValid({
-                nameOfData: 'firstName',
-                data: creds.firstName,
-              }) && <div style={{ marginTop: '10px' }}>ENTER VALID NAME</div>} */}
+
+            {!checkIsValid({
+              nameOfData: 'firstName',
+              data: creds.firstName,
+            }) && (
+              <div className={classes.errorMessage}>
+                Please enter valid first name
+              </div>
+            )}
           </div>
           <div className={classes.inputWrapper}>
             <InputLabel
@@ -99,7 +124,21 @@ const PersonalDetails = ({ next }) => {
                 border: '1px solid #EAEAEA',
                 borderRadius: '8px',
               }}
+              error={
+                !checkIsValid({
+                  nameOfData: 'lastName',
+                  data: creds.lastName,
+                })
+              }
             />
+            {!checkIsValid({
+              nameOfData: 'lastName',
+              data: creds.lastName,
+            }) && (
+              <div className={classes.errorMessage}>
+                Please enter valid last name
+              </div>
+            )}
           </div>
         </div>
         <div className={classes.inputWrapper}>
@@ -127,55 +166,31 @@ const PersonalDetails = ({ next }) => {
               border: '1px solid #EAEAEA',
               borderRadius: '8px',
             }}
-          />
-        </div>
-        <div className={classes.inputWrapper}>
-          <InputLabel
-            sx={{
-              fontFamily: 'Inter',
-              fontStyle: 'normal',
-              fontWeight: '700',
-              fontSize: '16px',
-              color: 'black',
-            }}
-          >
-            Password
-          </InputLabel>
-          <OutlinedInput
-            onChange={handleChange}
-            id='password'
-            sx={{
-              padding: '0px 14px',
-              height: '48px',
-              fontFamily: 'Inter',
-              fontStyle: 'normal',
-              fontWeight: '500',
-              fontSize: '20px',
-              border: '1px solid #EAEAEA',
-              borderRadius: '8px',
-            }}
-            type={showPassword ? 'text' : 'password'}
-            endAdornment={
-              <InputAdornment position='end'>
-                <IconButton
-                  onClick={() => setShowPassword(!showPassword)}
-                  size='large'
-                >
-                  <img
-                    //   className={classes.flag}
-                    src={
-                      showPassword
-                        ? 'assets/images/icons/visibilityOn.svg'
-                        : 'assets/images/icons/visibilityOff.svg'
-                    }
-                    alt='menu'
-                  />
-                </IconButton>
-              </InputAdornment>
+            error={
+              !checkIsValid({
+                nameOfData: 'email',
+                data: creds.email,
+              })
             }
           />
+          {!checkIsValid({
+            nameOfData: 'email',
+            data: creds.email,
+          }) && (
+            <div className={classes.errorMessage}>
+              Please enter valid email example@gmail.com
+            </div>
+          )}
         </div>
-        {/* </form> */}
+        <PasswordInput
+          handleChange={handleChange}
+          isError={
+            !checkIsValid({
+              nameOfData: 'password',
+              data: creds.password,
+            })
+          }
+        />
         <SubmitButton onSubmit={onSubmit} title='Continue' />
       </div>
     </div>
@@ -209,22 +224,15 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    position: 'relative',
   },
-  continueButton: {
-    height: '20px',
-    background: '#33CC55',
-    borderRadius: '32px',
-    padding: '16px 10px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+  errorMessage: {
+    color: 'red',
+    textAlign: 'center',
     fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: '20px',
-    lineHeight: '24px',
-    letterSpacing: '-0.02em',
-    color: '#FFFFFF',
-    cursor: 'pointer',
+    fontSize: '14px',
+    position: 'absolute',
+    bottom: '-24px',
+    width: '100%',
   },
 }));

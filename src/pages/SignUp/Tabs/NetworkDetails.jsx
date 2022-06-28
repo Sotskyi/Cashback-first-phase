@@ -9,7 +9,8 @@ import SubmitButton from '../../../components/SubmitButton';
 
 const NetworkDetails = () => {
   const classes = useStyles();
-  const [mobileNetwork, setMobileNetwork] = useState('prepaid');
+  const [mobileNetworkPlan, setMobileNetworkPlan] = useState('prepaid');
+  const [mobileNetwork, setMobileNetwork] = useState('');
   //   const [creds, setCreds] = useState({
   //     firstName: '',
   //     lastName: '',
@@ -17,7 +18,7 @@ const NetworkDetails = () => {
   //     password: '',
   //   });
   //   const [checkIsValid, setIsShowError] = useValidator();
-  const mobilesCanada = [
+  const mobilesNetworkCanada = [
     'Virgin Mobile',
     'SaskTel Canada',
     'Freedom Mobile',
@@ -32,8 +33,8 @@ const NetworkDetails = () => {
     'Bell Mobility',
   ];
 
-  const handleChange = () => {
-    // setMobileNetwork(e.target.value);
+  const handleChange = (e) => {
+    setMobileNetwork(e.target.value);
   };
   //   const handleChange = (event) => {
   //     const value = event.target.value.trim();
@@ -63,7 +64,7 @@ const NetworkDetails = () => {
             Mobile network carrier
           </InputLabel>
           <Select
-            // value={age}
+            value={mobileNetwork}
             onChange={handleChange}
             displayEmpty
             inputProps={{ 'aria-label': 'Without label' }}
@@ -82,8 +83,10 @@ const NetworkDetails = () => {
             <MenuItem value=''>
               <em>None</em>
             </MenuItem>
-            {mobilesCanada.map((el) => (
-              <MenuItem value={el}>{el}</MenuItem>
+            {mobilesNetworkCanada.map((el) => (
+              <MenuItem key={el} value={el}>
+                {el}
+              </MenuItem>
             ))}
           </Select>
         </div>
@@ -101,14 +104,14 @@ const NetworkDetails = () => {
               Phone plan
             </InputLabel>
             <div
-              onClick={() => setMobileNetwork('monthly')}
+              onClick={() => setMobileNetworkPlan('monthly')}
               className={`${classes.phonePlan} ${
-                mobileNetwork === 'monthly' ? classes.activeBorder : ''
+                mobileNetworkPlan === 'monthly' ? classes.activeBorder : ''
               }`}
             >
               <div
                 className={
-                  mobileNetwork === 'monthly'
+                  mobileNetworkPlan === 'monthly'
                     ? classes.phonePlanRadioActive
                     : classes.phonePlanRadio
                 }
@@ -117,14 +120,14 @@ const NetworkDetails = () => {
             </div>
           </div>
           <div
-            onClick={() => setMobileNetwork('prepaid')}
+            onClick={() => setMobileNetworkPlan('prepaid')}
             className={`${classes.phonePlan} ${
-              mobileNetwork === 'prepaid' ? classes.activeBorder : ''
+              mobileNetworkPlan === 'prepaid' ? classes.activeBorder : ''
             }`}
           >
             <div
               className={
-                mobileNetwork === 'prepaid'
+                mobileNetworkPlan === 'prepaid'
                   ? classes.phonePlanRadioActive
                   : classes.phonePlanRadio
               }

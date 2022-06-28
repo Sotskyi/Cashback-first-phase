@@ -15,10 +15,7 @@ const LargeScreenHeader = () => {
         <div>Blog</div>
         <div>FAQ</div>
         <div>EN</div>
-        <div
-          className={classes.loginButton}
-          onClick={() => navigate('/signup')}
-        >
+        <div className={classes.loginButton} onClick={() => navigate('/login')}>
           Log In
         </div>
       </div>
@@ -53,6 +50,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '16px',
   },
   loginButton: {
+    cursor: 'pointer',
     width: '176px',
     height: '48px',
     display: 'flex',

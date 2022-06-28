@@ -1,24 +1,35 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
 import PhoneNumberInput from '../../../components/PhoneNumberInput';
+import PasswordInput from '../../../components/PasswordInput';
 
-const CreateAcount = ({ next }) => {
-  const [phone, setPhone] = useState('+1 ');
+const LoginAccount = ({ next }) => {
+  const [creds, setCreds] = useState({ phone: '+1 ', password: '' });
   const classes = useStyles();
-  const navigate = useNavigate();
   const [checkIsValid, setIsShowError] = useValidator();
+  const navigate = useNavigate();
 
-  const handleChange = (e) => setPhone(e.target.value);
+  const handleChange = (e) =>
+    setCreds({ ...creds, [e.target.id]: e.target.value });
 
   const onSubmit = () => {
     setIsShowError(true);
 
     if (
-      checkIsValid({ nameOfData: 'phone', data: phone, showErrorSync: true })
+      checkIsValid({
+        nameOfData: 'phone',
+        data: creds.phone,
+        showErrorSync: true,
+      }) &&
+      checkIsValid({
+        nameOfData: 'password',
+        data: creds.password,
+        showErrorSync: true,
+      })
     ) {
       next();
     }
@@ -27,32 +38,48 @@ const CreateAcount = ({ next }) => {
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Create an account</div>
+        <div className={classes.title}>Log In</div>
+
         <PhoneNumberInput
           handleChange={handleChange}
-          data={phone}
-          isError={!checkIsValid({ nameOfData: 'phone', data: phone })}
+          data={creds.phone}
+          isError={!checkIsValid({ nameOfData: 'phone', data: creds.phone })}
         />
+        <PasswordInput
+          handleChange={handleChange}
+          isError={
+            !checkIsValid({
+              nameOfData: 'password',
+              data: creds.password,
+            })
+          }
+        />
+        <div className={classes.navigateLink}>Forgot password?</div>
         <SubmitButton onSubmit={onSubmit} title='Continue' />
       </div>
       <div className={classes.alreadyHaveAcount}>
         Already have an accont?{' '}
         <span
-          onClick={() => navigate('/login')}
-          className={classes.alreadyHaveAcountLogIn}
+          onClick={() => navigate('/signup')}
+          className={classes.navigateLink}
         >
-          Log In
+          Sign Up
         </span>
       </div>
     </div>
   );
 };
-export default CreateAcount;
+export default LoginAccount;
 
 const useStyles = makeStyles(() => ({
+  signUpContainer: {
+    width: '1280px',
+    height: '720px',
+    display: 'flex',
+  },
   contentContainer: {
     marginTop: '96px',
-    height: '252px',
+    height: '412px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -65,8 +92,9 @@ const useStyles = makeStyles(() => ({
     lineHeight: '140%',
     letterSpacing: '-0.02em',
   },
+
   alreadyHaveAcount: {
-    marginTop: '216px',
+    marginTop: '96px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',
@@ -74,7 +102,7 @@ const useStyles = makeStyles(() => ({
     lineHeight: '24px',
     textAlign: 'center',
   },
-  alreadyHaveAcountLogIn: {
+  navigateLink: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',
