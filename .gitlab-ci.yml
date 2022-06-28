@@ -16,6 +16,7 @@ build:
     name: staging
   only:
     - main
+    - production
 
 deployment-staging:
   stage: deploy
