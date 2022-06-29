@@ -6,7 +6,7 @@ import SetNewPassword from './Tabs/SetNewPassword';
 import AuthLandingLayout from '../../components/AuthLandingLayout';
 
 const LogIn = () => {
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
 
   const next = () => {
     if (activeStep !== 2) {
