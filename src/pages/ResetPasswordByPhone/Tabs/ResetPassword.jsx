@@ -41,7 +41,7 @@ const ResetPassword = ({ next }) => {
         <div className={classes.alreadyHaveAcount}>
           Already have an accont?{' '}
           <span
-            onClick={() => navigate('/signup')}
+            onClick={() => navigate('/reset_password_by_email')}
             className={classes.navigateLink}
             style={{ fontSize: '16px', marginLeft: '8px' }}
           >
@@ -51,7 +51,7 @@ const ResetPassword = ({ next }) => {
         <div className={classes.navigateLink}>
           <span onClick={() => navigate('/login')}>Back to Log in</span>{' '}
           <div className={classes.submitWrapper}>
-            <SubmitButton onSubmit={onSubmit} title='Continue' />
+            <SubmitButton onSubmit={onSubmit} title='Send code' />
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@ export default ResetPassword;
 
 const useStyles = makeStyles(() => ({
   contentContainer: {
-    marginTop: '28px',
+    marginTop: '68px',
     height: '324px',
     display: 'flex',
     flexDirection: 'column',

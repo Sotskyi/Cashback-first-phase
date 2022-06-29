@@ -15,6 +15,9 @@ const LogIn = React.lazy(() => import('./pages/LogIn/LogIn'));
 const ResetPasswordByPhone = React.lazy(() =>
   import('./pages/ResetPasswordByPhone/ResetPasswordByPhone'),
 );
+const ResetPasswordByEmail = React.lazy(() =>
+  import('./pages/ResetPasswordByEmail/ResetPasswordByEmail'),
+);
 // const VerifyPhone = React.lazy(() => import('./pages/VerifyPhone'));
 // const PersonalDetails = React.lazy(() => import('./pages/PersonalDetails'));
 // const ROLES = {
@@ -36,6 +39,10 @@ const App = () => {
             <Route
               path='/reset_password_by_phone'
               element={<ResetPasswordByPhone />}
+            />
+            <Route
+              path='/reset_password_by_email'
+              element={<ResetPasswordByEmail />}
             />
 
             {/* <Route path='register' element={<Register />} />
