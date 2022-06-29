@@ -1,0 +1,159 @@
+import { makeStyles } from '@material-ui/core';
+
+const AuthLandingLayout = ({ children, back, activeStep }) => {
+  const classes = useStyles();
+
+  return (
+    <div className={classes.container}>
+      <div className={classes.bodyContainer}>
+        <div className={classes.header}>
+          <div className={classes.navigationContainer}>
+            <img
+              className={classes.logo}
+              src='assets/images/logos/logo.svg'
+              alt='logo'
+            />
+            {activeStep > 0 && (
+              <div onClick={back} className={classes.backButtonContainer}>
+                <img
+                  className={classes.backButtonIcon}
+                  src='assets/images/icons/leftVector.svg'
+                  alt='menu'
+                />{' '}
+                <div>Back</div>
+              </div>
+            )}
+          </div>
+          <div className={classes.languageMenuContainer}>
+            <div className={classes.languageName}>EN</div>
+            <div className={classes.languageIcon}>
+              <img src='assets/images/icons/language.svg' alt='menu' />
+            </div>
+          </div>
+        </div>
+        <div className={classes.contentContainer}>
+          <div className={classes.contentSide}>{children}</div>
+          <div className={classes.artSide}>
+            <div className={classes.imageContainer}>
+              <div>
+                <img
+                  className={classes.leftImagePhone}
+                  src='assets/images/images/authLeftPhone.jpg'
+                  alt='menu'
+                />
+              </div>
+              <div>
+                <img
+                  className={classes.rightImagePhone}
+                  src='assets/images/images/authRightPhone.jpg'
+                  alt='menu'
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+export default AuthLandingLayout;
+
+const useStyles = makeStyles(() => ({
+  container: {
+    height: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    overflow: 'hidden',
+  },
+  bodyContainer: {
+    width: '1280px',
+    height: '720px',
+    padding: '40px 56px 48px',
+    boxSizing: 'border-box',
+  },
+  header: {
+    height: '68px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignContent: 'center',
+  },
+  navigationContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    paddingTop: '8px',
+  },
+  logo: {
+    width: '154px',
+    height: '16px',
+  },
+  languageContainer: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  languageContainerContentEnd: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'end',
+    alignItems: 'center',
+  },
+  backButtonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '57px',
+    fontSize: '16px',
+    justifyContent: 'space-between',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    lineHeight: '125%',
+    fontFamily: 'Inter',
+    color: '#33CC55',
+    cursor: 'pointer',
+    alignItems: 'center',
+  },
+  backButtonIcon: {
+    height: '14px',
+  },
+  languageMenuContainer: {
+    width: '80px',
+    height: '48px',
+    border: '1px solid #EAEAEA',
+    borderRadius: '26px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  languageName: {
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: '16px',
+    lineHeight: '125%',
+    fontFamily: 'Inter',
+    justifyContent: 'space-evenly',
+  },
+  contentContainer: {
+    display: 'flex',
+    height: '100%',
+  },
+  artSide: {
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'end',
+  },
+  imageContainer: {
+    width: '624px',
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  rightImagePhone: { marginTop: '36px' },
+  contentSide: {
+    minWidth: '448px',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+}));

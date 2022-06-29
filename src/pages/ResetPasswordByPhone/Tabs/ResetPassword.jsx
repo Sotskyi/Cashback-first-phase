@@ -5,9 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
 import PhoneNumberInput from '../../../components/PhoneNumberInput';
-import PasswordInput from '../../../components/PasswordInput';
 
-const LoginAccount = ({ next }) => {
+const ResetPassword = ({ next }) => {
   const [creds, setCreds] = useState({ phone: '+1 ', password: '' });
   const classes = useStyles();
   const [checkIsValid, setIsShowError] = useValidator();
@@ -24,11 +23,6 @@ const LoginAccount = ({ next }) => {
         nameOfData: 'phone',
         data: creds.phone,
         showErrorSync: true,
-      }) &&
-      checkIsValid({
-        nameOfData: 'password',
-        data: creds.password,
-        showErrorSync: true,
       })
     ) {
       next();
@@ -38,47 +32,38 @@ const LoginAccount = ({ next }) => {
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Log In</div>
+        <div className={classes.title}>Reset your password</div>
         <PhoneNumberInput
           handleChange={handleChange}
           data={creds.phone}
           isError={!checkIsValid({ nameOfData: 'phone', data: creds.phone })}
         />
-        <PasswordInput
-          handleChange={handleChange}
-          isError={
-            !checkIsValid({
-              nameOfData: 'password',
-              data: creds.password,
-            })
-          }
-        />
-        <div
-          onClick={() => navigate('/reset_password_by_phone')}
-          className={classes.navigateLink}
-        >
-          Forgot password?
+        <div className={classes.alreadyHaveAcount}>
+          Already have an accont?{' '}
+          <span
+            onClick={() => navigate('/signup')}
+            className={classes.navigateLink}
+            style={{ fontSize: '16px', marginLeft: '8px' }}
+          >
+            Use email
+          </span>
         </div>
-        <SubmitButton onSubmit={onSubmit} title='Continue' />
-      </div>
-      <div className={classes.alreadyHaveAcount}>
-        Already have an accont?{' '}
-        <span
-          onClick={() => navigate('/signup')}
-          className={classes.navigateLink}
-        >
-          Sign Up
-        </span>
+        <div className={classes.navigateLink}>
+          <span onClick={() => navigate('/login')}>Back to Log in</span>{' '}
+          <div className={classes.submitWrapper}>
+            <SubmitButton onSubmit={onSubmit} title='Continue' />
+          </div>
+        </div>
       </div>
     </div>
   );
 };
-export default LoginAccount;
+export default ResetPassword;
 
 const useStyles = makeStyles(() => ({
   contentContainer: {
     marginTop: '28px',
-    height: '412px',
+    height: '324px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -93,21 +78,31 @@ const useStyles = makeStyles(() => ({
   },
 
   alreadyHaveAcount: {
-    marginTop: '96px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: '16px',
-    lineHeight: '24px',
-    textAlign: 'center',
-  },
-  navigateLink: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',
     fontSize: '16px',
     lineHeight: '20px',
+    textAlign: 'center',
+    display: 'flex',
+    justifyContent: 'start',
+  },
+
+  navigateLink: {
+    fontFamily: 'Source Sans Pro, sans-serif',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    fontSize: '20px',
+    lineHeight: '120%',
+    letterSpacing: '0.02em',
     color: '#33CC55',
     cursor: 'pointer',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  submitWrapper: {
+    width: '234px',
   },
 }));

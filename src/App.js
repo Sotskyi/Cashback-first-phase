@@ -12,6 +12,9 @@ const Landing = React.lazy(() => import('./pages/Landing'));
 // const Stores = React.lazy(() => import('./pages/Stores'));
 const SignUp = React.lazy(() => import('./pages/SignUp/SignUp'));
 const LogIn = React.lazy(() => import('./pages/LogIn/LogIn'));
+const ResetPasswordByPhone = React.lazy(() =>
+  import('./pages/ResetPasswordByPhone/ResetPasswordByPhone'),
+);
 // const VerifyPhone = React.lazy(() => import('./pages/VerifyPhone'));
 // const PersonalDetails = React.lazy(() => import('./pages/PersonalDetails'));
 // const ROLES = {
@@ -30,6 +33,11 @@ const App = () => {
             {/* <Route path='/stores' element={<Stores />} /> */}
             <Route path='/signup' element={<SignUp />} />
             <Route path='/login' element={<LogIn />} />
+            <Route
+              path='/reset_password_by_phone'
+              element={<ResetPasswordByPhone />}
+            />
+
             {/* <Route path='register' element={<Register />} />
         <Route path='linkpage' element={<LinkPage />} />
         <Route path='unauthorized' element={<Unauthorized />} /> */}

@@ -51,7 +51,7 @@ export default CreateAcount;
 
 const useStyles = makeStyles(() => ({
   contentContainer: {
-    marginTop: '96px',
+    marginTop: '68px',
     height: '252px',
     display: 'flex',
     flexDirection: 'column',

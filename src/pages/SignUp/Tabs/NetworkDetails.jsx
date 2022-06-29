@@ -144,7 +144,7 @@ export default NetworkDetails;
 
 const useStyles = makeStyles(() => ({
   contentContainer: {
-    marginTop: '56px',
+    marginTop: '28px',
     height: '416px',
     width: '448px',
     display: 'flex',

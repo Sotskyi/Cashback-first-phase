@@ -1,14 +1,15 @@
 import { useState } from 'react';
 
-import LoginAccount from './Tabs/LoginAccount';
+import ResetPassword from './Tabs/ResetPassword';
 import VerifyPhone from '../../components/VerifyPhone';
+import SetNewPassword from './Tabs/SetNewPassword';
 import AuthLandingLayout from '../../components/AuthLandingLayout';
 
 const LogIn = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(2);
 
   const next = () => {
-    if (activeStep !== 1) {
+    if (activeStep !== 2) {
       setActiveStep((prev) => prev + 1);
     }
   };
@@ -19,8 +20,9 @@ const LogIn = () => {
 
   return (
     <AuthLandingLayout back={back} activeStep={activeStep}>
-      {activeStep === 0 && <LoginAccount next={next} />}
+      {activeStep === 0 && <ResetPassword next={next} />}
       {activeStep === 1 && <VerifyPhone next={next} />}
+      {activeStep === 2 && <SetNewPassword next={next} />}
     </AuthLandingLayout>
   );
 };

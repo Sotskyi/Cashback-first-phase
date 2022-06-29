@@ -200,7 +200,7 @@ export default PersonalDetails;
 
 const useStyles = makeStyles(() => ({
   contentContainer: {
-    marginTop: '56px',
+    marginTop: '28px',
     height: '468px',
     display: 'flex',
     flexDirection: 'column',

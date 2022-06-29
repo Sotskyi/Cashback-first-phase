@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const validationRuless = {
+export const validationRules = {
   isEmpty: (data) => data.length > 0,
   isEmail: (data) =>
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
@@ -11,6 +11,10 @@ export const validationRuless = {
   isFirstName: (data) => /^[a-zA-Z]{2,}/.test(data),
   isLastName: (data) => /^[a-zA-Z]{2,}/.test(data),
   isPassword: (data) => /(?=.{7,})/.test(data),
+  isPasswordEqual: (data) => {
+    const { password, confirmPassword } = data;
+    return password === confirmPassword;
+  },
 };
 
 export const useValidator = () => {
@@ -18,19 +22,25 @@ export const useValidator = () => {
 
   const checkIsValid = ({ nameOfData, data, showErrorSync }) => {
     if (isShowError || showErrorSync) {
-      if (nameOfData === 'phone' && !validationRuless.isPhoneNumber(data)) {
+      if (nameOfData === 'phone' && !validationRules.isPhoneNumber(data)) {
         return false;
       }
-      if (nameOfData === 'firstName' && !validationRuless.isFirstName(data)) {
+      if (nameOfData === 'firstName' && !validationRules.isFirstName(data)) {
         return false;
       }
-      if (nameOfData === 'lastName' && !validationRuless.isLastName(data)) {
+      if (nameOfData === 'lastName' && !validationRules.isLastName(data)) {
         return false;
       }
-      if (nameOfData === 'email' && !validationRuless.isEmail(data)) {
+      if (nameOfData === 'email' && !validationRules.isEmail(data)) {
         return false;
       }
-      if (nameOfData === 'password' && !validationRuless.isPassword(data)) {
+      if (nameOfData === 'password' && !validationRules.isPassword(data)) {
+        return false;
+      }
+      if (
+        nameOfData === 'passwordEqual' &&
+        !validationRules.isPasswordEqual(data)
+      ) {
         return false;
       }
     }

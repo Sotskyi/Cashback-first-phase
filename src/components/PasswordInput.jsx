@@ -5,7 +5,7 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 
-const PasswordInput = ({ handleChange, isError }) => {
+const PasswordInput = ({ handleChange, isError, title, errorMessage, id }) => {
   const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
   return (
@@ -19,11 +19,11 @@ const PasswordInput = ({ handleChange, isError }) => {
           color: 'black',
         }}
       >
-        Password
+        {title || 'Password'}
       </InputLabel>
       <OutlinedInput
         onChange={handleChange}
-        id='password'
+        id={id || 'password'}
         error={isError}
         sx={{
           padding: '0px 14px',
@@ -57,7 +57,7 @@ const PasswordInput = ({ handleChange, isError }) => {
       />
       {isError && (
         <div className={classes.errorMessage}>
-          Should contain minimum 7 symbols
+          {errorMessage || 'Should contain minimum 7 symbols'}
         </div>
       )}
     </div>

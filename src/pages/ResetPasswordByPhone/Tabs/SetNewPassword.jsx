@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
-import { useNavigate } from 'react-router-dom';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
-import PhoneNumberInput from '../../../components/PhoneNumberInput';
 import PasswordInput from '../../../components/PasswordInput';
 
-const LoginAccount = ({ next }) => {
-  const [creds, setCreds] = useState({ phone: '+1 ', password: '' });
+const SetNewPassword = ({ next }) => {
+  const [creds, setCreds] = useState({ password: '', confirmPassword: '' });
   const classes = useStyles();
   const [checkIsValid, setIsShowError] = useValidator();
-  const navigate = useNavigate();
 
   const handleChange = (e) =>
     setCreds({ ...creds, [e.target.id]: e.target.value });
@@ -26,8 +23,8 @@ const LoginAccount = ({ next }) => {
         showErrorSync: true,
       }) &&
       checkIsValid({
-        nameOfData: 'password',
-        data: creds.password,
+        nameOfData: 'passwordEqual',
+        data: creds,
         showErrorSync: true,
       })
     ) {
@@ -38,12 +35,8 @@ const LoginAccount = ({ next }) => {
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Log In</div>
-        <PhoneNumberInput
-          handleChange={handleChange}
-          data={creds.phone}
-          isError={!checkIsValid({ nameOfData: 'phone', data: creds.phone })}
-        />
+        <div className={classes.title}>Set new password</div>
+
         <PasswordInput
           handleChange={handleChange}
           isError={
@@ -53,32 +46,30 @@ const LoginAccount = ({ next }) => {
             })
           }
         />
-        <div
-          onClick={() => navigate('/reset_password_by_phone')}
-          className={classes.navigateLink}
-        >
-          Forgot password?
-        </div>
+        <PasswordInput
+          title='Confirm new password'
+          handleChange={handleChange}
+          errorMessage='Passwords do not match'
+          id='confirmPassword'
+          isError={
+            !checkIsValid({
+              nameOfData: 'passwordEqual',
+              data: creds,
+            })
+          }
+        />
+
         <SubmitButton onSubmit={onSubmit} title='Continue' />
-      </div>
-      <div className={classes.alreadyHaveAcount}>
-        Already have an accont?{' '}
-        <span
-          onClick={() => navigate('/signup')}
-          className={classes.navigateLink}
-        >
-          Sign Up
-        </span>
       </div>
     </div>
   );
 };
-export default LoginAccount;
+export default SetNewPassword;
 
 const useStyles = makeStyles(() => ({
   contentContainer: {
-    marginTop: '28px',
-    height: '412px',
+    marginTop: '68px',
+    height: '380px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -90,24 +81,5 @@ const useStyles = makeStyles(() => ({
     fontSize: '40px',
     lineHeight: '140%',
     letterSpacing: '-0.02em',
-  },
-
-  alreadyHaveAcount: {
-    marginTop: '96px',
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: '16px',
-    lineHeight: '24px',
-    textAlign: 'center',
-  },
-  navigateLink: {
-    fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: '16px',
-    lineHeight: '20px',
-    color: '#33CC55',
-    cursor: 'pointer',
   },
 }));

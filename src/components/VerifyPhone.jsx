@@ -153,7 +153,7 @@ export default VerifyPhone;
 
 const useStyles = makeStyles(() => ({
   contentContainer: {
-    marginTop: '110px',
+    marginTop: '68px',
     height: '243px',
     display: 'flex',
     flexDirection: 'column',
