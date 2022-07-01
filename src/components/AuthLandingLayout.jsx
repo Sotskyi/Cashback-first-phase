@@ -1,13 +1,19 @@
+import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
+
+import LanguageSwitcher from './LanguageSwitcher';
 
 const AuthLandingLayout = ({ children, back, activeStep }) => {
   const classes = useStyles();
-
+  const navigate = useNavigate();
   return (
     <div className={classes.container}>
       <div className={classes.bodyContainer}>
         <div className={classes.header}>
-          <div className={classes.navigationContainer}>
+          <div
+            className={classes.navigationContainer}
+            onClick={() => navigate('/')}
+          >
             <img
               className={classes.logo}
               src='assets/images/logos/logo.svg'
@@ -24,12 +30,7 @@ const AuthLandingLayout = ({ children, back, activeStep }) => {
               </div>
             )}
           </div>
-          <div className={classes.languageMenuContainer}>
-            <div className={classes.languageName}>EN</div>
-            <div className={classes.languageIcon}>
-              <img src='assets/images/icons/language.svg' alt='menu' />
-            </div>
-          </div>
+          <LanguageSwitcher />
         </div>
         <div className={classes.contentContainer}>
           <div className={classes.contentSide}>{children}</div>
@@ -84,22 +85,11 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     paddingTop: '8px',
+    cursor: 'pointer',
   },
   logo: {
     width: '154px',
     height: '16px',
-  },
-  languageContainer: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  languageContainerContentEnd: {
-    width: '100%',
-    display: 'flex',
-    justifyContent: 'end',
-    alignItems: 'center',
   },
   backButtonContainer: {
     display: 'flex',

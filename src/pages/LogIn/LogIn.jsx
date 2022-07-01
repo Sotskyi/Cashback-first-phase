@@ -8,7 +8,7 @@ const LogIn = () => {
   const [activeStep, setActiveStep] = useState(0);
 
   const next = () => {
-    if (activeStep !== 1) {
+    if (activeStep !== 3) {
       setActiveStep((prev) => prev + 1);
     }
   };

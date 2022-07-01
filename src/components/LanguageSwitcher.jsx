@@ -1,3 +1,37 @@
+import { makeStyles } from '@material-ui/core';
+
+const LanguageSwitcher = () => {
+  const classes = useStyles();
+  return (
+    <div className={classes.languageMenuContainer}>
+      <div className={classes.languageName}>EN</div>
+      <img src='assets/images/icons/language.svg' alt='menu' />
+    </div>
+  );
+};
+
+export default LanguageSwitcher;
+
+const useStyles = makeStyles(() => ({
+  languageMenuContainer: {
+    width: '80px',
+    height: '48px',
+    border: '1px solid #EAEAEA',
+    borderRadius: '26px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  languageName: {
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: '16px',
+    lineHeight: '125%',
+    fontFamily: 'Inter',
+    justifyContent: 'space-evenly',
+  },
+}));
+
 // import Button from '@mui/material/Button';
 // import ListItemIcon from '@mui/material/ListItemIcon';
 // import ListItemText from '@mui/material/ListItemText';
