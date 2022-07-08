@@ -158,7 +158,6 @@ const StoreIconSlider = () => {
 };
 const useStyles = makeStyles({
   container: {
-    // width: '100%',
     height: '120px',
     padding: '40px 72px  0px',
     display: 'flex',
@@ -192,7 +191,6 @@ const useStyles = makeStyles({
       alignItems: 'center',
       borderRadius: '100px',
       marginRight: '14px',
-      //   marginLeft: '10px',
     },
   },
 
@@ -208,13 +206,7 @@ const useStyles = makeStyles({
     width: '930px',
     overflow: 'hidden',
   },
-  //   rightArrowWrapper: {
-  //     width: '76px',
-  //     position: 'relative',
-  //     right: '18px',
-  //     zIndex: '11111',
-  //     backgroundColor: '#ffffff',
-  //   },
+
   leftArrowIcon: {
     width: '36px',
     height: '36px',
@@ -223,6 +215,7 @@ const useStyles = makeStyles({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    cursor: 'pointer',
   },
   rightArrowIcon: {
     minWidth: '36px',
@@ -233,6 +226,7 @@ const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     marginInline: '31px',
+    cursor: 'pointer',
   },
   filter: {
     minWidth: '100px',

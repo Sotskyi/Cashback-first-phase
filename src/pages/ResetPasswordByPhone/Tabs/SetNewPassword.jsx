@@ -10,8 +10,10 @@ const SetNewPassword = ({ next }) => {
   const classes = useStyles();
   const [checkIsValid, setIsShowError] = useValidator();
 
-  const handleChange = (e) =>
-    setCreds({ ...creds, [e.target.id]: e.target.value });
+  const handleChange = (e) => {
+    const value = e.target.value.trim();
+    setCreds({ ...creds, [e.target.id]: value });
+  };
 
   const onSubmit = () => {
     setIsShowError(true);

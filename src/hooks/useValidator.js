@@ -10,7 +10,7 @@ export const validationRules = {
     /^(\+?1 ?)?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(data),
   isFirstName: (data) => /^[a-zA-Z]{2,}/.test(data),
   isLastName: (data) => /^[a-zA-Z]{2,}/.test(data),
-  isPassword: (data) => /(?=.{7,})/.test(data),
+  isPassword: (data) => /^[a-z0-9]{7,}$/i.test(data),
   isPasswordEqual: (data) => {
     const { password, confirmPassword } = data;
     return password === confirmPassword;

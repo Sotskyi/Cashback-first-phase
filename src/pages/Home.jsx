@@ -1,15 +1,21 @@
 import { makeStyles } from '@material-ui/core';
+import { useState, useEffect } from 'react';
 
 import UnloginedHeader from '../components/public/UnloginedHeader';
 import StoreIconSlider from '../components/StoreIconSlider';
 import StoreCard from '../components/StoreCard';
+import LoginedHeader from '../components/LoginedHeader';
 
 const Home = () => {
+  const [auth, setAuth] = useState(false);
   const classes = useStyles();
+  useEffect(() => {
+    setTimeout(() => setAuth(true), 0);
+  }, []);
 
   return (
     <div className={classes.homeContainer}>
-      <UnloginedHeader />
+      {auth ? <UnloginedHeader /> : <LoginedHeader />}
       <StoreIconSlider />
       <div className={classes.bodyContainer}>
         <div className={classes.cardsContainer}>
