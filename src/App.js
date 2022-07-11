@@ -19,6 +19,7 @@ const ResetPasswordByEmail = React.lazy(() =>
   import('./pages/ResetPasswordByEmail/ResetPasswordByEmail'),
 );
 const Home = React.lazy(() => import('./pages/Home'));
+const Store = React.lazy(() => import('./pages/Store'));
 // const VerifyPhone = React.lazy(() => import('./pages/VerifyPhone'));
 // const PersonalDetails = React.lazy(() => import('./pages/PersonalDetails'));
 // const ROLES = {
@@ -46,6 +47,7 @@ const App = () => {
               element={<ResetPasswordByEmail />}
             />
             <Route path='/home' element={<Home />} />
+            <Route path='/store/:id' element={<Store />} />
             {/* <Route path='register' element={<Register />} />
         <Route path='linkpage' element={<LinkPage />} />
         <Route path='unauthorized' element={<Unauthorized />} /> */}

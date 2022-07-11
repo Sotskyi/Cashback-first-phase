@@ -3,25 +3,19 @@ import Input from '@mui/material/Input';
 import { useNavigate } from 'react-router-dom';
 
 import LanguageSwitcher from '../LanguageSwitcher';
+import logo from '../../assets/images/logos/logo.svg';
+import search from '../../assets/images/icons/search.svg';
 
 const UnloginedHeader = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   return (
     <div className={classes.headerContainer}>
-      <div className={classes.logoContainer}>
-        <img
-          className={classes.logo}
-          src='assets/images/logos/logo.svg'
-          alt='logo'
-        />
+      <div onClick={() => navigate('/')}>
+        <img className={classes.logo} src={logo} alt='logo' />
       </div>
       <div className={classes.searchContainer}>
-        <img
-          className={classes.searchIcon}
-          src='assets/images/icons/search.svg'
-          alt='menu'
-        />
+        <img className={classes.searchIcon} src={search} alt='menu' />
 
         <Input
           placeholder='Search stores'
@@ -56,6 +50,7 @@ const useStyles = makeStyles(() => ({
   logo: {
     width: '154px',
     height: '16px',
+    cursor: 'pointer',
   },
   searchContainer: {
     paddingLeft: '19px',

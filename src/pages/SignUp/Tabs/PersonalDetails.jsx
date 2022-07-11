@@ -18,7 +18,7 @@ const PersonalDetails = ({ next }) => {
   const [checkIsValid, setIsShowError] = useValidator();
 
   const handleChange = (event) => {
-    const value = event.target.value.trim();
+    const value = event.target.value.split(' ').join('');
     setCreds({ ...creds, [event.target.id]: value });
   };
 

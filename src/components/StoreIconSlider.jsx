@@ -4,6 +4,24 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@material-ui/core/styles';
 
+import featuredStores from '../assets/images/icons/forSlider/featuredStores.svg';
+import allStores from '../assets/images/icons/forSlider/allStores.svg';
+import fashion from '../assets/images/icons/forSlider/fashion.svg';
+import entertainment from '../assets/images/icons/forSlider/entertainment.svg';
+import electronics from '../assets/images/icons/forSlider/electronics.svg';
+import foodGrocery from '../assets/images/icons/forSlider/foodGrocery.svg';
+import babyKidsToys from '../assets/images/icons/forSlider/babyKidsToys.svg';
+import homeGarden from '../assets/images/icons/forSlider/homeGarden.svg';
+import books from '../assets/images/icons/forSlider/books.svg';
+import beautyHealth from '../assets/images/icons/forSlider/beautyHealth.svg';
+import sportsAutdoor from '../assets/images/icons/forSlider/sportsAutdoor.svg';
+import auto from '../assets/images/icons/forSlider/auto.svg';
+import petSupplies from '../assets/images/icons/forSlider/petSupplies.svg';
+import hardwareTools from '../assets/images/icons/forSlider/hardwareTools.svg';
+import leftArrow from '../assets/images/icons/forSlider/leftArrow.svg';
+import rightArrow from '../assets/images/icons/forSlider/rightArrow.svg';
+import filter from '../assets/images/icons/filter.svg';
+
 const StoreIconSlider = () => {
   const [value, setValue] = useState('Featured Stores');
   const [step, setStep] = useState(6);
@@ -44,60 +62,60 @@ const StoreIconSlider = () => {
   const tabs = [
     {
       name: 'Featured Stores',
-      iconPath: 'assets/images/icons/forSlider/featuredStores.svg',
+      icon: featuredStores,
     },
     {
       name: 'All Stores',
-      iconPath: 'assets/images/icons/forSlider/allStores.svg',
+      icon: allStores,
     },
 
     {
       name: 'Fashion',
-      iconPath: 'assets/images/icons/forSlider/fashion.svg',
+      icon: fashion,
     },
     {
       name: 'Entertainment',
-      iconPath: 'assets/images/icons/forSlider/entertainment.svg',
+      icon: entertainment,
     },
     {
       name: 'Electronics',
-      iconPath: 'assets/images/icons/forSlider/electronics.svg',
+      icon: electronics,
     },
     {
       name: 'Food & Grocery',
-      iconPath: 'assets/images/icons/forSlider/foodGrocery.svg',
+      icon: foodGrocery,
     },
     {
       name: 'Baby, Kids & Toys',
-      iconPath: 'assets/images/icons/forSlider/babyKidsToys.svg',
+      icon: babyKidsToys,
     },
     {
       name: 'Books',
-      iconPath: 'assets/images/icons/forSlider/books.svg',
+      icon: books,
     },
     {
       name: 'Home & Garden',
-      iconPath: 'assets/images/icons/forSlider/homeGarden.svg',
+      icon: homeGarden,
     },
     {
       name: 'Beauty & Health',
-      iconPath: 'assets/images/icons/forSlider/beautyHealth.svg',
+      icon: beautyHealth,
     },
     {
       name: 'Sports & Outdoor',
-      iconPath: 'assets/images/icons/forSlider/sportsAutdoor.svg',
+      icon: sportsAutdoor,
     },
     {
       name: 'Auto',
-      iconPath: 'assets/images/icons/forSlider/auto.svg',
+      icon: auto,
     },
     {
       name: 'Pet Supplies',
-      iconPath: 'assets/images/icons/forSlider/petSupplies.svg',
+      icon: petSupplies,
     },
     {
       name: 'Hardware & Tools',
-      iconPath: 'assets/images/icons/forSlider/hardwareTools.svg',
+      icon: hardwareTools,
     },
   ];
   return (
@@ -105,7 +123,7 @@ const StoreIconSlider = () => {
       {step >= 12 && (
         <div className={classes.arrowContainer} onClick={handleClickLeftArrow}>
           <div className={classes.leftArrowIcon}>
-            <img src='assets/images/icons/forSlider/leftArrow.svg' alt='menu' />
+            <img src={leftArrow} alt='menu' />
           </div>
         </div>
       )}
@@ -129,7 +147,7 @@ const StoreIconSlider = () => {
                 key={el.name}
                 icon={
                   <div>
-                    <img src={el.iconPath} alt='menu' />
+                    <img src={el.icon} alt='menu' />
                   </div>
                 }
               />
@@ -142,14 +160,11 @@ const StoreIconSlider = () => {
         {' '}
         {range < 9 && (
           <div className={classes.rightArrowIcon}>
-            <img
-              src='assets/images/icons/forSlider/rightArrow.svg'
-              alt='menu'
-            />
+            <img src={rightArrow} alt='menu' />
           </div>
         )}
         <div className={classes.filter}>
-          <img src='assets/images/icons/filter.svg' alt='menu' />
+          <img src={filter} alt='menu' />
           <span>filter</span>
         </div>
       </div>

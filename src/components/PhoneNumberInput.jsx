@@ -1,16 +1,14 @@
 import { makeStyles } from '@material-ui/core';
 
+import flag from '../assets/images/flags/ca.png';
+
 const PhoneNumberInput = ({ handleChange, data, isError }) => {
   const classes = useStyles();
   return (
     <div className={classes.phoneNumberContainer}>
       <label className={classes.phoneNumberLabel}>Phone number</label>
       <div className={classes.phoneNumberInputContainer}>
-        <img
-          className={classes.flag}
-          src='assets/images/flags/ca.png'
-          alt='menu'
-        />
+        <img className={classes.flag} src={flag} alt='menu' />
         <div className={classes.divider} />
         <input
           onChange={handleChange}

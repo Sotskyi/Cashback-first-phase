@@ -5,6 +5,9 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 
+import visibilityOn from '../assets/images/icons/visibilityOn.svg';
+import visibilityOff from '../assets/images/icons/visibilityOff.svg';
+
 const PasswordInput = ({ handleChange, isError, title, errorMessage, id }) => {
   const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
@@ -44,11 +47,7 @@ const PasswordInput = ({ handleChange, isError, title, errorMessage, id }) => {
             >
               <img
                 //   className={classes.flag}
-                src={
-                  showPassword
-                    ? 'assets/images/icons/visibilityOn.svg'
-                    : 'assets/images/icons/visibilityOff.svg'
-                }
+                src={showPassword ? visibilityOn : visibilityOff}
                 alt='menu'
               />
             </IconButton>

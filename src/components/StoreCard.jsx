@@ -1,13 +1,18 @@
 import { makeStyles } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
 
-const StoreCard = ({ name, procent }) => {
+const StoreCard = ({ name, procent, id }) => {
   const classes = useStyles();
-
+  const navigate = useNavigate();
   return (
-    <div className={classes.storeCardWrapper}>
+    <div
+      id={id}
+      className={classes.storeCardWrapper}
+      onClick={() => navigate(`/store/${id}/`)}
+    >
       <div className={classes.storeCardTop} />
       <div className={classes.storeCardMiddle}>
-        <div className={classes.storeCardIcon} />
+        <div className={classes.storeCardAvatar} />
         <div className={classes.storeCardProcent}>{procent}</div>
       </div>
       <div className={classes.storeCardBottom}>
@@ -24,6 +29,7 @@ const useStyles = makeStyles(() => ({
     height: '272px',
     borderRadius: '8px',
     marginTop: '15px',
+    cursor: 'pointer',
   },
   storeCardTop: {
     height: '192px',
@@ -35,7 +41,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
-  storeCardIcon: {
+  storeCardAvatar: {
     width: '64px',
     height: '64px',
     border: '1px solid #FFFFFF',

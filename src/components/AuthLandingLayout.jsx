@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
-
+import logo from '../assets/images/logos/logo.svg';
+import leftVector from '../assets/images/icons/leftVector.svg';
+import authLeftPhone from '../assets/images/images/authLeftPhone.jpg';
+import authRightPhone from '../assets/images/images/authRightPhone.jpg';
 import LanguageSwitcher from './LanguageSwitcher';
 
 const AuthLandingLayout = ({ children, back, activeStep }) => {
@@ -10,20 +13,19 @@ const AuthLandingLayout = ({ children, back, activeStep }) => {
     <div className={classes.container}>
       <div className={classes.bodyContainer}>
         <div className={classes.header}>
-          <div
-            className={classes.navigationContainer}
-            onClick={() => navigate('/')}
-          >
+          <div className={classes.navigationContainer}>
             <img
+              onClick={() => navigate('/')}
               className={classes.logo}
-              src='assets/images/logos/logo.svg'
+              src={logo}
               alt='logo'
+              role='presentation'
             />
             {activeStep > 0 && (
               <div onClick={back} className={classes.backButtonContainer}>
                 <img
                   className={classes.backButtonIcon}
-                  src='assets/images/icons/leftVector.svg'
+                  src={leftVector}
                   alt='menu'
                 />{' '}
                 <div>Back</div>
@@ -39,14 +41,14 @@ const AuthLandingLayout = ({ children, back, activeStep }) => {
               <div>
                 <img
                   className={classes.leftImagePhone}
-                  src='assets/images/images/authLeftPhone.jpg'
+                  src={authLeftPhone}
                   alt='menu'
                 />
               </div>
               <div>
                 <img
                   className={classes.rightImagePhone}
-                  src='assets/images/images/authRightPhone.jpg'
+                  src={authRightPhone}
                   alt='menu'
                 />
               </div>

@@ -1,11 +1,13 @@
 import { makeStyles } from '@material-ui/core';
 
+import language from '../assets/images/icons/language.svg';
+
 const LanguageSwitcher = () => {
   const classes = useStyles();
   return (
     <div className={classes.languageMenuContainer}>
       <div className={classes.languageName}>EN</div>
-      <img src='assets/images/icons/language.svg' alt='menu' />
+      <img src={language} alt='menu' />
     </div>
   );
 };
