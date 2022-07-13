@@ -8,7 +8,7 @@ const StoreCard = ({ name, procent, id }) => {
     <div
       id={id}
       className={classes.storeCardWrapper}
-      onClick={() => navigate(`/store/${id}/`)}
+      onClick={() => navigate(`/store${id}`)}
     >
       <div className={classes.storeCardTop} />
       <div className={classes.storeCardMiddle}>

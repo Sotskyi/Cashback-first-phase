@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 
@@ -6,19 +5,20 @@ import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
 import PhoneNumberInput from '../../../components/PhoneNumberInput';
 
-const CreateAcount = ({ next }) => {
-  const [phone, setPhone] = useState('+1 ');
+const CreateAcount = ({ next, handleChange, creds }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const [checkIsValid, setIsShowError] = useValidator();
-
-  const handleChange = (e) => setPhone(e.target.value);
 
   const onSubmit = () => {
     setIsShowError(true);
 
     if (
-      checkIsValid({ nameOfData: 'phone', data: phone, showErrorSync: true })
+      checkIsValid({
+        nameOfData: 'phone',
+        data: creds.phoneNumber,
+        showErrorSync: true,
+      })
     ) {
       next();
     }
@@ -30,8 +30,10 @@ const CreateAcount = ({ next }) => {
         <div className={classes.title}>Create an account</div>
         <PhoneNumberInput
           handleChange={handleChange}
-          data={phone}
-          isError={!checkIsValid({ nameOfData: 'phone', data: phone })}
+          data={creds.phoneNumber}
+          isError={
+            !checkIsValid({ nameOfData: 'phone', data: creds.phoneNumber })
+          }
         />
         <SubmitButton onSubmit={onSubmit} title='Continue' />
       </div>

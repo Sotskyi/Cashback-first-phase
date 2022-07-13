@@ -13,14 +13,14 @@ const PhoneNumberInput = ({ handleChange, data, isError }) => {
         <input
           onChange={handleChange}
           className={classes.phoneNumberInput}
-          id='phone'
+          id='phoneNumber'
           type='tel'
           value={data}
         />
       </div>
       {isError && (
         <div className={classes.phoneNumberError}>
-          Please enter valid phone number format +1 123 345 6789
+          Please enter valid phone number format +112334567890
         </div>
       )}
     </div>

@@ -21,6 +21,7 @@ module.exports = {
     },
   },
   rules: {
+    camelcase: 'off',
     'arrow-body-style': 'off',
     'class-methods-use-this': 'off',
     'linebreak-style': 0,
@@ -29,15 +30,20 @@ module.exports = {
     'react/prop-types': 'off',
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
-    // 'react/no-unstable-nested-components': [{ allowAsProps: true }],
     'jsx-a11y/click-events-have-key-events': 'off',
     'jsx-a11y/no-static-element-interactions': 'off',
     'react/react-in-jsx-scope': 'off',
-
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: true,
+      },
+    ],
     'no-use-before-define': [
       'error',
       { functions: false, classes: true, variables: false },
     ],
+    'no-param-reassign': 0,
     'jsx-a11y/no-autofocus': ['off', { ignoreNonDOM: true }],
 
     'react/function-component-definition': [
@@ -66,7 +72,6 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off',
     'jsx-a11y/mouse-events-have-key-events': 'off',
     'jsx-quotes': [2, 'prefer-single'],
-
     'react/jsx-wrap-multilines': [
       'error',
       {

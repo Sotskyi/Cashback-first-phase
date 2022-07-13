@@ -10,12 +10,13 @@ export const validationRules = {
     /^(\+?1 ?)?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(data),
   isFirstName: (data) => /^[a-zA-Z]{2,}/.test(data),
   isLastName: (data) => /^[a-zA-Z]{2,}/.test(data),
-  isPassword: (data) => /^[a-z0-9]{7,}$/i.test(data),
+  isPassword: (data) => /^\S{7,}$/.test(data),
   isPasswordEqual: (data) => {
     const { password, confirmPassword } = data;
     return password === confirmPassword;
   },
 };
+// /^[a-z0-9]{7,}$/i.test(data)
 
 export const useValidator = () => {
   const [isShowError, setIsShowError] = useState(false);

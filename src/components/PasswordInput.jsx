@@ -8,7 +8,14 @@ import IconButton from '@mui/material/IconButton';
 import visibilityOn from '../assets/images/icons/visibilityOn.svg';
 import visibilityOff from '../assets/images/icons/visibilityOff.svg';
 
-const PasswordInput = ({ handleChange, isError, title, errorMessage, id }) => {
+const PasswordInput = ({
+  handleChange,
+  isError,
+  title,
+  errorMessage,
+  id,
+  value,
+}) => {
   const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
   return (
@@ -26,6 +33,7 @@ const PasswordInput = ({ handleChange, isError, title, errorMessage, id }) => {
       </InputLabel>
       <OutlinedInput
         onChange={handleChange}
+        value={value}
         id={id || 'password'}
         error={isError}
         sx={{

@@ -7,17 +7,10 @@ import InputLabel from '@mui/material/InputLabel';
 import SubmitButton from '../../../components/SubmitButton';
 // import { useValidator } from '../../../hooks/useValidator';
 
-const NetworkDetails = () => {
+const NetworkDetails = ({ creds, setCreds, isError, onSubmit }) => {
   const classes = useStyles();
-  const [mobileNetworkPlan, setMobileNetworkPlan] = useState('prepaid');
   const [mobileNetwork, setMobileNetwork] = useState('');
-  //   const [creds, setCreds] = useState({
-  //     firstName: '',
-  //     lastName: '',
-  //     email: '',
-  //     password: '',
-  //   });
-  //   const [checkIsValid, setIsShowError] = useValidator();
+
   const mobilesNetworkCanada = [
     'Virgin Mobile',
     'SaskTel Canada',
@@ -36,21 +29,11 @@ const NetworkDetails = () => {
   const handleChange = (e) => {
     setMobileNetwork(e.target.value);
   };
-  //   const handleChange = (event) => {
-  //     const value = event.target.value.trim();
-  //     setCreds({ ...creds, [event.target.id]: value });
-  //   };
-
-  //   const onSubmit = () => {
-  //     setIsShowError(true);
-  //     next();
-  //   };
 
   return (
     <div>
       <div className={classes.contentContainer}>
         <div className={classes.title}>Add network details</div>
-
         <div className={classes.inputWrapper}>
           <InputLabel
             sx={{
@@ -104,14 +87,14 @@ const NetworkDetails = () => {
               Phone plan
             </InputLabel>
             <div
-              onClick={() => setMobileNetworkPlan('monthly')}
+              onClick={() => setCreds({ ...creds, phonePlan: 'monthly' })}
               className={`${classes.phonePlan} ${
-                mobileNetworkPlan === 'monthly' ? classes.activeBorder : ''
+                creds.phonePlan === 'monthly' ? classes.activeBorder : ''
               }`}
             >
               <div
                 className={
-                  mobileNetworkPlan === 'monthly'
+                  creds.phonePlan === 'monthly'
                     ? classes.phonePlanRadioActive
                     : classes.phonePlanRadio
                 }
@@ -120,14 +103,14 @@ const NetworkDetails = () => {
             </div>
           </div>
           <div
-            onClick={() => setMobileNetworkPlan('prepaid')}
+            onClick={() => setCreds({ ...creds, phonePlan: 'prepaid' })}
             className={`${classes.phonePlan} ${
-              mobileNetworkPlan === 'prepaid' ? classes.activeBorder : ''
+              creds.phonePlan === 'prepaid' ? classes.activeBorder : ''
             }`}
           >
             <div
               className={
-                mobileNetworkPlan === 'prepaid'
+                creds.phonePlan === 'prepaid'
                   ? classes.phonePlanRadioActive
                   : classes.phonePlanRadio
               }
@@ -135,8 +118,13 @@ const NetworkDetails = () => {
             <span> Prepaid</span>
           </div>
         </div>
-        <SubmitButton title='Sign Up' />
+        <SubmitButton title='Sign Up' onSubmit={onSubmit} />
       </div>
+      {isError && (
+        <div className={classes.errorMessage}>
+          Email or phone number already exists, please enter a new one
+        </div>
+      )}
     </div>
   );
 };
@@ -209,22 +197,14 @@ const useStyles = makeStyles(() => ({
     borderRadius: '50px',
     border: '5px solid #33CC55',
   },
-
-  continueButton: {
-    height: '20px',
-    background: '#33CC55',
-    borderRadius: '32px',
-    padding: '16px 10px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
+  errorMessage: {
+    marginTop: '24px',
+    color: 'red',
+    textAlign: 'center',
     fontFamily: 'Inter',
-    fontStyle: 'normal',
-    fontWeight: '500',
-    fontSize: '20px',
-    lineHeight: '24px',
-    letterSpacing: '-0.02em',
-    color: '#FFFFFF',
-    cursor: 'pointer',
+    fontSize: '14px',
+    // position: 'absolute',
+    // bottom: '-24px',
+    width: '100%',
   },
 }));

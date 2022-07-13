@@ -1,22 +1,20 @@
-import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
 import PhoneNumberInput from '../../../components/PhoneNumberInput';
 import PasswordInput from '../../../components/PasswordInput';
 
-const LoginAccount = ({ next }) => {
-  const [creds, setCreds] = useState({ phone: '+1 ', password: '' });
+const LoginAccount = ({ creds, handleSubmit, handleChange }) => {
   const classes = useStyles();
+
   const [checkIsValid, setIsShowError] = useValidator();
+
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const value = e.target.value.trim();
-    setCreds({ ...creds, [e.target.id]: value });
-  };
+  const { isError } = useSelector((state) => state.auth);
 
   const onSubmit = () => {
     setIsShowError(true);
@@ -24,7 +22,7 @@ const LoginAccount = ({ next }) => {
     if (
       checkIsValid({
         nameOfData: 'phone',
-        data: creds.phone,
+        data: creds.phoneNumber,
         showErrorSync: true,
       }) &&
       checkIsValid({
@@ -33,7 +31,8 @@ const LoginAccount = ({ next }) => {
         showErrorSync: true,
       })
     ) {
-      next();
+      // next();
+      handleSubmit();
     }
   };
 
@@ -41,12 +40,23 @@ const LoginAccount = ({ next }) => {
     <div>
       <div className={classes.contentContainer}>
         <div className={classes.title}>Log In</div>
+        {isError && (
+          <div className={classes.errorMessage}>
+            The user phone number or password is incorrect{' '}
+          </div>
+        )}
         <PhoneNumberInput
           handleChange={handleChange}
-          data={creds.phone}
-          isError={!checkIsValid({ nameOfData: 'phone', data: creds.phone })}
+          data={creds.phoneNumber}
+          isError={
+            !checkIsValid({
+              nameOfData: 'phone',
+              data: creds.phoneNumber,
+            })
+          }
         />
         <PasswordInput
+          value={creds.password}
           handleChange={handleChange}
           isError={
             !checkIsValid({
@@ -63,8 +73,8 @@ const LoginAccount = ({ next }) => {
         </div>
         <SubmitButton onSubmit={onSubmit} title='Continue' />
       </div>
-      <div className={classes.alreadyHaveAcount}>
-        Already have an accont?{' '}
+      <div className={classes.newAccount}>
+        New to Telco Rewards?{' '}
         <span
           onClick={() => navigate('/signup')}
           className={classes.navigateLink}
@@ -94,7 +104,7 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '-0.02em',
   },
 
-  alreadyHaveAcount: {
+  newAccount: {
     marginTop: '96px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
@@ -111,5 +121,12 @@ const useStyles = makeStyles(() => ({
     lineHeight: '20px',
     color: '#33CC55',
     cursor: 'pointer',
+  },
+  errorMessage: {
+    color: 'red',
+    textAlign: 'center',
+    fontFamily: 'Inter',
+    fontSize: '14px',
+    width: '100%',
   },
 }));

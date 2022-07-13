@@ -1,17 +1,13 @@
 import { makeStyles } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 
-import UnloginedHeader from '../components/public/UnloginedHeader';
-import LoginedHeader from '../components/LoginedHeader';
 import ProductCard from '../components/ProductCard';
 
 const Store = () => {
-  const auth = false;
   const classes = useStyles();
-
+  const { isAuth } = useSelector((state) => state.auth);
   return (
     <div className={classes.storeContainer}>
-      {auth ? <LoginedHeader /> : <UnloginedHeader />}
-
       <div className={classes.bodyHeaderContainer}>
         <div className={classes.storeBackground} />
         <div className={classes.middleLine}>
@@ -44,7 +40,7 @@ const Store = () => {
               </div>
             </div>
             <div className={classes.shopButton}>
-              {auth ? 'Shop Now' : 'Log in to shop'}
+              {isAuth ? 'Shop Now' : 'Log in to shop'}
             </div>
           </div>
         </div>

@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
-import Layout from './components/Layouts';
-import NotFoundPage from './pages/NotFound';
+import AuthLayout from './components/AuthLayout';
+// import NotFoundPage from './pages/NotFound';
+import Loader from './components/Loader';
 
 // import Missing from "./components/Missing";
 // import Register from "./components/Register";
@@ -20,6 +21,7 @@ const ResetPasswordByEmail = React.lazy(() =>
 );
 const Home = React.lazy(() => import('./pages/Home'));
 const Store = React.lazy(() => import('./pages/Store'));
+const Cashback = React.lazy(() => import('./pages/Cashback/Cashback'));
 // const VerifyPhone = React.lazy(() => import('./pages/VerifyPhone'));
 // const PersonalDetails = React.lazy(() => import('./pages/PersonalDetails'));
 // const ROLES = {
@@ -29,13 +31,11 @@ const Store = React.lazy(() => import('./pages/Store'));
 
 const App = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loader />}>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Layout />}>
+          <Route path='/'>
             {/* public routes */}
-            <Route index element={<Home />} />
-            {/* <Route path='/stores' element={<Stores />} /> */}
             <Route path='/signup' element={<SignUp />} />
             <Route path='/login' element={<LogIn />} />
             <Route
@@ -46,19 +46,16 @@ const App = () => {
               path='/reset_password_by_email'
               element={<ResetPasswordByEmail />}
             />
-            <Route path='/home' element={<Home />} />
-            <Route path='/store/:id' element={<Store />} />
-            {/* <Route path='register' element={<Register />} />
-        <Route path='linkpage' element={<LinkPage />} />
-        <Route path='unauthorized' element={<Unauthorized />} /> */}
-
-            {/* we want to protect these routes */}
-            {/* <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-          <Route path='/' element={<Home />} />
-        </Route> */}
-
+            {/* public or protected routes */}
+            <Route path='/' element={<AuthLayout />}>
+              <Route index element={<Home />} />
+              {/* <Route path='/home' element={<Home />} /> */}
+              <Route path='/store:id' element={<Store />} />
+              <Route path='/cashback' element={<Cashback />} />
+            </Route>
             {/* catch all */}
-            <Route path='*' element={<NotFoundPage />} />
+            <Route path='*' element={<Navigate to='/' replace />} />
+            {/* <Route path='*' element={<NotFoundPage />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>

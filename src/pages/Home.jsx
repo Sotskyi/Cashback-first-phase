@@ -1,16 +1,12 @@
 import { makeStyles } from '@material-ui/core';
 
-import UnloginedHeader from '../components/public/UnloginedHeader';
 import StoreIconSlider from '../components/StoreIconSlider';
 import StoreCard from '../components/StoreCard';
-import LoginedHeader from '../components/LoginedHeader';
 
 const Home = () => {
-  const auth = false;
   const classes = useStyles();
   return (
     <div className={classes.homeContainer}>
-      {auth ? <LoginedHeader /> : <UnloginedHeader />}
       <StoreIconSlider />
       <div className={classes.bodyContainer}>
         <div className={classes.cardsContainer}>

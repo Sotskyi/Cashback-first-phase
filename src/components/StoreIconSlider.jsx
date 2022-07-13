@@ -156,10 +156,13 @@ const StoreIconSlider = () => {
         </Box>
       </div>
 
-      <div className={classes.arrowContainer} onClick={handleClickRightArrow}>
+      <div className={classes.arrowContainer}>
         {' '}
         {range < 9 && (
-          <div className={classes.rightArrowIcon}>
+          <div
+            className={classes.rightArrowIcon}
+            onClick={handleClickRightArrow}
+          >
             <img src={rightArrow} alt='menu' />
           </div>
         )}

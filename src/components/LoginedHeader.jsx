@@ -1,3 +1,4 @@
+import { useNavigate, useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import Input from '@mui/material/Input';
 
@@ -9,9 +10,13 @@ import userMenu from '../assets/images/icons/userMenu.svg';
 const LoginedHeader = () => {
   const classes = useStyles();
 
+  const navigate = useNavigate();
+
+  const { pathname } = useLocation();
+
   return (
     <div className={classes.headerContainer}>
-      <div className={classes.logoContainer}>
+      <div className={classes.logoContainer} onClick={() => navigate('/')}>
         <img className={classes.logo} src={logo} alt='logo' />
       </div>
       <div className={classes.searchContainer}>
@@ -25,7 +30,12 @@ const LoginedHeader = () => {
         />
       </div>
       <LanguageSwitcher />
-      <div className={classes.availablePriceContainer}>
+      <div
+        className={`${classes.availablePriceContainer} ${
+          pathname === '/cashback' ? classes.active : ''
+        }  `}
+        onClick={() => navigate('/cashback')}
+      >
         <div className={classes.priceTitle}>AVAILABLE</div>
         <div className={classes.price}>$26</div>
       </div>
@@ -53,6 +63,7 @@ const useStyles = makeStyles(() => ({
   logo: {
     width: '154px',
     height: '16px',
+    cursor: 'pointer',
   },
   searchContainer: {
     paddingLeft: '19px',
@@ -79,9 +90,11 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     flexDirection: 'column',
     marginLeft: '16px',
+    cursor: 'pointer',
   },
+  active: { border: '1px solid #33CC55', color: '#33CC55' },
   priceTitle: {
-    fontWeight: '500',
+    fontWeight: '600',
     fontSize: '12px',
     fontStyle: 'nomral',
     fontFamily: 'Inter',
@@ -90,7 +103,7 @@ const useStyles = makeStyles(() => ({
     textTransform: 'uppercase',
   },
   price: {
-    fontWeight: '600',
+    fontWeight: '700',
     fontSize: '20px',
     fontStyle: 'nomral',
     fontFamily: 'Source Sans Pro, sans-serif',

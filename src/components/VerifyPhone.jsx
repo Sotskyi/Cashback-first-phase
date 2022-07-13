@@ -1,9 +1,9 @@
 import { makeStyles } from '@material-ui/core';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 // import { useValidator } from '../hooks/useValidator';
 
-const VerifyPhone = ({ next }) => {
+const VeriphyPhone = ({ next, setCreds, creds }) => {
   const classes = useStyles();
   //   const [checkIsValid, setIsShowError] = useValidator();
   const [verifyNumbers, setVerifyNumbers] = useState({
@@ -14,6 +14,18 @@ const VerifyPhone = ({ next }) => {
     input5: '',
     input6: '',
   });
+
+  useEffect(() => {
+    if (Object.values(verifyNumbers).every((element) => element !== '')) {
+      // here check is code valid
+
+      setCreds({
+        ...creds,
+        verificationCode: Object.values(verifyNumbers).join(''),
+      });
+      next();
+    }
+  }, [verifyNumbers]);
 
   const input1 = useRef(null);
   const input2 = useRef(null);
@@ -48,7 +60,8 @@ const VerifyPhone = ({ next }) => {
         }
       });
       if (counter === 5) {
-        next();
+        // console.log(next());
+        // next();
       }
     }
   };
@@ -149,11 +162,11 @@ const VerifyPhone = ({ next }) => {
     </div>
   );
 };
-export default VerifyPhone;
+export default VeriphyPhone;
 
 const useStyles = makeStyles(() => ({
   contentContainer: {
-    marginTop: '68px',
+    marginTop: '110px',
     height: '243px',
     display: 'flex',
     flexDirection: 'column',

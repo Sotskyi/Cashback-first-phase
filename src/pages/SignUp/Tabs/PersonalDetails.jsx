@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -7,20 +6,10 @@ import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
 import PasswordInput from '../../../components/PasswordInput';
 
-const PersonalDetails = ({ next }) => {
+const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
   const classes = useStyles();
-  const [creds, setCreds] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  });
-  const [checkIsValid, setIsShowError] = useValidator();
 
-  const handleChange = (event) => {
-    const value = event.target.value.split(' ').join('');
-    setCreds({ ...creds, [event.target.id]: value });
-  };
+  const [checkIsValid, setIsShowError] = useValidator();
 
   const onSubmit = () => {
     setIsShowError(true);
@@ -46,6 +35,13 @@ const PersonalDetails = ({ next }) => {
         showErrorSync: true,
       })
     ) {
+      setCreds({
+        ...creds,
+        firstName: creds.firstName,
+        lastName: creds.lastName,
+        email: creds.email,
+        password: creds.password,
+      });
       next();
     }
   };
@@ -70,6 +66,7 @@ const PersonalDetails = ({ next }) => {
             <OutlinedInput
               onChange={handleChange}
               id='firstName'
+              value={creds.firstName}
               error={
                 !checkIsValid({
                   nameOfData: 'firstName',
@@ -113,6 +110,7 @@ const PersonalDetails = ({ next }) => {
             <OutlinedInput
               onChange={handleChange}
               id='lastName'
+              value={creds.lastName}
               sx={{
                 width: '216px',
                 padding: '0px 14px',
@@ -156,6 +154,7 @@ const PersonalDetails = ({ next }) => {
           <OutlinedInput
             onChange={handleChange}
             id='email'
+            value={creds.email}
             sx={{
               padding: '0px 14px',
               height: '48px',
@@ -184,6 +183,7 @@ const PersonalDetails = ({ next }) => {
         </div>
         <PasswordInput
           handleChange={handleChange}
+          value={creds.password}
           isError={
             !checkIsValid({
               nameOfData: 'password',
