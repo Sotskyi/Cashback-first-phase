@@ -72,6 +72,7 @@ const LogIn = () => {
           handleSubmit={handleSubmit}
           setCreds={false}
           creds={false}
+          phoneNumber={creds.phoneNumber}
         />
       )} */}
     </AuthLandingLayout>

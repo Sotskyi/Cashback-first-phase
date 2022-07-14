@@ -71,7 +71,12 @@ const SignUp = () => {
         <CreateAcount creds={creds} handleChange={handleChange} next={next} />
       )}
       {activeStep === 1 && (
-        <VeriphyPhone next={next} setCreds={setCreds} creds={creds} />
+        <VeriphyPhone
+          next={next}
+          setCreds={setCreds}
+          creds={creds}
+          phoneNumber={creds.phoneNumber}
+        />
       )}
       {activeStep === 2 && (
         <PersonalDetails

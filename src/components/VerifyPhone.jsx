@@ -3,7 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 
 // import { useValidator } from '../hooks/useValidator';
 
-const VeriphyPhone = ({ next, setCreds, creds }) => {
+const VeriphyPhone = ({ next, setCreds, creds, phoneNumber }) => {
   const classes = useStyles();
   //   const [checkIsValid, setIsShowError] = useValidator();
   const [verifyNumbers, setVerifyNumbers] = useState({
@@ -89,7 +89,7 @@ const VeriphyPhone = ({ next, setCreds, creds }) => {
           <div className={classes.subTitle}>
             Enter the code we’ve sent by SMS to{' '}
           </div>
-          <div className={classes.phoneNumber}>+1 123 345 6789 </div>
+          <div className={classes.phoneNumber}>{phoneNumber}</div>
         </div>
         <form className={classes.verificationSquaresContainer}>
           <input

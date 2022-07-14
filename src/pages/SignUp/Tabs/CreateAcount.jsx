@@ -12,7 +12,6 @@ const CreateAcount = ({ next, handleChange, creds }) => {
 
   const onSubmit = () => {
     setIsShowError(true);
-
     if (
       checkIsValid({
         nameOfData: 'phone',
