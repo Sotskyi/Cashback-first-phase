@@ -38,7 +38,6 @@ const SetNewPassword = ({ next }) => {
     <div>
       <div className={classes.contentContainer}>
         <div className={classes.title}>Set new password</div>
-
         <PasswordInput
           handleChange={handleChange}
           isError={

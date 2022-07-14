@@ -43,7 +43,7 @@ export const checkAuth = createAsyncThunk(
   },
 );
 
-export const logout = createAsyncThunk('auth/logout', async () => {
+export const logoutUser = createAsyncThunk('auth/logout', async () => {
   await AuthService.logout();
 });
 
@@ -55,6 +55,20 @@ export const authSlice = createSlice({
       state.isLoading = false;
       state.isError = false;
     },
+    // logout: (state) => {
+    //   state.isLoading = false;
+    //   state.isError = false;
+    //   state.isAuth = false;
+    //   state.user = null;
+    //   localStorage.setItem('auth', JSON.stringify({}));
+    // },
+
+    // logout:(state) => {
+    //   state.user = null,
+    //   state.isError = false,
+    //   state.isLoading = false,
+    //   state.isAuth = false,
+    // }
   },
   extraReducers: {
     [login.fulfilled]: (state, action) => {
@@ -94,6 +108,12 @@ export const authSlice = createSlice({
     },
     [checkAuth.rejected]: (state) => {
       state.isLoading = false;
+    },
+    [logoutUser.fulfilled]: (state) => {
+      state.isLoading = false;
+      state.isError = false;
+      state.isAuth = false;
+      state.user = null;
     },
   },
 });

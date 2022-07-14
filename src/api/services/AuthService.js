@@ -28,6 +28,6 @@ export default class AuthService {
   }
 
   static async logout() {
-    return axios.post('/logout');
+    return localStorage.setItem('auth', JSON.stringify({}));
   }
 }

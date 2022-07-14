@@ -5,7 +5,8 @@ import Input from '@mui/material/Input';
 import LanguageSwitcher from './LanguageSwitcher';
 import logo from '../assets/images/logos/logo.svg';
 import search from '../assets/images/icons/search.svg';
-import userMenu from '../assets/images/icons/userMenu.svg';
+
+import UserMenu from './UserMenu';
 
 const LoginedHeader = () => {
   const classes = useStyles();
@@ -21,7 +22,6 @@ const LoginedHeader = () => {
       </div>
       <div className={classes.searchContainer}>
         <img className={classes.searchIcon} src={search} alt='menu' />
-
         <Input
           placeholder='Search stores'
           disableUnderline
@@ -39,12 +39,7 @@ const LoginedHeader = () => {
         <div className={classes.priceTitle}>AVAILABLE</div>
         <div className={classes.price}>$26</div>
       </div>
-      <div className={classes.menuContainer}>
-        <div className={classes.menu}>
-          <img src={userMenu} alt='logo' />
-        </div>
-        <div className={classes.avatar} />
-      </div>
+      <UserMenu />
     </div>
   );
 };
