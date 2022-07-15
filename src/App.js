@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 
 import AuthLayout from './components/AuthLayout';
 // import NotFoundPage from './pages/NotFound';
@@ -32,6 +33,17 @@ const Cashback = React.lazy(() => import('./pages/Cashback/Cashback'));
 const App = () => {
   return (
     <Suspense fallback={<Loader />}>
+      <ToastContainer
+        position='top-center'
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <BrowserRouter>
         <Routes>
           <Route path='/'>

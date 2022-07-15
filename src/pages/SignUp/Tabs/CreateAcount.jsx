@@ -1,13 +1,16 @@
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
 import PhoneNumberInput from '../../../components/PhoneNumberInput';
+import { verifyPhone } from '../../../redux/slices/authSlice';
 
 const CreateAcount = ({ next, handleChange, creds }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [checkIsValid, setIsShowError] = useValidator();
 
   const onSubmit = () => {
@@ -19,6 +22,7 @@ const CreateAcount = ({ next, handleChange, creds }) => {
         showErrorSync: true,
       })
     ) {
+      dispatch(verifyPhone(creds.phoneNumber));
       next();
     }
   };

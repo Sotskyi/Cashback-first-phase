@@ -1,18 +1,28 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
 import PasswordInput from '../../../components/PasswordInput';
+import { setNewPassword } from '../../../redux/slices/authSlice';
 
-const SetNewPassword = ({ next }) => {
-  const [creds, setCreds] = useState({ password: '', confirmPassword: '' });
+const SetNewPassword = ({ creds }) => {
+  const [equalityPassword, setEqualityPassword] = useState({
+    password: '',
+    confirmPassword: '',
+  });
   const classes = useStyles();
+  const navigate = useNavigate();
   const [checkIsValid, setIsShowError] = useValidator();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const value = e.target.value.trim();
-    setCreds({ ...creds, [e.target.id]: value });
+    setEqualityPassword({ ...equalityPassword, [e.target.id]: value });
   };
 
   const onSubmit = () => {
@@ -20,17 +30,19 @@ const SetNewPassword = ({ next }) => {
 
     if (
       checkIsValid({
-        nameOfData: 'phone',
-        data: creds.phone,
-        showErrorSync: true,
-      }) &&
-      checkIsValid({
         nameOfData: 'passwordEqual',
-        data: creds,
+        data: equalityPassword,
         showErrorSync: true,
       })
     ) {
-      next();
+      dispatch(
+        setNewPassword({
+          phoneNumber: creds.phoneNumber,
+          password: equalityPassword.confirmPassword,
+        }),
+      );
+      toast.success('new password successfully created');
+      navigate('/login');
     }
   };
 
@@ -43,7 +55,7 @@ const SetNewPassword = ({ next }) => {
           isError={
             !checkIsValid({
               nameOfData: 'password',
-              data: creds.password,
+              data: equalityPassword.password,
             })
           }
         />
@@ -55,7 +67,7 @@ const SetNewPassword = ({ next }) => {
           isError={
             !checkIsValid({
               nameOfData: 'passwordEqual',
-              data: creds,
+              data: equalityPassword,
             })
           }
         />

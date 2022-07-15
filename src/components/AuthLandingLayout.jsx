@@ -13,9 +13,11 @@ const AuthLandingLayout = ({ children, back, activeStep }) => {
     <div className={classes.container}>
       <div className={classes.bodyContainer}>
         <div className={classes.header}>
-          <div className={classes.navigationContainer}>
+          <div
+            className={classes.navigationContainer}
+            onClick={() => navigate('/')}
+          >
             <img
-              onClick={() => navigate('/')}
               className={classes.logo}
               src={logo}
               alt='logo'

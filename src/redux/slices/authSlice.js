@@ -6,6 +6,7 @@ const initialState = {
   isError: false,
   isLoading: false,
   isAuth: false,
+  confirmSms: null,
 };
 
 // Register user
@@ -31,11 +32,71 @@ export const login = createAsyncThunk('auth/login', async (creds, thunkAPI) => {
   }
 });
 
+export const loginConfirm = createAsyncThunk(
+  'auth/loginConfirm',
+  async (creds, thunkAPI) => {
+    try {
+      const response = await AuthService.loginConfirm(creds);
+      return await response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const resetPasswordConfirm = createAsyncThunk(
+  'auth/resetPasswordConfirm',
+  async (creds, thunkAPI) => {
+    try {
+      const response = await AuthService.resetPasswordConfirm(creds);
+      return await response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 export const checkAuth = createAsyncThunk(
   'auth/refresh',
   async (refreshToken, thunkAPI) => {
     try {
       const response = await AuthService.checkAuth(refreshToken);
+      return await response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const verifyPhone = createAsyncThunk(
+  'auth/confirmSms',
+  async (phoneNumber, thunkAPI) => {
+    try {
+      const response = await AuthService.confirmSms(phoneNumber);
+      return await response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const resetPasswordBysms = createAsyncThunk(
+  'auth/resetPasswordBysms',
+  async (phoneNumber, thunkAPI) => {
+    try {
+      const response = await AuthService.resetPasswordBySms(phoneNumber);
+      return await response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const setNewPassword = createAsyncThunk(
+  'auth/setNewPassword ',
+  async (creds, thunkAPI) => {
+    try {
+      const response = await AuthService.setNewPassword(creds);
       return await response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -55,32 +116,29 @@ export const authSlice = createSlice({
       state.isLoading = false;
       state.isError = false;
     },
-    // logout: (state) => {
-    //   state.isLoading = false;
-    //   state.isError = false;
-    //   state.isAuth = false;
-    //   state.user = null;
-    //   localStorage.setItem('auth', JSON.stringify({}));
-    // },
-
-    // logout:(state) => {
-    //   state.user = null,
-    //   state.isError = false,
-    //   state.isLoading = false,
-    //   state.isAuth = false,
-    // }
   },
   extraReducers: {
     [login.fulfilled]: (state, action) => {
+      state.isError = false;
+      state.confirmSms = action.payload.code;
+      state.isLoading = false;
+    },
+    [login.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [login.rejected]: (state) => {
+      state.isLoading = false;
+      state.isError = true;
+    },
+    [loginConfirm.fulfilled]: (state, action) => {
       state.user = action.payload;
       state.isAuth = true;
       state.isError = false;
     },
-    [login.pending]: (state, action) => {
-      state.user = action.payload;
+    [loginConfirm.pending]: (state) => {
       state.isLoading = true;
     },
-    [login.rejected]: (state) => {
+    [loginConfirm.rejected]: (state) => {
       state.isLoading = false;
       state.isError = true;
     },
@@ -114,6 +172,29 @@ export const authSlice = createSlice({
       state.isError = false;
       state.isAuth = false;
       state.user = null;
+      state.confirmSm = null;
+    },
+    [verifyPhone.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [verifyPhone.fulfilled]: (state, action) => {
+      state.confirmSms = action.payload.code;
+      state.isLoading = false;
+    },
+    [verifyPhone.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [resetPasswordBysms.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [resetPasswordBysms.fulfilled]: (state, action) => {
+      state.confirmSms = action.payload.code;
+      state.isLoading = false;
+      state.isError = false;
+    },
+    [resetPasswordBysms.rejected]: (state) => {
+      state.isLoading = false;
+      state.isError = true;
     },
   },
 });

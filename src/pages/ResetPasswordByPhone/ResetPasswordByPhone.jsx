@@ -7,6 +7,9 @@ import AuthLandingLayout from '../../components/AuthLandingLayout';
 
 const ResetPasswordByPhone = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [creds, setCreds] = useState({
+    phoneNumber: '+1',
+  });
 
   const next = () => {
     if (activeStep !== 2) {
@@ -18,11 +21,30 @@ const ResetPasswordByPhone = () => {
     setActiveStep((prev) => prev - 1);
   };
 
+  const handleChange = (e) => {
+    const value = e.target.value.trim();
+    setCreds({ ...creds, [e.target.id]: value });
+  };
+
   return (
     <AuthLandingLayout back={back} activeStep={activeStep}>
-      {activeStep === 0 && <ResetPassword next={next} />}
-      {activeStep === 1 && <VerifyPhone next={next} />}
-      {activeStep === 2 && <SetNewPassword next={next} />}
+      {activeStep === 0 && (
+        <ResetPassword
+          next={next}
+          creds={creds}
+          setCreds={setCreds}
+          handleChange={handleChange}
+        />
+      )}
+      {activeStep === 1 && (
+        <VerifyPhone
+          next={next}
+          setCreds={setCreds}
+          creds={creds}
+          useFor='resetPasswordBySms'
+        />
+      )}
+      {activeStep === 2 && <SetNewPassword next={next} creds={creds} />}
     </AuthLandingLayout>
   );
 };

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import AuthLandingLayout from '../../components/AuthLandingLayout';
 import CreateAcount from './Tabs/CreateAcount';
@@ -12,7 +14,6 @@ import Loader from '../../components/Loader';
 
 const SignUp = () => {
   const [activeStep, setActiveStep] = useState(0);
-
   const [creds, setCreds] = useState({
     phoneNumber: '+1',
     firstName: '',
@@ -23,11 +24,8 @@ const SignUp = () => {
     billingNumber: '+13213212222',
     phonePlan: 'monthly',
   });
-
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
-
   const { isLoading, isError } = useSelector((state) => state.auth);
 
   const next = () => {
@@ -38,9 +36,6 @@ const SignUp = () => {
 
   const back = () => {
     setActiveStep((prev) => prev - 1);
-    if (activeStep === 3) {
-      setCreds({ ...creds });
-    }
   };
 
   const handleChange = (event) => {
@@ -55,6 +50,7 @@ const SignUp = () => {
     if (Object.values(creds).every((element) => element !== '')) {
       const resultAction = await dispatch(register(creds));
       if (register.fulfilled.match(resultAction)) {
+        toast.success('new user successfully created');
         navigate('/home');
         dispatch(reset());
       }
@@ -75,7 +71,7 @@ const SignUp = () => {
           next={next}
           setCreds={setCreds}
           creds={creds}
-          phoneNumber={creds.phoneNumber}
+          useFor='signup'
         />
       )}
       {activeStep === 2 && (

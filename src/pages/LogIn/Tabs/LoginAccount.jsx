@@ -1,22 +1,21 @@
 import { makeStyles } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
 import PhoneNumberInput from '../../../components/PhoneNumberInput';
 import PasswordInput from '../../../components/PasswordInput';
+import { login } from '../../../redux/slices/authSlice';
 
-const LoginAccount = ({ creds, handleSubmit, handleChange }) => {
+const LoginAccount = ({ creds, handleChange, next }) => {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
   const [checkIsValid, setIsShowError] = useValidator();
-
   const navigate = useNavigate();
-
   const { isError } = useSelector((state) => state.auth);
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     setIsShowError(true);
 
     if (
@@ -31,8 +30,11 @@ const LoginAccount = ({ creds, handleSubmit, handleChange }) => {
         showErrorSync: true,
       })
     ) {
-      // next();
-      handleSubmit();
+      const resultAction = await dispatch(login(creds));
+      if (login.fulfilled.match(resultAction)) {
+        next();
+        // dispatch(reset());
+      }
     }
   };
 

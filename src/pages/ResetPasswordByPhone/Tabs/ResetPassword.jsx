@@ -1,33 +1,38 @@
-import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
 import PhoneNumberInput from '../../../components/PhoneNumberInput';
+import { resetPasswordBysms } from '../../../redux/slices/authSlice';
+import { useValidator } from '../../../hooks/useValidator';
 
-const ResetPassword = ({ next }) => {
-  const [creds, setCreds] = useState({ phone: '+1 ', password: '' });
+const ResetPassword = ({ next, creds, handleChange }) => {
   const classes = useStyles();
   const [checkIsValid, setIsShowError] = useValidator();
   const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    const value = e.target.value.trim();
-    setCreds({ ...creds, [e.target.id]: value });
-  };
+  const dispatch = useDispatch();
+  const { isError } = useSelector((state) => state.auth);
 
   const onSubmit = () => {
     setIsShowError(true);
-
     if (
       checkIsValid({
         nameOfData: 'phone',
-        data: creds.phone,
+        data: creds.phoneNumber,
         showErrorSync: true,
       })
     ) {
-      next();
+      const sendPhoneNumber = async () => {
+        const resultAction = await dispatch(
+          resetPasswordBysms(creds.phoneNumber),
+        );
+        if (resetPasswordBysms.fulfilled.match(resultAction)) {
+          next();
+        }
+      };
+
+      sendPhoneNumber();
     }
   };
 
@@ -35,10 +40,15 @@ const ResetPassword = ({ next }) => {
     <div>
       <div className={classes.contentContainer}>
         <div className={classes.title}>Reset your password</div>
+        {isError && (
+          <div className={classes.errorMessage}>Phone number not exist</div>
+        )}
         <PhoneNumberInput
           handleChange={handleChange}
-          data={creds.phone}
-          isError={!checkIsValid({ nameOfData: 'phone', data: creds.phone })}
+          data={creds.phoneNumber}
+          isError={
+            !checkIsValid({ nameOfData: 'phone', data: creds.phoneNumber })
+          }
         />
         <div className={classes.alreadyHaveAcount}>
           Already have an accont?{' '}
@@ -78,7 +88,6 @@ const useStyles = makeStyles(() => ({
     lineHeight: '140%',
     letterSpacing: '-0.02em',
   },
-
   alreadyHaveAcount: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
@@ -89,7 +98,6 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'start',
   },
-
   navigateLink: {
     fontFamily: 'Source Sans Pro, sans-serif',
     fontStyle: 'normal',
@@ -106,5 +114,11 @@ const useStyles = makeStyles(() => ({
   },
   submitWrapper: {
     width: '234px',
+  },
+  errorMessage: {
+    color: 'red',
+    fontFamily: 'Inter',
+    fontSize: '14px',
+    width: '100%',
   },
 }));

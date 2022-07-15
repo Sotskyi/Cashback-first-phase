@@ -1,11 +1,21 @@
 import { makeStyles } from '@material-ui/core';
 import { useState, useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-// import { useValidator } from '../hooks/useValidator';
+import Loader from './Loader';
+import {
+  verifyPhone,
+  loginConfirm,
+  resetPasswordConfirm,
+} from '../redux/slices/authSlice';
 
-const VeriphyPhone = ({ next, setCreds, creds, phoneNumber }) => {
+const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
   const classes = useStyles();
-  //   const [checkIsValid, setIsShowError] = useValidator();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { confirmSms, isLoading } = useSelector((state) => state.auth);
+  const [isShowError, setIsShowError] = useState(false);
   const [verifyNumbers, setVerifyNumbers] = useState({
     input1: '',
     input2: '',
@@ -15,15 +25,46 @@ const VeriphyPhone = ({ next, setCreds, creds, phoneNumber }) => {
     input6: '',
   });
 
+  const signInConfirm = async (params) => {
+    const resultAction = await dispatch(loginConfirm(params));
+    if (loginConfirm.fulfilled.match(resultAction)) {
+      navigate('/home');
+      // dispatch(reset());
+    }
+  };
+
+  const resetPasswordConfirmBySms = async (params) => {
+    const resultAction = await dispatch(resetPasswordConfirm(params));
+    if (resetPasswordConfirm.fulfilled.match(resultAction)) {
+      next();
+      // dispatch(reset());
+    }
+  };
+
   useEffect(() => {
     if (Object.values(verifyNumbers).every((element) => element !== '')) {
       // here check is code valid
-
-      setCreds({
-        ...creds,
-        verificationCode: Object.values(verifyNumbers).join(''),
-      });
-      next();
+      if (Object.values(verifyNumbers).join('') === confirmSms.toString()) {
+        if (useFor === 'signup') {
+          setCreds({
+            ...creds,
+            verificationCode: Object.values(verifyNumbers).join(''),
+          });
+          next();
+        } else if (useFor === 'login') {
+          signInConfirm({
+            phoneNumber: creds.phoneNumber,
+            code: Object.values(verifyNumbers).join(''),
+          });
+        } else if (useFor === 'resetPasswordBySms') {
+          resetPasswordConfirmBySms({
+            phoneNumber: creds.phoneNumber,
+            code: Object.values(verifyNumbers).join(''),
+          });
+        }
+      } else {
+        setIsShowError(true);
+      }
     }
   }, [verifyNumbers]);
 
@@ -81,6 +122,10 @@ const VeriphyPhone = ({ next, setCreds, creds, phoneNumber }) => {
     }
   };
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <div>
       <div className={classes.contentContainer}>
@@ -89,8 +134,13 @@ const VeriphyPhone = ({ next, setCreds, creds, phoneNumber }) => {
           <div className={classes.subTitle}>
             Enter the code we’ve sent by SMS to{' '}
           </div>
-          <div className={classes.phoneNumber}>{phoneNumber}</div>
+          <div className={classes.phoneNumber}>{creds.phoneNumber}</div>
         </div>
+        {isShowError && (
+          <div className={classes.errorMessage}>
+            verification code is incorrect
+          </div>
+        )}
         <form className={classes.verificationSquaresContainer}>
           <input
             id='input1'
@@ -157,7 +207,12 @@ const VeriphyPhone = ({ next, setCreds, creds, phoneNumber }) => {
       </div>
       <div className={classes.haventSms}>
         Haven’t recieved SMS?
-        <span className={classes.sendAgain}>Send again</span>
+        <span
+          className={classes.sendAgain}
+          onClick={() => dispatch(verifyPhone(creds.phoneNumber))}
+        >
+          Send again
+        </span>
       </div>
     </div>
   );
@@ -234,5 +289,12 @@ const useStyles = makeStyles(() => ({
     lineHeight: '20px',
     color: '#33CC55',
     marginLeft: '8px',
+    cursor: 'pointer',
+  },
+  errorMessage: {
+    color: 'red',
+    fontFamily: 'Inter',
+    fontSize: '14px',
+    width: '100%',
   },
 }));
