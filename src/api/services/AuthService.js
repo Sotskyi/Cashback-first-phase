@@ -25,6 +25,12 @@ export default class AuthService {
       .then(saveTokens);
   }
 
+  static async registerConfirm(creds) {
+    return axios.post('/auth/confirm/sms/check', {
+      ...creds,
+    });
+  }
+
   static async checkAuth(refreshToken) {
     return axios
       .patch('/auth/refresh', {

@@ -56,6 +56,18 @@ export const resetPasswordConfirm = createAsyncThunk(
   },
 );
 
+export const registerConfirm = createAsyncThunk(
+  'auth/resetPasswordConfirm',
+  async (creds, thunkAPI) => {
+    try {
+      const response = await AuthService.registerConfirm(creds);
+      return await response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 export const checkAuth = createAsyncThunk(
   'auth/refresh',
   async (refreshToken, thunkAPI) => {

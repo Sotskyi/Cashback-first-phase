@@ -8,6 +8,7 @@ import {
   verifyPhone,
   loginConfirm,
   resetPasswordConfirm,
+  registerConfirm,
 } from '../redux/slices/authSlice';
 
 const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
@@ -24,6 +25,14 @@ const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
     input5: '',
     input6: '',
   });
+
+  const registerSmsCheckConfirm = async (params) => {
+    const resultAction = await dispatch(registerConfirm(params));
+    if (registerConfirm.fulfilled.match(resultAction)) {
+      next();
+      // dispatch(reset());
+    }
+  };
 
   const signInConfirm = async (params) => {
     const resultAction = await dispatch(loginConfirm(params));
@@ -50,7 +59,10 @@ const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
             ...creds,
             verificationCode: Object.values(verifyNumbers).join(''),
           });
-          next();
+          registerSmsCheckConfirm({
+            phoneNumber: creds.phoneNumber,
+            code: Object.values(verifyNumbers).join(''),
+          });
         } else if (useFor === 'login') {
           signInConfirm({
             phoneNumber: creds.phoneNumber,
