@@ -34,7 +34,8 @@ const SignUp = () => {
     }
   };
 
-  const back = () => {
+  const back = (e) => {
+    e.stopPropagation();
     setActiveStep((prev) => prev - 1);
   };
 

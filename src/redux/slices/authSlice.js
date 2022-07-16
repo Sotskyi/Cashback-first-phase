@@ -11,10 +11,10 @@ const initialState = {
 };
 
 const getError = (error) => {
-  if (error.response.data.message[0].length > 0) {
+  if (Array.isArray(error.response.data.message)) {
     return error.response.data.message[0];
   }
-  return error;
+  return error.response.data.message;
 };
 // Register user
 export const register = createAsyncThunk(
@@ -36,7 +36,6 @@ export const login = createAsyncThunk('auth/login', async (creds, thunkAPI) => {
     const response = await AuthService.login(creds);
     return await response.data;
   } catch (error) {
-    console.log(error);
     toast.error(getError(error));
     return thunkAPI.rejectWithValue(error);
   }
