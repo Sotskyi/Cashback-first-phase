@@ -24,7 +24,13 @@ const AuthLandingLayout = ({ children, back, activeStep }) => {
               role='presentation'
             />
             {activeStep > 0 && (
-              <div onClick={back} className={classes.backButtonContainer}>
+              <div
+                onClick={(e) => {
+                  e.stopPropagation();
+                  back();
+                }}
+                className={classes.backButtonContainer}
+              >
                 <img
                   className={classes.backButtonIcon}
                   src={leftVector}
