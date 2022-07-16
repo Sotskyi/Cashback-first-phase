@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import SubmitButton from '../../../components/SubmitButton';
 import PhoneNumberInput from '../../../components/PhoneNumberInput';
@@ -12,7 +12,6 @@ const ResetPassword = ({ next, creds, handleChange }) => {
   const [checkIsValid, setIsShowError] = useValidator();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { isError } = useSelector((state) => state.auth);
 
   const onSubmit = () => {
     setIsShowError(true);
@@ -40,9 +39,6 @@ const ResetPassword = ({ next, creds, handleChange }) => {
     <div>
       <div className={classes.contentContainer}>
         <div className={classes.title}>Reset your password</div>
-        {isError && (
-          <div className={classes.errorMessage}>Phone number not exist</div>
-        )}
         <PhoneNumberInput
           handleChange={handleChange}
           data={creds.phoneNumber}
@@ -114,11 +110,5 @@ const useStyles = makeStyles(() => ({
   },
   submitWrapper: {
     width: '234px',
-  },
-  errorMessage: {
-    color: 'red',
-    fontFamily: 'Inter',
-    fontSize: '14px',
-    width: '100%',
   },
 }));

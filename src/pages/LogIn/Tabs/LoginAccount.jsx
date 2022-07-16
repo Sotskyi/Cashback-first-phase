@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
@@ -13,7 +13,6 @@ const LoginAccount = ({ creds, handleChange, next }) => {
   const dispatch = useDispatch();
   const [checkIsValid, setIsShowError] = useValidator();
   const navigate = useNavigate();
-  const { isError } = useSelector((state) => state.auth);
 
   const onSubmit = async () => {
     setIsShowError(true);
@@ -42,11 +41,6 @@ const LoginAccount = ({ creds, handleChange, next }) => {
     <div>
       <div className={classes.contentContainer}>
         <div className={classes.title}>Log In</div>
-        {isError && (
-          <div className={classes.errorMessage}>
-            The user phone number or password is incorrect{' '}
-          </div>
-        )}
         <PhoneNumberInput
           handleChange={handleChange}
           data={creds.phoneNumber}
@@ -123,12 +117,5 @@ const useStyles = makeStyles(() => ({
     lineHeight: '20px',
     color: '#33CC55',
     cursor: 'pointer',
-  },
-  errorMessage: {
-    color: 'red',
-    textAlign: 'center',
-    fontFamily: 'Inter',
-    fontSize: '14px',
-    width: '100%',
   },
 }));

@@ -26,7 +26,7 @@ const SignUp = () => {
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isLoading, isError } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.auth);
 
   const next = () => {
     if (activeStep !== 3) {
@@ -87,7 +87,6 @@ const SignUp = () => {
           handleChange={handleChange}
           creds={creds}
           setCreds={setCreds}
-          isError={isError}
           onSubmit={onSubmit}
         />
       )}

@@ -7,7 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import SubmitButton from '../../../components/SubmitButton';
 // import { useValidator } from '../../../hooks/useValidator';
 
-const NetworkDetails = ({ creds, setCreds, isError, onSubmit }) => {
+const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
   const classes = useStyles();
   const [mobileNetwork, setMobileNetwork] = useState('');
 
@@ -120,11 +120,6 @@ const NetworkDetails = ({ creds, setCreds, isError, onSubmit }) => {
         </div>
         <SubmitButton title='Sign Up' onSubmit={onSubmit} />
       </div>
-      {isError && (
-        <div className={classes.errorMessage}>
-          Email or phone number already exists, please enter a new one
-        </div>
-      )}
     </div>
   );
 };
@@ -196,15 +191,5 @@ const useStyles = makeStyles(() => ({
     left: '12px',
     borderRadius: '50px',
     border: '5px solid #33CC55',
-  },
-  errorMessage: {
-    marginTop: '24px',
-    color: 'red',
-    textAlign: 'center',
-    fontFamily: 'Inter',
-    fontSize: '14px',
-    // position: 'absolute',
-    // bottom: '-24px',
-    width: '100%',
   },
 }));

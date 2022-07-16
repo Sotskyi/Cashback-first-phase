@@ -15,7 +15,7 @@ const LogIn = () => {
     password: '',
   });
 
-  const { isLoading, isError } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.auth);
 
   const next = () => {
     if (activeStep !== 3) {
@@ -47,7 +47,6 @@ const LogIn = () => {
           setCreds={setCreds}
           next={next}
           handleChange={handleChange}
-          isError={isError}
         />
       )}
       {activeStep === 1 && (
