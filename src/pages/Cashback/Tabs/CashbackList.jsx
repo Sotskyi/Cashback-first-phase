@@ -127,8 +127,8 @@ const useStyles = makeStyles(() => ({
   },
   storeContainer: {
     display: 'flex',
-    marginTop: '18px',
-    height: '64px',
+    alignItems: 'center',
+    height: '84px',
   },
   storeAvatar: {
     width: '48px',
@@ -141,6 +141,8 @@ const useStyles = makeStyles(() => ({
     marginLeft: '16px',
     flexDirection: 'column',
     width: '100%',
+    height: '100%',
+    justifyContent: 'center',
     borderBottom: '1px solid #EAEAEA',
   },
   storeContentWrapper: {
