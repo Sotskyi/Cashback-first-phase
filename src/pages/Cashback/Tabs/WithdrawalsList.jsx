@@ -7,6 +7,7 @@ const WithdrawalsList = () => {
 
   return (
     <div className={classes.withdrawalsListContainer}>
+      {/* <div className={classes.withdrawalsListWrapper}> */}
       <div className={classes.dateContainer}>
         <div className={classes.date}>Monday, May 11 </div>
         <div className={classes.totalCashback}>$ 30.23</div>
@@ -111,6 +112,7 @@ const WithdrawalsList = () => {
           </div>
         </div>
       </div>
+      {/* </div> */}
     </div>
   );
 };
@@ -119,6 +121,8 @@ export default WithdrawalsList;
 const useStyles = makeStyles(() => ({
   withdrawalsListContainer: {
     height: '500px',
+    width: '680px',
+    paddingRight: '15px',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
       width: '1px',
@@ -132,6 +136,7 @@ const useStyles = makeStyles(() => ({
       outline: '1px solid slategrey',
     },
   },
+  withdrawalsListWrapper: {},
   dateContainer: {
     height: '30px',
     marginLeft: '64px',

@@ -1,10 +1,13 @@
 import { makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+// import { useParams } from 'react-router-dom';
 
 import ProductCard from '../components/ProductCard';
 
 const Store = () => {
   const classes = useStyles();
+  // const { id } = useParams();
+
   const { isAuth } = useSelector((state) => state.auth);
   return (
     <div className={classes.storeContainer}>

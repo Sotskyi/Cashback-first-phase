@@ -1,7 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import AuthService from '../../api/services/AuthService';
 import 'react-toastify/dist/ReactToastify.css';
+
+import AuthService from '../../api/services/AuthService';
+import { getError } from '../../utils/helpers';
 
 const initialState = {
   user: null,
@@ -10,12 +12,6 @@ const initialState = {
   confirmSms: null,
 };
 
-const getError = (error) => {
-  if (Array.isArray(error.response.data.message)) {
-    return error.response.data.message[0];
-  }
-  return error.response.data.message;
-};
 // Register user
 export const register = createAsyncThunk(
   'auth/register',
@@ -24,7 +20,7 @@ export const register = createAsyncThunk(
       const response = await AuthService.register(creds);
       return await response.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(getError(error));
       return thunkAPI.rejectWithValue(error);
     }
   },
@@ -61,7 +57,7 @@ export const resetPasswordConfirm = createAsyncThunk(
       const response = await AuthService.resetPasswordConfirm(creds);
       return await response.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(getError(error));
       return thunkAPI.rejectWithValue(error);
     }
   },
@@ -74,7 +70,7 @@ export const registerConfirm = createAsyncThunk(
       const response = await AuthService.registerConfirm(creds);
       return await response.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(getError(error));
       return thunkAPI.rejectWithValue(error);
     }
   },
@@ -99,7 +95,7 @@ export const verifyPhone = createAsyncThunk(
       const response = await AuthService.confirmSms(phoneNumber);
       return await response.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(getError(error));
       return thunkAPI.rejectWithValue(error);
     }
   },
@@ -112,7 +108,7 @@ export const resetPasswordBysms = createAsyncThunk(
       const response = await AuthService.resetPasswordBySms(phoneNumber);
       return await response.data;
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(getError(error));
       return thunkAPI.rejectWithValue(error);
     }
   },
@@ -134,7 +130,7 @@ export const logoutUser = createAsyncThunk('auth/logout', async () => {
   await AuthService.logout();
 });
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {

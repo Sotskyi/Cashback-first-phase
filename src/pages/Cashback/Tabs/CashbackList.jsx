@@ -1,5 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 
+import timer from '../../../assets/images/icons/timer.svg';
+
 const CashbackList = () => {
   const classes = useStyles();
 
@@ -18,7 +20,9 @@ const CashbackList = () => {
           </div>
           <div className={classes.storeContentWrapper}>
             <div className={classes.storeAvailableCashback}>$ 144.44</div>
-            <div className={classes.storevailableCashbackTime}>30 days</div>
+            <div className={classes.storevailableCashbackTime}>
+              30 days <img src={timer} alt='timer' />
+            </div>
           </div>
         </div>
       </div>
@@ -31,7 +35,9 @@ const CashbackList = () => {
           </div>
           <div className={classes.storeContentWrapper}>
             <div className={classes.storeAvailableCashback}>$ 144.44</div>
-            <div className={classes.storevailableCashbackTime}>30 days</div>
+            <div className={classes.storevailableCashbackTime}>
+              30 days <img src={timer} alt='timer' />
+            </div>
           </div>
         </div>
       </div>
@@ -44,7 +50,9 @@ const CashbackList = () => {
           </div>
           <div className={classes.storeContentWrapper}>
             <div className={classes.storeAvailableCashback}>$ 144.44</div>
-            <div className={classes.storevailableCashbackTime}>30 days</div>
+            <div className={classes.storevailableCashbackTime}>
+              30 days <img src={timer} alt='timer' />
+            </div>
           </div>
         </div>
       </div>
@@ -57,7 +65,9 @@ const CashbackList = () => {
           </div>
           <div className={classes.storeContentWrapper}>
             <div className={classes.storeAvailableCashback}>$ 144.44</div>
-            <div className={classes.storevailableCashbackTime}>30 days</div>
+            <div className={classes.storevailableCashbackTime}>
+              30 days <img src={timer} alt='timer' />
+            </div>
           </div>
         </div>
       </div>
@@ -74,7 +84,9 @@ const CashbackList = () => {
           </div>
           <div className={classes.storeContentWrapper}>
             <div className={classes.storeAvailableCashback}>$ 144.44</div>
-            <div className={classes.storevailableCashbackTime}>30 days</div>
+            <div className={classes.storevailableCashbackTime}>
+              30 days <img src={timer} alt='timer' />
+            </div>
           </div>
         </div>
       </div>
@@ -87,7 +99,9 @@ const CashbackList = () => {
           </div>
           <div className={classes.storeContentWrapper}>
             <div className={classes.storeAvailableCashback}>$ 144.44</div>
-            <div className={classes.storevailableCashbackTime}>30 days</div>
+            <div className={classes.storevailableCashbackTime}>
+              30 days <img src={timer} alt='timer' />
+            </div>
           </div>
         </div>
       </div>
@@ -99,6 +113,8 @@ export default CashbackList;
 const useStyles = makeStyles(() => ({
   cashbackListContainer: {
     height: '500px',
+    width: '680px',
+    paddingRight: '15px',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {
       width: '1px',
@@ -184,5 +200,8 @@ const useStyles = makeStyles(() => ({
     lineHeight: '130%',
     letterSpacing: '0.015em',
     color: '#6A6A6A',
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '60px',
   },
 }));

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -22,14 +21,18 @@ import leftArrow from '../assets/images/icons/forSlider/leftArrow.svg';
 import rightArrow from '../assets/images/icons/forSlider/rightArrow.svg';
 import filter from '../assets/images/icons/filter.svg';
 
-const StoreIconSlider = () => {
-  const [value, setValue] = useState('Featured Stores');
-  const [step, setStep] = useState(6);
-  const [range, setRange] = useState(0);
+const StoreIconSlider = ({
+  categoryId,
+  setCategoryId,
+  step,
+  setStep,
+  range,
+  setRange,
+}) => {
   const classes = useStyles();
 
   const handleChange = (event, newValue) => {
-    setValue(newValue);
+    setCategoryId(newValue);
   };
 
   const handleClickLeftArrow = () => {
@@ -40,9 +43,9 @@ const StoreIconSlider = () => {
       } else setRange((prev) => prev - 5);
     }
     if (step - 6 === 6) {
-      setValue('Featured Stores');
+      setCategoryId('-1');
     } else if (step - 6 === 12) {
-      setValue('Food & Grocery');
+      setCategoryId('4');
     }
   };
 
@@ -52,10 +55,10 @@ const StoreIconSlider = () => {
       setRange((prev) => prev + 4);
     } else setRange(range + 5);
     if (step + 6 === 12) {
-      setValue('Food & Grocery');
+      setCategoryId('4');
     }
     if (step + 6 === 18) {
-      setValue('Beauty & Health');
+      setCategoryId('8');
     }
   };
 
@@ -63,59 +66,72 @@ const StoreIconSlider = () => {
     {
       name: 'Featured Stores',
       icon: featuredStores,
+      value: '-1',
     },
     {
       name: 'All Stores',
       icon: allStores,
+      value: '0',
     },
-
     {
       name: 'Fashion',
       icon: fashion,
+      value: '1',
     },
     {
       name: 'Entertainment',
       icon: entertainment,
+      value: '2',
     },
     {
       name: 'Electronics',
       icon: electronics,
+      value: '3',
     },
     {
       name: 'Food & Grocery',
       icon: foodGrocery,
+      value: '4',
     },
     {
       name: 'Baby, Kids & Toys',
       icon: babyKidsToys,
+      value: '5',
     },
     {
       name: 'Books',
       icon: books,
+      value: '6',
     },
     {
       name: 'Home & Garden',
       icon: homeGarden,
+      value: '7',
     },
     {
       name: 'Beauty & Health',
       icon: beautyHealth,
+      value: '8',
     },
     {
       name: 'Sports & Outdoor',
       icon: sportsAutdoor,
+      value: '9',
     },
     {
       name: 'Auto',
       icon: auto,
+      value: '10',
     },
     {
       name: 'Pet Supplies',
       icon: petSupplies,
+      value: '11',
     },
     {
       name: 'Hardware & Tools',
       icon: hardwareTools,
+      value: '12',
     },
   ];
   return (
@@ -131,7 +147,7 @@ const StoreIconSlider = () => {
         <Box sx={{ maxWidth: '950px' }}>
           <Tabs
             classes={{ root: classes.customTabs }}
-            value={value}
+            value={categoryId}
             onChange={handleChange}
             textColor='secondary'
             // aria-label='secondary tabs example'
@@ -141,7 +157,7 @@ const StoreIconSlider = () => {
           >
             {tabs.slice(range, step).map((el, index) => (
               <Tab
-                value={el.name}
+                value={el.value}
                 label={el.name}
                 id={index}
                 key={el.name}

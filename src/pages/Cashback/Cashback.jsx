@@ -61,7 +61,7 @@ const useStyles = makeStyles(() => ({
   },
 
   leftContentContainer: {
-    width: '688px',
+    width: '680px',
   },
   rightContentContainer: {
     marginTop: '26px',

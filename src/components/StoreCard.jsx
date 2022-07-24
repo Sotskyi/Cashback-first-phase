@@ -1,19 +1,39 @@
 import { makeStyles } from '@material-ui/core';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const StoreCard = ({ name, procent, id }) => {
+import altLogo from '../assets/images/icons/altLogo.svg';
+
+const StoreCard = ({ name, precent, id, logo, background }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const [imageLoading, setImageLoading] = useState(true);
+
+  const imageLoaded = () => {
+    setImageLoading(false);
+  };
+
   return (
     <div
       id={id}
       className={classes.storeCardWrapper}
       onClick={() => navigate(`/store${id}`)}
     >
-      <div className={classes.storeCardTop} />
+      <div
+        className={classes.storeCardTop}
+        style={{ backgroundImage: `url(${background})` }}
+      />
       <div className={classes.storeCardMiddle}>
-        <div className={classes.storeCardAvatar} />
-        <div className={classes.storeCardProcent}>{procent}</div>
+        <img
+          className={`${classes.storeCardAvatar} ${
+            imageLoading ? classes.storeCardAvatarLoading : ''
+          }`}
+          src={imageLoading ? altLogo : logo}
+          alt=''
+          loading='lazy'
+          onLoad={imageLoaded}
+        />
+        <div className={classes.storeCardPrecent}>{precent}</div>
       </div>
       <div className={classes.storeCardBottom}>
         <div className={classes.storeCardName}>{name}</div>
@@ -48,8 +68,14 @@ const useStyles = makeStyles(() => ({
     background: '#EAEAEA',
     borderRadius: '33px',
     transform: 'translate(0 ,-50%)',
+    filter: 'blur(0px)',
+    transition: 'filter 0.5s linear',
   },
-  storeCardProcent: {
+  storeCardAvatarLoading: {
+    filter: 'blur(10px)',
+    clipPath: 'inset(0)',
+  },
+  storeCardPrecent: {
     background: '#33CC55',
     borderRadius: '12px',
     width: '52px',
