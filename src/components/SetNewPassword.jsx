@@ -5,13 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useValidator } from '../../../hooks/useValidator';
-import SubmitButton from '../../../components/SubmitButton';
-import PasswordInput from '../../../components/PasswordInput';
+import { useValidator } from '../hooks/useValidator';
+import SubmitButton from './SubmitButton';
+import PasswordInput from './PasswordInput';
 import {
   setNewPasswordByPhone,
   setNewPasswordByEmail,
-} from '../../../redux/slices/authSlice';
+} from '../redux/slices/authSlice';
 
 const SetNewPassword = ({ creds, token }) => {
   const [equalityPassword, setEqualityPassword] = useState({
