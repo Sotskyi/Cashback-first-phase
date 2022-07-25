@@ -30,7 +30,6 @@ const StoreCard = ({ name, precent, id, logo, background }) => {
           }`}
           src={imageLoading ? altLogo : logo}
           alt=''
-          loading='lazy'
           onLoad={imageLoaded}
         />
         <div className={classes.storeCardPrecent}>{precent}</div>
@@ -45,11 +44,12 @@ export default StoreCard;
 
 const useStyles = makeStyles(() => ({
   storeCardWrapper: {
-    width: '272px',
-    height: '272px',
+    width: '266px',
+    height: '266px',
     borderRadius: '8px',
     marginTop: '15px',
     cursor: 'pointer',
+    margin: '8px',
   },
   storeCardTop: {
     height: '192px',

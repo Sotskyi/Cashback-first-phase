@@ -19,6 +19,7 @@ const Home = () => {
   const { storesList, isLoading, itemsCount } = useSelector(
     (state) => state.stores,
   );
+
   const lastElement = useRef();
 
   useObserver(lastElement, Math.ceil(itemsCount / 8) > page, isLoading, () => {
@@ -42,6 +43,7 @@ const Home = () => {
         setRange={setRange}
         step={step}
         setStep={setStep}
+        setPage={setPage}
       />
       <Loader />
       <div className={classes.bodyContainer}>
@@ -99,11 +101,11 @@ const useStyles = makeStyles((theme) => ({
     },
     height: '520px',
     display: 'flex',
-    justifyContent: 'space-between',
+
     flexWrap: 'wrap',
     [theme.breakpoints.down('md')]: {
       height: '479px',
     },
   },
-  lastElement: {},
+  lastElement: { position: 'absolute', bottom: '-1%' },
 }));

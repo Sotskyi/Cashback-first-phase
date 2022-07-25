@@ -2,6 +2,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
 
 import featuredStores from '../assets/images/icons/forSlider/featuredStores.svg';
 import allStores from '../assets/images/icons/forSlider/allStores.svg';
@@ -20,6 +21,7 @@ import hardwareTools from '../assets/images/icons/forSlider/hardwareTools.svg';
 import leftArrow from '../assets/images/icons/forSlider/leftArrow.svg';
 import rightArrow from '../assets/images/icons/forSlider/rightArrow.svg';
 import filter from '../assets/images/icons/filter.svg';
+import { reset } from '../redux/slices/storesSlice';
 
 const StoreIconSlider = ({
   categoryId,
@@ -28,11 +30,15 @@ const StoreIconSlider = ({
   setStep,
   range,
   setRange,
+  setPage,
 }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const handleChange = (event, newValue) => {
     setCategoryId(newValue);
+    setPage(1);
+    dispatch(reset());
   };
 
   const handleClickLeftArrow = () => {

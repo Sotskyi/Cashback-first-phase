@@ -43,7 +43,7 @@ const storesSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state.isLoading = false;
+      state.storesList = [];
     },
   },
   extraReducers: {
