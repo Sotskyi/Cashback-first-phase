@@ -1,11 +1,16 @@
+import { useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
 import ResetPassword from './Tabs/ResetPassword';
 import SetNewPasswordSuccess from './Tabs/SetNewPasswordSuccess';
+import SetNewPassword from '../../components/SetNewPassword';
 import AuthLandingLayout from '../../components/AuthLandingLayout';
 
 const ResetPasswordByEmail = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const [email, setEmail] = useState('');
+  const { search } = useLocation();
+  const token = search.split('token=')[1];
 
   const next = () => {
     if (activeStep !== 1) {
@@ -19,8 +24,13 @@ const ResetPasswordByEmail = () => {
 
   return (
     <AuthLandingLayout back={back} activeStep={activeStep}>
-      {activeStep === 0 && <ResetPassword next={next} />}
-      {activeStep === 1 && <SetNewPasswordSuccess next={next} />}
+      {activeStep === 0 && !token && (
+        <ResetPassword next={next} email={email} setEmail={setEmail} />
+      )}
+      {activeStep === 1 && !token && (
+        <SetNewPasswordSuccess next={next} email={email} />
+      )}
+      {!!token && <SetNewPassword token={token} />}
     </AuthLandingLayout>
   );
 };

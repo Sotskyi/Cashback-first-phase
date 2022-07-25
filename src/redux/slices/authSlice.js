@@ -114,11 +114,36 @@ export const resetPasswordBysms = createAsyncThunk(
   },
 );
 
-export const setNewPassword = createAsyncThunk(
-  'auth/setNewPassword ',
+export const resetPasswordByEmail = createAsyncThunk(
+  'auth/resetPasswordBysms',
+  async (email, thunkAPI) => {
+    try {
+      const response = await AuthService.resetPasswordByEmail(email);
+      return await response.data;
+    } catch (error) {
+      toast.error(getError(error));
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const setNewPasswordByPhone = createAsyncThunk(
+  'auth/setNewPasswordByPhone',
   async (creds, thunkAPI) => {
     try {
-      const response = await AuthService.setNewPassword(creds);
+      const response = await AuthService.setNewPasswordByPhone(creds);
+      return await response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const setNewPasswordByEmail = createAsyncThunk(
+  'auth/setNewPasswordByEmail ',
+  async (params, thunkAPI) => {
+    try {
+      const response = await AuthService.setNewPasswordByEmail(params);
       return await response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

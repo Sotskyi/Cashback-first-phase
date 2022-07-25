@@ -1,14 +1,15 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
+import { resetPasswordByEmail } from '../../../redux/slices/authSlice';
 
-const ResetPassword = ({ next }) => {
-  const [email, setEmail] = useState('');
+const ResetPassword = ({ next, email, setEmail }) => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [checkIsValid, setIsShowError] = useValidator();
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ const ResetPassword = ({ next }) => {
         showErrorSync: true,
       })
     ) {
+      dispatch(resetPasswordByEmail(email));
       next();
     }
   };

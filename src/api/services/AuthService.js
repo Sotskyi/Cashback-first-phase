@@ -51,9 +51,21 @@ export default class AuthService {
     });
   }
 
-  static async setNewPassword(creds) {
+  static async resetPasswordByEmail(email) {
+    return axios.post('/auth/reset/email', {
+      email,
+    });
+  }
+
+  static async setNewPasswordByPhone(creds) {
     return axios.patch('/auth/reset/sms', {
       ...creds,
+    });
+  }
+
+  static async setNewPasswordByEmail(params) {
+    return axios.patch(`/auth/reset/email/${params.token}`, {
+      password: params.password,
     });
   }
 

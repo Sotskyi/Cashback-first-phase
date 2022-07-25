@@ -8,9 +8,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/SubmitButton';
 import PasswordInput from '../../../components/PasswordInput';
-import { setNewPassword } from '../../../redux/slices/authSlice';
+import {
+  setNewPasswordByPhone,
+  setNewPasswordByEmail,
+} from '../../../redux/slices/authSlice';
 
-const SetNewPassword = ({ creds }) => {
+const SetNewPassword = ({ creds, token }) => {
   const [equalityPassword, setEqualityPassword] = useState({
     password: '',
     confirmPassword: '',
@@ -25,7 +28,7 @@ const SetNewPassword = ({ creds }) => {
     setEqualityPassword({ ...equalityPassword, [e.target.id]: value });
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     setIsShowError(true);
 
     if (
@@ -35,13 +38,28 @@ const SetNewPassword = ({ creds }) => {
         showErrorSync: true,
       })
     ) {
-      dispatch(
-        setNewPassword({
-          phoneNumber: creds.phoneNumber,
-          password: equalityPassword.confirmPassword,
-        }),
-      );
-      toast.success('new password successfully created');
+      if (token) {
+        const resultAction = await dispatch(
+          setNewPasswordByEmail({
+            token,
+            password: equalityPassword.confirmPassword,
+          }),
+        );
+        if (setNewPasswordByEmail.fulfilled.match(resultAction)) {
+          toast.success('new password successfully created');
+        }
+      } else {
+        const resultAction = await dispatch(
+          setNewPasswordByPhone({
+            phoneNumber: creds.phoneNumber,
+            password: equalityPassword.confirmPassword,
+          }),
+        );
+        if (setNewPasswordByPhone.fulfilled.match(resultAction)) {
+          toast.success('new password successfully created');
+        }
+      }
+
       navigate('/login');
     }
   };

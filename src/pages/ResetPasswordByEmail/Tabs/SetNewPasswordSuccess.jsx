@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-const SetNewPasswordSuccess = () => {
+const SetNewPasswordSuccess = ({ email }) => {
   const classes = useStyles();
 
   return (
@@ -9,8 +9,8 @@ const SetNewPasswordSuccess = () => {
         <div className={classes.title}>Check your inbox</div>
 
         <div className={classes.subTitle}>
-          A link was sent to johndow@gmail.com to reset your password. If you
-          don’t see it in your inbox, remember to check your spam folder.
+          A link was sent to {email} to reset your password. If you don’t see it
+          in your inbox, remember to check your spam folder.
         </div>
       </div>
     </div>

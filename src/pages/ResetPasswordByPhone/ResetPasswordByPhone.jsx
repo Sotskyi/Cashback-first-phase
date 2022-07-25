@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import ResetPassword from './Tabs/ResetPassword';
 import VerifyPhone from '../../components/VerifyPhone';
-import SetNewPassword from './Tabs/SetNewPassword';
+import SetNewPassword from '../../components/SetNewPassword';
 import AuthLandingLayout from '../../components/AuthLandingLayout';
 
 const ResetPasswordByPhone = () => {
