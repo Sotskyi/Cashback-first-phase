@@ -10,7 +10,6 @@ import { useObserver } from '../hooks/useObserver';
 const Home = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const scrollRef = useRef();
   const lastElement = useRef();
   const [categoryId, setCategoryId] = useState('favoritesPosition');
   const [step, setStep] = useState(6);
@@ -51,7 +50,7 @@ const Home = () => {
 
       <div className={classes.bodyContainer}>
         <div className={classes.cardsContainer}>
-          <div className={classes.cardsWrapper} ref={scrollRef}>
+          <div className={classes.cardsWrapper}>
             {storesList.map((el) => (
               <StoreCard
                 key={el.id}

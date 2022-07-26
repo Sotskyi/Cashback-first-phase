@@ -156,7 +156,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
   },
   phonePlan: {
-    width: '448px',
+    width: '422px',
     height: '44px',
     display: 'flex',
     flexDirection: 'row',
