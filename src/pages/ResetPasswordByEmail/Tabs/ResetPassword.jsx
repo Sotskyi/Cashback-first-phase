@@ -5,7 +5,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 
 import { useValidator } from '../../../hooks/useValidator';
-import SubmitButton from '../../../components/SubmitButton';
+import SubmitButton from '../../../components/form/SubmitButton';
 import { resetPasswordByEmail } from '../../../redux/slices/authSlice';
 
 const ResetPassword = ({ next, email, setEmail }) => {

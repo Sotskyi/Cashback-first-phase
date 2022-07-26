@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
-import Loader from '../components/Loader';
+import Loader from '../components/lib/Loader';
 
 import ProductCard from '../components/ProductCard';
 import { getStore } from '../redux/slices/storesSlice';

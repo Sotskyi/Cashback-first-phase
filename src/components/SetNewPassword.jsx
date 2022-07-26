@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useValidator } from '../hooks/useValidator';
-import SubmitButton from './SubmitButton';
-import PasswordInput from './PasswordInput';
+import SubmitButton from './form/SubmitButton';
+import PasswordInput from './form/PasswordInput';
 import {
   setNewPasswordByPhone,
   setNewPasswordByEmail,

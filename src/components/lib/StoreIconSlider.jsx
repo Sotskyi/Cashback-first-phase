@@ -4,24 +4,24 @@ import Box from '@mui/material/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 
-import featuredStores from '../assets/images/icons/forSlider/featuredStores.svg';
-import allStores from '../assets/images/icons/forSlider/allStores.svg';
-import fashion from '../assets/images/icons/forSlider/fashion.svg';
-import entertainment from '../assets/images/icons/forSlider/entertainment.svg';
-import electronics from '../assets/images/icons/forSlider/electronics.svg';
-import foodGrocery from '../assets/images/icons/forSlider/foodGrocery.svg';
-import babyKidsToys from '../assets/images/icons/forSlider/babyKidsToys.svg';
-import homeGarden from '../assets/images/icons/forSlider/homeGarden.svg';
-import books from '../assets/images/icons/forSlider/books.svg';
-import beautyHealth from '../assets/images/icons/forSlider/beautyHealth.svg';
-import sportsAutdoor from '../assets/images/icons/forSlider/sportsAutdoor.svg';
-import auto from '../assets/images/icons/forSlider/auto.svg';
-import petSupplies from '../assets/images/icons/forSlider/petSupplies.svg';
-import hardwareTools from '../assets/images/icons/forSlider/hardwareTools.svg';
-import leftArrow from '../assets/images/icons/forSlider/leftArrow.svg';
-import rightArrow from '../assets/images/icons/forSlider/rightArrow.svg';
-import filter from '../assets/images/icons/filter.svg';
-import { reset } from '../redux/slices/storesSlice';
+import featuredStores from '../../assets/images/icons/forSlider/featuredStores.svg';
+import allStores from '../../assets/images/icons/forSlider/allStores.svg';
+import fashion from '../../assets/images/icons/forSlider/fashion.svg';
+import entertainment from '../../assets/images/icons/forSlider/entertainment.svg';
+import electronics from '../../assets/images/icons/forSlider/electronics.svg';
+import foodGrocery from '../../assets/images/icons/forSlider/foodGrocery.svg';
+import babyKidsToys from '../../assets/images/icons/forSlider/babyKidsToys.svg';
+import homeGarden from '../../assets/images/icons/forSlider/homeGarden.svg';
+import books from '../../assets/images/icons/forSlider/books.svg';
+import beautyHealth from '../../assets/images/icons/forSlider/beautyHealth.svg';
+import sportsAutdoor from '../../assets/images/icons/forSlider/sportsAutdoor.svg';
+import auto from '../../assets/images/icons/forSlider/auto.svg';
+import petSupplies from '../../assets/images/icons/forSlider/petSupplies.svg';
+import hardwareTools from '../../assets/images/icons/forSlider/hardwareTools.svg';
+import leftArrow from '../../assets/images/icons/forSlider/leftArrow.svg';
+import rightArrow from '../../assets/images/icons/forSlider/rightArrow.svg';
+import filter from '../../assets/images/icons/filter.svg';
+import { reset } from '../../redux/slices/storesSlice';
 
 const StoreIconSlider = ({
   categoryId,
@@ -240,7 +240,7 @@ const useStyles = makeStyles({
     height: '48px',
     position: 'relative',
     minWidth: '90px',
-    zIndex: '11111',
+    zIndex: '11',
   },
   sliderContainer: {
     width: '930px',

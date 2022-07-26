@@ -5,8 +5,8 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 
-import visibilityOn from '../assets/images/icons/visibilityOn.svg';
-import visibilityOff from '../assets/images/icons/visibilityOff.svg';
+import visibilityOn from '../../assets/images/icons/visibilityOn.svg';
+import visibilityOff from '../../assets/images/icons/visibilityOff.svg';
 
 const PasswordInput = ({
   handleChange,

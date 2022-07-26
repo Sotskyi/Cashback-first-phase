@@ -3,8 +3,8 @@ import { makeStyles } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 import { useValidator } from '../../../hooks/useValidator';
-import SubmitButton from '../../../components/SubmitButton';
-import PhoneNumberInput from '../../../components/PhoneNumberInput';
+import SubmitButton from '../../../components/form/SubmitButton';
+import PhoneNumberInput from '../../../components/form/PhoneNumberInput';
 import { verifyPhone } from '../../../redux/slices/authSlice';
 
 const CreateAcount = ({ next, handleChange, creds }) => {

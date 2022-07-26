@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { useValidator } from '../../../hooks/useValidator';
-import SubmitButton from '../../../components/SubmitButton';
-import PhoneNumberInput from '../../../components/PhoneNumberInput';
-import PasswordInput from '../../../components/PasswordInput';
+import SubmitButton from '../../../components/form/SubmitButton';
+import PhoneNumberInput from '../../../components/form/PhoneNumberInput';
+import PasswordInput from '../../../components/form/PasswordInput';
 import { login } from '../../../redux/slices/authSlice';
 
 const LoginAccount = ({ creds, handleChange, next }) => {

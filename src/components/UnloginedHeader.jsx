@@ -2,9 +2,9 @@ import { makeStyles } from '@material-ui/core';
 import Input from '@mui/material/Input';
 import { useNavigate } from 'react-router-dom';
 
-import LanguageSwitcher from '../LanguageSwitcher';
-import logo from '../../assets/images/logos/logo.svg';
-import search from '../../assets/images/icons/search.svg';
+import LanguageSwitcher from './lib/LanguageSwitcher';
+import logo from '../assets/images/logos/logo.svg';
+import search from '../assets/images/icons/search.svg';
 
 const UnloginedHeader = () => {
   const classes = useStyles();

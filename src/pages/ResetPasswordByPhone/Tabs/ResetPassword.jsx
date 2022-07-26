@@ -2,8 +2,8 @@ import { makeStyles } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import SubmitButton from '../../../components/SubmitButton';
-import PhoneNumberInput from '../../../components/PhoneNumberInput';
+import SubmitButton from '../../../components/form/SubmitButton';
+import PhoneNumberInput from '../../../components/form/PhoneNumberInput';
 import { resetPasswordBysms } from '../../../redux/slices/authSlice';
 import { useValidator } from '../../../hooks/useValidator';
 

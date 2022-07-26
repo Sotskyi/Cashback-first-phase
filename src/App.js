@@ -2,9 +2,9 @@ import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-import AuthLayout from './components/AuthLayout';
+import AuthLayout from './components/layouts/AuthLayout';
 // import NotFoundPage from './pages/NotFound';
-import Loader from './components/Loader';
+import Loader from './components/lib/Loader';
 
 // import Missing from "./components/Missing";
 // import Register from "./components/Register";

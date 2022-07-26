@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import AuthLandingLayout from '../../components/AuthLandingLayout';
+import AuthLandingLayout from '../../components/layouts/AuthLandingLayout';
 import CreateAcount from './Tabs/CreateAcount';
 import VeriphyPhone from '../../components/VerifyPhone';
 import PersonalDetails from './Tabs/PersonalDetails';
 import NetworkDetails from './Tabs/NetworkDetails';
 import { register, reset } from '../../redux/slices/authSlice';
-import Loader from '../../components/Loader';
+import Loader from '../../components/lib/Loader';
 
 const SignUp = () => {
   const [activeStep, setActiveStep] = useState(0);

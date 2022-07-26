@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-import flag from '../assets/images/flags/ca.png';
+import flag from '../../assets/images/flags/ca.png';
 
 const PhoneNumberInput = ({ handleChange, data, isError }) => {
   const classes = useStyles();

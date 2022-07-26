@@ -3,8 +3,8 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 
 import { useValidator } from '../../../hooks/useValidator';
-import SubmitButton from '../../../components/SubmitButton';
-import PasswordInput from '../../../components/PasswordInput';
+import SubmitButton from '../../../components/form/SubmitButton';
+import PasswordInput from '../../../components/form/PasswordInput';
 
 const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
   const classes = useStyles();

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 
-import StoreIconSlider from '../components/StoreIconSlider';
+import StoreIconSlider from '../components/lib/StoreIconSlider';
 import StoreCard from '../components/StoreCard';
 import { getStores, reset } from '../redux/slices/storesSlice';
 import { useObserver } from '../hooks/useObserver';

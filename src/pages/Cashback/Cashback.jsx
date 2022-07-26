@@ -21,11 +21,9 @@ const Cashback = () => {
     } else setIsActiveWithdrawCard(false);
   };
 
-  const auth = true;
-
   return (
     <div className={classes.cashbackContainer}>
-      {isAuth || auth ? (
+      {isAuth ? (
         <div className={classes.bodyContainer}>
           <div className={classes.leftContentContainer}>
             <Switcher activeStep={activeStep} setActiveStep={setActiveStep} />
@@ -50,11 +48,12 @@ export default Cashback;
 
 const useStyles = makeStyles(() => ({
   cashbackContainer: {
-    height: '720px',
+    // height: '720px',
     boxSizing: 'border-box',
     padding: '32px 72px 0px 72px',
     display: 'flex',
     justifyContent: 'center',
+    height: '100%',
   },
   bodyContainer: {
     display: 'flex',

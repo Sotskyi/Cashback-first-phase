@@ -1,6 +1,6 @@
 import { makeStyles } from '@material-ui/core';
 
-import language from '../assets/images/icons/language.svg';
+import language from '../../assets/images/icons/language.svg';
 
 const LanguageSwitcher = () => {
   const classes = useStyles();

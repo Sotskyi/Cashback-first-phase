@@ -4,7 +4,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 
-import SubmitButton from '../../../components/SubmitButton';
+import SubmitButton from '../../../components/form/SubmitButton';
 // import { useValidator } from '../../../hooks/useValidator';
 
 const NetworkDetails = ({ creds, setCreds, onSubmit }) => {

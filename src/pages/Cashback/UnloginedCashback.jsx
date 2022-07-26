@@ -1,10 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 
-import SubmitButton from '../../components/SubmitButton';
+import SubmitButton from '../../components/form/SubmitButton';
 
 const UnloginedCashback = () => {
   const classes = useStyles();
-
+  const navigate = useNavigate();
   return (
     <div className={classes.cashbackContainer}>
       <div className={classes.cashbackBodyContainer}>
@@ -13,12 +14,12 @@ const UnloginedCashback = () => {
           Reduce your mobile bill with cash-back.
         </div>
         <div className={classes.submitButtonWrapper}>
-          <SubmitButton title='Log in' />
+          <SubmitButton title='Log in' onSubmit={() => navigate('/login')} />
         </div>
         <div className={classes.dontHaveAcount}>
           Don’t have an account?{' '}
           <span
-            // onClick={() => navigate('/signup')}
+            onClick={() => navigate('/signup')}
             className={classes.navigateLink}
           >
             Sign Up

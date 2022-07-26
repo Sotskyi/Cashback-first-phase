@@ -2,17 +2,15 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import Input from '@mui/material/Input';
 
-import LanguageSwitcher from './LanguageSwitcher';
+import LanguageSwitcher from './lib/LanguageSwitcher';
 import logo from '../assets/images/logos/logo.svg';
 import search from '../assets/images/icons/search.svg';
 
-import UserMenu from './UserMenu';
+import UserMenu from './lib/UserMenu';
 
 const LoginedHeader = () => {
   const classes = useStyles();
-
   const navigate = useNavigate();
-
   const { pathname } = useLocation();
 
   return (

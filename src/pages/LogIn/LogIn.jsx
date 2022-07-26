@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 
 import LoginAccount from './Tabs/LoginAccount';
 import VerifyPhone from '../../components/VerifyPhone';
-import AuthLandingLayout from '../../components/AuthLandingLayout';
-import Loader from '../../components/Loader';
+import AuthLandingLayout from '../../components/layouts/AuthLandingLayout';
+import Loader from '../../components/lib/Loader';
 // import { loginConfirm } from '../../redux/slices/authSlice';
 
 const LogIn = () => {

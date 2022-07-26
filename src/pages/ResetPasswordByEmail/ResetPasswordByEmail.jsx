@@ -4,7 +4,7 @@ import { useState } from 'react';
 import ResetPassword from './Tabs/ResetPassword';
 import SetNewPasswordSuccess from './Tabs/SetNewPasswordSuccess';
 import SetNewPassword from '../../components/SetNewPassword';
-import AuthLandingLayout from '../../components/AuthLandingLayout';
+import AuthLandingLayout from '../../components/layouts/AuthLandingLayout';
 
 const ResetPasswordByEmail = () => {
   const [activeStep, setActiveStep] = useState(0);

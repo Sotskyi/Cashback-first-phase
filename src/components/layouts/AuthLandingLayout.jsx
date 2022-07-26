@@ -1,10 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
-import logo from '../assets/images/logos/logo.svg';
-import leftVector from '../assets/images/icons/leftVector.svg';
-import authLeftPhone from '../assets/images/images/authLeftPhone.jpg';
-import authRightPhone from '../assets/images/images/authRightPhone.jpg';
-import LanguageSwitcher from './LanguageSwitcher';
+import logo from '../../assets/images/logos/logo.svg';
+import leftVector from '../../assets/images/icons/leftVector.svg';
+import authLeftPhone from '../../assets/images/images/authLeftPhone.jpg';
+import authRightPhone from '../../assets/images/images/authRightPhone.jpg';
+import LanguageSwitcher from '../lib/LanguageSwitcher';
 
 const AuthLandingLayout = ({ children, back, activeStep }) => {
   const classes = useStyles();

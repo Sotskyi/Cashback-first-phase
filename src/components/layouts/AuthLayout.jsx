@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 
-import UnloginedHeader from './public/UnloginedHeader';
-import LoginedHeader from './LoginedHeader';
-import { getSavedAuthData } from '../api/requestsInterceptor';
-import { checkAuth } from '../redux/slices/authSlice';
+import UnloginedHeader from '../UnloginedHeader';
+import LoginedHeader from '../LoginedHeader';
+import { getSavedAuthData } from '../../api/requestsInterceptor';
+import { checkAuth } from '../../redux/slices/authSlice';
 
 const AuthLayout = () => {
   const { isAuth } = useSelector((state) => state.auth);
