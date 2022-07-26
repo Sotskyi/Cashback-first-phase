@@ -75,7 +75,6 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               }
               sx={{
                 width: '216px',
-                padding: '0px 14px',
                 height: '48px',
                 fontFamily: 'Inter',
                 fontStyle: 'normal',
@@ -83,6 +82,9 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
                 fontSize: '20px',
                 border: '1px solid #EAEAEA',
                 borderRadius: '8px',
+                '& input': {
+                  padding: '8px',
+                },
               }}
             />
 
@@ -113,7 +115,6 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               value={creds.lastName}
               sx={{
                 width: '216px',
-                padding: '0px 14px',
                 height: '48px',
                 fontFamily: 'Inter',
                 fontStyle: 'normal',
@@ -121,6 +122,9 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
                 fontSize: '20px',
                 border: '1px solid #EAEAEA',
                 borderRadius: '8px',
+                '& input': {
+                  padding: '8px',
+                },
               }}
               error={
                 !checkIsValid({
@@ -156,7 +160,6 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
             id='email'
             value={creds.email}
             sx={{
-              padding: '0px 14px',
               height: '48px',
               fontFamily: 'Inter',
               fontStyle: 'normal',
@@ -164,6 +167,9 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               fontSize: '20px',
               border: '1px solid #EAEAEA',
               borderRadius: '8px',
+              '& input': {
+                padding: '8px',
+              },
             }}
             error={
               !checkIsValid({

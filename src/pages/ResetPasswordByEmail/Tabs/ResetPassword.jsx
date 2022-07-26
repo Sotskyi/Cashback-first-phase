@@ -54,7 +54,6 @@ const ResetPassword = ({ next, email, setEmail }) => {
             onChange={handleChange}
             id='email'
             sx={{
-              padding: '0px 14px',
               height: '48px',
               fontFamily: 'Inter',
               fontStyle: 'normal',
@@ -62,7 +61,11 @@ const ResetPassword = ({ next, email, setEmail }) => {
               fontSize: '20px',
               border: '1px solid #EAEAEA',
               borderRadius: '8px',
+              '& input': {
+                padding: '8px',
+              },
             }}
+            inputProps={{ classes: { input: classes.input } }}
             error={
               !checkIsValid({
                 nameOfData: 'email',
