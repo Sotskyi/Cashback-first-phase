@@ -8,6 +8,6 @@ export default class StoresService {
   }
 
   static async getStore(id) {
-    return axios.get(`/stores${id}`);
+    return axios.get(`/stores/${id}`);
   }
 }

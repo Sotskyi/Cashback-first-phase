@@ -1,27 +1,48 @@
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
-import { useSelector } from 'react-redux';
-// import { useParams } from 'react-router-dom';
+import Loader from '../components/Loader';
 
 import ProductCard from '../components/ProductCard';
+import { getStore } from '../redux/slices/storesSlice';
+// import altLogo from '../assets/images/icons/altLogo.svg';
 
 const Store = () => {
-  const classes = useStyles();
-  // const { id } = useParams();
+  const dispatch = useDispatch();
+  const { id } = useParams();
 
   const { isAuth } = useSelector((state) => state.auth);
+  const { isLoading, store } = useSelector((state) => state.stores);
+
+  useEffect(() => {
+    dispatch(getStore(id));
+  }, [id]);
+
+  const classes = useStyles(store);
+
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div className={classes.storeContainer}>
       <div className={classes.bodyHeaderContainer}>
-        <div className={classes.storeBackground} />
+        <div
+          className={classes.storeBackground}
+          // style={{ backgroundImage: `url(${store?.backgroundImage?.url})` }}
+        />
         <div className={classes.middleLine}>
-          <div className={classes.storeAvatar} />
+          <img
+            className={classes.storeAvatar}
+            src={store?.logoImage?.url}
+            alt='avatar'
+          />
         </div>
         <div className={classes.contentContainer}>
           <div className={classes.leftContent}>
-            <div className={classes.title}>Store Name</div>
+            <div className={classes.title}>{store?.translations[0]?.title}</div>
             <div className={classes.subTitle}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              {store?.translations[0]?.description}
             </div>
             <div className={classes.productCardsContainer}>
               <ProductCard />
@@ -33,7 +54,7 @@ const Store = () => {
           <div className={classes.rightContent}>
             {' '}
             <div className={classes.percentWrapper}>
-              <div className={classes.filledPercent}>33%</div>
+              <div className={classes.filledPercent}>{store?.baseReward}%</div>
               <div className={classes.percentSubTitle}>Base reward</div>
             </div>
             <div className={classes.percentWrapper}>
@@ -66,7 +87,7 @@ const useStyles = makeStyles(() => ({
   },
   storeBackground: {
     height: '256px',
-    background: '#EAEAEA',
+    backgroundImage: (store) => `url(${store?.backgroundImage?.url})`,
     width: '1280px',
   },
   middleLine: {
@@ -81,7 +102,7 @@ const useStyles = makeStyles(() => ({
     width: '160px',
     height: '160px',
     border: '4px solid #FFFFFF',
-    background: '#EAEAEA',
+    // background: '#EAEAEA',
     borderRadius: '100px',
     transform: 'translate(0 ,-50%)',
   },

@@ -8,7 +8,13 @@ import { getError } from '../../utils/helpers';
 const initialState = {
   storesList: [],
   itemsCount: 0,
-  store: {},
+  store: {
+    baseReward: '',
+    translations: [
+      { id: '', title: '', description: '', specialRewardTitle: null },
+    ],
+  },
+
   isLoading: false,
 };
 

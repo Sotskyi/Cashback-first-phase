@@ -1,50 +1,20 @@
-import { useState } from 'react';
-
-import LinearProgress from '@mui/material/LinearProgress';
-import Typography from '@mui/material/Typography';
-import { makeStyles } from '@material-ui/core';
-
-import useTimeout from '../hooks/useTimeout';
+import * as React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 
 const Loader = () => {
-  const classes = useStyles();
-  const [showLoading, setShowLoading] = useState(true);
-
-  useTimeout(() => {
-    setShowLoading(false);
-  }, 2000);
-
   return (
-    <div
-      className={`${classes.loaderContainer} ${
-        showLoading ? '' : classes.hidden
-      }`}
+    <Box
+      sx={{
+        display: 'flex',
+        height: '100%',
+        width: '100%',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
     >
-      <Typography className='text-13 sm:text-20 mb-16' color='textSecondary'>
-        Loading...
-      </Typography>
-      <LinearProgress
-        sx={{ width: '192px', borderRadius: '1rem' }}
-        color='secondary'
-      />
-    </div>
+      <CircularProgress />
+    </Box>
   );
 };
-
-const useStyles = makeStyles(() => ({
-  loaderContainer: {
-    // display: 'flex',
-    // flex: 'flex1',
-    // flexDirection: 'column',
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // padding: '24px',
-    position: 'relative',
-    right: '50%',
-  },
-  hidden: {
-    display: 'none',
-  },
-}));
-
 export default Loader;

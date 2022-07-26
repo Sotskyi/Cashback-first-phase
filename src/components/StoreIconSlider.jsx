@@ -42,14 +42,14 @@ const StoreIconSlider = ({
   };
 
   const handleClickLeftArrow = () => {
-    if (step > 6 && range !== 0) {
+    if (step > 6 && range !== 'title') {
       setStep((prev) => prev - 6);
       if (range === 9) {
         setRange((prev) => prev - 4);
       } else setRange((prev) => prev - 5);
     }
     if (step - 6 === 6) {
-      setCategoryId('-1');
+      setCategoryId('favoritesPosition');
     } else if (step - 6 === 12) {
       setCategoryId('4');
     }
@@ -72,12 +72,12 @@ const StoreIconSlider = ({
     {
       name: 'Featured Stores',
       icon: featuredStores,
-      value: '-1',
+      value: 'favoritesPosition',
     },
     {
       name: 'All Stores',
       icon: allStores,
-      value: '0',
+      value: 'title',
     },
     {
       name: 'Fashion',

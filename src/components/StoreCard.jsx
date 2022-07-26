@@ -1,17 +1,17 @@
 import { makeStyles } from '@material-ui/core';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import altLogo from '../assets/images/icons/altLogo.svg';
+// import altLogo from '../assets/images/icons/altLogo.svg';
 
 const StoreCard = ({ name, precent, id, logo, background }) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const [imageLoading, setImageLoading] = useState(true);
+  // const [imageLoading, setImageLoading] = useState(true);
 
-  const imageLoaded = () => {
-    setImageLoading(false);
-  };
+  // const imageLoaded = () => {
+  //   setImageLoading(false);
+  // };
 
   return (
     <div
@@ -25,14 +25,13 @@ const StoreCard = ({ name, precent, id, logo, background }) => {
       />
       <div className={classes.storeCardMiddle}>
         <img
-          className={`${classes.storeCardAvatar} ${
-            imageLoading ? classes.storeCardAvatarLoading : ''
-          }`}
-          src={imageLoading ? altLogo : logo}
+          className={classes.storeCardAvatar}
+          // src={imageLoading ? altLogo : logo}
+          src={logo}
           alt=''
-          onLoad={imageLoaded}
+          // onLoad={imageLoaded}
         />
-        <div className={classes.storeCardPrecent}>{precent}</div>
+        <div className={classes.storeCardPrecent}>{precent}%</div>
       </div>
       <div className={classes.storeCardBottom}>
         <div className={classes.storeCardName}>{name}</div>
