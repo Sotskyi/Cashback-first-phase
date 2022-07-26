@@ -190,7 +190,7 @@ const StoreIconSlider = ({
         )}
         <div className={classes.filter}>
           <img src={filter} alt='menu' />
-          <span>filter</span>
+          <span>Filter</span>
         </div>
       </div>
     </div>
