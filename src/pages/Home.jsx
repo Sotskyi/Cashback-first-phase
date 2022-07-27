@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import StoreIconSlider from '../components/lib/StoreIconSlider';
 import StoreCard from '../components/StoreCard';
+import Loader from '../components/lib/Loader';
 import { getStores, reset } from '../redux/slices/storesSlice';
 import { useObserver } from '../hooks/useObserver';
 
@@ -51,17 +52,24 @@ const Home = () => {
       <div className={classes.bodyContainer}>
         <div className={classes.cardsContainer}>
           <div className={classes.cardsWrapper}>
-            {storesList.map((el) => (
-              <StoreCard
-                key={el.id}
-                name={el.translations[0].title}
-                background={el.backgroundImage.url}
-                precent={el.baseReward}
-                // onLoadImages={onLoadImages}
-                id={el.id}
-                logo={el.logoImage.url}
-              />
-            ))}
+            {isLoading && page === 1 ? (
+              <Loader />
+            ) : (
+              <>
+                {' '}
+                {storesList.map((el) => (
+                  <StoreCard
+                    key={el.id}
+                    name={el.translations[0].title}
+                    background={el.backgroundImage.url}
+                    precent={el.baseReward}
+                    // onLoadImages={onLoadImages}
+                    id={el.id}
+                    logo={el.logoImage.url}
+                  />
+                ))}
+              </>
+            )}
             <div ref={lastElement} className={classes.lastElement} />
           </div>
         </div>

@@ -89,6 +89,9 @@ const useStyles = makeStyles(() => ({
     height: '256px',
     backgroundImage: (store) => `url(${store?.backgroundImage?.url})`,
     width: '1280px',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    backgroundSize: 'contain',
   },
   middleLine: {
     height: '0px',

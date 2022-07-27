@@ -29,6 +29,7 @@ const StoreCard = ({ name, precent, id, logo, background }) => {
           // src={imageLoading ? altLogo : logo}
           src={logo}
           alt=''
+
           // onLoad={imageLoaded}
         />
         <div className={classes.storeCardPrecent}>{precent}%</div>
