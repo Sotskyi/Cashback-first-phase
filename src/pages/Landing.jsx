@@ -6,7 +6,7 @@ import MediumScreenHeader from '../components/public/MediumScreenHeader';
 
 const Landing = () => {
   const classes = useStyles();
-  const isMediumScreen = useMediaQuery('(max-width:1280px)');
+  const isMediumScreen = useMediaQuery('(max-width:1200px)');
 
   return (
     <div className={classes.container}>

@@ -83,7 +83,7 @@ const LoginAccount = ({ creds, handleChange, next }) => {
 };
 export default LoginAccount;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '28px',
     height: '412px',
@@ -98,6 +98,9 @@ const useStyles = makeStyles(() => ({
     fontSize: '40px',
     lineHeight: '140%',
     letterSpacing: '-0.02em',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '20px',
+    },
   },
 
   newAccount: {

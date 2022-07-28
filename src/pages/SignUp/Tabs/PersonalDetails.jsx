@@ -74,7 +74,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
                 })
               }
               sx={{
-                width: '216px',
+                width: { xs: '136px', sm: '216px' },
                 height: '48px',
                 fontFamily: 'Inter',
                 fontStyle: 'normal',
@@ -114,7 +114,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               id='lastName'
               value={creds.lastName}
               sx={{
-                width: '216px',
+                width: { xs: '136px', sm: '216px' },
                 height: '48px',
                 fontFamily: 'Inter',
                 fontStyle: 'normal',
@@ -204,7 +204,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
 };
 export default PersonalDetails;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '28px',
     height: '468px',
@@ -220,6 +220,9 @@ const useStyles = makeStyles(() => ({
     fontSize: '40px',
     lineHeight: '140%',
     letterSpacing: '-0.02em',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '20px',
+    },
   },
   inputContainer: {
     display: 'flex',

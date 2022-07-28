@@ -68,6 +68,7 @@ const useStyles = makeStyles(() => ({
     height: '32px',
     fontSize: '20px',
     fontFamily: 'Inter',
+    width: '100%',
   },
   phoneNumberError: {
     color: 'red',

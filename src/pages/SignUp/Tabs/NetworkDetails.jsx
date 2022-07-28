@@ -125,11 +125,11 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
 };
 export default NetworkDetails;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '28px',
     height: '416px',
-    width: '448px',
+    // width: '448px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -142,6 +142,9 @@ const useStyles = makeStyles(() => ({
     fontSize: '40px',
     lineHeight: '140%',
     letterSpacing: '-0.02em',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '20px',
+    },
   },
   inputContainer: {
     display: 'flex',
@@ -156,7 +159,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
   },
   phonePlan: {
-    width: '422px',
+    // width: '422px',
     height: '44px',
     display: 'flex',
     flexDirection: 'row',

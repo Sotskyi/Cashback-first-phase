@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
+// import useMediaQuery from '@mui/material/useMediaQuery';
+
 import logo from '../../assets/images/logos/logo.svg';
 import leftVector from '../../assets/images/icons/leftVector.svg';
 import authLeftPhone from '../../assets/images/images/authLeftPhone.jpg';
@@ -9,6 +11,8 @@ import LanguageSwitcher from '../lib/LanguageSwitcher';
 const AuthLandingLayout = ({ children, back, activeStep }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  // const isMediumScreen = useMediaQuery('(max-width:1200px)');
+
   return (
     <div className={classes.container}>
       <div className={classes.bodyContainer}>
@@ -69,13 +73,17 @@ const AuthLandingLayout = ({ children, back, activeStep }) => {
 };
 export default AuthLandingLayout;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     height: '100vh',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden',
+    [theme.breakpoints.down('xs')]: {
+      height: '100%',
+      alignItems: 'none',
+    },
   },
   bodyContainer: {
     width: '1280px',
@@ -138,12 +146,18 @@ const useStyles = makeStyles(() => ({
   contentContainer: {
     display: 'flex',
     height: '100%',
+    [theme.breakpoints.down('md')]: {
+      justifyContent: 'center',
+    },
   },
   artSide: {
     height: '100%',
     width: '100%',
     display: 'flex',
     justifyContent: 'end',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
   imageContainer: {
     width: '624px',
@@ -155,5 +169,9 @@ const useStyles = makeStyles(() => ({
     minWidth: '448px',
     display: 'flex',
     flexDirection: 'column',
+    [theme.breakpoints.down('xs')]: {
+      minWidth: '0',
+      width: '300px',
+    },
   },
 }));

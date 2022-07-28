@@ -11,7 +11,7 @@ const SubmitButton = ({ title, onSubmit }) => {
 
 export default SubmitButton;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   submitButton: {
     height: '20px',
     background: '#33CC55',
@@ -28,5 +28,8 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '-0.02em',
     color: '#FFFFFF',
     cursor: 'pointer',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '16px',
+    },
   },
 }));

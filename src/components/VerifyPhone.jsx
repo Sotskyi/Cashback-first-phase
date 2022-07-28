@@ -231,7 +231,7 @@ const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
 };
 export default VeriphyPhone;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '110px',
     height: '243px',
@@ -246,6 +246,9 @@ const useStyles = makeStyles(() => ({
     fontSize: '40px',
     lineHeight: '140%',
     letterSpacing: '-0.02em',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '20px',
+    },
   },
   subTitleContainer: {
     height: '59px',
@@ -283,6 +286,11 @@ const useStyles = makeStyles(() => ({
     fontSize: '40px',
     color: '#33CC55',
     fontFamily: 'Inter',
+    [theme.breakpoints.down('xs')]: {
+      width: '40px',
+      height: '40px',
+      fontSize: '30px',
+    },
   },
   haventSms: {
     marginTop: '32px',

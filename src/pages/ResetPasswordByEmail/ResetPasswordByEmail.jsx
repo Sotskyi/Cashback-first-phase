@@ -7,7 +7,7 @@ import SetNewPassword from '../../components/SetNewPassword';
 import AuthLandingLayout from '../../components/layouts/AuthLandingLayout';
 
 const ResetPasswordByEmail = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(1);
   const [email, setEmail] = useState('');
   const { search } = useLocation();
   const token = search.split('token=')[1];

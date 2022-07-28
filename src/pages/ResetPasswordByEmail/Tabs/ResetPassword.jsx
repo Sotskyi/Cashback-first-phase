@@ -85,12 +85,16 @@ const ResetPassword = ({ next, email, setEmail }) => {
         <span
           onClick={() => navigate('/reset_password_by_phone')}
           className={classes.navigateLink}
-          style={{ fontSize: '16px', marginLeft: '8px' }}
         >
           Do not have access to this email?
         </span>
         <div className={classes.navigateLink}>
-          <span onClick={() => navigate('/login')}>Back to Log in</span>
+          <div
+            onClick={() => navigate('/login')}
+            className={classes.navigateLinkBackToLogin}
+          >
+            Back to Log in
+          </div>
           <div className={classes.submitWrapper}>
             <SubmitButton onSubmit={onSubmit} title='Send code' />
           </div>
@@ -101,7 +105,7 @@ const ResetPassword = ({ next, email, setEmail }) => {
 };
 export default ResetPassword;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '68px',
     height: '356px',
@@ -116,6 +120,9 @@ const useStyles = makeStyles(() => ({
     fontSize: '40px',
     lineHeight: '140%',
     letterSpacing: '-0.02em',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '20px',
+    },
   },
   errorMessage: {
     color: 'red',
@@ -164,8 +171,21 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column',
+    },
   },
+  navigateLinkBackToLogin: {
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+      marginBottom: '32px',
+    },
+  },
+
   submitWrapper: {
     width: '234px',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+    },
   },
 }));

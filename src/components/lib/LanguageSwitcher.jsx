@@ -14,7 +14,7 @@ const LanguageSwitcher = () => {
 
 export default LanguageSwitcher;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   languageMenuContainer: {
     width: '80px',
     height: '48px',
@@ -23,6 +23,10 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-evenly',
+    [theme.breakpoints.down('xs')]: {
+      border: 'none',
+      width: '0',
+    },
   },
   languageName: {
     fontStyle: 'normal',
@@ -31,6 +35,9 @@ const useStyles = makeStyles(() => ({
     lineHeight: '125%',
     fontFamily: 'Inter',
     justifyContent: 'space-evenly',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
   },
 }));
 

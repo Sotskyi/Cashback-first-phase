@@ -97,7 +97,7 @@ const SetNewPassword = ({ creds, token }) => {
 };
 export default SetNewPassword;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '68px',
     height: '380px',
@@ -112,5 +112,8 @@ const useStyles = makeStyles(() => ({
     fontSize: '40px',
     lineHeight: '140%',
     letterSpacing: '-0.02em',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '20px',
+    },
   },
 }));

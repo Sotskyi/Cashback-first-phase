@@ -54,7 +54,7 @@ const CreateAcount = ({ next, handleChange, creds }) => {
 };
 export default CreateAcount;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '68px',
     height: '252px',
@@ -69,6 +69,9 @@ const useStyles = makeStyles(() => ({
     fontSize: '40px',
     lineHeight: '140%',
     letterSpacing: '-0.02em',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '20px',
+    },
   },
   alreadyHaveAcount: {
     marginTop: '216px',
