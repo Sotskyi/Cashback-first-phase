@@ -79,10 +79,12 @@ const UserMenu = () => {
       >
         {menuItems.map((el) => (
           <MenuItem key={el.id} id={el.id} onClick={handleClose}>
-            <span className={classes.menuIconWrapper}>
-              <img src={el.iconSrc} alt='logo' />
+            <span id={el.id} className={classes.menuIconWrapper}>
+              <img id={el.id} src={el.iconSrc} alt='logo' />
             </span>
-            <span className={classes.menuTitle}>{el.name}</span>
+            <span id={el.id} className={classes.menuTitle}>
+              {el.name}
+            </span>
           </MenuItem>
         ))}
       </Menu>
