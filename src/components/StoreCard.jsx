@@ -42,7 +42,7 @@ const StoreCard = ({ name, precent, id, logo, background }) => {
 };
 export default StoreCard;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   storeCardWrapper: {
     width: '266px',
     height: '266px',
@@ -50,6 +50,10 @@ const useStyles = makeStyles(() => ({
     marginTop: '15px',
     cursor: 'pointer',
     margin: '8px',
+    [theme.breakpoints.down('md')]: {
+      width: '288px',
+      height: '272px',
+    },
   },
   storeCardTop: {
     height: '192px',

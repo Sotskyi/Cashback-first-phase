@@ -1,6 +1,6 @@
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 
@@ -26,11 +26,9 @@ import { reset } from '../../redux/slices/storesSlice';
 const StoreIconSlider = ({
   categoryId,
   setCategoryId,
+  setPage,
   step,
   setStep,
-  range,
-  setRange,
-  setPage,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -42,30 +40,32 @@ const StoreIconSlider = ({
   };
 
   const handleClickLeftArrow = () => {
-    if (step > 6 && range !== 'title') {
-      setStep((prev) => prev - 6);
-      if (range === 9) {
-        setRange((prev) => prev - 4);
-      } else setRange((prev) => prev - 5);
-    }
-    if (step - 6 === 6) {
-      setCategoryId('favoritesPosition');
-    } else if (step - 6 === 12) {
+    if (step === 3) {
+      setCategoryId('8');
+      setStep(2);
+    } else if (step === 2) {
       setCategoryId('4');
+      setStep(1);
+    } else if (step === 1) {
+      setCategoryId('favoritesPosition');
+      setStep(0);
     }
+    dispatch(reset());
   };
 
   const handleClickRightArrow = () => {
-    setStep(step + 6);
-    if (range === 5) {
-      setRange((prev) => prev + 4);
-    } else setRange(range + 5);
-    if (step + 6 === 12) {
+    // setStep((prev) => (+prev + 4).toString());
+    if (step === 0) {
       setCategoryId('4');
-    }
-    if (step + 6 === 18) {
+      setStep(1);
+    } else if (step === 1) {
       setCategoryId('8');
+      setStep(2);
+    } else if (step === 2) {
+      setCategoryId('12');
+      setStep(3);
     }
+    dispatch(reset());
   };
 
   const tabs = [
@@ -141,8 +141,13 @@ const StoreIconSlider = ({
     },
   ];
   return (
-    <div className={classes.container}>
-      {step >= 12 && (
+    <div
+      className={classes.container}
+      // onTouchStart={onTouchStart}
+      // onTouchMove={onTouchMove}
+      // onTouchEnd={onTouchEnd}
+    >
+      {step !== 0 && (
         <div className={classes.arrowContainer} onClick={handleClickLeftArrow}>
           <div className={classes.leftArrowIcon}>
             <img src={leftArrow} alt='menu' />
@@ -150,7 +155,7 @@ const StoreIconSlider = ({
         </div>
       )}
       <div className={classes.sliderContainer}>
-        <Box sx={{ maxWidth: '950px' }}>
+        <div className={classes.tabsContainer}>
           <Tabs
             classes={{ root: classes.customTabs }}
             value={categoryId}
@@ -161,7 +166,7 @@ const StoreIconSlider = ({
               style: { backgroundColor: 'black', color: 'red' },
             }}
           >
-            {tabs.slice(range, step).map((el, index) => (
+            {tabs.map((el, index) => (
               <Tab
                 value={el.value}
                 label={el.name}
@@ -175,28 +180,28 @@ const StoreIconSlider = ({
               />
             ))}
           </Tabs>
-        </Box>
+        </div>
       </div>
 
       <div className={classes.arrowContainer}>
-        {' '}
-        {range < 9 && (
-          <div
-            className={classes.rightArrowIcon}
-            onClick={handleClickRightArrow}
-          >
-            <img src={rightArrow} alt='menu' />
-          </div>
-        )}
+        <div
+          className={`${classes.rightArrowIcon} ${
+            step === 2 ? classes.hidden : ''
+          }`}
+          onClick={handleClickRightArrow}
+        >
+          <img src={rightArrow} alt='menu' />
+        </div>
+
         <div className={classes.filter}>
           <img src={filter} alt='menu' />
-          <span>Filter</span>
+          <span className={classes.filterTitle}>Filter</span>
         </div>
       </div>
     </div>
   );
 };
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   container: {
     height: '120px',
     padding: '40px 72px  0px',
@@ -204,6 +209,12 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     alignItems: 'center',
     boxSizing: 'border-box',
+    [theme.breakpoints.down('sm')]: {
+      padding: '24px 16px  0px',
+    },
+  },
+  tabsContainer: {
+    maxWidth: '950px',
   },
   customTabs: {
     '& .MuiTab-root': {
@@ -217,6 +228,11 @@ const useStyles = makeStyles({
       flexDirection: 'row',
       padding: '0',
       marginRight: '32px',
+    },
+    '& .MuiTabs-scroller': {
+      [theme.breakpoints.down('md')]: {
+        overflowX: 'scroll!important',
+      },
     },
     '& .MuiTab-root.Mui-selected': {
       color: 'black',
@@ -233,7 +249,6 @@ const useStyles = makeStyles({
       marginRight: '14px',
     },
   },
-
   arrowContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -241,12 +256,14 @@ const useStyles = makeStyles({
     position: 'relative',
     minWidth: '90px',
     zIndex: '11',
+    [theme.breakpoints.down('md')]: {
+      minWidth: '41px',
+    },
   },
   sliderContainer: {
     width: '930px',
     overflow: 'hidden',
   },
-
   leftArrowIcon: {
     width: '36px',
     height: '36px',
@@ -256,6 +273,9 @@ const useStyles = makeStyles({
     alignItems: 'center',
     justifyContent: 'center',
     cursor: 'pointer',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
   rightArrowIcon: {
     minWidth: '36px',
@@ -267,6 +287,9 @@ const useStyles = makeStyles({
     justifyContent: 'center',
     marginInline: '31px',
     cursor: 'pointer',
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
   },
   filter: {
     minWidth: '100px',
@@ -276,6 +299,19 @@ const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'space-evenly',
     alignItems: 'center',
+    [theme.breakpoints.down('md')]: {
+      border: 'none',
+      minWidth: '0',
+      marginLeft: '30px',
+    },
   },
-});
+  filterTitle: {
+    [theme.breakpoints.down('md')]: {
+      display: 'none',
+    },
+  },
+  hidden: {
+    visibility: 'hidden',
+  },
+}));
 export default StoreIconSlider;

@@ -31,7 +31,7 @@ const LoginedHeader = () => {
       <div
         className={`${classes.availablePriceContainer} ${
           pathname === '/cashback' ? classes.active : ''
-        }  `}
+        }`}
         onClick={() => navigate('/cashback')}
       >
         <div className={classes.priceTitle}>AVAILABLE</div>

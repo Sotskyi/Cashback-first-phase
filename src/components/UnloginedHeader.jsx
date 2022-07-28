@@ -37,7 +37,7 @@ const UnloginedHeader = () => {
 };
 export default UnloginedHeader;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   headerContainer: {
     paddingInline: '72px',
     justifyContent: 'center',
@@ -46,11 +46,19 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     fontFamily: 'Inter',
+    [theme.breakpoints.down('sm')]: {
+      height: '64px',
+      paddingInline: '16px',
+    },
   },
   logo: {
     width: '154px',
     height: '16px',
     cursor: 'pointer',
+    [theme.breakpoints.down('sm')]: {
+      width: '116px',
+      height: '12px',
+    },
   },
   searchContainer: {
     paddingLeft: '19px',
@@ -62,6 +70,10 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     marginRight: '112px',
     marginLeft: '230px',
+    [theme.breakpoints.down('md')]: {
+      marginRight: '13px',
+      marginLeft: '20px',
+    },
   },
   searchIcon: {
     width: '14px',
@@ -82,5 +94,8 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: '16px',
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
   },
 }));

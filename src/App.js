@@ -61,13 +61,11 @@ const App = () => {
             {/* public or protected routes */}
             <Route path='/' element={<AuthLayout />}>
               <Route index element={<Home />} />
-              {/* <Route path='/home' element={<Home />} /> */}
               <Route path='/store:id' element={<Store />} />
               <Route path='/cashback' element={<Cashback />} />
             </Route>
             {/* catch all */}
             <Route path='*' element={<Navigate to='/' replace />} />
-            {/* <Route path='*' element={<NotFoundPage />} /> */}
           </Route>
         </Routes>
       </BrowserRouter>

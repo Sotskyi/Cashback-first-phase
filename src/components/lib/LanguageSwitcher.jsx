@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-evenly',
     [theme.breakpoints.down('xs')]: {
       border: 'none',
-      width: '0',
     },
   },
   languageName: {

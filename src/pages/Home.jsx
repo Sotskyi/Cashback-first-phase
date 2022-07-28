@@ -4,18 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import StoreIconSlider from '../components/lib/StoreIconSlider';
 import StoreCard from '../components/StoreCard';
-import Loader from '../components/lib/Loader';
 import { getStores, reset } from '../redux/slices/storesSlice';
 import { useObserver } from '../hooks/useObserver';
 
 const Home = () => {
   const classes = useStyles();
+
   const dispatch = useDispatch();
   const lastElement = useRef();
   const [categoryId, setCategoryId] = useState('favoritesPosition');
-  const [step, setStep] = useState(6);
-  const [range, setRange] = useState(0);
+  const [step, setStep] = useState(0);
   const [page, setPage] = useState(1);
+
   const { storesList, isLoading, itemsCount } = useSelector(
     (state) => state.stores,
   );
@@ -42,34 +42,24 @@ const Home = () => {
       <StoreIconSlider
         categoryId={categoryId}
         setCategoryId={setCategoryId}
-        range={range}
-        setRange={setRange}
         step={step}
         setStep={setStep}
         setPage={setPage}
       />
-
       <div className={classes.bodyContainer}>
         <div className={classes.cardsContainer}>
           <div className={classes.cardsWrapper}>
-            {isLoading && page === 1 ? (
-              <Loader />
-            ) : (
-              <>
-                {' '}
-                {storesList.map((el) => (
-                  <StoreCard
-                    key={el.id}
-                    name={el.translations[0].title}
-                    background={el.backgroundImage.url}
-                    precent={el.baseReward}
-                    // onLoadImages={onLoadImages}
-                    id={el.id}
-                    logo={el.logoImage.url}
-                  />
-                ))}
-              </>
-            )}
+            {storesList.map((el) => (
+              <StoreCard
+                key={el.id}
+                name={el.translations[0].title}
+                background={el.backgroundImage.url}
+                precent={el.baseReward}
+                // onLoadImages={onLoadImages}
+                id={el.id}
+                logo={el.logoImage.url}
+              />
+            ))}
             <div ref={lastElement} className={classes.lastElement} />
           </div>
         </div>
@@ -95,7 +85,9 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     padding: '0px 72px 0px',
     boxSizing: 'border-box',
-    // overflowY: 'scroll',
+    height: '520px',
+    display: 'flex',
+    flexWrap: 'wrap',
     overflow: 'scroll',
     smooth: 'easeInOutQuart',
     '&::-webkit-scrollbar': {
@@ -109,13 +101,18 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'rgb(105 255 54 / 10%)',
       outline: '1px solid slategrey',
     },
-    height: '520px',
-    display: 'flex',
 
-    flexWrap: 'wrap',
     [theme.breakpoints.down('md')]: {
-      height: '479px',
+      width: '100%',
+      justifyContent: 'center',
     },
+    [theme.breakpoints.down('sm')]: {
+      padding: '0px 16px 0px',
+    },
+    // [theme.breakpoints.down('xs')]: {
+    //   width: '288px',
+    //   height: '100px',
+    // },
   },
   lastElement: {
     width: '100%',
