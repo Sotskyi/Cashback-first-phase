@@ -65,7 +65,6 @@ const ResetPassword = ({ next, email, setEmail }) => {
                 padding: '8px',
               },
             }}
-            inputProps={{ classes: { input: classes.input } }}
             error={
               !checkIsValid({
                 nameOfData: 'email',
@@ -157,7 +156,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'start',
   },
-
   navigateLink: {
     fontFamily: 'Source Sans Pro, sans-serif',
     fontStyle: 'normal',

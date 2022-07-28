@@ -37,7 +37,6 @@ const PasswordInput = ({
         id={id || 'password'}
         error={isError}
         sx={{
-          padding: '0px 14px',
           height: '48px',
           fontFamily: 'Inter',
           fontStyle: 'normal',
@@ -45,6 +44,9 @@ const PasswordInput = ({
           fontSize: '20px',
           border: '1px solid #EAEAEA',
           borderRadius: '8px',
+          '& input': {
+            padding: '8px',
+          },
         }}
         type={showPassword ? 'text' : 'password'}
         endAdornment={
