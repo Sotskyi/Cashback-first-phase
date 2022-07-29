@@ -27,7 +27,7 @@ const clearAuthData = () => saveAuthData({});
 
 export const saveTokens = (axiosData) => {
   const { access_token, refresh_token } = axiosData.data;
-  axios.defaults.headers.common.Authorization = access_token;
+  axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
   saveAuthData({ access_token, refresh_token });
   return Promise.resolve(axiosData);
 };
@@ -92,4 +92,6 @@ const refreshTokenInterceptor = (error) => {
 createAuthRefreshInterceptor(axios, refreshTokenInterceptor);
 
 // Set existed token to config
-axios.defaults.headers.common.Authorization = getSavedAuthData().access_token;
+axios.defaults.headers.common.Authorization = `Bearer ${
+  getSavedAuthData().access_token
+}`;
