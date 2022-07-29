@@ -243,5 +243,8 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: '-24px',
     width: '100%',
+    [theme.breakpoints.down('xs')]: {
+      bottom: '-36px',
+    },
   },
 }));

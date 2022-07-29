@@ -102,7 +102,6 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '20px',
     },
   },
-
   newAccount: {
     marginTop: '96px',
     fontFamily: 'Inter',

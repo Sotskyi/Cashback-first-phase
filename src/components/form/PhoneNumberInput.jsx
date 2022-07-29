@@ -29,7 +29,7 @@ const PhoneNumberInput = ({ handleChange, data, isError }) => {
 
 export default PhoneNumberInput;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   phoneNumberLabel: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
@@ -78,5 +78,8 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
     bottom: '-24px',
     width: '100%',
+    [theme.breakpoints.down('xs')]: {
+      bottom: '-42px',
+    },
   },
 }));
