@@ -10,34 +10,57 @@ const UnloginedHeader = () => {
   const classes = useStyles();
   const navigate = useNavigate();
   return (
-    <div className={classes.headerContainer}>
-      <div onClick={() => navigate('/')}>
-        <img className={classes.logo} src={logo} alt='logo' />
+    <>
+      <div
+        className={classes.headerButtonForMobile}
+        onClick={() => navigate('/login')}
+      >
+        Log in to shop
       </div>
-      <div className={classes.searchContainer}>
-        <img className={classes.searchIcon} src={search} alt='menu' />
+      <div className={classes.headerContainer}>
+        <div onClick={() => navigate('/')}>
+          <img className={classes.logo} src={logo} alt='logo' />
+        </div>
+        <div className={classes.searchContainer}>
+          <img className={classes.searchIcon} src={search} alt='menu' />
 
-        <Input
-          placeholder='Search stores'
-          disableUnderline
-          fullWidth
-          sx={{ marginLeft: '8px' }}
-          // inputProps={{
-          //   'aria-label': 'Search',
-          // }}
-          // onChange={(ev) => searchHandler(ev)}
-        />
+          <Input
+            placeholder='Search stores'
+            disableUnderline
+            fullWidth
+            sx={{ marginLeft: '8px' }}
+            // inputProps={{
+            //   'aria-label': 'Search',
+            // }}
+            // onChange={(ev) => searchHandler(ev)}
+          />
+        </div>
+        <LanguageSwitcher />
+        <div className={classes.loginButton} onClick={() => navigate('/login')}>
+          Log In
+        </div>
       </div>
-      <LanguageSwitcher />
-      <div className={classes.loginButton} onClick={() => navigate('/login')}>
-        Log In
-      </div>
-    </div>
+    </>
   );
 };
 export default UnloginedHeader;
 
 const useStyles = makeStyles((theme) => ({
+  headerButtonForMobile: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '700',
+    fontSize: '12PX',
+    background: '#33CC55',
+    color: '#FFFFFF',
+    height: '32px',
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'none',
+    [theme.breakpoints.down('xs')]: {
+      display: 'flex',
+    },
+  },
   headerContainer: {
     paddingInline: '72px',
     justifyContent: 'center',
@@ -73,6 +96,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       marginRight: '13px',
       marginLeft: '20px',
+      height: '35px',
     },
   },
   searchIcon: {
@@ -94,7 +118,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
     marginLeft: '16px',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
   },

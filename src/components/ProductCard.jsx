@@ -19,7 +19,7 @@ const ProductCard = () => {
 };
 export default ProductCard;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   productCardWrapper: {
     width: '336px',
     height: '168px',
@@ -30,6 +30,14 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     background: '#FAFAFA',
     borderRadius: '8px',
+    [theme.breakpoints.down('md')]: {
+      width: 'calc(50% - 10px)',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '288px',
+      height: '168px',
+      marginTop: '8px',
+    },
   },
   titlesWrapper: {
     height: '44px',
@@ -86,5 +94,8 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '0.02em',
     color: '#33CC55',
     background: '#FFFFFF',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '16px',
+    },
   },
 }));

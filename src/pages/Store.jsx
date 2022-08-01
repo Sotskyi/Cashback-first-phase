@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import Loader from '../components/lib/Loader';
 
@@ -11,7 +11,7 @@ import { getStore } from '../redux/slices/storesSlice';
 const Store = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const { isAuth } = useSelector((state) => state.auth);
   const { isLoading, store } = useSelector((state) => state.stores);
 
@@ -44,6 +44,31 @@ const Store = () => {
             <div className={classes.subTitle}>
               {store?.translations[0]?.description}
             </div>
+            <div
+              className={classes.dicountPrecentCardContainerForMobileWrapper}
+            >
+              <div className={classes.dicountPrecentCardContainerForMobile}>
+                <div className={classes.percentWrapper}>
+                  <div className={classes.filledPercent}>
+                    {store?.baseReward}%
+                  </div>
+                  <div className={classes.percentSubTitle}>Base reward</div>
+                </div>
+                <div className={classes.percentWrapper}>
+                  <div className={classes.outlinedPercent}>6%</div>
+                  <div className={classes.percentSubTitle}>
+                    On purchases over $30
+                  </div>
+                </div>
+                <div
+                  className={classes.shopButton}
+                  onClick={() => navigate('/login')}
+                >
+                  {isAuth ? 'Shop Now' : 'Log in to shop'}
+                </div>{' '}
+              </div>
+            </div>
+
             <div className={classes.productCardsContainer}>
               <ProductCard />
               <ProductCard />
@@ -52,19 +77,25 @@ const Store = () => {
             </div>
           </div>
           <div className={classes.rightContent}>
-            {' '}
-            <div className={classes.percentWrapper}>
-              <div className={classes.filledPercent}>{store?.baseReward}%</div>
-              <div className={classes.percentSubTitle}>Base reward</div>
-            </div>
-            <div className={classes.percentWrapper}>
-              <div className={classes.outlinedPercent}>6%</div>
-              <div className={classes.percentSubTitle}>
-                On purchases over $30
+            <div className={classes.dicountPrecentCardContainer}>
+              <div className={classes.percentWrapper}>
+                <div className={classes.filledPercent}>
+                  {store?.baseReward}%
+                </div>
+                <div className={classes.percentSubTitle}>Base reward</div>
               </div>
-            </div>
-            <div className={classes.shopButton}>
-              {isAuth ? 'Shop Now' : 'Log in to shop'}
+              <div className={classes.percentWrapper}>
+                <div className={classes.outlinedPercent}>6%</div>
+                <div className={classes.percentSubTitle}>
+                  On purchases over $30
+                </div>
+              </div>
+              <div
+                className={classes.shopButton}
+                onClick={() => navigate('/login')}
+              >
+                {isAuth ? 'Shop Now' : 'Log in to shop'}
+              </div>
             </div>
           </div>
         </div>
@@ -74,7 +105,7 @@ const Store = () => {
 };
 export default Store;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   storeContainer: {
     height: '100vh',
   },
@@ -88,10 +119,17 @@ const useStyles = makeStyles(() => ({
   storeBackground: {
     height: '256px',
     backgroundImage: (store) => `url(${store?.backgroundImage?.url})`,
-    width: '1280px',
+    width: '100%',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     backgroundSize: 'contain',
+    [theme.breakpoints.down('sm')]: {
+      height: '200px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '320px',
+      height: '160px',
+    },
   },
   middleLine: {
     height: '0px',
@@ -100,6 +138,9 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     width: '1280px',
     boxSizing: 'border-box',
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+    },
   },
   storeAvatar: {
     width: '160px',
@@ -108,6 +149,18 @@ const useStyles = makeStyles(() => ({
     // background: '#EAEAEA',
     borderRadius: '100px',
     transform: 'translate(0 ,-50%)',
+    [theme.breakpoints.down('md')]: {
+      width: '130px',
+      height: '130px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100px',
+      height: '100px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      width: '64px',
+      height: '64px',
+    },
   },
   contentContainer: {
     display: 'flex',
@@ -116,10 +169,18 @@ const useStyles = makeStyles(() => ({
     boxSizing: 'border-box',
     paddingInline: '72px',
     paddingBottom: '72px',
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+      display: 'flex',
+      justifyContent: 'space-between',
+    },
   },
   leftContent: {
     width: '688px',
     paddingTop: '112px',
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '60px',
+    },
   },
   title: {
     fontFamily: 'Inter',
@@ -128,6 +189,9 @@ const useStyles = makeStyles(() => ({
     fontSize: '24px',
     lineHeight: '100%',
     letterSpacing: '0.02em',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '16px',
+    },
   },
   subTitle: {
     marginTop: '16px',
@@ -146,10 +210,23 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     alignContent: 'space-between',
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+      justifyContent: 'center',
+    },
   },
   rightContent: {
     marginLeft: '112px',
     marginTop: '32px',
+    [theme.breakpoints.down('md')]: {
+      marginLeft: '0px',
+      // width: '45%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      display: 'none',
+    },
+  },
+  dicountPrecentCardContainer: {
     width: '336px',
     height: '316px',
     boxSizing: 'border-box',
@@ -159,6 +236,31 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    [theme.breakpoints.down('md')]: {
+      width: '250px',
+      // width: '45%',
+    },
+  },
+  dicountPrecentCardContainerForMobileWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  dicountPrecentCardContainerForMobile: {
+    marginTop: '16px',
+    width: '288px',
+    height: '316px',
+    boxSizing: 'border-box',
+    padding: '16px',
+    border: '1px solid #EAEAEA',
+    borderRadius: '16px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    [theme.breakpoints.up('md')]: {
+      display: 'none',
+    },
   },
   percentWrapper: {
     width: '304px',
@@ -167,6 +269,9 @@ const useStyles = makeStyles(() => ({
     background: '#FAFAFA',
     boxSizing: 'border-box',
     padding: '16px',
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+    },
   },
   filledPercent: {
     fontFamily: 'Source Sans Pro, sans-serif',
