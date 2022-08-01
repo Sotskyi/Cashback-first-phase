@@ -141,6 +141,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       width: '100%',
     },
+    [theme.breakpoints.down('sm')]: {
+      paddingInline: '16px',
+    },
   },
   storeAvatar: {
     width: '160px',
@@ -173,6 +176,9 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
       display: 'flex',
       justifyContent: 'space-between',
+    },
+    [theme.breakpoints.down('sm')]: {
+      paddingInline: '16px',
     },
   },
   leftContent: {
@@ -249,7 +255,7 @@ const useStyles = makeStyles((theme) => ({
 
   dicountPrecentCardContainerForMobile: {
     marginTop: '16px',
-    width: '288px',
+    width: '100%',
     height: '316px',
     boxSizing: 'border-box',
     padding: '16px',
