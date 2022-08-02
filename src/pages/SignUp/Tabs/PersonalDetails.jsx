@@ -10,7 +10,6 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
   const classes = useStyles();
 
   const [checkIsValid, setIsShowError] = useValidator();
-
   const onSubmit = () => {
     setIsShowError(true);
     if (

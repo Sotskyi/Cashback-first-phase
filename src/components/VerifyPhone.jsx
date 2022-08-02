@@ -1,7 +1,7 @@
-import { makeStyles } from '@material-ui/core';
 import { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core';
 
 import Loader from './lib/Loader';
 import {
@@ -11,6 +11,7 @@ import {
   resetPasswordConfirm,
   registerConfirm,
 } from '../redux/slices/authSlice';
+import { insertString } from '../utils/helpers';
 
 const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
   const classes = useStyles();
@@ -28,7 +29,12 @@ const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
   });
 
   const registerSmsCheckConfirm = async (params) => {
-    const resultAction = await dispatch(registerConfirm(params));
+    const resultAction = await dispatch(
+      registerConfirm({
+        ...params,
+        phoneNumber: insertString('+1', params.phoneNumber),
+      }),
+    );
     if (registerConfirm.fulfilled.match(resultAction)) {
       next();
       // dispatch(reset());
@@ -36,7 +42,12 @@ const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
   };
 
   const signInConfirm = async (params) => {
-    const resultAction = await dispatch(loginConfirm(params));
+    const resultAction = await dispatch(
+      loginConfirm({
+        ...params,
+        phoneNumber: insertString('+1', params.phoneNumber),
+      }),
+    );
     if (loginConfirm.fulfilled.match(resultAction)) {
       navigate('/home');
       // dispatch(reset());
@@ -44,7 +55,12 @@ const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
   };
 
   const resetPasswordConfirmBySms = async (params) => {
-    const resultAction = await dispatch(resetPasswordConfirm(params));
+    const resultAction = await dispatch(
+      resetPasswordConfirm({
+        ...params,
+        phoneNumber: insertString('+1', params.phoneNumber),
+      }),
+    );
     if (resetPasswordConfirm.fulfilled.match(resultAction)) {
       next();
       // dispatch(reset());
@@ -224,8 +240,8 @@ const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
           className={classes.sendAgain}
           onClick={() => {
             return useFor === 'login'
-              ? dispatch(resendSms(creds.phoneNumber))
-              : dispatch(verifyPhone(creds.phoneNumber));
+              ? dispatch(resendSms(insertString('+1', creds.phoneNumber)))
+              : dispatch(verifyPhone(insertString('+1', creds.phoneNumber)));
           }}
         >
           Send again

@@ -45,7 +45,7 @@ const PasswordInput = ({
           border: '1px solid #EAEAEA',
           borderRadius: '8px',
           '& input': {
-            padding: '8px',
+            padding: '8px 8px 8px 16px',
           },
         }}
         type={showPassword ? 'text' : 'password'}

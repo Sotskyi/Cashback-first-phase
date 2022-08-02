@@ -6,6 +6,7 @@ import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/form/SubmitButton';
 import PhoneNumberInput from '../../../components/form/PhoneNumberInput';
 import { verifyPhone } from '../../../redux/slices/authSlice';
+import { insertString } from '../../../utils/helpers';
 
 const CreateAcount = ({ next, handleChange, creds }) => {
   const classes = useStyles();
@@ -22,7 +23,7 @@ const CreateAcount = ({ next, handleChange, creds }) => {
         showErrorSync: true,
       })
     ) {
-      dispatch(verifyPhone(creds.phoneNumber));
+      dispatch(verifyPhone(insertString('+1', creds.phoneNumber)));
       next();
     }
   };

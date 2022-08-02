@@ -12,6 +12,7 @@ import {
   setNewPasswordByPhone,
   setNewPasswordByEmail,
 } from '../redux/slices/authSlice';
+import { insertString } from '../utils/helpers';
 
 const SetNewPassword = ({ creds, token }) => {
   const [equalityPassword, setEqualityPassword] = useState({
@@ -46,17 +47,17 @@ const SetNewPassword = ({ creds, token }) => {
           }),
         );
         if (setNewPasswordByEmail.fulfilled.match(resultAction)) {
-          toast.success('new password successfully created');
+          toast.success('New password successfully created');
         }
       } else {
         const resultAction = await dispatch(
           setNewPasswordByPhone({
-            phoneNumber: creds.phoneNumber,
+            phoneNumber: insertString('+1', creds.phoneNumber),
             password: equalityPassword.confirmPassword,
           }),
         );
         if (setNewPasswordByPhone.fulfilled.match(resultAction)) {
-          toast.success('new password successfully created');
+          toast.success('New password successfully created');
         }
       }
 

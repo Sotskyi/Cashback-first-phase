@@ -11,7 +11,7 @@ import Loader from '../../components/lib/Loader';
 const LogIn = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [creds, setCreds] = useState({
-    phoneNumber: '+1',
+    phoneNumber: '',
     password: '',
   });
 

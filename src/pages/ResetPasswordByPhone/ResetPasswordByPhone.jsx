@@ -8,7 +8,7 @@ import AuthLandingLayout from '../../components/layouts/AuthLandingLayout';
 const ResetPasswordByPhone = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [creds, setCreds] = useState({
-    phoneNumber: '+1',
+    phoneNumber: '',
   });
 
   const next = () => {

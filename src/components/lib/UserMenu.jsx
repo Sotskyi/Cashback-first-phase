@@ -60,6 +60,8 @@ const UserMenu = () => {
     if (id === 'logout') {
       dispatch(logoutUser());
       navigate('/login');
+    } else if (id === 'cashback') {
+      navigate('/cashback');
     }
   };
 
@@ -78,11 +80,12 @@ const UserMenu = () => {
         }}
       >
         <MenuItem
+          onClick={handleClose}
           sx={(theme) => ({
             [theme.breakpoints.up('md')]: { display: 'none' },
           })}
         >
-          <div className={classes.availableMenuItem}>
+          <div id='cashback' className={classes.availableMenuItem}>
             <div className={classes.availableMenuItemTitle}>AVAILABLE</div>
             <div className={classes.availableMenuItemCash}>$ 26</div>
           </div>

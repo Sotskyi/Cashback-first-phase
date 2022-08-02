@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { useValidator } from '../../../hooks/useValidator';
+import { insertString } from '../../../utils/helpers';
 import SubmitButton from '../../../components/form/SubmitButton';
 import PhoneNumberInput from '../../../components/form/PhoneNumberInput';
 import PasswordInput from '../../../components/form/PasswordInput';
@@ -29,7 +30,9 @@ const LoginAccount = ({ creds, handleChange, next }) => {
         showErrorSync: true,
       })
     ) {
-      const resultAction = await dispatch(login(creds));
+      const resultAction = await dispatch(
+        login({ ...creds, phoneNumber: insertString('+1', creds.phoneNumber) }),
+      );
       if (login.fulfilled.match(resultAction)) {
         next();
         // dispatch(reset());

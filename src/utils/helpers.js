@@ -4,3 +4,6 @@ export const getError = (error) => {
   }
   return error.response.data.message;
 };
+
+export const insertString = (insertValue, existStr) =>
+  [insertValue, ...existStr.split('')].join('');

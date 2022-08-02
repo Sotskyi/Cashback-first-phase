@@ -6,8 +6,7 @@ export const validationRules = {
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
       data,
     ),
-  isPhoneNumber: (data) =>
-    /^(\+?1 ?)?\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(data),
+  isPhoneNumber: (data) => /^\d{10}$/.test(data),
   isFirstName: (data) => /^[a-zA-Z]{2,}/.test(data),
   isLastName: (data) => /^[a-zA-Z]{2,}/.test(data),
   isPassword: (data) => /^\S{7,}$/.test(data),

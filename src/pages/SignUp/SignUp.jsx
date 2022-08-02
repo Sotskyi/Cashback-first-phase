@@ -11,11 +11,12 @@ import PersonalDetails from './Tabs/PersonalDetails';
 import NetworkDetails from './Tabs/NetworkDetails';
 import { register, reset } from '../../redux/slices/authSlice';
 import Loader from '../../components/lib/Loader';
+import { insertString } from '../../utils/helpers';
 
 const SignUp = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [creds, setCreds] = useState({
-    phoneNumber: '+1',
+    phoneNumber: '',
     firstName: '',
     lastName: '',
     email: '',
@@ -48,7 +49,12 @@ const SignUp = () => {
 
   const onSubmit = async () => {
     if (Object.values(creds).every((element) => element !== '')) {
-      const resultAction = await dispatch(register(creds));
+      const resultAction = await dispatch(
+        register({
+          ...creds,
+          phoneNumber: insertString('+1', creds.phoneNumber),
+        }),
+      );
       if (register.fulfilled.match(resultAction)) {
         toast.success('new user successfully created');
         navigate('/home');

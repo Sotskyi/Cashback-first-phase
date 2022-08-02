@@ -2,28 +2,23 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
-import Loader from '../components/lib/Loader';
+// import Loader from '../components/lib/Loader';
 
 import ProductCard from '../components/ProductCard';
 import { getStore } from '../redux/slices/storesSlice';
-// import altLogo from '../assets/images/icons/altLogo.svg';
 
 const Store = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
   const { isAuth } = useSelector((state) => state.auth);
-  const { isLoading, store } = useSelector((state) => state.stores);
+  const { store } = useSelector((state) => state.stores);
 
   useEffect(() => {
     dispatch(getStore(id));
   }, [id]);
 
   const classes = useStyles(store);
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <div className={classes.storeContainer}>
@@ -63,7 +58,12 @@ const Store = () => {
                 </div>
                 <div
                   className={classes.shopButton}
-                  onClick={() => navigate('/login')}
+                  onClick={() => {
+                    if (isAuth) {
+                      return null;
+                    }
+                    return navigate('/login');
+                  }}
                 >
                   {isAuth ? 'Shop Now' : 'Log in to shop'}
                 </div>{' '}
@@ -93,7 +93,12 @@ const Store = () => {
               </div>
               <div
                 className={classes.shopButton}
-                onClick={() => navigate('/login')}
+                onClick={() => {
+                  if (isAuth) {
+                    return null;
+                  }
+                  return navigate('/login');
+                }}
               >
                 {isAuth ? 'Shop Now' : 'Log in to shop'}
               </div>
@@ -150,7 +155,6 @@ const useStyles = makeStyles((theme) => ({
     width: '160px',
     height: '160px',
     border: '4px solid #FFFFFF',
-    // background: '#EAEAEA',
     borderRadius: '100px',
     transform: 'translate(0 ,-50%)',
     [theme.breakpoints.down('md')]: {
@@ -227,7 +231,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '32px',
     [theme.breakpoints.down('md')]: {
       marginLeft: '0px',
-      // width: '45%',
     },
     [theme.breakpoints.down('sm')]: {
       display: 'none',
@@ -245,7 +248,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     [theme.breakpoints.down('md')]: {
       width: '250px',
-      // width: '45%',
     },
   },
   dicountPrecentCardContainerForMobileWrapper: {
@@ -324,5 +326,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '16px',
     lineHeight: '125%',
     letterSpacing: '0.02em',
+    cursor: 'pointer',
   },
 }));
