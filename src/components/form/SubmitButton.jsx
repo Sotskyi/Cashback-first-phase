@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '-0.02em',
     color: '#FFFFFF',
     cursor: 'pointer',
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       fontSize: '16px',
     },
   },

@@ -31,7 +31,7 @@ const UnloginedCashback = () => {
 };
 export default UnloginedCashback;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   cashbackContainer: {
     height: '720px',
   },
@@ -50,6 +50,9 @@ const useStyles = makeStyles(() => ({
     lineHeight: '140%',
     letterSpacing: '-0.02em',
     textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '20px',
+    },
   },
   subTitle: {
     marginTop: '5px',
@@ -61,6 +64,9 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '-0.02em',
     textAlign: 'center',
     color: '#6A6A6A',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '16px',
+    },
   },
   submitButtonWrapper: {
     marginTop: '44px',

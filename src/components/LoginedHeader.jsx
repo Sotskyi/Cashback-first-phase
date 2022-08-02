@@ -78,8 +78,11 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: '230px',
     [theme.breakpoints.down('md')]: {
       marginRight: '13px',
-      marginLeft: '20px',
+      marginLeft: '13px',
       height: '35px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      paddingLeft: '7px',
     },
   },
   searchIcon: {

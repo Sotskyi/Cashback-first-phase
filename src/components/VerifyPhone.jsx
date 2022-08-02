@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Loader from './lib/Loader';
 import {
   verifyPhone,
+  resendSms,
   loginConfirm,
   resetPasswordConfirm,
   registerConfirm,
@@ -221,7 +222,11 @@ const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
         Haven’t recieved SMS?
         <span
           className={classes.sendAgain}
-          onClick={() => dispatch(verifyPhone(creds.phoneNumber))}
+          onClick={() => {
+            return useFor === 'login'
+              ? dispatch(resendSms(creds.phoneNumber))
+              : dispatch(verifyPhone(creds.phoneNumber));
+          }}
         >
           Send again
         </span>

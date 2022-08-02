@@ -118,7 +118,7 @@ const WithdrawalsList = () => {
 };
 export default WithdrawalsList;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   withdrawalsListContainer: {
     height: '500px',
     width: '680px',
@@ -134,6 +134,9 @@ const useStyles = makeStyles(() => ({
     '&::-webkit-scrollbar-thumb': {
       backgroundColor: 'rgba(0,0,0,.1)',
       outline: '1px solid slategrey',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
     },
   },
   withdrawalsListWrapper: {},

@@ -66,7 +66,7 @@ const UserMenu = () => {
   return (
     <div className={classes.menuContainer}>
       <div className={classes.menu} onClick={handleClick}>
-        <img src={userMenu} alt='logo' />
+        <img src={userMenu} className={classes.menuIcon} alt='logo' />
       </div>
       <Menu
         id='basic-menu'
@@ -77,6 +77,16 @@ const UserMenu = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
+        <MenuItem
+          sx={(theme) => ({
+            [theme.breakpoints.up('md')]: { display: 'none' },
+          })}
+        >
+          <div className={classes.availableMenuItem}>
+            <div className={classes.availableMenuItemTitle}>AVAILABLE</div>
+            <div className={classes.availableMenuItemCash}>$ 26</div>
+          </div>
+        </MenuItem>
         {menuItems.map((el) => (
           <MenuItem key={el.id} id={el.id} onClick={handleClose}>
             <span id={el.id} className={classes.menuIconWrapper}>
@@ -94,7 +104,7 @@ const UserMenu = () => {
   );
 };
 export default UserMenu;
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   menuContainer: {
     width: '80px',
     height: '48px',
@@ -105,10 +115,48 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     marginLeft: '16px',
+    [theme.breakpoints.down('sm')]: {
+      minWidth: '52px',
+      height: '32px',
+    },
   },
   menu: {
     cursor: 'pointer',
   },
+  availableMenuItem: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    border: '1px solid #EAEAEA',
+    borderRadius: '12px',
+    height: '48px',
+    width: '272px',
+  },
+  availableMenuItemTitle: {
+    fontSize: '12px',
+    fontFamily: 'Inter',
+    fontWeight: '700',
+    color: '#6A6A6A',
+    letterSpacing: '0.16em;',
+    display: 'flex',
+    marginTop: '4px',
+  },
+  availableMenuItemCash: {
+    fontSize: '20px',
+    fontFamily: 'Inter',
+    fontWeight: '600',
+    color: ' #000000',
+    letterSpacing: '0.02em;',
+  },
+
+  menuIcon: {
+    width: '24px',
+    [theme.breakpoints.down('sm')]: {
+      width: '16px',
+    },
+  },
+
   menuIconWrapper: {
     width: '20px',
   },
@@ -125,5 +173,9 @@ const useStyles = makeStyles(() => ({
     height: '24px',
     background: '#EAEAEA',
     borderRadius: '26px',
+    [theme.breakpoints.down('sm')]: {
+      width: '16px',
+      height: '16px',
+    },
   },
 }));

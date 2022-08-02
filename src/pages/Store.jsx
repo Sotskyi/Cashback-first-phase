@@ -24,6 +24,7 @@ const Store = () => {
   if (isLoading) {
     return <Loader />;
   }
+
   return (
     <div className={classes.storeContainer}>
       <div className={classes.bodyHeaderContainer}>

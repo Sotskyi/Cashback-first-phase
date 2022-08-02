@@ -110,7 +110,7 @@ const CashbackList = () => {
 };
 export default CashbackList;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   cashbackListContainer: {
     height: '500px',
     width: '680px',
@@ -126,6 +126,9 @@ const useStyles = makeStyles(() => ({
     '&::-webkit-scrollbar-thumb': {
       backgroundColor: 'rgba(0,0,0,.1)',
       outline: '1px solid slategrey',
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
     },
   },
   dateContainer: {
@@ -147,7 +150,7 @@ const useStyles = makeStyles(() => ({
     height: '84px',
   },
   storeAvatar: {
-    width: '48px',
+    minWidth: '48px',
     height: '48px',
     background: '#EAEAEA',
     borderRadius: '100px',

@@ -41,7 +41,7 @@ const Switcher = ({ activeStep, setActiveStep }) => {
 };
 export default Switcher;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   cashbackContainer: {
     height: '720px',
   },
@@ -59,6 +59,12 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     border: '1px solid #EAEAEA',
     borderRadius: '26px',
+    [theme.breakpoints.down('md')]: {
+      width: '600px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
   switchWrapper: {
     color: '#6A6A6A',
