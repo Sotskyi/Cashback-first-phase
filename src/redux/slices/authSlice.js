@@ -101,6 +101,19 @@ export const verifyPhone = createAsyncThunk(
   },
 );
 
+export const resendSms = createAsyncThunk(
+  'auth/signin/resend',
+  async (phoneNumber, thunkAPI) => {
+    try {
+      const response = await AuthService.resendSms(phoneNumber);
+      return await response.data;
+    } catch (error) {
+      toast.error(getError(error));
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 export const resetPasswordBysms = createAsyncThunk(
   'auth/resetPasswordBysms',
   async (phoneNumber, thunkAPI) => {
@@ -210,7 +223,6 @@ const authSlice = createSlice({
     },
     [logoutUser.fulfilled]: (state) => {
       state.isLoading = false;
-
       state.isAuth = false;
       state.user = null;
       state.confirmSm = null;
@@ -223,6 +235,16 @@ const authSlice = createSlice({
       state.isLoading = false;
     },
     [verifyPhone.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [resendSms.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [resendSms.fulfilled]: (state, action) => {
+      state.confirmSms = action.payload.code;
+      state.isLoading = false;
+    },
+    [resendSms.rejected]: (state) => {
       state.isLoading = false;
     },
     [resetPasswordBysms.pending]: (state) => {

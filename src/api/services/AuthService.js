@@ -45,6 +45,12 @@ export default class AuthService {
     });
   }
 
+  static async resendSms(phoneNumber) {
+    return axios.post('auth/signin/resend', {
+      phoneNumber,
+    });
+  }
+
   static async resetPasswordBySms(phoneNumber) {
     return axios.post('/auth/reset/sms', {
       phoneNumber,
