@@ -2,10 +2,9 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
-// import Loader from '../components/lib/Loader';
 
 import ProductCard from '../components/ProductCard';
-import { getStore } from '../redux/slices/storesSlice';
+import { getStore, reset } from '../redux/slices/storesSlice';
 
 const Store = () => {
   const dispatch = useDispatch();
@@ -16,6 +15,9 @@ const Store = () => {
 
   useEffect(() => {
     dispatch(getStore(id));
+    return () => {
+      dispatch(reset());
+    };
   }, [id]);
 
   const classes = useStyles(store);
@@ -23,10 +25,7 @@ const Store = () => {
   return (
     <div className={classes.storeContainer}>
       <div className={classes.bodyHeaderContainer}>
-        <div
-          className={classes.storeBackground}
-          // style={{ backgroundImage: `url(${store?.backgroundImage?.url})` }}
-        />
+        <div className={classes.storeBackground} />
         <div className={classes.middleLine}>
           <img
             className={classes.storeAvatar}

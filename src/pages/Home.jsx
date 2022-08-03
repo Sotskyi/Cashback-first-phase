@@ -22,15 +22,12 @@ const Home = () => {
 
   useObserver(lastElement, Math.ceil(itemsCount / 8) > page, isLoading, () => {
     setPage((prev) => prev + 1);
-    // scrollRef.current.scrollTop = -200;
   });
 
   useEffect(() => {
     if (categoryId === 'favoritesPosition' || categoryId === 'title') {
       dispatch(getStores({ sortingKey: categoryId, page }));
     } else dispatch(getStores({ category: categoryId, page }));
-
-    // return () => dispatch(reset());
   }, [categoryId, page]);
 
   useEffect(() => {
@@ -55,7 +52,6 @@ const Home = () => {
                 name={el.translations[0].title}
                 background={el.backgroundImage.url}
                 precent={el.baseReward}
-                // onLoadImages={onLoadImages}
                 id={el.id}
                 logo={el.logoImage.url}
               />
@@ -101,7 +97,6 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: 'rgb(105 255 54 / 10%)',
       outline: '1px solid slategrey',
     },
-
     [theme.breakpoints.down('md')]: {
       width: '100%',
       justifyContent: 'center',
@@ -109,10 +104,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       padding: '0px 16px 0px',
     },
-    // [theme.breakpoints.down('xs')]: {
-    //   width: '288px',
-    //   height: '100px',
-    // },
   },
   lastElement: {
     width: '100%',

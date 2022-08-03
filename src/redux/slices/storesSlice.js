@@ -9,6 +9,7 @@ const initialState = {
   storesList: [],
   itemsCount: 0,
   store: {
+    backgroundImage: { url: '' },
     baseReward: '',
     translations: [
       { id: '', title: '', description: '', specialRewardTitle: null },
@@ -50,6 +51,13 @@ const storesSlice = createSlice({
   reducers: {
     reset: (state) => {
       state.storesList = [];
+      state.store = {
+        backgroundImage: { url: '' },
+        baseReward: '',
+        translations: [
+          { id: '', title: '', description: '', specialRewardTitle: null },
+        ],
+      };
     },
   },
   extraReducers: {

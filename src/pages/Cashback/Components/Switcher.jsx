@@ -5,33 +5,33 @@ import cashbackOutlined from '../../../assets/images/icons/cashbackOutlined.svg'
 import withdrawals from '../../../assets/images/icons/withdrawals.svg';
 import withdrawalsOutlined from '../../../assets/images/icons/withdrawalsOutlined.svg';
 
-const Switcher = ({ activeStep, setActiveStep }) => {
+const Switcher = ({ activeTab, setActiveTab }) => {
   const classes = useStyles();
 
   return (
     <div className={classes.switcherContainer}>
       <div
         className={`${classes.switchWrapper} ${
-          activeStep === 'cashback' ? classes.active : ''
+          activeTab === 'cashback' ? classes.active : ''
         }`}
-        onClick={() => setActiveStep('cashback')}
+        onClick={() => setActiveTab('cashback')}
       >
         <div className={classes.switchTitile}>Cash-back</div>
         <img
-          src={activeStep === 'cashback' ? cashback : cashbackOutlined}
+          src={activeTab === 'cashback' ? cashback : cashbackOutlined}
           className={classes.switchIcon}
           alt='cash'
         />
       </div>
       <div
         className={`${classes.switchWrapper} ${
-          activeStep === 'withdrawals' ? classes.active : ''
+          activeTab === 'withdrawals' ? classes.active : ''
         }`}
-        onClick={() => setActiveStep('withdrawals')}
+        onClick={() => setActiveTab('withdrawals')}
       >
         <div className={classes.switchTitile}>Withdrawals</div>
         <img
-          src={activeStep === 'withdrawals' ? withdrawals : withdrawalsOutlined}
+          src={activeTab === 'withdrawals' ? withdrawals : withdrawalsOutlined}
           className={classes.switchIcon}
           alt='cash'
         />
