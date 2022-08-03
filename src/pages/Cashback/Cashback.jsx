@@ -6,19 +6,34 @@ import UnloginedCashback from './UnloginedCashback';
 import Switcher from './Components/Switcher';
 import CashbackList from './Tabs/CashbackList';
 import WithdrawalsList from './Tabs/WithdrawalsList';
-import WithdrawalCard from './Components/WithdrawalCard';
-import WithdrawalCardActive from './Components/WithdrawalCardActive';
+import WithdrawalCardStep1 from './Components/WithdrawalCardStep1';
+import WithdrawalCardStep2 from './Components/WithdrawalCardStep2';
+import WithdrawalCardStep3 from './Components/WithdrawalCardStep3';
 
 const Cashback = () => {
   const classes = useStyles();
-  const [activeStep, setActiveStep] = useState('cashback');
-  const [isActiveWithdrawCard, setIsActiveWithdrawCard] = useState(false);
+  const [activeTab, setActiveTab] = useState('cashback');
+  const [stepWithdrawalCard, setStepWithdrawalCard] = useState(1);
   const { isAuth } = useSelector((state) => state.auth);
 
-  const handleIsActveCard = (e) => {
-    if (e.target.id === 'submit') {
-      setIsActiveWithdrawCard(true);
-    } else setIsActiveWithdrawCard(false);
+  const availableWithdrow = [
+    5, 10, 15, 19, 20, 22, 25, 28, 30, 40, 43, 45, 48, 50, 60,
+  ];
+
+  const handleSubmitCard = () => {
+    if (stepWithdrawalCard < 3) {
+      setStepWithdrawalCard((prev) => prev + 1);
+    }
+
+    // if (+e.target.id === 1) {
+    //   setStepWithdrawalCard(2);
+    // }
+  };
+
+  const handleBackButton = () => {
+    if (stepWithdrawalCard > 1) {
+      setStepWithdrawalCard((prev) => prev - 1);
+    }
   };
 
   return (
@@ -26,24 +41,40 @@ const Cashback = () => {
       {isAuth ? (
         <>
           {' '}
-          <div className={classes.forMobileOnly}>
-            {isActiveWithdrawCard ? (
-              <WithdrawalCardActive handleSubmit={handleIsActveCard} />
-            ) : (
-              <WithdrawalCard handleSubmit={handleIsActveCard} />
+          {/* <div className={classes.forMobileOnly}>
+            {stepWithdrawalCard === 1 && (
+              <WithdrawalCardStep1 handleSubmit={handleSubmitCard} />
             )}
-          </div>
+            {stepWithdrawalCard === 2 && (
+              <WithdrawalCardStep2
+                handleSubmit={handleSubmitCard}
+                handleBackButton={handleBackButton}
+                data={availableWithdrow}
+              />
+            )}
+          </div> */}
           <div className={classes.bodyContainer}>
             <div className={classes.leftContentContainer}>
-              <Switcher activeStep={activeStep} setActiveStep={setActiveStep} />
-              {activeStep === 'cashback' && <CashbackList />}
-              {activeStep === 'withdrawals' && <WithdrawalsList />}
+              <Switcher activeTab={activeTab} setActiveTab={setActiveTab} />
+              {activeTab === 'cashback' && <CashbackList />}
+              {activeTab === 'withdrawals' && <WithdrawalsList />}
             </div>
             <div className={classes.rightContentContainer}>
-              {isActiveWithdrawCard ? (
-                <WithdrawalCardActive handleSubmit={handleIsActveCard} />
-              ) : (
-                <WithdrawalCard handleSubmit={handleIsActveCard} />
+              {stepWithdrawalCard === 1 && (
+                <WithdrawalCardStep1 handleSubmit={handleSubmitCard} />
+              )}
+              {stepWithdrawalCard === 2 && (
+                <WithdrawalCardStep2
+                  handleSubmit={handleSubmitCard}
+                  handleBackButton={handleBackButton}
+                  data={availableWithdrow}
+                />
+              )}
+              {stepWithdrawalCard === 3 && (
+                <WithdrawalCardStep3
+                  handleSubmit={handleSubmitCard}
+                  handleBackButton={handleBackButton}
+                />
               )}
             </div>
           </div>
@@ -81,6 +112,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     [theme.breakpoints.down('md')]: {
       justifyContent: 'center',
+      flexDirection: 'column-reverse',
     },
   },
 
@@ -91,13 +123,16 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       alignItems: 'center',
       flexDirection: 'column',
+      marginTop: '16px',
     },
   },
   rightContentContainer: {
     marginTop: '26px',
     marginLeft: '112px',
     [theme.breakpoints.down('md')]: {
-      display: 'none',
+      margin: '0',
+      display: 'flex',
+      justifyContent: 'center',
     },
   },
   forMobileOnly: {

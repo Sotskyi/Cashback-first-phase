@@ -2,7 +2,7 @@ import { makeStyles } from '@material-ui/core';
 
 import withdrawalsWhite from '../../../assets/images/icons/withdrawalsWhite.svg';
 
-const WithdrawalCard = ({ handleSubmit }) => {
+const WithdrawalCardStep1 = ({ handleSubmit }) => {
   const classes = useStyles();
 
   return (
@@ -17,11 +17,7 @@ const WithdrawalCard = ({ handleSubmit }) => {
         <div>$ 26.47</div>
         <div>$ 26.47</div>
       </div>
-      <div
-        className={classes.withdrowButton}
-        onClick={handleSubmit}
-        id='submit'
-      >
+      <div className={classes.withdrowButton} onClick={handleSubmit} id='1'>
         Withdrow
         <img
           src={withdrawalsWhite}
@@ -32,7 +28,7 @@ const WithdrawalCard = ({ handleSubmit }) => {
     </div>
   );
 };
-export default WithdrawalCard;
+export default WithdrawalCardStep1;
 
 const useStyles = makeStyles(() => ({
   withdrawalCardContainer: {
