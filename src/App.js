@@ -6,12 +6,6 @@ import AuthLayout from './components/layouts/AuthLayout';
 // import NotFoundPage from './pages/NotFound';
 import Loader from './components/lib/Loader';
 
-// import Missing from "./components/Missing";
-// import Register from "./components/Register";
-// import RequireAuth from "./components/RequireAuth";
-// import Unauthorized from "./components/Unauthorized";
-// const Landing = React.lazy(() => import('./pages/Landing'));
-// const Stores = React.lazy(() => import('./pages/Stores'));
 const SignUp = React.lazy(() => import('./pages/SignUp/SignUp'));
 const LogIn = React.lazy(() => import('./pages/LogIn/LogIn'));
 const ResetPasswordByPhone = React.lazy(() =>
@@ -23,12 +17,6 @@ const ResetPasswordByEmail = React.lazy(() =>
 const Home = React.lazy(() => import('./pages/Home'));
 const Store = React.lazy(() => import('./pages/Store'));
 const Cashback = React.lazy(() => import('./pages/Cashback/Cashback'));
-// const VerifyPhone = React.lazy(() => import('./pages/VerifyPhone'));
-// const PersonalDetails = React.lazy(() => import('./pages/PersonalDetails'));
-// const ROLES = {
-//   User: 2001,
-//   Admin: 5150,
-// };
 
 const App = () => {
   return (
@@ -61,7 +49,7 @@ const App = () => {
             {/* public or protected routes */}
             <Route path='/' element={<AuthLayout />}>
               <Route index element={<Home />} />
-              <Route path='/store:id' element={<Store />} />
+              <Route path='/store/:id' element={<Store />} />
               <Route path='/cashback' element={<Cashback />} />
             </Route>
             {/* catch all */}

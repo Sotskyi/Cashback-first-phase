@@ -9,7 +9,7 @@ const StoreCard = ({ name, precent, id, logo, background }) => {
     <div
       id={id}
       className={classes.storeCardWrapper}
-      onClick={() => navigate(`/store${id}`)}
+      onClick={() => navigate(`/store/${id}`)}
     >
       <div
         className={classes.storeCardTop}
