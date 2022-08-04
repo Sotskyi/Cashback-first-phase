@@ -45,6 +45,19 @@ export const getStore = createAsyncThunk(
   },
 );
 
+export const redirectToStore = createAsyncThunk(
+  'stores/redirectToStore',
+  async (id, thunkAPI) => {
+    try {
+      const response = await StoresService.redirectToStore(id);
+      return await response.data;
+    } catch (error) {
+      toast.error(getError(error));
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 const storesSlice = createSlice({
   name: 'stores',
   initialState,

@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 
 import ProductCard from '../components/ProductCard';
-import { getStore, reset } from '../redux/slices/storesSlice';
+import { getStore, reset, redirectToStore } from '../redux/slices/storesSlice';
 
 const Store = () => {
   const dispatch = useDispatch();
@@ -19,6 +19,14 @@ const Store = () => {
       dispatch(reset());
     };
   }, [id]);
+
+  const handleRedirect = () => {
+    if (isAuth) {
+      dispatch(redirectToStore(id));
+    }
+
+    return navigate('/login');
+  };
 
   const classes = useStyles(store);
 
@@ -55,15 +63,7 @@ const Store = () => {
                     On purchases over $30
                   </div>
                 </div>
-                <div
-                  className={classes.shopButton}
-                  onClick={() => {
-                    if (isAuth) {
-                      return null;
-                    }
-                    return navigate('/login');
-                  }}
-                >
+                <div className={classes.shopButton} onClick={() => {}}>
                   {isAuth ? 'Shop Now' : 'Log in to shop'}
                 </div>{' '}
               </div>
@@ -90,15 +90,7 @@ const Store = () => {
                   On purchases over $30
                 </div>
               </div>
-              <div
-                className={classes.shopButton}
-                onClick={() => {
-                  if (isAuth) {
-                    return null;
-                  }
-                  return navigate('/login');
-                }}
-              >
+              <div className={classes.shopButton} onClick={handleRedirect}>
                 {isAuth ? 'Shop Now' : 'Log in to shop'}
               </div>
             </div>

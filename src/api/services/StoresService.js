@@ -10,4 +10,8 @@ export default class StoresService {
   static async getStore(id) {
     return axios.get(`/stores/${id}`);
   }
+
+  static async redirectToStore(id) {
+    return axios.post('/stores/trackingRedirect', { storeId: id });
+  }
 }
