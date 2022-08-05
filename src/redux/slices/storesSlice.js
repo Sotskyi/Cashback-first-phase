@@ -50,7 +50,11 @@ export const redirectToStore = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const response = await StoresService.redirectToStore(id);
-      return await response.data;
+      const data = await response.data;
+      if (data.url) {
+        window.location.href = `${data.url}`;
+      }
+      return null;
     } catch (error) {
       toast.error(getError(error));
       return thunkAPI.rejectWithValue(error);
@@ -93,6 +97,15 @@ const storesSlice = createSlice({
       state.isLoading = true;
     },
     [getStore.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [redirectToStore.fulfilled]: (state) => {
+      state.isLoading = false;
+    },
+    [redirectToStore.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [redirectToStore.rejected]: (state) => {
       state.isLoading = false;
     },
   },

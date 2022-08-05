@@ -43,6 +43,7 @@ module.exports = {
       'error',
       { functions: false, classes: true, variables: false },
     ],
+    'no-nested-ternary': 'off',
     'no-param-reassign': 0,
     'jsx-a11y/no-autofocus': ['off', { ignoreNonDOM: true }],
 

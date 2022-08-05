@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 
 import ProductCard from '../components/ProductCard';
 import { getStore, reset, redirectToStore } from '../redux/slices/storesSlice';
+import Loader from '../components/lib/Loader';
 
 const Store = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const Store = () => {
   const navigate = useNavigate();
   const { isAuth } = useSelector((state) => state.auth);
   const { store } = useSelector((state) => state.stores);
+  const [trigerLoader, setTrigerLoader] = useState(false);
 
   useEffect(() => {
     dispatch(getStore(id));
@@ -21,10 +23,10 @@ const Store = () => {
   }, [id]);
 
   const handleRedirect = () => {
+    setTrigerLoader(true);
     if (isAuth) {
-      dispatch(redirectToStore(id));
+      return dispatch(redirectToStore(id));
     }
-
     return navigate('/login');
   };
 
@@ -91,7 +93,10 @@ const Store = () => {
                 </div>
               </div>
               <div className={classes.shopButton} onClick={handleRedirect}>
-                {isAuth ? 'Shop Now' : 'Log in to shop'}
+                {trigerLoader && (
+                  <Loader delay={3000} setTrigerLoader={setTrigerLoader} />
+                )}
+                {!trigerLoader && (isAuth ? 'Shop Now' : 'Log in to shop')}
               </div>
             </div>
           </div>
