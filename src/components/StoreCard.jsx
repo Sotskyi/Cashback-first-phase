@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
   storeCardPrecent: {
     background: '#33CC55',
     borderRadius: '12px',
-    width: '52px',
+    width: '60px',
     height: '24px',
     display: 'flex',
     alignItems: 'center',
