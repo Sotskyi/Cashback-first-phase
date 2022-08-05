@@ -51,12 +51,12 @@ export const redirectToStore = createAsyncThunk(
     try {
       const response = await StoresService.redirectToStore(id);
       const data = await response.data;
-      if (data.url) {
+      if (data.url && data.url.includes('https')) {
         window.location.href = `${data.url}`;
-      }
-      return null;
+      } else throw new Error('This store is not connected to Telcorewards');
+      return Error;
     } catch (error) {
-      toast.error(getError(error));
+      toast.error(error.message);
       return thunkAPI.rejectWithValue(error);
     }
   },
