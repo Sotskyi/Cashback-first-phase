@@ -8,6 +8,7 @@ import arrowBackWhite from '../../../assets/images/icons/arrowBackWhite.svg';
 const WithdrawalCardStep2 = ({ handleSubmit, handleBackButton, data }) => {
   const classes = useStyles(data.length);
   const [activeCell, setActiveCell] = useState(false);
+
   return (
     <div className={classes.withdrawalCardContainer}>
       <div className={classes.headerContainer}>

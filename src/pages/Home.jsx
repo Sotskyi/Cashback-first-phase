@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import StoreIconSlider from '../components/lib/StoreIconSlider';
 import StoreCard from '../components/StoreCard';
+import HowItWorksCarousel from '../components/lib/howItWorksCarousel/HowItWorksCarousel';
 import { getStores, reset } from '../redux/slices/storesSlice';
 import { useObserver } from '../hooks/useObserver';
 
@@ -15,6 +16,7 @@ const Home = () => {
   const [categoryId, setCategoryId] = useState('favoritesPosition');
   const [step, setStep] = useState(0);
   const [page, setPage] = useState(1);
+  const [isShowCarousel, setIsShowCarousel] = useState(true);
 
   const { storesList, isLoading, itemsCount } = useSelector(
     (state) => state.stores,
@@ -57,6 +59,11 @@ const Home = () => {
               />
             ))}
             <div ref={lastElement} className={classes.lastElement} />
+          </div>
+          <div className={classes.carouselContainer}>
+            {isShowCarousel && (
+              <HowItWorksCarousel onClose={() => setIsShowCarousel(false)} />
+            )}
           </div>
         </div>
       </div>
@@ -108,5 +115,8 @@ const useStyles = makeStyles((theme) => ({
   lastElement: {
     width: '100%',
     height: '1px',
+  },
+  carouselContainer: {
+    position: 'absolute',
   },
 }));
