@@ -110,6 +110,7 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('sm')]: {
       padding: '0px 16px 0px',
+      height: '100%',
     },
   },
   lastElement: {
