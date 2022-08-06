@@ -39,7 +39,9 @@ const HowItWorksCarousel = ({ onClose }) => {
       </div>
       <div className={classes.bodyContainer}>
         <div onClick={handleLeftClick}>
-          <img className={classes.leftArrow} src={leftArrow} alt='icon' />
+          {step > 0 && (
+            <img className={classes.leftArrow} src={leftArrow} alt='icon' />
+          )}
         </div>
         <div className={classes.contentContainer}>
           <div
@@ -56,7 +58,9 @@ const HowItWorksCarousel = ({ onClose }) => {
           </div>
         </div>
         <div onClick={handleRightClick}>
-          <img className={classes.rightArrow} src={rightArrow} alt='icon' />
+          {step < 3 && (
+            <img className={classes.rightArrow} src={rightArrow} alt='icon' />
+          )}
         </div>
       </div>
       <div className={classes.footer}>
