@@ -163,7 +163,10 @@ const StoreIconSlider = ({
             textColor='secondary'
             // aria-label='secondary tabs example'
             TabIndicatorProps={{
-              style: { backgroundColor: 'black', color: 'red' },
+              style: {
+                backgroundColor: 'black',
+                color: 'red',
+              },
             }}
           >
             {tabs.map((el, index) => (
@@ -186,7 +189,7 @@ const StoreIconSlider = ({
       <div className={classes.arrowContainer}>
         <div
           className={`${classes.rightArrowIcon} ${
-            step === 2 ? classes.hidden : ''
+            step === 3 ? classes.hidden : ''
           }`}
           onClick={handleClickRightArrow}
         >
