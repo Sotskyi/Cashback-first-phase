@@ -82,7 +82,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
                 border: '1px solid #EAEAEA',
                 borderRadius: '8px',
                 '& input': {
-                  padding: '8px',
+                  padding: '8px 8px 8px 16px',
                 },
               }}
             />
@@ -122,7 +122,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
                 border: '1px solid #EAEAEA',
                 borderRadius: '8px',
                 '& input': {
-                  padding: '8px',
+                  padding: '8px 8px 8px 16px',
                 },
               }}
               error={
@@ -167,7 +167,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               border: '1px solid #EAEAEA',
               borderRadius: '8px',
               '& input': {
-                padding: '8px',
+                padding: '8px 8px 8px 16px',
               },
             }}
             error={
