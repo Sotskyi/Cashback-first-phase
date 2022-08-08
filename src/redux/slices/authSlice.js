@@ -114,8 +114,8 @@ export const resendSms = createAsyncThunk(
   },
 );
 
-export const resetPasswordBysms = createAsyncThunk(
-  'auth/resetPasswordBysms',
+export const resetPasswordBySms = createAsyncThunk(
+  'auth/resetPasswordBySms',
   async (phoneNumber, thunkAPI) => {
     try {
       const response = await AuthService.resetPasswordBySms(phoneNumber);
@@ -128,7 +128,7 @@ export const resetPasswordBysms = createAsyncThunk(
 );
 
 export const resetPasswordByEmail = createAsyncThunk(
-  'auth/resetPasswordBysms',
+  'auth/resetPasswordBySms',
   async (email, thunkAPI) => {
     try {
       const response = await AuthService.resetPasswordByEmail(email);
@@ -247,14 +247,14 @@ const authSlice = createSlice({
     [resendSms.rejected]: (state) => {
       state.isLoading = false;
     },
-    [resetPasswordBysms.pending]: (state) => {
+    [resetPasswordBySms.pending]: (state) => {
       state.isLoading = true;
     },
-    [resetPasswordBysms.fulfilled]: (state, action) => {
+    [resetPasswordBySms.fulfilled]: (state, action) => {
       state.confirmSms = action.payload.code;
       state.isLoading = false;
     },
-    [resetPasswordBysms.rejected]: (state) => {
+    [resetPasswordBySms.rejected]: (state) => {
       state.isLoading = false;
     },
   },

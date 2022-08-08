@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import SubmitButton from '../../../components/form/SubmitButton';
 import PhoneNumberInput from '../../../components/form/PhoneNumberInput';
-import { resetPasswordBysms } from '../../../redux/slices/authSlice';
+import { resetPasswordBySms } from '../../../redux/slices/authSlice';
 import { useValidator } from '../../../hooks/useValidator';
 import { insertString } from '../../../utils/helpers';
 
@@ -25,9 +25,9 @@ const ResetPassword = ({ next, creds, handleChange }) => {
     ) {
       const sendPhoneNumber = async () => {
         const resultAction = await dispatch(
-          resetPasswordBysms(insertString('+1', creds.phoneNumber)),
+          resetPasswordBySms(insertString('+1', creds.phoneNumber)),
         );
-        if (resetPasswordBysms.fulfilled.match(resultAction)) {
+        if (resetPasswordBySms.fulfilled.match(resultAction)) {
           next();
         }
       };
