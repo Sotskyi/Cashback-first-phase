@@ -20,7 +20,7 @@ const PhoneNumberInput = ({ handleChange, data, isError }) => {
       </div>
       {isError && (
         <div className={classes.phoneNumberError}>
-          Please enter valid phone number format 12334567890
+          Please enter valid phone number format 0987654321
         </div>
       )}
     </div>
