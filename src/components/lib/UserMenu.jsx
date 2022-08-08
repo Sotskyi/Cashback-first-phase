@@ -86,8 +86,12 @@ const UserMenu = () => {
           })}
         >
           <div id='cashback' className={classes.availableMenuItem}>
-            <div className={classes.availableMenuItemTitle}>AVAILABLE</div>
-            <div className={classes.availableMenuItemCash}>$ 26</div>
+            <div id='cashback' className={classes.availableMenuItemTitle}>
+              AVAILABLE
+            </div>
+            <div id='cashback' className={classes.availableMenuItemCash}>
+              $ 26
+            </div>
           </div>
         </MenuItem>
         {menuItems.map((el) => (
