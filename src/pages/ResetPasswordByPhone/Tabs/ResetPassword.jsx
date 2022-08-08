@@ -47,7 +47,7 @@ const ResetPassword = ({ next, creds, handleChange }) => {
             !checkIsValid({ nameOfData: 'phone', data: creds.phoneNumber })
           }
         />
-        <div className={classes.alreadyHaveAcount}>
+        <div className={classes.alreadyHaveAccount}>
           Do not have access to this phone?&nbsp;
           <div
             onClick={() => navigate('/reset_password_by_email')}
@@ -95,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '20px',
     },
   },
-  alreadyHaveAcount: {
+  alreadyHaveAccount: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',

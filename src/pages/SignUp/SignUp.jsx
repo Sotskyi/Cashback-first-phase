@@ -5,8 +5,8 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import AuthLandingLayout from '../../components/layouts/AuthLandingLayout';
-import CreateAcount from './Tabs/CreateAcount';
-import VeriphyPhone from '../../components/VerifyPhone';
+import CreateAccount from './Tabs/CreateAccount';
+import VerifyPhone from '../../components/VerifyPhone';
 import PersonalDetails from './Tabs/PersonalDetails';
 import NetworkDetails from './Tabs/NetworkDetails';
 import { register, reset } from '../../redux/slices/authSlice';
@@ -70,10 +70,10 @@ const SignUp = () => {
   return (
     <AuthLandingLayout back={back} activeStep={activeStep}>
       {activeStep === 0 && (
-        <CreateAcount creds={creds} handleChange={handleChange} next={next} />
+        <CreateAccount creds={creds} handleChange={handleChange} next={next} />
       )}
       {activeStep === 1 && (
-        <VeriphyPhone
+        <VerifyPhone
           next={next}
           setCreds={setCreds}
           creds={creds}

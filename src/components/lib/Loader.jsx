@@ -4,9 +4,9 @@ import Box from '@mui/material/Box';
 
 import useTimeout from '../../hooks/useTimeout';
 
-const Loader = ({ delay, setTrigerLoader }) => {
+const Loader = ({ delay, setTriggerLoader }) => {
   useTimeout(() => {
-    setTrigerLoader(false);
+    setTriggerLoader(false);
   }, delay);
 
   return (

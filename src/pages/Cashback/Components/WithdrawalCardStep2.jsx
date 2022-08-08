@@ -49,7 +49,7 @@ const WithdrawalCardStep2 = ({ handleSubmit, handleBackButton, data }) => {
       </div>
 
       <div
-        className={`${classes.withdrowButton} ${
+        className={`${classes.withdrawButton} ${
           activeCell && classes.activeButton
         }`}
         onClick={() => {
@@ -59,7 +59,7 @@ const WithdrawalCardStep2 = ({ handleSubmit, handleBackButton, data }) => {
           return null;
         }}
       >
-        Withdrow
+        Withdraw
         <img
           src={activeCell ? withdrawals : withdrawalsGrey}
           className={classes.withdrawalsIcon}
@@ -153,7 +153,7 @@ const useStyles = makeStyles(() => ({
     background: '#FFFFFF',
     color: '#33CC55',
   },
-  withdrowButton: {
+  withdrawButton: {
     textAlign: 'center',
     background: '#FFFFFF',
     borderRadius: '26px',

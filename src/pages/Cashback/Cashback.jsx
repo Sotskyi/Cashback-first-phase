@@ -16,7 +16,7 @@ const Cashback = () => {
   const [stepWithdrawalCard, setStepWithdrawalCard] = useState(1);
   const { isAuth } = useSelector((state) => state.auth);
 
-  const availableWithdrow = [
+  const availableWithdraw = [
     5, 10, 15, 19, 20, 22, 25, 28, 30, 40, 43, 45, 48, 50, 60,
   ];
 
@@ -67,7 +67,7 @@ const Cashback = () => {
                 <WithdrawalCardStep2
                   handleSubmit={handleSubmitCard}
                   handleBackButton={handleBackButton}
-                  data={availableWithdrow}
+                  data={availableWithdraw}
                 />
               )}
               {stepWithdrawalCard === 3 && (

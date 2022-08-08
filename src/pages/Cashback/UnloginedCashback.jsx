@@ -16,7 +16,7 @@ const UnloginedCashback = () => {
         <div className={classes.submitButtonWrapper}>
           <SubmitButton title='Log in' onSubmit={() => navigate('/login')} />
         </div>
-        <div className={classes.dontHaveAcount}>
+        <div className={classes.dontHaveAccount}>
           Don’t have an account?{' '}
           <span
             onClick={() => navigate('/signup')}
@@ -73,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     width: '368px',
   },
 
-  dontHaveAcount: {
+  dontHaveAccount: {
     marginTop: '212px',
     fontFamily: 'Inter',
     fontStyle: 'normal',

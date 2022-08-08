@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 
-const StoreCard = ({ name, precent, id, logo, background }) => {
+const StoreCard = ({ name, percent, id, logo, background }) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const StoreCard = ({ name, precent, id, logo, background }) => {
       />
       <div className={classes.storeCardMiddle}>
         <img className={classes.storeCardAvatar} src={logo} alt='' />
-        <div className={classes.storeCardPrecent}>{precent}%</div>
+        <div className={classes.storeCardPercent}>{percent}%</div>
       </div>
       <div className={classes.storeCardBottom}>
         <div className={classes.storeCardName}>{name}</div>
@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     filter: 'blur(0px)',
     transition: 'filter 0.5s linear',
   },
-  storeCardPrecent: {
+  storeCardPercent: {
     background: '#33CC55',
     borderRadius: '12px',
     width: '60px',

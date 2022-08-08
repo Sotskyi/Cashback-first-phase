@@ -8,7 +8,7 @@ import PhoneNumberInput from '../../../components/form/PhoneNumberInput';
 import { verifyPhone } from '../../../redux/slices/authSlice';
 import { insertString } from '../../../utils/helpers';
 
-const CreateAcount = ({ next, handleChange, creds }) => {
+const CreateAccount = ({ next, handleChange, creds }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -41,11 +41,11 @@ const CreateAcount = ({ next, handleChange, creds }) => {
         />
         <SubmitButton onSubmit={onSubmit} title='Continue' />
       </div>
-      <div className={classes.alreadyHaveAcount}>
+      <div className={classes.alreadyHaveAccount}>
         Already have an accont?{' '}
         <span
           onClick={() => navigate('/login')}
-          className={classes.alreadyHaveAcountLogIn}
+          className={classes.alreadyHaveAccountLogIn}
         >
           Log In
         </span>
@@ -53,7 +53,7 @@ const CreateAcount = ({ next, handleChange, creds }) => {
     </div>
   );
 };
-export default CreateAcount;
+export default CreateAccount;
 
 const useStyles = makeStyles((theme) => ({
   contentContainer: {
@@ -74,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '20px',
     },
   },
-  alreadyHaveAcount: {
+  alreadyHaveAccount: {
     marginTop: '216px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '24px',
     textAlign: 'center',
   },
-  alreadyHaveAcountLogIn: {
+  alreadyHaveAccountLogIn: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',

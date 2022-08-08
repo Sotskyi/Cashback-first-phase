@@ -13,7 +13,7 @@ import {
 } from '../redux/slices/authSlice';
 import { insertString } from '../utils/helpers';
 
-const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
+const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -250,7 +250,7 @@ const VeriphyPhone = ({ setCreds, creds, next, useFor }) => {
     </div>
   );
 };
-export default VeriphyPhone;
+export default VerifyPhone;
 
 const useStyles = makeStyles((theme) => ({
   contentContainer: {

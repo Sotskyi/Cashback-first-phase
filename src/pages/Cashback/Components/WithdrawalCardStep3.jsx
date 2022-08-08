@@ -26,7 +26,7 @@ const WithdrawalCardStep3 = ({ handleSubmit, handleBackButton }) => {
           <div className={classes.addedCashTitle}>STILL AVAILABLE</div>
         </div>
       </div>
-      <div className={classes.withdrowButton} onClick={handleSubmit}>
+      <div className={classes.withdrawButton} onClick={handleSubmit}>
         Shop for more cash-back
       </div>
     </div>
@@ -116,7 +116,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
-  withdrowButton: {
+  withdrawButton: {
     textAlign: 'center',
     background: '#FFFFFF',
     borderRadius: '26px',

@@ -146,7 +146,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '125%',
     letterSpacing: '-0.01em',
   },
-  alreadyHaveAcount: {
+  alreadyHaveAccount: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',

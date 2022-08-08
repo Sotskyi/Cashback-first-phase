@@ -17,8 +17,8 @@ const WithdrawalCardStep1 = ({ handleSubmit }) => {
         <div>$ 26.47</div>
         <div>$ 26.47</div>
       </div>
-      <div className={classes.withdrowButton} onClick={handleSubmit} id='1'>
-        Withdrow
+      <div className={classes.withdrawButton} onClick={handleSubmit} id='1'>
+        Withdraw
         <img
           src={withdrawalsWhite}
           className={classes.withdrawalsIcon}
@@ -84,7 +84,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'space-between',
   },
-  withdrowButton: {
+  withdrawButton: {
     marginTop: '24px',
     textAlign: 'center',
     background: 'rgba(255, 255, 255, 0.16)',

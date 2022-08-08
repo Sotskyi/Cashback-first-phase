@@ -90,7 +90,6 @@ const SetNewPassword = ({ creds, token }) => {
             })
           }
         />
-
         <SubmitButton onSubmit={onSubmit} title='Continue' />
       </div>
     </div>

@@ -53,7 +53,7 @@ const Home = () => {
                 key={el.id}
                 name={el.translations[0].title}
                 background={el.backgroundImage.url}
-                precent={el.baseReward}
+                percent={el.baseReward}
                 id={el.id}
                 logo={el.logoImage.url}
               />
@@ -73,7 +73,6 @@ const Home = () => {
 export default Home;
 
 const useStyles = makeStyles((theme) => ({
-  homeContainer: {},
   bodyContainer: {
     display: 'flex',
     justifyContent: 'center',

@@ -13,7 +13,7 @@ const Store = () => {
   const navigate = useNavigate();
   const { isAuth } = useSelector((state) => state.auth);
   const { store } = useSelector((state) => state.stores);
-  const [trigerLoader, setTrigerLoader] = useState(false);
+  const [triggerLoader, setTriggerLoader] = useState(false);
 
   useEffect(() => {
     dispatch(getStore(id));
@@ -23,7 +23,7 @@ const Store = () => {
   }, [id]);
 
   const handleRedirect = () => {
-    setTrigerLoader(true);
+    setTriggerLoader(true);
     if (isAuth) {
       return dispatch(redirectToStore(id));
     }
@@ -50,9 +50,9 @@ const Store = () => {
               {store?.translations[0]?.description}
             </div>
             <div
-              className={classes.dicountPrecentCardContainerForMobileWrapper}
+              className={classes.discountPercentCardContainerForMobileWrapper}
             >
-              <div className={classes.dicountPrecentCardContainerForMobile}>
+              <div className={classes.discountPercentCardContainerForMobile}>
                 <div className={classes.percentWrapper}>
                   <div className={classes.filledPercent}>
                     {store?.baseReward}%
@@ -79,7 +79,7 @@ const Store = () => {
             </div>
           </div>
           <div className={classes.rightContent}>
-            <div className={classes.dicountPrecentCardContainer}>
+            <div className={classes.discountPercentCardContainer}>
               <div className={classes.percentWrapper}>
                 <div className={classes.filledPercent}>
                   {store?.baseReward}%
@@ -93,10 +93,10 @@ const Store = () => {
                 </div>
               </div>
               <div className={classes.shopButton} onClick={handleRedirect}>
-                {trigerLoader && (
-                  <Loader delay={3000} setTrigerLoader={setTrigerLoader} />
+                {triggerLoader && (
+                  <Loader delay={3000} setTriggerLoader={setTriggerLoader} />
                 )}
-                {!trigerLoader && (isAuth ? 'Shop Now' : 'Log in to shop')}
+                {!triggerLoader && (isAuth ? 'Shop Now' : 'Log in to shop')}
               </div>
             </div>
           </div>
@@ -232,7 +232,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  dicountPrecentCardContainer: {
+  discountPercentCardContainer: {
     width: '336px',
     height: '316px',
     boxSizing: 'border-box',
@@ -246,13 +246,13 @@ const useStyles = makeStyles((theme) => ({
       width: '250px',
     },
   },
-  dicountPrecentCardContainerForMobileWrapper: {
+  discountPercentCardContainerForMobileWrapper: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
 
-  dicountPrecentCardContainerForMobile: {
+  discountPercentCardContainerForMobile: {
     marginTop: '16px',
     width: '100%',
     height: '316px',
