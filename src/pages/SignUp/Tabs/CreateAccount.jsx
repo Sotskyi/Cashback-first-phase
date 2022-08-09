@@ -42,7 +42,7 @@ const CreateAccount = ({ next, handleChange, creds }) => {
         <SubmitButton onSubmit={onSubmit} title='Continue' />
       </div>
       <div className={classes.alreadyHaveAccount}>
-        Already have an accont?{' '}
+        Already have an account?{' '}
         <span
           onClick={() => navigate('/login')}
           className={classes.alreadyHaveAccountLogIn}

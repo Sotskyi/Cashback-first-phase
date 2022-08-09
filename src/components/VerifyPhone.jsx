@@ -37,7 +37,6 @@ const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
     );
     if (registerConfirm.fulfilled.match(resultAction)) {
       next();
-      // dispatch(reset());
     }
   };
 
@@ -50,7 +49,6 @@ const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
     );
     if (loginConfirm.fulfilled.match(resultAction)) {
       navigate('/home');
-      // dispatch(reset());
     }
   };
 
@@ -63,13 +61,11 @@ const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
     );
     if (resetPasswordConfirm.fulfilled.match(resultAction)) {
       next();
-      // dispatch(reset());
     }
   };
 
   useEffect(() => {
     if (Object.values(verifyNumbers).every((element) => element !== '')) {
-      // here check is code valid
       if (Object.values(verifyNumbers).join('') === confirmSms.toString()) {
         if (useFor === 'signup') {
           setCreds({
@@ -235,7 +231,7 @@ const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
         </form>
       </div>
       <div className={classes.haventSms}>
-        Haven’t recieved SMS?
+        Haven’t received SMS?
         <span
           className={classes.sendAgain}
           onClick={() => {

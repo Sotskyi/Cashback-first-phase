@@ -16,7 +16,7 @@ const Switcher = ({ activeTab, setActiveTab }) => {
         }`}
         onClick={() => setActiveTab('cashback')}
       >
-        <div className={classes.switchTitile}>Cash-back</div>
+        <div>Cash-back</div>
         <img
           src={activeTab === 'cashback' ? cashback : cashbackOutlined}
           className={classes.switchIcon}
@@ -29,7 +29,7 @@ const Switcher = ({ activeTab, setActiveTab }) => {
         }`}
         onClick={() => setActiveTab('withdrawals')}
       >
-        <div className={classes.switchTitile}>Withdrawals</div>
+        <div>Withdrawals</div>
         <img
           src={activeTab === 'withdrawals' ? withdrawals : withdrawalsOutlined}
           className={classes.switchIcon}
