@@ -15,6 +15,13 @@ const CheckboxesFilter = ({ filters, setFilters }) => {
     return setFilters([...filters, e.target.id]);
   };
 
+  const filtersList = [
+    'Increased cash-back',
+    'Top store',
+    'Recently added store',
+    'Ships from Canada',
+  ];
+
   return (
     <div className={classes.checkBoxesContainer}>
       <FormGroup
@@ -28,62 +35,23 @@ const CheckboxesFilter = ({ filters, setFilters }) => {
           // },
         }}
       >
-        <FormControlLabel
-          control={
-            <Checkbox
-              id='Increased cash-back'
-              onChange={handleChange}
-              sx={{
-                '&.Mui-checked': {
-                  color: '#33CC55',
-                },
-              }}
-            />
-          }
-          label='Increased cash-back'
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              id='Top store'
-              onChange={handleChange}
-              sx={{
-                '&.Mui-checked': {
-                  color: '#33CC55',
-                },
-              }}
-            />
-          }
-          label='Top store'
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              id='Recently added store'
-              onChange={handleChange}
-              sx={{
-                '&.Mui-checked': {
-                  color: '#33CC55',
-                },
-              }}
-            />
-          }
-          label='Recently added store'
-        />
-        <FormControlLabel
-          control={
-            <Checkbox
-              id='Ships from Canada'
-              onChange={handleChange}
-              sx={{
-                '&.Mui-checked': {
-                  color: '#33CC55',
-                },
-              }}
-            />
-          }
-          label='Ships from Canada'
-        />
+        {filtersList.map((el) => (
+          <FormControlLabel
+            control={
+              <Checkbox
+                id={el}
+                checked={filters.includes(el)}
+                onChange={handleChange}
+                sx={{
+                  '&.Mui-checked': {
+                    color: '#33CC55',
+                  },
+                }}
+              />
+            }
+            label={el}
+          />
+        ))}
       </FormGroup>
     </div>
   );

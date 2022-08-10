@@ -7,7 +7,6 @@ import StoreCard from '../components/StoreCard';
 import HowItWorksCarousel from '../components/lib/howItWorksCarousel/HowItWorksCarousel';
 import { getStores, reset } from '../redux/slices/storesSlice';
 import { useObserver } from '../hooks/useObserver';
-import CheckboxesFilter from '../components/lib/CheckboxesFilter';
 
 const Home = () => {
   const classes = useStyles();
@@ -52,9 +51,7 @@ const Home = () => {
         filters={filters}
         setFilters={setFilters}
       />
-      {isShowFilter && (
-        <CheckboxesFilter filters={filters} setFilters={setFilters} />
-      )}
+
       <div className={classes.bodyContainer}>
         <div className={classes.cardsContainer}>
           <div className={classes.cardsWrapper}>
@@ -136,6 +133,9 @@ const useStyles = makeStyles((theme) => ({
   carouselContainer: {
     position: 'fixed',
     bottom: '15px',
-    left: '10%',
+    left: '20%',
+    [theme.breakpoints.down('sm')]: {
+      left: '6%',
+    },
   },
 }));

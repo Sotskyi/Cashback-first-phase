@@ -4,6 +4,7 @@ import Tab from '@mui/material/Tab';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 
+import CheckboxesFilter from './CheckboxesFilter';
 import featuredStores from '../../assets/images/icons/forSlider/featuredStores.svg';
 import allStores from '../../assets/images/icons/forSlider/allStores.svg';
 import fashion from '../../assets/images/icons/forSlider/fashion.svg';
@@ -14,7 +15,7 @@ import babyKidsToys from '../../assets/images/icons/forSlider/babyKidsToys.svg';
 import homeGarden from '../../assets/images/icons/forSlider/homeGarden.svg';
 import books from '../../assets/images/icons/forSlider/books.svg';
 import beautyHealth from '../../assets/images/icons/forSlider/beautyHealth.svg';
-import sportsAutdoor from '../../assets/images/icons/forSlider/sportsAutdoor.svg';
+import sportsOutdoor from '../../assets/images/icons/forSlider/sportsOutdoor.svg';
 import auto from '../../assets/images/icons/forSlider/auto.svg';
 import petSupplies from '../../assets/images/icons/forSlider/petSupplies.svg';
 import hardwareTools from '../../assets/images/icons/forSlider/hardwareTools.svg';
@@ -33,7 +34,7 @@ const StoreIconSlider = ({
   setIsShowFilter,
   isShowFilter,
   filters,
-  // setFilters,
+  setFilters,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -128,7 +129,7 @@ const StoreIconSlider = ({
     },
     {
       name: 'Sports & Outdoor',
-      icon: sportsAutdoor,
+      icon: sportsOutdoor,
       value: '9',
     },
     {
@@ -148,86 +149,96 @@ const StoreIconSlider = ({
     },
   ];
   return (
-    <div
-      className={classes.container}
-      // onTouchStart={onTouchStart}
-      // onTouchMove={onTouchMove}
-      // onTouchEnd={onTouchEnd}
-    >
-      {step !== 0 && (
-        <div className={classes.arrowContainer} onClick={handleClickLeftArrow}>
-          <div className={classes.leftArrowIcon}>
-            <img src={leftArrow} alt='menu' />
-          </div>
-        </div>
-      )}
-      <div className={classes.sliderContainer}>
-        <div className={classes.tabsContainer}>
-          <Tabs
-            classes={{ root: classes.customTabs }}
-            value={categoryId}
-            onChange={handleChange}
-            textColor='secondary'
-            // aria-label='secondary tabs example'
-            TabIndicatorProps={{
-              style: {
-                backgroundColor: 'black',
-                color: 'red',
-              },
-            }}
-          >
-            {tabs.map((el, index) => (
-              <Tab
-                value={el.value}
-                label={el.name}
-                id={index}
-                key={el.name}
-                icon={
-                  <div>
-                    <img src={el.icon} alt='menu' />
-                  </div>
-                }
-              />
-            ))}
-          </Tabs>
-        </div>
-      </div>
-
-      <div className={classes.arrowContainer}>
-        <div
-          className={`${classes.rightArrowIcon} ${
-            step === 3 ? classes.hidden : ''
-          }`}
-          onClick={handleClickRightArrow}
-        >
-          <img src={rightArrow} alt='menu' />
-        </div>
-
-        {isShowFilter && filters.length > 0 ? (
+    <div className={classes.container}>
+      <div
+        className={classes.carouselWrapper}
+        // onTouchStart={onTouchStart}
+        // onTouchMove={onTouchMove}
+        // onTouchEnd={onTouchEnd}
+      >
+        {step !== 0 && (
           <div
-            className={`${classes.filter} ${classes.filledFilter}`}
-            // onClick={() => setFilters([])}
+            className={classes.arrowContainer}
+            onClick={handleClickLeftArrow}
           >
-            <img src={resetFilter} alt='menu' />
-            <span className={classes.filterTitle}>Filter</span>
-          </div>
-        ) : (
-          <div
-            className={`${classes.filter} ${
-              isShowFilter && classes.activeFilter
-            }`}
-            onClick={() => setIsShowFilter((prev) => !prev)}
-          >
-            <img src={filter} alt='menu' />
-            <span className={classes.filterTitle}>Filter</span>
+            <div className={classes.leftArrowIcon}>
+              <img src={leftArrow} alt='menu' />
+            </div>
           </div>
         )}
+        <div className={classes.sliderContainer}>
+          <div className={classes.tabsContainer}>
+            <Tabs
+              classes={{ root: classes.customTabs }}
+              value={categoryId}
+              onChange={handleChange}
+              textColor='secondary'
+              // aria-label='secondary tabs example'
+              TabIndicatorProps={{
+                style: {
+                  backgroundColor: 'black',
+                  color: 'red',
+                },
+              }}
+            >
+              {tabs.map((el, index) => (
+                <Tab
+                  value={el.value}
+                  label={el.name}
+                  id={index}
+                  key={el.name}
+                  icon={
+                    <div>
+                      <img src={el.icon} alt='menu' />
+                    </div>
+                  }
+                />
+              ))}
+            </Tabs>
+          </div>
+        </div>
+
+        <div className={classes.arrowContainer}>
+          <div
+            className={`${classes.rightArrowIcon} ${
+              step === 3 ? classes.hidden : ''
+            }`}
+            onClick={handleClickRightArrow}
+          >
+            <img src={rightArrow} alt='menu' />
+          </div>
+
+          {isShowFilter && filters.length > 0 ? (
+            <div
+              className={`${classes.filter} ${classes.filledFilter}`}
+              onClick={() => setFilters([])}
+            >
+              <img src={resetFilter} alt='menu' />
+              <span className={classes.filterTitle}>Filter</span>
+            </div>
+          ) : (
+            <div
+              className={`${classes.filter} ${
+                isShowFilter && classes.activeFilter
+              }`}
+              onClick={() => setIsShowFilter((prev) => !prev)}
+            >
+              <img src={filter} alt='menu' />
+              <span className={classes.filterTitle}>Filter</span>
+            </div>
+          )}
+        </div>
       </div>
+      {isShowFilter && (
+        <CheckboxesFilter filters={filters} setFilters={setFilters} />
+      )}
     </div>
   );
 };
 const useStyles = makeStyles((theme) => ({
-  container: {
+  container: {},
+
+  carouselWrapper: {
     height: '120px',
     padding: '40px 72px  0px',
     display: 'flex',
