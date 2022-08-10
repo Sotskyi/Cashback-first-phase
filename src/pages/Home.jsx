@@ -7,6 +7,7 @@ import StoreCard from '../components/StoreCard';
 import HowItWorksCarousel from '../components/lib/howItWorksCarousel/HowItWorksCarousel';
 import { getStores, reset } from '../redux/slices/storesSlice';
 import { useObserver } from '../hooks/useObserver';
+import CheckboxesFilter from '../components/lib/CheckboxesFilter';
 
 const Home = () => {
   const classes = useStyles();
@@ -17,6 +18,8 @@ const Home = () => {
   const [step, setStep] = useState(0);
   const [page, setPage] = useState(1);
   const [isShowCarousel, setIsShowCarousel] = useState(true);
+  const [isShowFilter, setIsShowFilter] = useState(false);
+  const [filters, setFilters] = useState([]);
 
   const { storesList, isLoading, itemsCount } = useSelector(
     (state) => state.stores,
@@ -28,8 +31,8 @@ const Home = () => {
 
   useEffect(() => {
     if (categoryId === 'favoritesPosition' || categoryId === 'title') {
-      dispatch(getStores({ sortingKey: categoryId, page }));
-    } else dispatch(getStores({ category: categoryId, page }));
+      dispatch(getStores({ sortingKey: categoryId, page, limit: 12 }));
+    } else dispatch(getStores({ category: categoryId, page, limit: 12 }));
   }, [categoryId, page]);
 
   useEffect(() => {
@@ -44,7 +47,14 @@ const Home = () => {
         step={step}
         setStep={setStep}
         setPage={setPage}
+        setIsShowFilter={setIsShowFilter}
+        isShowFilter={isShowFilter}
+        filters={filters}
+        setFilters={setFilters}
       />
+      {isShowFilter && (
+        <CheckboxesFilter filters={filters} setFilters={setFilters} />
+      )}
       <div className={classes.bodyContainer}>
         <div className={classes.cardsContainer}>
           <div className={classes.cardsWrapper}>
@@ -59,11 +69,17 @@ const Home = () => {
               />
             ))}
             <div ref={lastElement} className={classes.lastElement} />
-          </div>
-          <div className={classes.carouselContainer}>
-            {isShowCarousel && (
-              <HowItWorksCarousel onClose={() => setIsShowCarousel(false)} />
-            )}
+            <div>
+              <div>
+                <div className={classes.carouselContainer}>
+                  {isShowCarousel && (
+                    <HowItWorksCarousel
+                      onClose={() => setIsShowCarousel(false)}
+                    />
+                  )}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -87,10 +103,11 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     padding: '0px 72px 0px',
     boxSizing: 'border-box',
-    height: '520px',
+    height: '100%',
     display: 'flex',
     flexWrap: 'wrap',
     overflow: 'scroll',
+
     smooth: 'easeInOutQuart',
     '&::-webkit-scrollbar': {
       width: '5px',
@@ -117,6 +134,8 @@ const useStyles = makeStyles((theme) => ({
     height: '1px',
   },
   carouselContainer: {
-    position: 'absolute',
+    position: 'fixed',
+    bottom: '15px',
+    left: '10%',
   },
 }));

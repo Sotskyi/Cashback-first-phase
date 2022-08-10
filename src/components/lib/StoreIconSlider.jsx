@@ -21,6 +21,7 @@ import hardwareTools from '../../assets/images/icons/forSlider/hardwareTools.svg
 import leftArrow from '../../assets/images/icons/forSlider/leftArrow.svg';
 import rightArrow from '../../assets/images/icons/forSlider/rightArrow.svg';
 import filter from '../../assets/images/icons/filter.svg';
+import resetFilter from '../../assets/images/icons/resetFilter.svg';
 import { reset } from '../../redux/slices/storesSlice';
 
 const StoreIconSlider = ({
@@ -29,6 +30,10 @@ const StoreIconSlider = ({
   setPage,
   step,
   setStep,
+  setIsShowFilter,
+  isShowFilter,
+  filters,
+  // setFilters,
 }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -51,6 +56,7 @@ const StoreIconSlider = ({
       setStep(0);
     }
     dispatch(reset());
+    setPage(1);
   };
 
   const handleClickRightArrow = () => {
@@ -66,6 +72,7 @@ const StoreIconSlider = ({
       setStep(3);
     }
     dispatch(reset());
+    setPage(1);
   };
 
   const tabs = [
@@ -196,10 +203,25 @@ const StoreIconSlider = ({
           <img src={rightArrow} alt='menu' />
         </div>
 
-        <div className={classes.filter}>
-          <img src={filter} alt='menu' />
-          <span className={classes.filterTitle}>Filter</span>
-        </div>
+        {isShowFilter && filters.length > 0 ? (
+          <div
+            className={`${classes.filter} ${classes.filledFilter}`}
+            // onClick={() => setFilters([])}
+          >
+            <img src={resetFilter} alt='menu' />
+            <span className={classes.filterTitle}>Filter</span>
+          </div>
+        ) : (
+          <div
+            className={`${classes.filter} ${
+              isShowFilter && classes.activeFilter
+            }`}
+            onClick={() => setIsShowFilter((prev) => !prev)}
+          >
+            <img src={filter} alt='menu' />
+            <span className={classes.filterTitle}>Filter</span>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -224,7 +246,7 @@ const useStyles = makeStyles((theme) => ({
       letterSpacing: '0.02em',
       fontWeight: '500',
       fontSize: '16px',
-      fontStyle: 'nomral',
+      fontStyle: 'normal',
       fontFamily: 'Source Sans Pro, sans-serif',
       textTransform: 'none',
       display: 'flex',
@@ -298,10 +320,11 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '100px',
     height: '48px',
     border: '1px solid #EAEAEA',
-    borderRadius: '24px',
+    borderRadius: '34px',
     display: 'flex',
     justifyContent: 'space-evenly',
     alignItems: 'center',
+    cursor: 'pointer',
     [theme.breakpoints.down('md')]: {
       border: 'none',
       minWidth: '0',
@@ -309,10 +332,25 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   filterTitle: {
+    fontWeight: '600',
+    fontSize: '16px',
+    fontStyle: 'normal',
+    lineHeight: '125%',
+    fontFamily: 'Inter',
+    letterSpacing: '0.05em',
     [theme.breakpoints.down('md')]: {
       display: 'none',
     },
   },
+  activeFilter: {
+    border: '3px solid #33CC55',
+  },
+  filledFilter: {
+    background: '#33CC55',
+    border: '3px solid #33CC55',
+    color: 'white',
+  },
+
   hidden: {
     visibility: 'hidden',
   },

@@ -36,13 +36,13 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     margin: '8px',
     [theme.breakpoints.down('md')]: {
-      width: '288px',
+      width: '298px',
       height: '272px',
     },
-    [theme.breakpoints.down('sm')]: {
-      width: '100%',
-      height: '272px',
-    },
+    // [theme.breakpoints.down('600px')]: {
+    //   width: '100%',
+    //   height: '292px',
+    // },
   },
   storeCardTop: {
     height: '192px',

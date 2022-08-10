@@ -87,7 +87,6 @@ const useStyles = makeStyles(() => ({
     height: '240px',
     borderRadius: '24px',
     padding: '24px',
-    marginTop: '100px',
     boxSizing: 'border-box',
     border: '1px solid #dcdcdc',
     display: 'flex',
