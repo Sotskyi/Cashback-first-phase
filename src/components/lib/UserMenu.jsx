@@ -12,6 +12,7 @@ import howTelcoWorks from '../../assets/images/icons/forHeaderMenu/howTelcoWorks
 import logOut from '../../assets/images/icons/forHeaderMenu/logOut.svg';
 import personalInfo from '../../assets/images/icons/forHeaderMenu/personalInfo.svg';
 import termsAndConditions from '../../assets/images/icons/forHeaderMenu/termsAndConditions.svg';
+import missingTransaction from '../../assets/images/icons/forHeaderMenu/missingTransaction.svg';
 
 import { logoutUser } from '../../redux/slices/authSlice';
 
@@ -48,6 +49,11 @@ const UserMenu = () => {
       name: 'Log out',
       iconSrc: logOut,
     },
+    {
+      id: 'missingTransaction',
+      name: 'Missing transaction',
+      iconSrc: missingTransaction,
+    },
   ];
 
   const handleClick = (event) => {
@@ -62,6 +68,8 @@ const UserMenu = () => {
       navigate('/login');
     } else if (id === 'cashback') {
       navigate('/cashback');
+    } else if (id === 'missingTransaction') {
+      navigate('/missing_transaction');
     }
   };
 
@@ -166,6 +174,9 @@ const useStyles = makeStyles((theme) => ({
 
   menuIconWrapper: {
     width: '20px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   menuTitle: {
     fontFamily: 'Inter',

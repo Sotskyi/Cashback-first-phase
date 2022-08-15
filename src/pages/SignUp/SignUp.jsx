@@ -24,6 +24,7 @@ const SignUp = () => {
     verificationCode: '',
     billingNumber: '+13213212222',
     phonePlan: 'monthly',
+    mobileNetwork: '',
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -41,6 +42,7 @@ const SignUp = () => {
 
   const handleChange = (event) => {
     const value = event.target.value.split(' ').join('');
+
     setCreds({
       ...creds,
       [event.target.id]: value,

@@ -19,6 +19,10 @@ const AuthLayout = () => {
     }
   }, []);
 
+  // if (!isAuth && location.pathname === '/missing_transaction') {
+  //   return <Navigate to='/login' state={{ from: location }} replace />;
+  // }
+
   return (
     <main className='App'>
       {isAuth ? <LoginedHeader /> : <UnloginedHeader />}

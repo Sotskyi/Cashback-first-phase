@@ -17,6 +17,9 @@ const ResetPasswordByEmail = React.lazy(() =>
 const Home = React.lazy(() => import('./pages/Home'));
 const Store = React.lazy(() => import('./pages/Store'));
 const Cashback = React.lazy(() => import('./pages/Cashback/Cashback'));
+const MissingTransaction = React.lazy(() =>
+  import('./pages/MissingTransaction'),
+);
 
 const App = () => {
   return (
@@ -51,6 +54,11 @@ const App = () => {
               <Route index element={<Home />} />
               <Route path='/store/:id' element={<Store />} />
               <Route path='/cashback' element={<Cashback />} />
+              <Route
+                path='/missing_transaction'
+                element={<MissingTransaction />}
+                restricted={true}
+              />
             </Route>
             {/* catch all */}
             <Route path='*' element={<Navigate to='/' replace />} />

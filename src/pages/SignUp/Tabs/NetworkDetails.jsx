@@ -10,6 +10,7 @@ import SubmitButton from '../../../components/form/SubmitButton';
 const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
   const classes = useStyles();
   const [mobileNetwork, setMobileNetwork] = useState('');
+  // const [checkIsValid, setIsShowError] = useValidator();
 
   const mobilesNetworkCanada = [
     'Virgin Mobile',
@@ -29,6 +30,11 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
   const handleChange = (e) => {
     setMobileNetwork(e.target.value);
   };
+
+  // const handleSubmit = (e) => {
+  //   setIsShowError(true);
+
+  // };
 
   return (
     <div>
@@ -63,15 +69,20 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
               borderRadius: '8px',
             }}
           >
-            <MenuItem value=''>
-              <em>None</em>
-            </MenuItem>
             {mobilesNetworkCanada.map((el) => (
-              <MenuItem key={el} value={el}>
+              <MenuItem key={el} value={el} id={mobileNetwork}>
                 {el}
               </MenuItem>
             ))}
           </Select>
+          {/* {!checkIsValid({
+              nameOfData: 'mobileNetwork',
+              data: creds.mobileNetwork,
+            }) && (
+              <div className={classes.errorMessage}>
+                Please enter valid mobile network carrier
+              </div>
+            )} */}
         </div>
         <div className={classes.inputContainer}>
           <div className={classes.inputWrapper}>
@@ -194,5 +205,17 @@ const useStyles = makeStyles((theme) => ({
     left: '12px',
     borderRadius: '50px',
     border: '5px solid #33CC55',
+  },
+  errorMessage: {
+    color: 'red',
+    textAlign: 'center',
+    fontFamily: 'Inter',
+    fontSize: '14px',
+    position: 'absolute',
+    bottom: '-24px',
+    width: '100%',
+    [theme.breakpoints.down('xs')]: {
+      bottom: '-36px',
+    },
   },
 }));
