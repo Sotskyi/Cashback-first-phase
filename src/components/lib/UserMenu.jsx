@@ -164,14 +164,12 @@ const useStyles = makeStyles((theme) => ({
     color: ' #000000',
     letterSpacing: '0.02em;',
   },
-
   menuIcon: {
     width: '24px',
     [theme.breakpoints.down('sm')]: {
       width: '16px',
     },
   },
-
   menuIconWrapper: {
     width: '20px',
     display: 'flex',

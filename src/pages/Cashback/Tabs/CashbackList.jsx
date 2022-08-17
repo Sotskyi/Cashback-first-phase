@@ -1,13 +1,66 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core';
 
+import { getCashback } from '../../../redux/slices/cashbackSlice';
 import timer from '../../../assets/images/icons/timer.svg';
 
 const CashbackList = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { cashbackList } = useSelector((state) => state.cashback);
+
+  useEffect(() => {
+    dispatch(getCashback());
+  }, []);
+
+  const getDateForCashback = (date) => {
+    const options = {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric',
+    };
+    return new Date(date).toLocaleDateString('en', options);
+  };
 
   return (
     <div className={classes.cashbackListContainer}>
-      <div className={classes.dateContainer}>
+      {/* <div>{cashbackList?.cashback[0]?.date}</div> */}
+      {cashbackList.cashback.map((el) => (
+        <div key={el.date}>
+          <div className={classes.dateContainer}>
+            <div className={classes.date}>{getDateForCashback(el.date)} </div>
+            <div className={classes.totalCashback}>$ {el.dailyTotal}</div>
+          </div>
+          {el.items.map((item) => (
+            <div
+              className={classes.storeContainer}
+              key={item.saleAmount + item.cashbackId}
+            >
+              <img
+                className={classes.storeAvatar}
+                src={item.logoImageUrl}
+                alt='avatar'
+              />
+              <div className={classes.storeContentContainer}>
+                <div className={classes.storeContentWrapper}>
+                  <div className={classes.storeTitle}>{item.storeTitle}</div>
+                  <div className={classes.storeCashback}>$ 888.88</div>
+                </div>
+                <div className={classes.storeContentWrapper}>
+                  <div className={classes.storeAvailableCashback}>
+                    $ {item.saleAmount}
+                  </div>
+                  <div className={classes.storevailableCashbackTime}>
+                    30 days <img src={timer} alt='timer' />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ))}
+      {/* <div className={classes.dateContainer}>
         <div className={classes.date}>Monday, May 11 </div>
         <div className={classes.totalCashback}>$ 30.23</div>
       </div>
@@ -105,6 +158,7 @@ const CashbackList = () => {
           </div>
         </div>
       </div>
+     */}
     </div>
   );
 };

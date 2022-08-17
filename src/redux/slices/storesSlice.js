@@ -53,10 +53,10 @@ export const redirectToStore = createAsyncThunk(
       const data = await response.data;
       if (data.url && data.url.includes('https')) {
         window.location.href = `${data.url}`;
-      } else throw new Error('This store is not connected to Telcorewards');
-      return Error;
+      }
+      return data;
     } catch (error) {
-      toast.error(error.message);
+      toast.error('This store is not connected to Telcorewards');
       return thunkAPI.rejectWithValue(error);
     }
   },
@@ -89,16 +89,16 @@ const storesSlice = createSlice({
     [getStores.rejected]: (state) => {
       state.isLoading = false;
     },
-    [getStore.fulfilled]: (state, action) => {
-      state.store = action.payload;
-      state.isLoading = false;
-    },
-    [getStore.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [getStore.rejected]: (state) => {
-      state.isLoading = false;
-    },
+    // [getStore.fulfilled]: (state, action) => {
+    //   state.store = action.payload;
+    //   state.isLoading = false;
+    // },
+    // [getStore.pending]: (state) => {
+    //   state.isLoading = true;
+    // },
+    // [getStore.rejected]: (state) => {
+    //   state.isLoading = false;
+    // },
     [redirectToStore.fulfilled]: (state) => {
       state.isLoading = false;
     },

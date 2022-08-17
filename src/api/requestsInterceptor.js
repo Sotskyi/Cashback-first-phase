@@ -26,9 +26,10 @@ const clearAuthData = () => saveAuthData({});
 // const redirectToLogin = () => router.push("/login");
 
 export const saveTokens = (axiosData) => {
-  const { access_token, refresh_token } = axiosData.data;
+  const { access_token, refresh_token } = axiosData.data.tokens;
   axios.defaults.headers.common.Authorization = `Bearer ${access_token}`;
   saveAuthData({ access_token, refresh_token });
+
   return Promise.resolve(axiosData);
 };
 
@@ -49,7 +50,7 @@ const refreshAuthToken = () => {
 
   clearTimeout(refreshTokenTimeout);
   previousRefreshTokenPromise = axios
-    .post(REFRESH_TOKEN_URL, {
+    .patch(REFRESH_TOKEN_URL, {
       refresh_token,
     })
     .finally(() => {
@@ -83,7 +84,6 @@ const refreshTokenInterceptor = (error) => {
     })
     .catch(() => {
       clearAuthData();
-
       // Uncomment in case of global router/history usage
       // redirectToLogin();
       return Promise.reject(error);

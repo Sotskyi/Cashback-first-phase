@@ -83,6 +83,7 @@ export const checkAuth = createAsyncThunk(
       const response = await AuthService.checkAuth(refreshToken);
       return await response.data;
     } catch (error) {
+      localStorage.setItem('auth', JSON.stringify({}));
       return thunkAPI.rejectWithValue(error);
     }
   },

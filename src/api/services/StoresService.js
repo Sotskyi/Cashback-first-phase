@@ -12,6 +12,6 @@ export default class StoresService {
   }
 
   static async redirectToStore(id) {
-    return axios.post('/stores/trackingRedirect', { storeId: id });
+    return axios.post(`/stores/${id}/trackingRedirect`);
   }
 }

@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 
 import ProductCard from '../components/ProductCard';
-import { getStore, reset, redirectToStore } from '../redux/slices/storesSlice';
+import { getStore, redirectToStore } from '../redux/slices/storesSlice';
 import Loader from '../components/lib/Loader';
 
 const Store = () => {
@@ -12,15 +12,23 @@ const Store = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { isAuth } = useSelector((state) => state.auth);
-  const { store } = useSelector((state) => state.stores);
   const [triggerLoader, setTriggerLoader] = useState(false);
+  const [store, setStore] = useState({
+    backgroundImage: { url: '' },
+    baseReward: '',
+    translations: [
+      { id: '', title: 'store', description: '', specialRewardTitle: null },
+    ],
+  });
 
-  useEffect(() => {
-    dispatch(getStore(id));
-    return () => {
-      dispatch(reset());
-    };
-  }, [id]);
+  useEffect(async () => {
+    const resultAction = await dispatch(getStore(id));
+    if (getStore.rejected.match(resultAction)) {
+      navigate('/home');
+    } else {
+      setStore(resultAction.payload);
+    }
+  }, []);
 
   const handleRedirect = () => {
     setTriggerLoader(true);
