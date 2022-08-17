@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core';
 
 import { getCashback } from '../../../redux/slices/cashbackSlice';
 import timer from '../../../assets/images/icons/timer.svg';
+import { getDateForCashback } from '../../../utils/helpers';
 
 const CashbackList = () => {
   const classes = useStyles();
@@ -14,15 +15,6 @@ const CashbackList = () => {
     dispatch(getCashback());
   }, []);
 
-  const getDateForCashback = (date) => {
-    const options = {
-      weekday: 'long',
-      month: 'long',
-      day: 'numeric',
-    };
-    return new Date(date).toLocaleDateString('en', options);
-  };
-
   return (
     <div className={classes.cashbackListContainer}>
       {/* <div>{cashbackList?.cashback[0]?.date}</div> */}
@@ -30,7 +22,9 @@ const CashbackList = () => {
         <div key={el.date}>
           <div className={classes.dateContainer}>
             <div className={classes.date}>{getDateForCashback(el.date)} </div>
-            <div className={classes.totalCashback}>$ {el.dailyTotal}</div>
+            <div className={classes.totalCashback}>
+              $ {parseFloat(el.dailyTotal)}
+            </div>
           </div>
           {el.items.map((item) => (
             <div
@@ -45,7 +39,7 @@ const CashbackList = () => {
               <div className={classes.storeContentContainer}>
                 <div className={classes.storeContentWrapper}>
                   <div className={classes.storeTitle}>{item.storeTitle}</div>
-                  <div className={classes.storeCashback}>$ 888.88</div>
+                  <div className={classes.storeCashback}>$ {item.reward}</div>
                 </div>
                 <div className={classes.storeContentWrapper}>
                   <div className={classes.storeAvailableCashback}>
