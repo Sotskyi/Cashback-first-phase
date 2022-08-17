@@ -51,7 +51,7 @@ const refreshAuthToken = () => {
   clearTimeout(refreshTokenTimeout);
   previousRefreshTokenPromise = axios
     .patch(REFRESH_TOKEN_URL, {
-      refresh_token,
+      refreshToken: refresh_token,
     })
     .finally(() => {
       // Do not refresh token few times during lifetime
