@@ -24,7 +24,7 @@ const SignUp = () => {
     verificationCode: '',
     billingNumber: '+13213212222',
     phonePlan: 'monthly',
-    mobileNetwork: '',
+    carrier: '',
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -57,6 +57,7 @@ const SignUp = () => {
           phoneNumber: insertString('+1', creds.phoneNumber),
         }),
       );
+
       if (register.fulfilled.match(resultAction)) {
         toast.success('new user successfully created');
         navigate('/home');

@@ -14,6 +14,7 @@ export const validationRules = {
     const { password, confirmPassword } = data;
     return password === confirmPassword;
   },
+  isCarrier: (data) => /[0-9]/.test(data),
 };
 // /^[a-z0-9]{7,}$/i.test(data)
 
@@ -41,6 +42,9 @@ export const useValidator = () => {
         nameOfData === 'passwordEqual' &&
         !validationRules.isPasswordEqual(data)
       ) {
+        return false;
+      }
+      if (nameOfData === 'carrier' && !validationRules.isCarrier(data)) {
         return false;
       }
     }

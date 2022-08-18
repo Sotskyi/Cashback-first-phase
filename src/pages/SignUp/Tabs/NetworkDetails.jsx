@@ -1,40 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 
 import SubmitButton from '../../../components/form/SubmitButton';
-// import { useValidator } from '../../../hooks/useValidator';
+import { useValidator } from '../../../hooks/useValidator';
 
 const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
   const classes = useStyles();
-  const [mobileNetwork, setMobileNetwork] = useState('');
-  // const [checkIsValid, setIsShowError] = useValidator();
 
-  const mobilesNetworkCanada = [
-    'Virgin Mobile',
-    'SaskTel Canada',
-    'Freedom Mobile',
-    'Rogers Wireless',
-    'Public Mobile',
-    'Telus Canada',
-    'Lucky Mobile',
-    'Koodo',
-    'Fido',
-    'Bell MTS',
-    'ChatR',
-    'Bell Mobility',
-  ];
+  const [data, setData] = useState([]);
+  const [checkIsValid, setIsShowError] = useValidator();
 
-  const handleChange = (e) => {
-    setMobileNetwork(e.target.value);
+  useEffect(() => {
+    const getMobileNetworks = async () => {
+      const response = await axios.get('/carriers');
+      setData(response.data);
+    };
+
+    getMobileNetworks();
+  }, []);
+
+  const handleSubmit = () => {
+    setIsShowError(true);
+    if (
+      checkIsValid({
+        nameOfData: 'carrier',
+        data: creds.carrier,
+        showErrorSync: true,
+      })
+    ) {
+      onSubmit();
+    }
   };
-
-  // const handleSubmit = (e) => {
-  //   setIsShowError(true);
-
-  // };
 
   return (
     <div>
@@ -53,8 +53,8 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
             Mobile network carrier
           </InputLabel>
           <Select
-            value={mobileNetwork}
-            onChange={handleChange}
+            value={creds.carrier}
+            onChange={(e) => setCreds({ ...creds, carrier: e.target.value })}
             displayEmpty
             inputProps={{ 'aria-label': 'Without label' }}
             sx={{
@@ -69,20 +69,20 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
               borderRadius: '8px',
             }}
           >
-            {mobilesNetworkCanada.map((el) => (
-              <MenuItem key={el} value={el} id={mobileNetwork}>
-                {el}
+            {data.map((el) => (
+              <MenuItem key={el.title} value={el.id} id='carrier'>
+                {el.title}
               </MenuItem>
             ))}
           </Select>
-          {/* {!checkIsValid({
-              nameOfData: 'mobileNetwork',
-              data: creds.mobileNetwork,
-            }) && (
-              <div className={classes.errorMessage}>
-                Please enter valid mobile network carrier
-              </div>
-            )} */}
+          {!checkIsValid({
+            nameOfData: 'carrier',
+            data: creds.carrier,
+          }) && (
+            <div className={classes.errorMessage}>
+              Please enter valid mobile network carrier
+            </div>
+          )}
         </div>
         <div className={classes.inputContainer}>
           <div className={classes.inputWrapper}>
@@ -129,7 +129,7 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
             <span> Prepaid</span>
           </div>
         </div>
-        <SubmitButton title='Sign Up' onSubmit={onSubmit} />
+        <SubmitButton title='Sign Up' onSubmit={handleSubmit} />
       </div>
     </div>
   );
@@ -165,6 +165,7 @@ const useStyles = makeStyles((theme) => ({
   },
   inputWrapper: {
     height: '76px',
+    position: 'relative',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
