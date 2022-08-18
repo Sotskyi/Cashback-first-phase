@@ -73,6 +73,7 @@ const refreshTokenInterceptor = (error) => {
     !error.config.baseURL.includes(API_URL) ||
     error.config.baseURL.includes(REFRESH_TOKEN_URL)
   ) {
+    clearAuthData();
     return Promise.reject(error);
   }
 
