@@ -1,118 +1,59 @@
+import { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 
 import withdrawalsSuccess from '../../../assets/images/icons/withdrawalsSuccess.svg';
+import { getWithdrawals } from '../../../redux/slices/cashbackSlice';
+import { getDateForCashback } from '../../../utils/helpers';
+import Loader from '../../../components/lib/Loader';
 
 const WithdrawalsList = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const { withdrawalsList, isLoading } = useSelector((state) => state.cashback);
+
+  useEffect(() => {
+    dispatch(getWithdrawals());
+  }, []);
+
+  const getTotalWithdrawal = (items) => items.reduce((a, b) => a + b.amount, 0);
 
   return (
     <div className={classes.withdrawalsListContainer}>
-      {/* <div className={classes.withdrawalsListWrapper}> */}
-      <div className={classes.dateContainer}>
-        <div className={classes.date}>Monday, May 11 </div>
-        <div className={classes.totalCashback}>$ 30.23</div>
-      </div>
-      <div className={classes.withdrawalContainer}>
-        <div className={classes.withdrawalAvatar}>
-          {' '}
-          <img
-            src={withdrawalsSuccess}
-            // className={classes.withdrawalsIconSuccess}
-            alt='cash'
-          />{' '}
-        </div>
-        <div className={classes.withdrawalContentContainer}>
-          <div className={classes.withdrawalContentWrapper}>
-            <div className={classes.withdrawalTitle}>Withdrawal</div>
-            <div className={classes.withdrawalCashback}>$ 888.88</div>
-          </div>
-        </div>
-      </div>
-      <div className={classes.withdrawalContainer}>
-        <div className={classes.withdrawalAvatar}>
-          {' '}
-          <img
-            src={withdrawalsSuccess}
-            // className={classes.withdrawalsIconSuccess}
-            alt='cash'
-          />{' '}
-        </div>
-        <div className={classes.withdrawalContentContainer}>
-          <div className={classes.withdrawalContentWrapper}>
-            <div className={classes.withdrawalTitle}>Withdrawal</div>
-            <div className={classes.withdrawalCashback}>$ 888.88</div>
-          </div>
-        </div>
-      </div>
-      <div className={classes.withdrawalContainer}>
-        <div className={classes.withdrawalAvatar}>
-          {' '}
-          <img
-            src={withdrawalsSuccess}
-            // className={classes.withdrawalsIconSuccess}
-            alt='cash'
-          />{' '}
-        </div>
-        <div className={classes.withdrawalContentContainer}>
-          <div className={classes.withdrawalContentWrapper}>
-            <div className={classes.withdrawalTitle}>Withdrawal</div>
-            <div className={classes.withdrawalCashback}>$ 888.88</div>
-          </div>
-        </div>
-      </div>
-      <div className={classes.withdrawalContainer}>
-        <div className={classes.withdrawalAvatar}>
-          {' '}
-          <img
-            src={withdrawalsSuccess}
-            // className={classes.withdrawalsIconSuccess}
-            alt='cash'
-          />{' '}
-        </div>
-        <div className={classes.withdrawalContentContainer}>
-          <div className={classes.withdrawalContentWrapper}>
-            <div className={classes.withdrawalTitle}>Withdrawal</div>
-            <div className={classes.withdrawalCashback}>$ 888.88</div>
-          </div>
-        </div>
-      </div>
-      <div className={classes.dateContainer}>
-        <div className={classes.date}>Monday, May 11 </div>
-        <div className={classes.totalCashback}>$ 30.23</div>
-      </div>
-      <div className={classes.withdrawalContainer}>
-        <div className={classes.withdrawalAvatar}>
-          {' '}
-          <img
-            src={withdrawalsSuccess}
-            // className={classes.withdrawalsIconSuccess}
-            alt='cash'
-          />{' '}
-        </div>
-        <div className={classes.withdrawalContentContainer}>
-          <div className={classes.withdrawalContentWrapper}>
-            <div className={classes.withdrawalTitle}>Withdrawal</div>
-            <div className={classes.withdrawalCashback}>$ 888.88</div>
-          </div>
-        </div>
-      </div>
-      <div className={classes.withdrawalContainer}>
-        <div className={classes.withdrawalAvatar}>
-          {' '}
-          <img
-            src={withdrawalsSuccess}
-            // className={classes.withdrawalsIconSuccess}
-            alt='cash'
-          />{' '}
-        </div>
-        <div className={classes.withdrawalContentContainer}>
-          <div className={classes.withdrawalContentWrapper}>
-            <div className={classes.withdrawalTitle}>Withdrawal</div>
-            <div className={classes.withdrawalCashback}>$ 888.88</div>
-          </div>
-        </div>
-      </div>
-      {/* </div> */}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        withdrawalsList?.map((el) => (
+          <>
+            <div className={classes.dateContainer}>
+              <div className={classes.date}>{getDateForCashback(el.date)} </div>
+              <div className={classes.totalCashback}>
+                $ {getTotalWithdrawal(el.items)}
+              </div>
+            </div>
+            {el.items.map((item) => (
+              <div className={classes.withdrawalContainer}>
+                <div className={classes.withdrawalAvatar}>
+                  {' '}
+                  <img
+                    src={withdrawalsSuccess}
+                    // className={classes.withdrawalsIconSuccess}
+                    alt='cash'
+                  />{' '}
+                </div>
+                <div className={classes.withdrawalContentContainer}>
+                  <div className={classes.withdrawalContentWrapper}>
+                    <div className={classes.withdrawalTitle}>Withdrawal</div>
+                    <div className={classes.withdrawalCashback}>
+                      $ {item.amount}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </>
+        ))
+      )}
     </div>
   );
 };
@@ -139,7 +80,6 @@ const useStyles = makeStyles((theme) => ({
       width: '100%',
     },
   },
-  withdrawalsListWrapper: {},
   dateContainer: {
     height: '30px',
     marginLeft: '64px',
@@ -164,6 +104,15 @@ const useStyles = makeStyles((theme) => ({
     background: '#EAEAEA',
     borderRadius: '100px',
   },
+  totalCashback: {
+    fontFamily: 'Source Sans Pro, sans-serif',
+    fontStyle: 'normal',
+    fontWeight: '600',
+    fontSize: '16px',
+    lineHeight: '100%',
+    letterSpacing: '0.02em',
+    color: '#33CC55',
+  },
   withdrawalContentContainer: {
     display: 'flex',
     marginLeft: '16px',
@@ -187,12 +136,12 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.01em',
   },
   withdrawalCashback: {
-    fontFamily: 'Source Sans Pro, sans-serif',
-    fontStyle: 'normal',
-    fontWeight: '600',
-    fontSize: '16px',
-    lineHeight: '100%',
-    letterSpacing: '0.02em',
-    color: '#33CC55',
+    // fontFamily: 'Source Sans Pro, sans-serif',
+    // fontStyle: 'normal',
+    // fontWeight: '600',
+    // fontSize: '16px',
+    // lineHeight: '100%',
+    // letterSpacing: '0.02em',
+    // color: '#33CC55',
   },
 }));

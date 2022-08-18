@@ -122,6 +122,7 @@ const useStyles = makeStyles(() => ({
     flexWrap: 'wrap',
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   cell: {
     border: '1px solid #FFFFFF',

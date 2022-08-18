@@ -6,7 +6,7 @@ import AuthService from '../../api/services/AuthService';
 import { getError } from '../../utils/helpers';
 
 const initialState = {
-  user: null,
+  user: {},
   isLoading: false,
   isAuth: false,
   confirmSms: null,
@@ -189,7 +189,7 @@ const authSlice = createSlice({
       state.isLoading = false;
     },
     [loginConfirm.fulfilled]: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.isAuth = true;
     },
     [loginConfirm.pending]: (state) => {
@@ -199,23 +199,22 @@ const authSlice = createSlice({
       state.isLoading = false;
     },
     [register.pending]: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.isLoading = true;
     },
     [register.fulfilled]: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.isAuth = true;
       state.isLoading = false;
     },
     [register.rejected]: (state) => {
       state.isLoading = false;
     },
-    [checkAuth.pending]: (state, action) => {
-      state.user = action.payload;
+    [checkAuth.pending]: (state) => {
       state.isLoading = true;
     },
     [checkAuth.fulfilled]: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.isAuth = true;
       state.isLoading = false;
     },

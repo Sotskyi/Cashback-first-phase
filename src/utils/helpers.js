@@ -16,3 +16,9 @@ export const getDateForCashback = (date) => {
   };
   return new Date(date).toLocaleDateString('en', options);
 };
+
+export const differenceDatesInDays = (today, date) => {
+  const difference = today.getTime() - date.getTime();
+  const TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+  return 30 - TotalDays;
+};

@@ -8,7 +8,7 @@ import search from '../assets/images/icons/search.svg';
 
 import UserMenu from './lib/UserMenu';
 
-const LoginedHeader = () => {
+const LoginedHeader = ({ availableBalance }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -35,7 +35,7 @@ const LoginedHeader = () => {
         onClick={() => navigate('/cashback')}
       >
         <div className={classes.priceTitle}>AVAILABLE</div>
-        <div className={classes.price}>$26</div>
+        <div className={classes.price}>{`$ ${availableBalance || 0.0}`}</div>
       </div>
       <UserMenu />
     </div>

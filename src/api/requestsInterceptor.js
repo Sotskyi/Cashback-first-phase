@@ -68,9 +68,10 @@ const refreshAuthToken = () => {
 // Intercept unauth responses, refresh token and recall request
 const refreshTokenInterceptor = (error) => {
   // Do not refresh on external fails or refresh request
+
   if (
-    error.config.url.includes(API_URL) ||
-    error.config.url.includes(REFRESH_TOKEN_URL)
+    !error.config.baseURL.includes(API_URL) ||
+    error.config.baseURL.includes(REFRESH_TOKEN_URL)
   ) {
     return Promise.reject(error);
   }

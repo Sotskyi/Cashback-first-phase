@@ -4,12 +4,16 @@ import { makeStyles } from '@material-ui/core';
 
 import { getCashback } from '../../../redux/slices/cashbackSlice';
 import timer from '../../../assets/images/icons/timer.svg';
-import { getDateForCashback } from '../../../utils/helpers';
+import {
+  getDateForCashback,
+  differenceDatesInDays,
+} from '../../../utils/helpers';
+import Loader from '../../../components/lib/Loader';
 
 const CashbackList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { cashbackList } = useSelector((state) => state.cashback);
+  const { cashbackList, isLoading } = useSelector((state) => state.cashback);
 
   useEffect(() => {
     dispatch(getCashback());
@@ -17,142 +21,57 @@ const CashbackList = () => {
 
   return (
     <div className={classes.cashbackListContainer}>
-      {/* <div>{cashbackList?.cashback[0]?.date}</div> */}
-      {cashbackList.cashback.map((el) => (
-        <div key={el.date}>
-          <div className={classes.dateContainer}>
-            <div className={classes.date}>{getDateForCashback(el.date)} </div>
-            <div className={classes.totalCashback}>
-              $ {parseFloat(el.dailyTotal)}
+      {isLoading ? (
+        <Loader />
+      ) : (
+        cashbackList.cashback.map((el) => (
+          <div key={el.date}>
+            <div className={classes.dateContainer}>
+              <div className={classes.date}>{getDateForCashback(el.date)} </div>
+              <div className={classes.totalCashback}>
+                $ {parseFloat(el.dailyTotal)}
+              </div>
             </div>
-          </div>
-          {el.items.map((item) => (
-            <div
-              className={classes.storeContainer}
-              key={item.saleAmount + item.cashbackId}
-            >
-              <img
-                className={classes.storeAvatar}
-                src={item.logoImageUrl}
-                alt='avatar'
-              />
-              <div className={classes.storeContentContainer}>
-                <div className={classes.storeContentWrapper}>
-                  <div className={classes.storeTitle}>{item.storeTitle}</div>
-                  <div className={classes.storeCashback}>$ {item.reward}</div>
-                </div>
-                <div className={classes.storeContentWrapper}>
-                  <div className={classes.storeAvailableCashback}>
-                    $ {item.saleAmount}
+            {el.items.map((item) => (
+              <div
+                className={classes.storeContainer}
+                key={item.saleAmount + item.cashbackId}
+              >
+                <img
+                  className={classes.storeAvatar}
+                  src={item.logoImageUrl}
+                  alt='avatar'
+                />
+                <div className={classes.storeContentContainer}>
+                  <div className={classes.storeContentWrapper}>
+                    <div className={classes.storeTitle}>{item.storeTitle}</div>
+                    <div className={classes.storeCashback}>$ {item.reward}</div>
                   </div>
-                  <div className={classes.storevailableCashbackTime}>
-                    30 days <img src={timer} alt='timer' />
+                  <div className={classes.storeContentWrapper}>
+                    <div className={classes.storeAvailableCashback}>
+                      $ {item.saleAmount}
+                    </div>
+                    <div className={classes.storeAvailableCashbackTime}>
+                      {differenceDatesInDays(new Date(), new Date(el.date)) >
+                        0 && (
+                        <>
+                          {differenceDatesInDays(new Date(), new Date(el.date))}{' '}
+                          days
+                          <img
+                            className={classes.storeAvailableCashbackTimerIcon}
+                            src={timer}
+                            alt='timer'
+                          />{' '}
+                        </>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      ))}
-      {/* <div className={classes.dateContainer}>
-        <div className={classes.date}>Monday, May 11 </div>
-        <div className={classes.totalCashback}>$ 30.23</div>
-      </div>
-      <div className={classes.storeContainer}>
-        <div className={classes.storeAvatar} />
-        <div className={classes.storeContentContainer}>
-          <div className={classes.storeContentWrapper}>
-            <div className={classes.storeTitle}>Store</div>
-            <div className={classes.storeCashback}>$ 888.88</div>
+            ))}
           </div>
-          <div className={classes.storeContentWrapper}>
-            <div className={classes.storeAvailableCashback}>$ 144.44</div>
-            <div className={classes.storevailableCashbackTime}>
-              30 days <img src={timer} alt='timer' />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={classes.storeContainer}>
-        <div className={classes.storeAvatar} />
-        <div className={classes.storeContentContainer}>
-          <div className={classes.storeContentWrapper}>
-            <div className={classes.storeTitle}>Store</div>
-            <div className={classes.storeCashback}>$ 888.88</div>
-          </div>
-          <div className={classes.storeContentWrapper}>
-            <div className={classes.storeAvailableCashback}>$ 144.44</div>
-            <div className={classes.storevailableCashbackTime}>
-              30 days <img src={timer} alt='timer' />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={classes.storeContainer}>
-        <div className={classes.storeAvatar} />
-        <div className={classes.storeContentContainer}>
-          <div className={classes.storeContentWrapper}>
-            <div className={classes.storeTitle}>Store</div>
-            <div className={classes.storeCashback}>$ 888.88</div>
-          </div>
-          <div className={classes.storeContentWrapper}>
-            <div className={classes.storeAvailableCashback}>$ 144.44</div>
-            <div className={classes.storevailableCashbackTime}>
-              30 days <img src={timer} alt='timer' />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={classes.storeContainer}>
-        <div className={classes.storeAvatar} />
-        <div className={classes.storeContentContainer}>
-          <div className={classes.storeContentWrapper}>
-            <div className={classes.storeTitle}>Store</div>
-            <div className={classes.storeCashback}>$ 888.88</div>
-          </div>
-          <div className={classes.storeContentWrapper}>
-            <div className={classes.storeAvailableCashback}>$ 144.44</div>
-            <div className={classes.storevailableCashbackTime}>
-              30 days <img src={timer} alt='timer' />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={classes.dateContainer}>
-        <div className={classes.date}>Monday, May 11 </div>
-        <div className={classes.totalCashback}>$ 30.23</div>
-      </div>
-      <div className={classes.storeContainer}>
-        <div className={classes.storeAvatar} />
-        <div className={classes.storeContentContainer}>
-          <div className={classes.storeContentWrapper}>
-            <div className={classes.storeTitle}>Store</div>
-            <div className={classes.storeCashback}>$ 888.88</div>
-          </div>
-          <div className={classes.storeContentWrapper}>
-            <div className={classes.storeAvailableCashback}>$ 144.44</div>
-            <div className={classes.storevailableCashbackTime}>
-              30 days <img src={timer} alt='timer' />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className={classes.storeContainer}>
-        <div className={classes.storeAvatar} />
-        <div className={classes.storeContentContainer}>
-          <div className={classes.storeContentWrapper}>
-            <div className={classes.storeTitle}>Store</div>
-            <div className={classes.storeCashback}>$ 888.88</div>
-          </div>
-          <div className={classes.storeContentWrapper}>
-            <div className={classes.storeAvailableCashback}>$ 144.44</div>
-            <div className={classes.storevailableCashbackTime}>
-              30 days <img src={timer} alt='timer' />
-            </div>
-          </div>
-        </div>
-      </div>
-     */}
+        ))
+      )}
     </div>
   );
 };
@@ -243,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.015em',
     color: '#6A6A6A',
   },
-  storevailableCashbackTime: {
+  storeAvailableCashbackTime: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '400',
@@ -252,7 +171,10 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.015em',
     color: '#6A6A6A',
     display: 'flex',
-    justifyContent: 'space-between',
-    width: '60px',
+    width: '68px',
+    justifyContent: 'end',
+  },
+  storeAvailableCashbackTimerIcon: {
+    marginLeft: '5px',
   },
 }));

@@ -8,7 +8,7 @@ import { getSavedAuthData } from '../../api/requestsInterceptor';
 import { checkAuth } from '../../redux/slices/authSlice';
 
 const HeaderLayout = () => {
-  const { isAuth } = useSelector((state) => state.auth);
+  const { isAuth, user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,7 +25,11 @@ const HeaderLayout = () => {
 
   return (
     <main className='App'>
-      {isAuth ? <LoginedHeader /> : <UnloginedHeader />}
+      {isAuth ? (
+        <LoginedHeader availableBalance={user.wallet.balance} />
+      ) : (
+        <UnloginedHeader />
+      )}
       <Outlet />
     </main>
   );

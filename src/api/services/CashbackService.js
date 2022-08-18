@@ -2,6 +2,10 @@ import axios from 'axios';
 
 export default class CashbackService {
   static async getCashback() {
-    return axios.get('/users/me/cashback ');
+    return axios.get('/users/me/cashback');
+  }
+
+  static async getWithdrawals() {
+    return axios.get('/users/me/withdrawals');
   }
 }

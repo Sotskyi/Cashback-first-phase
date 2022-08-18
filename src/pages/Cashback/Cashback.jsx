@@ -14,11 +14,7 @@ const Cashback = () => {
   const classes = useStyles();
   const [activeTab, setActiveTab] = useState('cashback');
   const [stepWithdrawalCard, setStepWithdrawalCard] = useState(1);
-  const { isAuth } = useSelector((state) => state.auth);
-
-  const availableWithdraw = [
-    5, 10, 15, 19, 20, 22, 25, 28, 30, 40, 43, 45, 48, 50, 60,
-  ];
+  const { isAuth, user } = useSelector((state) => state.auth);
 
   const handleSubmitCard = () => {
     if (stepWithdrawalCard < 3) {
@@ -39,46 +35,34 @@ const Cashback = () => {
   return (
     <div className={classes.cashbackContainer}>
       {isAuth ? (
-        <>
-          {' '}
-          {/* <div className={classes.forMobileOnly}>
+        <div className={classes.bodyContainer}>
+          <div className={classes.leftContentContainer}>
+            <Switcher activeTab={activeTab} setActiveTab={setActiveTab} />
+            {activeTab === 'cashback' && <CashbackList />}
+            {activeTab === 'withdrawals' && <WithdrawalsList />}
+          </div>
+          <div className={classes.rightContentContainer}>
             {stepWithdrawalCard === 1 && (
-              <WithdrawalCardStep1 handleSubmit={handleSubmitCard} />
+              <WithdrawalCardStep1
+                handleSubmit={handleSubmitCard}
+                availableCash={user.wallet.balance}
+              />
             )}
             {stepWithdrawalCard === 2 && (
               <WithdrawalCardStep2
                 handleSubmit={handleSubmitCard}
                 handleBackButton={handleBackButton}
-                data={availableWithdrow}
+                data={user.carrierInfo.carrierFixedValues}
               />
             )}
-          </div> */}
-          <div className={classes.bodyContainer}>
-            <div className={classes.leftContentContainer}>
-              <Switcher activeTab={activeTab} setActiveTab={setActiveTab} />
-              {activeTab === 'cashback' && <CashbackList />}
-              {activeTab === 'withdrawals' && <WithdrawalsList />}
-            </div>
-            <div className={classes.rightContentContainer}>
-              {stepWithdrawalCard === 1 && (
-                <WithdrawalCardStep1 handleSubmit={handleSubmitCard} />
-              )}
-              {stepWithdrawalCard === 2 && (
-                <WithdrawalCardStep2
-                  handleSubmit={handleSubmitCard}
-                  handleBackButton={handleBackButton}
-                  data={availableWithdraw}
-                />
-              )}
-              {stepWithdrawalCard === 3 && (
-                <WithdrawalCardStep3
-                  handleSubmit={handleSubmitCard}
-                  handleBackButton={handleBackButton}
-                />
-              )}
-            </div>
+            {stepWithdrawalCard === 3 && (
+              <WithdrawalCardStep3
+                handleSubmit={handleSubmitCard}
+                handleBackButton={handleBackButton}
+              />
+            )}
           </div>
-        </>
+        </div>
       ) : (
         <UnloginedCashback />
       )}

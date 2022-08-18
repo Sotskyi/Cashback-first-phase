@@ -26,8 +26,8 @@ const initialState = {
     ],
     cashbackTotals: [],
   },
+  withdrawalsList: [],
   itemsCount: 0,
-  withdrawalList: [],
   isLoading: false,
 };
 
@@ -36,6 +36,19 @@ export const getCashback = createAsyncThunk(
   async (params, thunkAPI) => {
     try {
       const response = await CashbackService.getCashback();
+      return await response.data;
+    } catch (error) {
+      toast.error(getError(error));
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const getWithdrawals = createAsyncThunk(
+  'cashback/getWithdrawals ',
+  async (params, thunkAPI) => {
+    try {
+      const response = await CashbackService.getWithdrawals();
       return await response.data;
     } catch (error) {
       toast.error(getError(error));
@@ -57,6 +70,16 @@ const cashbackSlice = createSlice({
       state.isLoading = true;
     },
     [getCashback.rejected]: (state) => {
+      state.isLoading = false;
+    },
+    [getWithdrawals.fulfilled]: (state, action) => {
+      state.withdrawalsList = action.payload.withdrawals;
+      state.isLoading = false;
+    },
+    [getWithdrawals.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getWithdrawals.rejected]: (state) => {
       state.isLoading = false;
     },
     // [getStore.fulfilled]: (state, action) => {
