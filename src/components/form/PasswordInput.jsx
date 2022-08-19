@@ -66,7 +66,7 @@ const PasswordInput = ({
       />
       {isError && (
         <div className={classes.errorMessage}>
-          {errorMessage || 'Should contain minimum 7 symbols'}
+          {errorMessage || 'Should contain minimum 7 symbols maximum 20'}
         </div>
       )}
     </div>

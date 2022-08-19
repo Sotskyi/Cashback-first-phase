@@ -9,7 +9,7 @@ export const validationRules = {
   isPhoneNumber: (data) => /^\d{10}$/.test(data),
   isFirstName: (data) => /^[a-zA-Z]{2,}/.test(data),
   isLastName: (data) => /^[a-zA-Z]{2,}/.test(data),
-  isPassword: (data) => /^\S{7,}$/.test(data),
+  isPassword: (data) => /^\S{7,20}$/.test(data),
   isPasswordEqual: (data) => {
     const { password, confirmPassword } = data;
     return password === confirmPassword;

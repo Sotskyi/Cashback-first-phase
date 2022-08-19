@@ -1,11 +1,15 @@
 import axios from 'axios';
 
 export default class CashbackService {
-  static async getCashback() {
-    return axios.get('/users/me/cashback');
+  static async getCashback(params) {
+    return axios.get('/users/me/cashback', {
+      params: { ...params },
+    });
   }
 
-  static async getWithdrawals() {
-    return axios.get('/users/me/withdrawals');
+  static async getWithdrawals(params) {
+    return axios.get('/users/me/withdrawals', {
+      params: { ...params },
+    });
   }
 }

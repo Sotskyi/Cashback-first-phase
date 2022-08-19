@@ -9,7 +9,7 @@ import PhoneNumberInput from '../../../components/form/PhoneNumberInput';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { login } from '../../../redux/slices/authSlice';
 
-const LoginAccount = ({ creds, handleChange, next }) => {
+const LoginAccount = ({ creds, handleChange }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [checkIsValid, setIsShowError] = useValidator();
@@ -34,8 +34,7 @@ const LoginAccount = ({ creds, handleChange, next }) => {
         login({ ...creds, phoneNumber: insertString('+1', creds.phoneNumber) }),
       );
       if (login.fulfilled.match(resultAction)) {
-        next();
-        // dispatch(reset());
+        navigate('/home');
       }
     }
   };

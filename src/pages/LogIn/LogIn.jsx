@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 // import { useNavigate } from 'react-router-dom';
 
 import LoginAccount from './Tabs/LoginAccount';
-import VerifyPhone from '../../components/VerifyPhone';
+// import VerifyPhone from '../../components/VerifyPhone';
 import AuthLandingLayout from '../../components/layouts/AuthLandingLayout';
 import Loader from '../../components/lib/Loader';
 // import { loginConfirm } from '../../redux/slices/authSlice';
@@ -18,7 +18,7 @@ const LogIn = () => {
   const { isLoading } = useSelector((state) => state.auth);
 
   const next = () => {
-    if (activeStep !== 3) {
+    if (activeStep !== 2) {
       setActiveStep((prev) => prev + 1);
     }
   };
@@ -49,14 +49,14 @@ const LogIn = () => {
           handleChange={handleChange}
         />
       )}
-      {activeStep === 1 && (
+      {/* {activeStep === 1 && (
         <VerifyPhone
           next={false}
           setCreds={setCreds}
           creds={creds}
           useFor='login'
         />
-      )}
+      )} */}
     </AuthLandingLayout>
   );
 };

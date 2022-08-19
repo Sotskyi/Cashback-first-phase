@@ -2,10 +2,11 @@ import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
-import HeaderLayout from './components/layouts/HeaderLayout';
+// import HeaderLayout from './components/layouts/HeaderLayout';
 // import NotFoundPage from './pages/NotFound';
 import Loader from './components/lib/Loader';
 import AuthLayout from './components/layouts/AuthLayout';
+import ProtectedRoutesLayout from './components/layouts/ProtectedRoutesLayout';
 
 const SignUp = React.lazy(() => import('./pages/SignUp/SignUp'));
 const LogIn = React.lazy(() => import('./pages/LogIn/LogIn'));
@@ -51,11 +52,11 @@ const App = () => {
               element={<ResetPasswordByEmail />}
             />
             {/* public or protected routes */}
-            <Route path='/' element={<HeaderLayout />}>
+            <Route path='/' element={<AuthLayout />}>
               <Route index element={<Home />} />
               <Route path='/store/:id' element={<Store />} />
               <Route path='/cashback' element={<Cashback />} />
-              <Route element={<AuthLayout />}>
+              <Route element={<ProtectedRoutesLayout />}>
                 <Route
                   path='/missing_transaction'
                   element={<MissingTransaction />}

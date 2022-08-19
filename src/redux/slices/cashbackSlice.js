@@ -27,7 +27,7 @@ const initialState = {
     cashbackTotals: [],
   },
   withdrawalsList: [],
-  itemsCount: 0,
+  withdrawalItemsCount: 0,
   isLoading: false,
 };
 
@@ -35,7 +35,7 @@ export const getCashback = createAsyncThunk(
   'cashback/getCashback ',
   async (params, thunkAPI) => {
     try {
-      const response = await CashbackService.getCashback();
+      const response = await CashbackService.getCashback(params);
       return await response.data;
     } catch (error) {
       toast.error(getError(error));
@@ -48,7 +48,7 @@ export const getWithdrawals = createAsyncThunk(
   'cashback/getWithdrawals ',
   async (params, thunkAPI) => {
     try {
-      const response = await CashbackService.getWithdrawals();
+      const response = await CashbackService.getWithdrawals(params);
       return await response.data;
     } catch (error) {
       toast.error(getError(error));

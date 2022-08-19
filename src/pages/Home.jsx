@@ -24,7 +24,7 @@ const Home = () => {
     (state) => state.stores,
   );
 
-  useObserver(lastElement, Math.ceil(itemsCount / 8) > page, isLoading, () => {
+  useObserver(lastElement, Math.ceil(itemsCount / 12) > page, isLoading, () => {
     setPage((prev) => prev + 1);
   });
 

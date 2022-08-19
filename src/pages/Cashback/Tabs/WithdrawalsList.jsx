@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -6,15 +6,30 @@ import withdrawalsSuccess from '../../../assets/images/icons/withdrawalsSuccess.
 import { getWithdrawals } from '../../../redux/slices/cashbackSlice';
 import { getDateForCashback } from '../../../utils/helpers';
 import Loader from '../../../components/lib/Loader';
+import { useObserver } from '../../../hooks/useObserver';
 
 const WithdrawalsList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { withdrawalsList, isLoading } = useSelector((state) => state.cashback);
+  const lastElement = useRef();
+  const [page, setPage] = useState(1);
+
+  const { withdrawalsList, isLoading, withdrawalItemsCount } = useSelector(
+    (state) => state.cashback,
+  );
+
+  useObserver(
+    lastElement,
+    Math.ceil(withdrawalItemsCount / 4) > page,
+    isLoading,
+    () => {
+      setPage((prev) => prev + 1);
+    },
+  );
 
   useEffect(() => {
-    dispatch(getWithdrawals());
-  }, []);
+    dispatch(getWithdrawals({ page, limit: 6 }));
+  }, [page]);
 
   const getTotalWithdrawal = (items) => items.reduce((a, b) => a + b.amount, 0);
 
@@ -23,36 +38,41 @@ const WithdrawalsList = () => {
       {isLoading ? (
         <Loader />
       ) : (
-        withdrawalsList?.map((el) => (
-          <>
-            <div className={classes.dateContainer}>
-              <div className={classes.date}>{getDateForCashback(el.date)} </div>
-              <div className={classes.totalCashback}>
-                $ {getTotalWithdrawal(el.items)}
-              </div>
-            </div>
-            {el.items.map((item) => (
-              <div className={classes.withdrawalContainer}>
-                <div className={classes.withdrawalAvatar}>
-                  {' '}
-                  <img
-                    src={withdrawalsSuccess}
-                    // className={classes.withdrawalsIconSuccess}
-                    alt='cash'
-                  />{' '}
+        <>
+          {withdrawalsList?.map((el) => (
+            <div key={el.date}>
+              <div className={classes.dateContainer}>
+                <div className={classes.date}>
+                  {getDateForCashback(el.date)}{' '}
                 </div>
-                <div className={classes.withdrawalContentContainer}>
-                  <div className={classes.withdrawalContentWrapper}>
-                    <div className={classes.withdrawalTitle}>Withdrawal</div>
-                    <div className={classes.withdrawalCashback}>
-                      $ {item.amount}
+                <div className={classes.totalCashback}>
+                  $ {getTotalWithdrawal(el.items)}
+                </div>
+              </div>
+              {el.items.map((item) => (
+                <div key={item.amount} className={classes.withdrawalContainer}>
+                  <div className={classes.withdrawalAvatar}>
+                    {' '}
+                    <img
+                      src={withdrawalsSuccess}
+                      // className={classes.withdrawalsIconSuccess}
+                      alt='cash'
+                    />{' '}
+                  </div>
+                  <div className={classes.withdrawalContentContainer}>
+                    <div className={classes.withdrawalContentWrapper}>
+                      <div className={classes.withdrawalTitle}>Withdrawal</div>
+                      <div className={classes.withdrawalCashback}>
+                        $ {item.amount}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </>
-        ))
+              ))}
+            </div>
+          ))}
+          <div ref={lastElement} className={classes.lastElement} />
+        </>
       )}
     </div>
   );
@@ -143,5 +163,9 @@ const useStyles = makeStyles((theme) => ({
     // lineHeight: '100%',
     // letterSpacing: '0.02em',
     // color: '#33CC55',
+  },
+  lastElement: {
+    width: '100%',
+    height: '1px',
   },
 }));

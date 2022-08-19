@@ -179,8 +179,10 @@ const authSlice = createSlice({
   },
   extraReducers: {
     [login.fulfilled]: (state, action) => {
-      state.confirmSms = action.payload.code;
+      // state.confirmSms = action.payload.code;
+      state.user = action.payload.user;
       state.isLoading = false;
+      state.isAuth = true;
     },
     [login.pending]: (state) => {
       state.isLoading = true;
@@ -188,16 +190,16 @@ const authSlice = createSlice({
     [login.rejected]: (state) => {
       state.isLoading = false;
     },
-    [loginConfirm.fulfilled]: (state, action) => {
-      state.user = action.payload.user;
-      state.isAuth = true;
-    },
-    [loginConfirm.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [loginConfirm.rejected]: (state) => {
-      state.isLoading = false;
-    },
+    // [loginConfirm.fulfilled]: (state, action) => {
+    //   state.user = action.payload.user;
+    //   state.isAuth = true;
+    // },
+    // [loginConfirm.pending]: (state) => {
+    //   state.isLoading = true;
+    // },
+    // [loginConfirm.rejected]: (state) => {
+    //   state.isLoading = false;
+    // },
     [register.pending]: (state) => {
       state.isLoading = true;
     },

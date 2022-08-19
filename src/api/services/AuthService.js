@@ -4,18 +4,20 @@ import { saveTokens } from '../requestsInterceptor';
 
 export default class AuthService {
   static async login(creds) {
-    return axios.post('/auth/signin', {
-      ...creds,
-    });
-  }
-
-  static async loginConfirm(creds) {
     return axios
-      .post('/auth/signin/confirm', {
+      .post('/auth/signin', {
         ...creds,
       })
       .then(saveTokens);
   }
+
+  // static async loginConfirm(creds) {
+  //   return axios
+  //     .post('/auth/signin/confirm', {
+  //       ...creds,
+  //     })
+  //     .then(saveTokens);
+  // }
 
   static async register(creds) {
     return axios
