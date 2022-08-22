@@ -1,14 +1,20 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import Input from '@mui/material/Input';
-import { useNavigate } from 'react-router-dom';
 
 import LanguageSwitcher from './lib/LanguageSwitcher';
 import logo from '../assets/images/logos/logo.svg';
 import search from '../assets/images/icons/search.svg';
+import { setSearch } from '../redux/slices/storesSlice';
+
+import useDebounce from '../hooks/useDebounce';
 
 const UnloginedHeader = () => {
+  const [searchTerm, setSearchTerm] = useState('');
   const classes = useStyles();
   const navigate = useNavigate();
+  useDebounce(searchTerm, 500, setSearch);
   return (
     <>
       <div
@@ -25,14 +31,11 @@ const UnloginedHeader = () => {
           <img className={classes.searchIcon} src={search} alt='menu' />
 
           <Input
+            onChange={(e) => setSearchTerm(e.target.value)}
             placeholder='Search stores'
             disableUnderline
             fullWidth
             sx={{ marginLeft: '8px' }}
-            // inputProps={{
-            //   'aria-label': 'Search',
-            // }}
-            // onChange={(ev) => searchHandler(ev)}
           />
         </div>
         <LanguageSwitcher />

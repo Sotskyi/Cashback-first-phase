@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import Input from '@mui/material/Input';
@@ -5,13 +6,17 @@ import Input from '@mui/material/Input';
 import LanguageSwitcher from './lib/LanguageSwitcher';
 import logo from '../assets/images/logos/logo.svg';
 import search from '../assets/images/icons/search.svg';
-
+import { setSearch } from '../redux/slices/storesSlice';
 import UserMenu from './lib/UserMenu';
+import useDebounce from '../hooks/useDebounce';
 
 const LoginedHeader = ({ availableBalance }) => {
+  const [searchTerm, setSearchTerm] = useState('');
   const classes = useStyles();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  useDebounce(searchTerm, 500, setSearch);
 
   return (
     <div className={classes.headerContainer}>
@@ -21,6 +26,7 @@ const LoginedHeader = ({ availableBalance }) => {
       <div className={classes.searchContainer}>
         <img className={classes.searchIcon} src={search} alt='menu' />
         <Input
+          onChange={(e) => setSearchTerm(e.target.value)}
           placeholder='Search stores'
           disableUnderline
           fullWidth

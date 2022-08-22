@@ -15,12 +15,25 @@ const initialState = {
       { id: '', title: '', description: '', specialRewardTitle: null },
     ],
   },
-
+  search: '',
   isLoading: false,
 };
 
 export const getStores = createAsyncThunk(
   'stores/getStores',
+  async (params, thunkAPI) => {
+    try {
+      const response = await StoresService.getStores(params);
+      return await response.data;
+    } catch (error) {
+      toast.error(getError(error));
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
+export const getStoresBySearch = createAsyncThunk(
+  'stores/getStoresBySearch',
   async (params, thunkAPI) => {
     try {
       const response = await StoresService.getStores(params);
@@ -76,7 +89,11 @@ const storesSlice = createSlice({
         ],
       };
     },
+    setSearch: (state, action) => {
+      state.search = action.payload;
+    },
   },
+
   extraReducers: {
     [getStores.fulfilled]: (state, action) => {
       state.storesList = [...state.storesList, ...action.payload.items];
@@ -89,6 +106,18 @@ const storesSlice = createSlice({
     [getStores.rejected]: (state) => {
       state.isLoading = false;
     },
+
+    [getStoresBySearch.fulfilled]: (state, action) => {
+      state.storesList = action.payload.items;
+      state.isLoading = false;
+    },
+    [getStoresBySearch.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getStoresBySearch.rejected]: (state) => {
+      state.isLoading = false;
+    },
+
     // [getStore.fulfilled]: (state, action) => {
     //   state.store = action.payload;
     //   state.isLoading = false;
@@ -111,5 +140,5 @@ const storesSlice = createSlice({
   },
 });
 
-export const { reset } = storesSlice.actions;
+export const { reset, setSearch } = storesSlice.actions;
 export default storesSlice.reducer;

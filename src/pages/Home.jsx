@@ -5,13 +5,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import StoreIconSlider from '../components/lib/StoreIconSlider';
 import StoreCard from '../components/StoreCard';
 import HowItWorksCarousel from '../components/lib/howItWorksCarousel/HowItWorksCarousel';
-import { getStores, reset } from '../redux/slices/storesSlice';
+import {
+  getStores,
+  reset,
+  getStoresBySearch,
+} from '../redux/slices/storesSlice';
 import { useObserver } from '../hooks/useObserver';
 
 const Home = () => {
   const classes = useStyles();
 
   const dispatch = useDispatch();
+  // useDebounce(searchTerm, 500);
   const lastElement = useRef();
   const [categoryId, setCategoryId] = useState('favoritesPosition');
   const [step, setStep] = useState(0);
@@ -20,19 +25,62 @@ const Home = () => {
   const [isShowFilter, setIsShowFilter] = useState(false);
   const [filters, setFilters] = useState([]);
 
-  const { storesList, isLoading, itemsCount } = useSelector(
+  const { storesList, isLoading, itemsCount, search } = useSelector(
     (state) => state.stores,
   );
+  console.log(search);
 
   useObserver(lastElement, Math.ceil(itemsCount / 12) > page, isLoading, () => {
     setPage((prev) => prev + 1);
   });
 
   useEffect(() => {
-    if (categoryId === 'favoritesPosition' || categoryId === 'title') {
-      dispatch(getStores({ sortingKey: categoryId, page, limit: 12 }));
-    } else dispatch(getStores({ category: categoryId, page, limit: 12 }));
-  }, [categoryId, page]);
+    if (search.length === 0) {
+      if (categoryId === 'favoritesPosition' || categoryId === 'title') {
+        dispatch(
+          getStores({
+            sortingKey: categoryId,
+            page,
+            limit: 12,
+          }),
+        );
+      } else
+        dispatch(
+          getStores({
+            category: categoryId,
+            page,
+            limit: 12,
+          }),
+        );
+    }
+  }, [categoryId, page, search]);
+
+  useEffect(() => {
+    if (search.length > 0) {
+      if (categoryId === 'favoritesPosition' || categoryId === 'title') {
+        dispatch(
+          getStoresBySearch({
+            sortingKey: categoryId,
+            page,
+            limit: 1000,
+            languageCode: 'en',
+            title: search,
+          }),
+        );
+      } else
+        dispatch(
+          getStoresBySearch({
+            category: categoryId,
+            page,
+            limit: 1000,
+            languageCode: 'en',
+            title: search,
+          }),
+        );
+    } else {
+      setPage(1);
+    }
+  }, [search]);
 
   useEffect(() => {
     return () => dispatch(reset());
