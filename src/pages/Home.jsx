@@ -28,7 +28,6 @@ const Home = () => {
   const { storesList, isLoading, itemsCount, search } = useSelector(
     (state) => state.stores,
   );
-  console.log(search);
 
   useObserver(lastElement, Math.ceil(itemsCount / 12) > page, isLoading, () => {
     setPage((prev) => prev + 1);
