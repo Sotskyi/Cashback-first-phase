@@ -3,8 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 
-import ProductCard from '../components/ProductCard';
-import { getStore, redirectToStore } from '../redux/slices/storesSlice';
+import SpecialOffer from '../components/SpecialOffer';
+import {
+  getStore,
+  redirectToStore,
+  redirectToSpecialOffer,
+} from '../redux/slices/storesSlice';
 import Loader from '../components/lib/Loader';
 
 const Store = () => {
@@ -19,6 +23,7 @@ const Store = () => {
     translations: [
       { id: '', title: 'store', description: '', specialRewardTitle: null },
     ],
+    specialOffers: [],
   });
 
   useEffect(async () => {
@@ -30,7 +35,7 @@ const Store = () => {
     }
   }, []);
 
-  const handleRedirect = () => {
+  const handleRedirectToStore = () => {
     setTriggerLoader(true);
     if (isAuth) {
       return dispatch(redirectToStore(id));
@@ -73,17 +78,37 @@ const Store = () => {
                     On purchases over $30
                   </div>
                 </div>
-                <div className={classes.shopButton} onClick={() => {}}>
-                  {isAuth ? 'Shop Now' : 'Log in to shop'}
+                <div
+                  className={classes.shopButton}
+                  onClick={handleRedirectToStore}
+                >
+                  {triggerLoader && (
+                    <Loader delay={3000} setTriggerLoader={setTriggerLoader} />
+                  )}
+                  {!triggerLoader && (isAuth ? 'Shop Now' : 'Log in to shop')}
                 </div>{' '}
               </div>
             </div>
 
-            <div className={classes.productCardsContainer}>
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
+            <div className={classes.specialOffersContainer}>
+              {store.specialOffers.length > 0 ? (
+                store.specialOffers.map((el) => (
+                  <SpecialOffer
+                    key={el.id}
+                    title={el.translations[0].title}
+                    description={el.translations[0].description}
+                    offerId={el.id}
+                    reward={el.reward}
+                    storeId={id}
+                    isAuth={isAuth}
+                    redirectToSpecialOffer={redirectToSpecialOffer}
+                  />
+                ))
+              ) : (
+                <div className={classes.noOffersTitle}>
+                  No offers for this store
+                </div>
+              )}
             </div>
           </div>
           <div className={classes.rightContent}>
@@ -100,7 +125,10 @@ const Store = () => {
                   On purchases over $30
                 </div>
               </div>
-              <div className={classes.shopButton} onClick={handleRedirect}>
+              <div
+                className={classes.shopButton}
+                onClick={handleRedirectToStore}
+              >
                 {triggerLoader && (
                   <Loader delay={3000} setTriggerLoader={setTriggerLoader} />
                 )}
@@ -217,17 +245,32 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '125%',
     letterSpacing: '0.01em',
   },
-  productCardsContainer: {
+  specialOffersContainer: {
     marginTop: '16px',
     width: '688px',
-    height: '352px',
+    height: '100%',
     display: 'flex',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     alignContent: 'space-between',
+    // '&>*': {
+    //   flex: '0 0 33.3333%',
+    // },
     [theme.breakpoints.down('md')]: {
       width: '100%',
       justifyContent: 'center',
+    },
+    overflowY: 'scroll',
+    '&::-webkit-scrollbar': {
+      width: '1px',
+    },
+    '&::-webkit-scrollbar-track': {
+      boxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+      webkitBoxShadow: 'inset 0 0 6px rgba(0,0,0,0.00)',
+    },
+    '&::-webkit-scrollbar-thumb': {
+      backgroundColor: 'rgba(0,0,0,.1)',
+      outline: '1px solid slategrey',
     },
   },
   rightContent: {
@@ -255,6 +298,19 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   discountPercentCardContainerForMobileWrapper: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noOffersTitle: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: '16px',
+    lineHeight: '125%',
+    letterSpacing: '0.01em',
+    width: '100%',
+    height: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

@@ -2,7 +2,11 @@ import { makeStyles } from '@material-ui/core';
 
 import withdrawalsWhite from '../../../assets/images/icons/withdrawalsWhite.svg';
 
-const WithdrawalCardStep1 = ({ handleSubmit, availableCash }) => {
+const WithdrawalCardStep1 = ({
+  handleSubmit,
+  availableCash,
+  availableCashPending,
+}) => {
   const classes = useStyles();
 
   return (
@@ -14,8 +18,8 @@ const WithdrawalCardStep1 = ({ handleSubmit, availableCash }) => {
         <div>TOTAL</div>
       </div>
       <div className={classes.priceContainers}>
-        <div>$ 26.47</div>
-        <div>$ 26.47</div>
+        <div>$ {availableCashPending}</div>
+        <div>$ {availableCash + availableCashPending}</div>
       </div>
       <div className={classes.withdrawButton} onClick={handleSubmit} id='1'>
         Withdraw

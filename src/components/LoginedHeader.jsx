@@ -16,6 +16,18 @@ const LoginedHeader = ({ availableBalance }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setSearchTerm(value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === ' ' && searchTerm.length === 0) {
+      return e.preventDefault();
+    }
+    return null;
+  };
+
   useDebounce(searchTerm, 500, setSearch);
 
   return (
@@ -26,7 +38,8 @@ const LoginedHeader = ({ availableBalance }) => {
       <div className={classes.searchContainer}>
         <img className={classes.searchIcon} src={search} alt='menu' />
         <Input
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={(e) => handleChange(e)}
+          onKeyDown={handleKeyDown}
           placeholder='Search stores'
           disableUnderline
           fullWidth

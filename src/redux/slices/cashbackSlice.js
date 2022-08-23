@@ -27,7 +27,8 @@ const initialState = {
     cashbackTotals: [],
   },
   withdrawalsList: [],
-  withdrawalItemsCount: 0,
+  totalWithdrawals: 0,
+  totalCashback: 0,
   isLoading: false,
 };
 
@@ -64,6 +65,7 @@ const cashbackSlice = createSlice({
   extraReducers: {
     [getCashback.fulfilled]: (state, action) => {
       state.cashbackList = action.payload;
+      state.totalCashback = action.payload.count;
       state.isLoading = false;
     },
     [getCashback.pending]: (state) => {
@@ -74,6 +76,7 @@ const cashbackSlice = createSlice({
     },
     [getWithdrawals.fulfilled]: (state, action) => {
       state.withdrawalsList = action.payload.withdrawals;
+      state.totalWithdrawals = action.payload.count;
       state.isLoading = false;
     },
     [getWithdrawals.pending]: (state) => {

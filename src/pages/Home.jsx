@@ -34,7 +34,7 @@ const Home = () => {
   });
 
   useEffect(() => {
-    if (search.length === 0) {
+    if (search.length === 0 && filters.length === 0) {
       if (categoryId === 'favoritesPosition' || categoryId === 'title') {
         dispatch(
           getStores({
@@ -52,38 +52,35 @@ const Home = () => {
           }),
         );
     }
-  }, [categoryId, page, search]);
+  }, [categoryId, page, search, filters]);
 
   useEffect(() => {
-    if (search.length > 0) {
+    if (search.length > 0 || filters.length > 0) {
       if (categoryId === 'favoritesPosition' || categoryId === 'title') {
         dispatch(
           getStoresBySearch({
             sortingKey: categoryId,
-            page,
+            page: '1',
             limit: 1000,
             languageCode: 'en',
             title: search,
+            filter: filters.length > 0 ? filters.join() : '',
           }),
         );
       } else
         dispatch(
           getStoresBySearch({
             category: categoryId,
-            page,
+            page: '1',
             limit: 1000,
             languageCode: 'en',
             title: search,
+            filter: filters.length > 0 ? filters.join() : '',
           }),
         );
-    } else {
-      setPage(1);
     }
-  }, [search]);
-
-  useEffect(() => {
     return () => dispatch(reset());
-  }, []);
+  }, [search, filters, categoryId, page]);
 
   return (
     <div className={classes.homeContainer}>

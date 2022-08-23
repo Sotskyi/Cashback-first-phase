@@ -5,6 +5,7 @@
 
 import axios from 'axios';
 import createAuthRefreshInterceptor from 'axios-auth-refresh';
+import { Navigate } from 'react-router-dom';
 // import router from "../router";
 const API_URL = `${process.env.REACT_APP_API_URL}`;
 const REFRESH_TOKEN_URL = `${API_URL}/auth/refresh`;
@@ -74,6 +75,9 @@ const refreshTokenInterceptor = (error) => {
     error.config.baseURL.includes(REFRESH_TOKEN_URL)
   ) {
     clearAuthData();
+    /* eslint-disable */
+    <Navigate to='/login' replace />;
+
     return Promise.reject(error);
   }
 
@@ -86,6 +90,8 @@ const refreshTokenInterceptor = (error) => {
     })
     .catch(() => {
       clearAuthData();
+      /* eslint-disable */
+      <Navigate to='/login' replace />;
       // Uncomment in case of global router/history usage
       // redirectToLogin();
       return Promise.reject(error);

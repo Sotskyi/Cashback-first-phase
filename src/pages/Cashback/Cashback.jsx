@@ -15,15 +15,15 @@ const Cashback = () => {
   const [activeTab, setActiveTab] = useState('cashback');
   const [stepWithdrawalCard, setStepWithdrawalCard] = useState(1);
   const { isAuth, user } = useSelector((state) => state.auth);
+  const { cashbackList } = useSelector((state) => state.cashback);
+  const cashbackPending = cashbackList.cashbackTotals.filter(
+    (el) => el.title === 'pending',
+  )[0];
 
   const handleSubmitCard = () => {
     if (stepWithdrawalCard < 3) {
       setStepWithdrawalCard((prev) => prev + 1);
     }
-
-    // if (+e.target.id === 1) {
-    //   setStepWithdrawalCard(2);
-    // }
   };
 
   const handleBackButton = () => {
@@ -45,7 +45,8 @@ const Cashback = () => {
             {stepWithdrawalCard === 1 && (
               <WithdrawalCardStep1
                 handleSubmit={handleSubmitCard}
-                availableCash={user.wallet.balance}
+                availableCash={user.wallet.balance || 0}
+                availableCashPending={parseFloat(cashbackPending?.sum) || 0}
               />
             )}
             {stepWithdrawalCard === 2 && (

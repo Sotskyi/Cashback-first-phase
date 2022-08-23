@@ -75,6 +75,23 @@ export const redirectToStore = createAsyncThunk(
   },
 );
 
+export const redirectToSpecialOffer = createAsyncThunk(
+  'stores/redirectToStore',
+  async (offerId, thunkAPI) => {
+    try {
+      const response = await StoresService.redirectToSpecialOffer(offerId);
+      const data = await response.data;
+      if (data.url && data.url.includes('https')) {
+        window.location.href = `${data.url}`;
+      }
+      return data;
+    } catch (error) {
+      toast.error('This offer is not active');
+      return thunkAPI.rejectWithValue(error);
+    }
+  },
+);
+
 const storesSlice = createSlice({
   name: 'stores',
   initialState,

@@ -14,7 +14,21 @@ const UnloginedHeader = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const classes = useStyles();
   const navigate = useNavigate();
+
   useDebounce(searchTerm, 500, setSearch);
+
+  const handleChange = (e) => {
+    const { value } = e.target;
+    setSearchTerm(value);
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === ' ' && searchTerm.length === 0) {
+      return e.preventDefault();
+    }
+    return null;
+  };
+
   return (
     <>
       <div
@@ -31,7 +45,8 @@ const UnloginedHeader = () => {
           <img className={classes.searchIcon} src={search} alt='menu' />
 
           <Input
-            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyDown={handleKeyDown}
+            onChange={handleChange}
             placeholder='Search stores'
             disableUnderline
             fullWidth

@@ -1,28 +1,56 @@
-import { makeStyles } from '@material-ui/core';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-const ProductCard = () => {
+import { makeStyles } from '@material-ui/core';
+import { redirectToSpecialOffer } from '../redux/slices/storesSlice';
+import Loader from './lib/Loader';
+
+const SpecialOffer = ({ title, description, offerId, isAuth, reward }) => {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [triggerLoader, setTriggerLoader] = useState(false);
+
+  const handleRedirectToSpecialOffer = () => {
+    if (!triggerLoader) {
+      setTriggerLoader(true);
+      if (isAuth) {
+        return dispatch(redirectToSpecialOffer(offerId));
+      }
+      return navigate('/login');
+    }
+    return null;
+  };
 
   return (
-    <div className={classes.productCardWrapper}>
+    <div className={classes.specialOfferWrapper} key={offerId}>
       <div className={classes.titlesWrapper}>
-        <div className={classes.title}>Text</div>
-        <div className={classes.subTitle}>Text</div>
+        <div className={classes.title}>{title}</div>
+        <div className={classes.subTitle}>{description}</div>
       </div>
       <div className={classes.bottomWrapper}>
         {' '}
-        <div className={classes.percentage}>33%</div>
-        <div className={classes.shopButton}>Shop Now</div>{' '}
+        <div className={classes.percentage}>{parseFloat(reward)}%</div>
+        <div
+          className={classes.shopButton}
+          onClick={handleRedirectToSpecialOffer}
+        >
+          {triggerLoader && (
+            <Loader delay={3000} setTriggerLoader={setTriggerLoader} />
+          )}
+          {!triggerLoader && (isAuth ? 'Shop Now' : 'Log in to shop')}
+        </div>{' '}
       </div>
     </div>
   );
 };
-export default ProductCard;
+export default SpecialOffer;
 
 const useStyles = makeStyles((theme) => ({
-  productCardWrapper: {
+  specialOfferWrapper: {
     width: '336px',
-    height: '168px',
+    height: '146px',
     boxSizing: 'border-box',
     padding: '16px',
     display: 'flex',
@@ -66,6 +94,7 @@ const useStyles = makeStyles((theme) => ({
   bottomWrapper: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   percentage: {
     display: 'flex',
@@ -79,8 +108,10 @@ const useStyles = makeStyles((theme) => ({
     color: '#33CC55',
   },
   shopButton: {
+    cursor: 'pointer',
     width: '234px',
-    height: '36px',
+    height: '100%',
+    paddingBlock: '3px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
