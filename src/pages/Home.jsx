@@ -34,8 +34,6 @@ const Home = () => {
   });
 
   useEffect(() => {
-    console.log('here!!!!dqew');
-
     if (search.length > 0 || filters.length > 0) {
       if (categoryId === 'favoritesPosition' || categoryId === 'title') {
         dispatch(
@@ -69,8 +67,6 @@ const Home = () => {
   }, [search, filters, categoryId]);
 
   useEffect(() => {
-    console.log('here what we need');
-    console.log(filters.length);
     if (search.length === 0 && filters.length === 0) {
       if (categoryId === 'favoritesPosition' || categoryId === 'title') {
         dispatch(
