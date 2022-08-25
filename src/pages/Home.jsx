@@ -79,8 +79,11 @@ const Home = () => {
           }),
         );
     }
-    return () => dispatch(reset());
-  }, [search, filters, categoryId, page]);
+    return () => {
+      dispatch(reset());
+      setPage(1);
+    };
+  }, [search, filters, categoryId]);
 
   return (
     <div className={classes.homeContainer}>
