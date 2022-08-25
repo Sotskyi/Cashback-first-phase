@@ -34,27 +34,8 @@ const Home = () => {
   });
 
   useEffect(() => {
-    if (search.length === 0 && filters.length === 0) {
-      if (categoryId === 'favoritesPosition' || categoryId === 'title') {
-        dispatch(
-          getStores({
-            sortingKey: categoryId,
-            page,
-            limit: 12,
-          }),
-        );
-      } else
-        dispatch(
-          getStores({
-            category: categoryId,
-            page,
-            limit: 12,
-          }),
-        );
-    }
-  }, [categoryId, page, search, filters]);
+    console.log('here!!!!dqew');
 
-  useEffect(() => {
     if (search.length > 0 || filters.length > 0) {
       if (categoryId === 'favoritesPosition' || categoryId === 'title') {
         dispatch(
@@ -78,12 +59,37 @@ const Home = () => {
             filter: filters.length > 0 ? filters.join() : '',
           }),
         );
+    } else {
+      setPage(1);
     }
     return () => {
       dispatch(reset());
       setPage(1);
     };
   }, [search, filters, categoryId]);
+
+  useEffect(() => {
+    console.log('here what we need');
+    console.log(filters.length);
+    if (search.length === 0 && filters.length === 0) {
+      if (categoryId === 'favoritesPosition' || categoryId === 'title') {
+        dispatch(
+          getStores({
+            sortingKey: categoryId,
+            page,
+            limit: 12,
+          }),
+        );
+      } else
+        dispatch(
+          getStores({
+            category: categoryId,
+            page,
+            limit: 12,
+          }),
+        );
+    }
+  }, [categoryId, page, search]);
 
   return (
     <div className={classes.homeContainer}>
