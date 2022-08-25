@@ -85,7 +85,7 @@ const Home = () => {
           }),
         );
     }
-  }, [categoryId, page, search]);
+  }, [categoryId, page, search, filters]);
 
   return (
     <div className={classes.homeContainer}>
