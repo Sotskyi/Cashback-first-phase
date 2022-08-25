@@ -20,7 +20,7 @@ const Home = React.lazy(() => import('./pages/Home'));
 const Store = React.lazy(() => import('./pages/Store'));
 const Cashback = React.lazy(() => import('./pages/Cashback/Cashback'));
 const MissingTransaction = React.lazy(() =>
-  import('./pages/MissingTransaction'),
+  import('./pages/MissingTransaction/MissingTransaction'),
 );
 
 const App = () => {
