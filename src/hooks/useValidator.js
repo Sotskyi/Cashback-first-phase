@@ -6,9 +6,10 @@ export const validationRules = {
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
       data,
     ),
+
   isPhoneNumber: (data) => /^\d{10}$/.test(data),
-  isFirstName: (data) => /^[a-zA-Z]{2,}/.test(data),
-  isLastName: (data) => /^[a-zA-Z]{2,}/.test(data),
+  isFirstName: (data) => /^[A-Za-z]+$/.test(data) && data.length > 2,
+  isLastName: (data) => /^[A-Za-z]+$/.test(data) && data.length > 2,
   isPassword: (data) => /^\S{7,20}$/.test(data),
   isPasswordEqual: (data) => {
     const { password, confirmPassword } = data;

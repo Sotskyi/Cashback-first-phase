@@ -54,6 +54,7 @@ const Cashback = () => {
                 handleSubmit={handleSubmitCard}
                 handleBackButton={handleBackButton}
                 data={user.carrierInfo.carrierFixedValues}
+                availableCash={user.wallet.balance || 0}
               />
             )}
             {stepWithdrawalCard === 3 && (

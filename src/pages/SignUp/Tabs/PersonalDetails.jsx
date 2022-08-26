@@ -92,7 +92,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               data: creds.firstName,
             }) && (
               <div className={classes.errorMessage}>
-                Please enter valid first name
+                The first name must contain alpha characters only.
               </div>
             )}
           </div>
@@ -137,7 +137,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               data: creds.lastName,
             }) && (
               <div className={classes.errorMessage}>
-                Please enter valid last name
+                The last name must contain alpha characters only
               </div>
             )}
           </div>
@@ -242,6 +242,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: '-24px',
     width: '100%',
+    height: '20px',
     [theme.breakpoints.down('xs')]: {
       bottom: '-36px',
     },

@@ -168,13 +168,22 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.01em',
   },
   storeCashback: {
+    // fontFamily: 'Source Sans Pro, sans-serif',
+    // fontStyle: 'normal',
+    // fontWeight: '600',
+    // fontSize: '16px',
+    // lineHeight: '100%',
+    // letterSpacing: '0.02em',
+    // color: '#6A6A6A',
+  },
+  totalCashback: {
     fontFamily: 'Source Sans Pro, sans-serif',
     fontStyle: 'normal',
     fontWeight: '600',
     fontSize: '16px',
     lineHeight: '100%',
     letterSpacing: '0.02em',
-    color: '#6A6A6A',
+    color: '#33CC55',
   },
   storeAvailableCashback: {
     fontFamily: 'Inter',
@@ -194,7 +203,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.015em',
     color: '#6A6A6A',
     display: 'flex',
-    width: '68px',
+    width: '71px',
     justifyContent: 'end',
   },
   storeAvailableCashbackTimerIcon: {

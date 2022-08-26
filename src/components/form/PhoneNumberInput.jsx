@@ -11,7 +11,15 @@ const PhoneNumberInput = ({ handleChange, data, isError }) => {
         <img className={classes.flag} src={flag} alt='menu' />
         <div className={classes.divider} />
         <input
-          onChange={handleChange}
+          onChange={(e) => {
+            if (
+              (data.length <= 10 && /^[0-9]*$/.test(e.target.value)) ||
+              e.nativeEvent.inputType === 'deleteContentBackward'
+            ) {
+              handleChange(e);
+            }
+          }}
+          onKeyDown={(e) => handleChange(e)}
           className={classes.phoneNumberInput}
           id='phoneNumber'
           type='tel'

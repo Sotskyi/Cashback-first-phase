@@ -1,6 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux/es/exports';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 // import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -22,6 +24,7 @@ const UserMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
+  const { user } = useSelector((state) => state.auth);
 
   const menuItems = [
     {
@@ -40,19 +43,24 @@ const UserMenu = () => {
       iconSrc: getHelp,
     },
     {
+      id: 'missingTransaction',
+      name: 'Missing transaction',
+      iconSrc: missingTransaction,
+    },
+    {
       id: 'termsConditions',
       name: 'Terms & Conditions',
+      iconSrc: termsAndConditions,
+    },
+    {
+      id: 'privacyPolicy',
+      name: 'Privacy Policy',
       iconSrc: termsAndConditions,
     },
     {
       id: 'logout',
       name: 'Log out',
       iconSrc: logOut,
-    },
-    {
-      id: 'missingTransaction',
-      name: 'Missing transaction',
-      iconSrc: missingTransaction,
     },
   ];
 
@@ -98,7 +106,7 @@ const UserMenu = () => {
               AVAILABLE
             </div>
             <div id='cashback' className={classes.availableMenuItemCash}>
-              $ 26
+              $ {user.wallet.balance || 0}
             </div>
           </div>
         </MenuItem>

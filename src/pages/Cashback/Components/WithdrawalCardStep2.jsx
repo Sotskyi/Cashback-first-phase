@@ -5,7 +5,12 @@ import withdrawals from '../../../assets/images/icons/withdrawals.svg';
 import withdrawalsGrey from '../../../assets/images/icons/withdrawalsGrey.svg';
 import arrowBackWhite from '../../../assets/images/icons/arrowBackWhite.svg';
 
-const WithdrawalCardStep2 = ({ handleSubmit, handleBackButton, data }) => {
+const WithdrawalCardStep2 = ({
+  handleSubmit,
+  handleBackButton,
+  data,
+  availableCash,
+}) => {
   const classes = useStyles(data.length);
   const [activeCell, setActiveCell] = useState(false);
 
@@ -20,32 +25,34 @@ const WithdrawalCardStep2 = ({ handleSubmit, handleBackButton, data }) => {
             alt='cash'
           />
         </div>
-        <div className={classes.availableCash}>$ 26.47</div>
+        <div className={classes.availableCash}>$ {availableCash}</div>
       </div>
       <div className={classes.cellsContainer}>
-        {data.map((el) => {
-          if (activeCell === el) {
+        {data
+          .filter((el) => el !== null)
+          .map((el) => {
+            if (activeCell === el) {
+              return (
+                <div
+                  id={el}
+                  className={`${classes.cell} ${classes.activeCell}`}
+                  key={el}
+                >
+                  ${el}
+                </div>
+              );
+            }
             return (
               <div
                 id={el}
-                className={`${classes.cell} ${classes.activeCell}`}
+                className={classes.cell}
                 key={el}
+                onClick={(e) => setActiveCell(+e.currentTarget.id)}
               >
                 ${el}
               </div>
             );
-          }
-          return (
-            <div
-              id={el}
-              className={classes.cell}
-              key={el}
-              onClick={(e) => setActiveCell(+e.currentTarget.id)}
-            >
-              ${el}
-            </div>
-          );
-        })}
+          })}
       </div>
 
       <div
