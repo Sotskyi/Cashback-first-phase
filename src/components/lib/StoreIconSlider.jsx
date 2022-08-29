@@ -341,6 +341,10 @@ const useStyles = makeStyles((theme) => ({
       minWidth: '0',
       marginLeft: '30px',
     },
+    [theme.breakpoints.down('sm')]: {
+      width: '45px',
+      marginLeft: '0px',
+    },
   },
   filterTitle: {
     fontWeight: '600',
