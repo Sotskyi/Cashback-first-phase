@@ -25,15 +25,13 @@ const CheckboxesFilter = ({ filters, setFilters }) => {
   return (
     <div className={classes.checkBoxesContainer}>
       <FormGroup
-        sx={{
+        sx={(theme) => ({
           width: '100%',
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
-          // [theme.breakpoints.down('sm')]: {
-          //   padding: '24px 16px  0px',
-          // },
-        }}
+          [theme.breakpoints.down('sm')]: { justifyContent: 'start' },
+        })}
       >
         {filtersList.map((el) => (
           <FormControlLabel
