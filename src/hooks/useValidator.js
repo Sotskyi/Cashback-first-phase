@@ -13,9 +13,14 @@ export const validationRules = {
   isPassword: (data) => /^\S{7,20}$/.test(data),
   isPasswordEqual: (data) => {
     const { password, confirmPassword } = data;
-    return password === confirmPassword;
+    return (
+      password === confirmPassword &&
+      validationRules.isPassword(password) &&
+      validationRules.isPassword(confirmPassword)
+    );
   },
   isCarrier: (data) => /[0-9]/.test(data),
+  isPaymentProof: (data) => data && data.length > 0,
 };
 // /^[a-z0-9]{7,}$/i.test(data)
 
@@ -46,6 +51,15 @@ export const useValidator = () => {
         return false;
       }
       if (nameOfData === 'carrier' && !validationRules.isCarrier(data)) {
+        return false;
+      }
+      if (nameOfData === 'isEmpty' && !validationRules.isEmpty(data)) {
+        return false;
+      }
+      if (
+        nameOfData === 'isPaymentProof' &&
+        !validationRules.isPaymentProof(data)
+      ) {
         return false;
       }
     }
