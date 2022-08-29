@@ -13,7 +13,7 @@ const PhoneNumberInput = ({ handleChange, data, isError }) => {
         <input
           onChange={(e) => {
             if (
-              (data.length <= 10 && /^[0-9]*$/.test(e.target.value)) ||
+              (data.length <= 9 && /^[0-9]*$/.test(e.target.value)) ||
               e.nativeEvent.inputType === 'deleteContentBackward'
             ) {
               handleChange(e);
