@@ -32,7 +32,13 @@ const LoginedHeader = ({ availableBalance }) => {
 
   return (
     <div className={classes.headerContainer}>
-      <div className={classes.logoContainer} onClick={() => navigate('/')}>
+      <div
+        className={classes.logoContainer}
+        onClick={() => {
+          navigate('/', { replace: true });
+          window.location.reload();
+        }}
+      >
         <img className={classes.logo} src={logo} alt='logo' />
       </div>
       <div className={classes.searchContainer}>

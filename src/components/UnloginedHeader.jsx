@@ -38,7 +38,12 @@ const UnloginedHeader = () => {
         Log in to shop
       </div>
       <div className={classes.headerContainer}>
-        <div onClick={() => navigate('/')}>
+        <div
+          onClick={() => {
+            navigate('/', { replace: true });
+            window.location.reload();
+          }}
+        >
           <img className={classes.logo} src={logo} alt='logo' />
         </div>
         <div className={classes.searchContainer}>

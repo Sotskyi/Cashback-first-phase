@@ -29,7 +29,7 @@ const Home = () => {
     (state) => state.stores,
   );
 
-  useObserver(lastElement, Math.ceil(itemsCount / 12) > page, isLoading, () => {
+  useObserver(lastElement, Math.ceil(itemsCount / 16) > page, isLoading, () => {
     setPage((prev) => prev + 1);
   });
 
@@ -73,7 +73,7 @@ const Home = () => {
           getStores({
             sortingKey: categoryId,
             page,
-            limit: 12,
+            limit: 16,
           }),
         );
       } else
@@ -81,7 +81,7 @@ const Home = () => {
           getStores({
             category: categoryId,
             page,
-            limit: 12,
+            limit: 16,
           }),
         );
     }
