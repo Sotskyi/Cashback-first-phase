@@ -40,15 +40,16 @@ const UnloginedHeader = () => {
       <div className={classes.headerContainer}>
         <div
           onClick={() => {
-            navigate('/', { replace: true });
-            window.location.reload();
+            // if (storesList.length > 0) {
+            //   dispatch(reset());
+            // }
+            navigate('/');
           }}
         >
           <img className={classes.logo} src={logo} alt='logo' />
         </div>
         <div className={classes.searchContainer}>
           <img className={classes.searchIcon} src={search} alt='menu' />
-
           <Input
             onKeyDown={handleKeyDown}
             onChange={handleChange}

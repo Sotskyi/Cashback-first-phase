@@ -90,12 +90,11 @@ const Home = () => {
   }, [categoryId, page, search, filters]);
 
   useEffect(() => {
-    if (page === 1) {
-      dispatch(reset());
-    }
-
     if (filters.length > 0) {
       setFilters([]);
+    }
+    if (page > 1) {
+      dispatch(reset());
     }
     setPage(1);
     setCategoryId('favoritesPosition');

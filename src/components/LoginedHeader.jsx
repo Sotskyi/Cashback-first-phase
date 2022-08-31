@@ -5,6 +5,7 @@ import Input from '@mui/material/Input';
 
 import LanguageSwitcher from './lib/LanguageSwitcher';
 import logo from '../assets/images/logos/logo.svg';
+
 import search from '../assets/images/icons/search.svg';
 import { setSearch } from '../redux/slices/storesSlice';
 import UserMenu from './lib/UserMenu';
@@ -35,8 +36,7 @@ const LoginedHeader = ({ availableBalance }) => {
       <div
         className={classes.logoContainer}
         onClick={() => {
-          navigate('/', { replace: true });
-          window.location.reload();
+          navigate('/');
         }}
       >
         <img className={classes.logo} src={logo} alt='logo' />
