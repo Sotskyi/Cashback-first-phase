@@ -50,7 +50,7 @@ export default SpecialOffer;
 const useStyles = makeStyles((theme) => ({
   specialOfferWrapper: {
     width: '336px',
-    height: '146px',
+    height: '100%',
     boxSizing: 'border-box',
     padding: '16px',
     display: 'flex',
