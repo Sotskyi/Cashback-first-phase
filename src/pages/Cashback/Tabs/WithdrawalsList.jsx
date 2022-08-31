@@ -14,13 +14,13 @@ const WithdrawalsList = () => {
   const lastElement = useRef();
   const [page, setPage] = useState(1);
 
-  const { withdrawalsList, isLoading, withdrawalItemsCount } = useSelector(
+  const { withdrawalsList, isLoading, totalWithdrawals } = useSelector(
     (state) => state.cashback,
   );
 
   useObserver(
     lastElement,
-    Math.ceil(withdrawalItemsCount / 4) > page,
+    Math.ceil(totalWithdrawals / 8) > page,
     isLoading,
     () => {
       setPage((prev) => prev + 1);
@@ -28,7 +28,7 @@ const WithdrawalsList = () => {
   );
 
   useEffect(() => {
-    dispatch(getWithdrawals({ page, limit: 6 }));
+    dispatch(getWithdrawals({ page, limit: 8 }));
   }, [page]);
 
   const getTotalWithdrawal = (items) => items.reduce((a, b) => a + b.amount, 0);

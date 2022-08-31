@@ -14,13 +14,20 @@ import { useObserver } from '../../../hooks/useObserver';
 const CashbackList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { cashbackList, isLoading } = useSelector((state) => state.cashback);
+  const { cashbackList, isLoading, totalCashback } = useSelector(
+    (state) => state.cashback,
+  );
   const lastElement = useRef();
   const [page, setPage] = useState(1);
 
-  useObserver(lastElement, Math.ceil(8 / 8) > page, isLoading, () => {
-    setPage((prev) => prev + 1);
-  });
+  useObserver(
+    lastElement,
+    Math.ceil(totalCashback / 8) > page,
+    isLoading,
+    () => {
+      setPage((prev) => prev + 1);
+    },
+  );
 
   useEffect(() => {
     dispatch(getCashback({ page, limit: 8 }));
