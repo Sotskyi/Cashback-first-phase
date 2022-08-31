@@ -8,13 +8,16 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { makeStyles } from '@material-ui/core';
 
-import userMenu from '../../assets/images/icons/forHeaderMenu/userMenu.svg';
+// import userMenu from '../../assets/images/icons/forHeaderMenu/userMenu.svg';
 import getHelp from '../../assets/images/icons/forHeaderMenu/getHelp.svg';
 import howTelcoWorks from '../../assets/images/icons/forHeaderMenu/howTelcoWorks.svg';
 import logOut from '../../assets/images/icons/forHeaderMenu/logOut.svg';
+import login from '../../assets/images/icons/forHeaderMenu/login.svg';
 import personalInfo from '../../assets/images/icons/forHeaderMenu/personalInfo.svg';
 import termsAndConditions from '../../assets/images/icons/forHeaderMenu/termsAndConditions.svg';
+import privacyPolicy from '../../assets/images/icons/forHeaderMenu/privacyPolicy.svg';
 import missingTransaction from '../../assets/images/icons/forHeaderMenu/missingTransaction.svg';
+import settings1 from '../../assets/images/icons/forHeaderMenu/settings1.svg';
 
 import { logoutUser } from '../../redux/slices/authSlice';
 
@@ -24,9 +27,9 @@ const UserMenu = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
-  const { user } = useSelector((state) => state.auth);
+  const { user, isAuth } = useSelector((state) => state.auth);
 
-  const menuItems = [
+  const loginedMenuItems = [
     {
       id: 'personalInfo',
       name: 'Personal information',
@@ -63,7 +66,34 @@ const UserMenu = () => {
       iconSrc: logOut,
     },
   ];
-
+  const unloginedMenuItems = [
+    {
+      id: 'login',
+      name: 'Login',
+      iconSrc: login,
+    },
+    {
+      id: 'howItWorks',
+      name: 'How Telco Rewards work',
+      iconSrc: howTelcoWorks,
+    },
+    {
+      id: 'getHelp',
+      name: 'Get help',
+      iconSrc: getHelp,
+    },
+    {
+      id: 'termsConditions',
+      name: 'Terms & Conditions',
+      iconSrc: termsAndConditions,
+    },
+    {
+      id: 'privacyPolicy',
+      name: 'Privacy Policy',
+      iconSrc: privacyPolicy,
+    },
+  ];
+  console.log(isAuth);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -78,13 +108,15 @@ const UserMenu = () => {
       navigate('/cashback');
     } else if (id === 'missingTransaction') {
       navigate('/missing_transaction');
+    } else if (id === 'login') {
+      navigate('/login');
     }
   };
-
+  /* eslint-disable */
   return (
     <div className={classes.menuContainer}>
       <div className={classes.menu} onClick={handleClick}>
-        <img src={userMenu} className={classes.menuIcon} alt='logo' />
+        <img src={settings1} className={classes.menuIcon} alt='logo' />
       </div>
       <Menu
         id='basic-menu'
@@ -101,16 +133,20 @@ const UserMenu = () => {
             [theme.breakpoints.up('md')]: { display: 'none' },
           })}
         >
-          <div id='cashback' className={classes.availableMenuItem}>
-            <div id='cashback' className={classes.availableMenuItemTitle}>
-              AVAILABLE
+          {isAuth ? (
+            <div id='cashback' className={classes.availableMenuItem}>
+              <div id='cashback' className={classes.availableMenuItemTitle}>
+                AVAILABLE
+              </div>
+              <div id='cashback' className={classes.availableMenuItemCash}>
+                $ {user?.wallet?.balance || 0}
+              </div>
             </div>
-            <div id='cashback' className={classes.availableMenuItemCash}>
-              $ {user.wallet.balance || 0}
-            </div>
-          </div>
+          ) : (
+            <></>
+          )}
         </MenuItem>
-        {menuItems.map((el) => (
+        {(isAuth ? loginedMenuItems : unloginedMenuItems).map((el) => (
           <MenuItem key={el.id} id={el.id} onClick={handleClose}>
             <span id={el.id} className={classes.menuIconWrapper}>
               <img id={el.id} src={el.iconSrc} alt='logo' />
@@ -122,7 +158,7 @@ const UserMenu = () => {
         ))}
       </Menu>
 
-      <div className={classes.avatar} />
+      {/* <div className={classes.avatar} /> */}
     </div>
   );
 };
@@ -132,7 +168,7 @@ const useStyles = makeStyles((theme) => ({
     width: '80px',
     height: '48px',
     background: '#FFFFFF',
-    border: '1px solid #EAEAEA',
+    // border: '1px solid #EAEAEA',
     borderRadius: '26px',
     display: 'flex',
     alignItems: 'center',
@@ -151,7 +187,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    border: '1px solid #EAEAEA',
+    border: '1px solid #EAAEAE',
     borderRadius: '12px',
     height: '48px',
     width: '272px',
@@ -175,7 +211,7 @@ const useStyles = makeStyles((theme) => ({
   menuIcon: {
     width: '24px',
     [theme.breakpoints.down('sm')]: {
-      width: '16px',
+      width: '18px',
     },
   },
   menuIconWrapper: {

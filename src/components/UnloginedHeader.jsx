@@ -7,6 +7,7 @@ import LanguageSwitcher from './lib/LanguageSwitcher';
 import logo from '../assets/images/logos/logo.svg';
 import search from '../assets/images/icons/search.svg';
 import { setSearch } from '../redux/slices/storesSlice';
+import UserMenu from './lib/UserMenu';
 
 import useDebounce from '../hooks/useDebounce';
 
@@ -60,9 +61,11 @@ const UnloginedHeader = () => {
           />
         </div>
         <LanguageSwitcher />
-        <div className={classes.loginButton} onClick={() => navigate('/login')}>
+
+        {/* <div className={classes.loginButton} onClick={() => navigate('/login')}>
           Log In
-        </div>
+        </div> */}
+        <UserMenu />
       </div>
     </>
   );

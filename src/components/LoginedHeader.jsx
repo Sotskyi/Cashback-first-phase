@@ -13,6 +13,7 @@ import useDebounce from '../hooks/useDebounce';
 
 const LoginedHeader = ({ availableBalance }) => {
   const [searchTerm, setSearchTerm] = useState('');
+
   const classes = useStyles();
   const navigate = useNavigate();
   const { pathname } = useLocation();
