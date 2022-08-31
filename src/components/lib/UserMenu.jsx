@@ -93,7 +93,7 @@ const UserMenu = () => {
       iconSrc: privacyPolicy,
     },
   ];
-  console.log(isAuth);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
