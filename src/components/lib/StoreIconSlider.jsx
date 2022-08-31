@@ -46,16 +46,14 @@ const StoreIconSlider = ({
   };
 
   const handleClickLeftArrow = () => {
-    if (step === 3) {
-      setCategoryId('8');
-      setStep(2);
-    } else if (step === 2) {
+    if (step === 2) {
       setCategoryId('4');
       setStep(1);
     } else if (step === 1) {
       setCategoryId('favoritesPosition');
       setStep(0);
     }
+
     dispatch(reset());
     setPage(1);
   };
@@ -63,14 +61,11 @@ const StoreIconSlider = ({
   const handleClickRightArrow = () => {
     // setStep((prev) => (+prev + 4).toString());
     if (step === 0) {
-      setCategoryId('4');
+      setCategoryId('8');
       setStep(1);
     } else if (step === 1) {
-      setCategoryId('8');
-      setStep(2);
-    } else if (step === 2) {
       setCategoryId('12');
-      setStep(3);
+      setStep(2);
     }
     dispatch(reset());
     setPage(1);
@@ -201,7 +196,7 @@ const StoreIconSlider = ({
         <div className={classes.arrowContainer}>
           <div
             className={`${classes.rightArrowIcon} ${
-              step === 3 ? classes.hidden : ''
+              step === 2 ? classes.hidden : ''
             }`}
             onClick={handleClickRightArrow}
           >
