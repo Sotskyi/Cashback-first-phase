@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 
 import withdrawals from '../../../assets/images/icons/withdrawals.svg';
@@ -10,9 +9,10 @@ const WithdrawalCardStep2 = ({
   handleBackButton,
   data,
   availableCash,
+  activeCell,
+  setActiveCell,
 }) => {
   const classes = useStyles(data.length);
-  const [activeCell, setActiveCell] = useState(false);
 
   return (
     <div className={classes.withdrawalCardContainer}>
@@ -31,24 +31,31 @@ const WithdrawalCardStep2 = ({
         {data
           .filter((el) => el !== null)
           .map((el) => {
-            if (activeCell === el) {
+            if (availableCash >= el) {
+              if (activeCell === el) {
+                return (
+                  <div
+                    id={el}
+                    className={`${classes.cell} ${classes.activeCell}`}
+                    key={el}
+                  >
+                    ${el}
+                  </div>
+                );
+              }
               return (
                 <div
                   id={el}
-                  className={`${classes.cell} ${classes.activeCell}`}
+                  className={classes.cell}
                   key={el}
+                  onClick={(e) => setActiveCell(+e.currentTarget.id)}
                 >
                   ${el}
                 </div>
               );
             }
             return (
-              <div
-                id={el}
-                className={classes.cell}
-                key={el}
-                onClick={(e) => setActiveCell(+e.currentTarget.id)}
-              >
+              <div id={el} className={classes.disabledCell} key={el}>
                 ${el}
               </div>
             );
@@ -160,6 +167,30 @@ const useStyles = makeStyles(() => ({
   activeCell: {
     background: '#FFFFFF',
     color: '#33CC55',
+  },
+  disabledCell: {
+    background: '#9e9e9e',
+    border: '1px solid #FFFFFF',
+    height: '45px',
+    borderRadius: '32px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'Source Sans Pro, sans-serif',
+    fontWeight: '700',
+    fontSize: '20px',
+    color: '#f3dddde0',
+    width: (dataLength) => {
+      if (dataLength > 6 && dataLength <= 12) {
+        return 'calc(50% - 8px)';
+      }
+      if (dataLength > 12) {
+        return 'calc(34% - 10px)';
+      }
+      return '100%';
+    },
+
+    // border: '1px solid #EAEAEA',
   },
   withdrawButton: {
     textAlign: 'center',

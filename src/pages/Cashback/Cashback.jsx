@@ -14,16 +14,17 @@ const Cashback = () => {
   const classes = useStyles();
   const [activeTab, setActiveTab] = useState('cashback');
   const [stepWithdrawalCard, setStepWithdrawalCard] = useState(1);
+  const [activeCell, setActiveCell] = useState(false);
   const { isAuth, user } = useSelector((state) => state.auth);
   const { cashbackList } = useSelector((state) => state.cashback);
+  const availableMoney = user?.wallet?.balance || 0;
+
   const cashbackPending = cashbackList.cashbackTotals.filter(
     (el) => el.title === 'pending',
   )[0];
 
   const handleSubmitCard = () => {
-    if (stepWithdrawalCard < 3) {
-      setStepWithdrawalCard((prev) => prev + 1);
-    }
+    setStepWithdrawalCard((prev) => prev + 1);
   };
 
   const handleBackButton = () => {
@@ -45,7 +46,7 @@ const Cashback = () => {
             {stepWithdrawalCard === 1 && (
               <WithdrawalCardStep1
                 handleSubmit={handleSubmitCard}
-                availableCash={user.wallet.balance || 0}
+                availableCash={availableMoney}
                 availableCashPending={parseFloat(cashbackPending?.sum) || 0}
               />
             )}
@@ -54,11 +55,15 @@ const Cashback = () => {
                 handleSubmit={handleSubmitCard}
                 handleBackButton={handleBackButton}
                 data={user.carrierInfo.carrierFixedValues}
-                availableCash={user.wallet.balance || 0}
+                availableCash={availableMoney || 0}
+                activeCell={activeCell}
+                setActiveCell={setActiveCell}
               />
             )}
             {stepWithdrawalCard === 3 && (
               <WithdrawalCardStep3
+                stillAvailable={availableMoney - activeCell}
+                withdrawalMoney={activeCell}
                 handleSubmit={handleSubmitCard}
                 handleBackButton={handleBackButton}
               />

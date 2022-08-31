@@ -2,7 +2,12 @@ import { makeStyles } from '@material-ui/core';
 
 import arrowBackWhite from '../../../assets/images/icons/arrowBackWhite.svg';
 
-const WithdrawalCardStep3 = ({ handleSubmit, handleBackButton }) => {
+const WithdrawalCardStep3 = ({
+  handleSubmit,
+  handleBackButton,
+  stillAvailable,
+  withdrawalMoney,
+}) => {
   const classes = useStyles();
 
   return (
@@ -19,10 +24,10 @@ const WithdrawalCardStep3 = ({ handleSubmit, handleBackButton }) => {
       </div>
 
       <div className={classes.availableCashbodyContainer}>
-        <div className={classes.addedCash}>$88</div>
+        <div className={classes.addedCash}>$ {withdrawalMoney}</div>
         <div className={classes.addedCashTitle}>ADDED TO MOBILE BALANCE</div>
         <div className={classes.stillAvailableCashContainer}>
-          <div className={classes.stillAvailableCash}>$ 8.47</div>
+          <div className={classes.stillAvailableCash}>$ {stillAvailable}</div>
           <div className={classes.addedCashTitle}>STILL AVAILABLE</div>
         </div>
       </div>
