@@ -1,6 +1,6 @@
-export const purchaseTypes = ['Mobile', 'Desktop'];
+export const purchaseTypes = ['mobile', 'desktop'];
 export const paymentMethods = [
-  'Credit Card',
-  'Debit Card',
-  'Installment payments',
+  'credit card',
+  'debit card',
+  'installment payments',
 ];

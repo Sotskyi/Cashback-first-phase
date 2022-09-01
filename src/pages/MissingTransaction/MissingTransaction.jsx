@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { makeStyles, TextField } from '@material-ui/core';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -10,24 +13,68 @@ import SubmitButton from '../../components/form/SubmitButton';
 import uploadPhoto from '../../assets/images/icons/uploadPhoto.svg';
 import MobileInput from './MobileInput/MobileInput';
 import { purchaseTypes, paymentMethods } from '../../utils/constants';
+import { useValidator } from '../../hooks/useValidator';
+import { getError, makeUpperCase } from '../../utils/helpers';
 
 const MissingTransaction = () => {
-  // const navigate = useNavigate();
+  const [checkIsValid, setIsShowError] = useValidator();
   const matches = useMediaQuery('(max-width:700px)');
   const classes = useStyles();
   const [creds, setCreds] = useState({
-    storeName: '',
-    dateOfPurchase: '',
-    purchaseType: '',
-    paymentMethod: '',
-    proofImage: '',
+    ticket: { store: '', purchasedAt: '', purchaseType: '', paymentMethod: '' },
+    paymentProof: '',
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCreds({ ...creds, [name]: value });
+    if (e.target.name === 'paymentProof' && e.target.files[0]) {
+      return setCreds({ ...creds, paymentProof: e.target.files[0] });
+    }
+    return setCreds({ ...creds, ticket: { ...creds.ticket, [name]: value } });
   };
 
+  const onSubmit = () => {
+    setIsShowError(true);
+
+    if (
+      checkIsValid({
+        nameOfData: 'isEmpty',
+        data: creds.ticket.store,
+        showErrorSync: true,
+      }) &&
+      checkIsValid({
+        nameOfData: 'isEmpty',
+        data: creds.ticket.purchasedAt,
+        showErrorSync: true,
+      }) &&
+      checkIsValid({
+        nameOfData: 'isEmpty',
+        data: creds.ticket.purchaseType,
+        showErrorSync: true,
+      }) &&
+      checkIsValid({
+        nameOfData: 'isEmpty',
+        data: creds.ticket.paymentMethod,
+        showErrorSync: true,
+      }) &&
+      checkIsValid({
+        nameOfData: 'isPaymentProof',
+        data: creds.paymentProof.name,
+        showErrorSync: true,
+      })
+    ) {
+      try {
+        const credsToJson = JSON.stringify(creds.ticket);
+        const formData = new FormData();
+        formData.append('ticket', credsToJson);
+        formData.append('paymentProof', creds.paymentProof);
+        axios.post('/tickets', formData);
+      } catch (error) {
+        toast.error(getError(error));
+      }
+    }
+  };
   return (
     <div className={classes.container}>
       {matches ? (
@@ -35,6 +82,8 @@ const MissingTransaction = () => {
           handleChange={handleChange}
           creds={creds}
           setCreds={setCreds}
+          onSubmit={onSubmit}
+          checkIsValid={checkIsValid}
         />
       ) : (
         <div className={classes.contentWrapper}>
@@ -53,15 +102,8 @@ const MissingTransaction = () => {
                 Store
               </InputLabel>
               <OutlinedInput
-                value={creds.storeName}
-                name='storeName'
-                // value={creds.firstName}
-                // error={
-                //   !checkIsValid({
-                //     nameOfData: 'firstName',
-                //     data: creds.firstName,
-                //   })
-                // }
+                value={creds.ticket.store}
+                name='store'
                 onChange={handleChange}
                 sx={{
                   width: { xs: '136px', sm: '368px' },
@@ -76,7 +118,15 @@ const MissingTransaction = () => {
                     padding: '8px 8px 8px 16px',
                   },
                 }}
-              />{' '}
+              />
+              {!checkIsValid({
+                nameOfData: 'isEmpty',
+                data: creds.ticket.store,
+              }) && (
+                <div className={classes.errorMessage}>
+                  Store name can’t be empty
+                </div>
+              )}
             </div>
             <div className={classes.inputWrapper}>
               <InputLabel
@@ -91,26 +141,23 @@ const MissingTransaction = () => {
                 Date of purchase
               </InputLabel>
               <TextField
-                value={creds.dateOfPurchase}
-                name='dateOfPurchase'
+                value={creds.ticket.purchasedAt}
+                name='purchasedAt'
                 type='date'
                 variant='outlined'
-                defaultValue=''
                 onChange={handleChange}
                 className={classes.calendar}
-                // InputProps={{inputProps: {  max: } }}
-                // fullWidth
-                // value={creds.firstName}
-                // error={
-                //   !checkIsValid({
-                //     nameOfData: 'firstName',
-                //     data: creds.firstName,
-                //   })
-                // }
               />
+              {!checkIsValid({
+                nameOfData: 'isEmpty',
+                data: creds.ticket.purchasedAt,
+              }) && (
+                <div className={classes.errorMessage}>
+                  Date of purchase can’t be empty
+                </div>
+              )}
             </div>
           </div>
-
           <div className={classes.inputContainer}>
             <div className={classes.inputWrapper}>
               <InputLabel
@@ -125,7 +172,7 @@ const MissingTransaction = () => {
                 Purchase type
               </InputLabel>
               <Select
-                value={creds.purchaseType}
+                value={creds.ticket.purchaseType}
                 name='purchaseType'
                 onChange={handleChange}
                 displayEmpty
@@ -148,15 +195,20 @@ const MissingTransaction = () => {
                   },
                 }}
               >
-                {/* <MenuItem value=''>
-                <em>None</em>
-              </MenuItem> */}
                 {purchaseTypes.map((el) => (
                   <MenuItem key={el} value={el}>
-                    {el}
+                    {makeUpperCase(el)}
                   </MenuItem>
                 ))}
               </Select>
+              {!checkIsValid({
+                nameOfData: 'isEmpty',
+                data: creds.ticket.purchaseType,
+              }) && (
+                <div className={classes.errorMessage}>
+                  Purchase type can’t be empty
+                </div>
+              )}
             </div>
             <div className={classes.inputWrapper}>
               <InputLabel
@@ -171,7 +223,7 @@ const MissingTransaction = () => {
                 Payment method
               </InputLabel>
               <Select
-                value={creds.paymentMethod}
+                value={creds.ticket.paymentMethod}
                 name='paymentMethod'
                 onChange={handleChange}
                 displayEmpty
@@ -192,15 +244,20 @@ const MissingTransaction = () => {
                   },
                 }}
               >
-                {/* <MenuItem value=''>
-                <em>None</em>
-              </MenuItem> */}
                 {paymentMethods.map((el) => (
                   <MenuItem key={el} value={el}>
-                    {el}
+                    {makeUpperCase(el)}
                   </MenuItem>
                 ))}
               </Select>
+              {!checkIsValid({
+                nameOfData: 'isEmpty',
+                data: creds.ticket.paymentMethod,
+              }) && (
+                <div className={classes.errorMessage}>
+                  Payment method ca’t be empty
+                </div>
+              )}
             </div>
           </div>
 
@@ -230,6 +287,7 @@ const MissingTransaction = () => {
               </div>
             </div>
           </div>
+
           <label
             htmlFor='contained-button-file'
             className={classes.uploadPhotoLabel}
@@ -240,9 +298,9 @@ const MissingTransaction = () => {
                 id='contained-button-file'
                 multiple
                 type='file'
-                name='image'
+                name='paymentProof'
                 hidden
-                // onChange={onChange}
+                onChange={handleChange}
               />
               <img
                 className={classes.uploadPhotoIcon}
@@ -251,10 +309,17 @@ const MissingTransaction = () => {
               />{' '}
               <span>Upload Photo</span>
             </div>
+            {!checkIsValid({
+              nameOfData: 'isPaymentProof',
+              data: creds.paymentProof.name,
+            }) && (
+              <div className={classes.errorMessage}>Please upload proof</div>
+            )}
           </label>
+
           <div className={classes.submitWrapper}>
             {' '}
-            <SubmitButton title='Submit for review' />{' '}
+            <SubmitButton title='Submit for review' onSubmit={onSubmit} />{' '}
           </div>
         </div>
       )}
@@ -298,6 +363,20 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     position: 'relative',
   },
+
+  errorMessage: {
+    color: 'red',
+    textAlign: 'start',
+    fontFamily: 'Inter',
+    fontSize: '14px',
+    position: 'absolute',
+    bottom: '-24px',
+    width: '100%',
+    height: '20px',
+    [theme.breakpoints.down('xs')]: {
+      bottom: '-36px',
+    },
+  },
   inputContainer: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -317,6 +396,12 @@ const useStyles = makeStyles((theme) => ({
       boxSizing: 'border-box',
       height: '48px',
       borderRadius: '8px',
+      fontFamily: 'Inter',
+      fontStyle: 'normal',
+      fontWeight: '500',
+      fontSize: '16px',
+      lineHeight: '120%',
+      letterSpacing: '0.02em',
     },
   },
 
@@ -346,6 +431,8 @@ const useStyles = makeStyles((theme) => ({
   },
   uploadPhotoLabel: {
     width: '272px',
+    position: 'relative',
+    height: '61px',
   },
   uploadPhoto: {
     display: 'flex',

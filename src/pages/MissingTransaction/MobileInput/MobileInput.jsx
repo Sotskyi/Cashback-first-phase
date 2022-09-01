@@ -5,11 +5,16 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import { purchaseTypes, paymentMethods } from '../../../utils/constants';
 import SubmitButton from '../../../components/form/SubmitButton';
 import uploadPhoto from '../../../assets/images/icons/uploadPhoto.svg';
+import { makeUpperCase } from '../../../utils/helpers';
 
-const MobileInput = ({ creds, setCreds, handleChange }) => {
-  // const navigate = useNavigate();
+const MobileInput = ({
+  creds,
+  setCreds,
+  handleChange,
+  onSubmit,
+  checkIsValid,
+}) => {
   const classes = useStyles();
-
   return (
     <div className={classes.container}>
       <div className={classes.title}>
@@ -30,15 +35,8 @@ const MobileInput = ({ creds, setCreds, handleChange }) => {
             Store
           </InputLabel>
           <OutlinedInput
-            value={creds.storeName}
-            name='storeName'
-            // value={creds.firstName}
-            // error={
-            //   !checkIsValid({
-            //     nameOfData: 'firstName',
-            //     data: creds.firstName,
-            //   })
-            // }
+            value={creds.ticket.store}
+            name='store'
             onChange={handleChange}
             sx={{
               width: '300px',
@@ -53,7 +51,15 @@ const MobileInput = ({ creds, setCreds, handleChange }) => {
                 padding: '8px 8px 8px 16px',
               },
             }}
-          />{' '}
+          />
+          {!checkIsValid({
+            nameOfData: 'isEmpty',
+            data: creds.ticket.store,
+          }) && (
+            <div className={classes.errorMessage}>
+              Store name can’t be empty
+            </div>
+          )}
         </div>
         <div className={classes.inputWrapper}>
           <InputLabel
@@ -68,17 +74,23 @@ const MobileInput = ({ creds, setCreds, handleChange }) => {
             Date of purchase
           </InputLabel>
           <TextField
-            value={creds.dateOfPurchase}
-            name='dateOfPurchase'
+            value={creds.ticket.purchasedAt}
+            name='purchasedAt'
             type='date'
             variant='outlined'
-            defaultValue=''
             onChange={handleChange}
             className={classes.calendar}
           />
+          {!checkIsValid({
+            nameOfData: 'isEmpty',
+            data: creds.ticket.purchasedAt,
+          }) && (
+            <div className={classes.errorMessage}>
+              Date of purchase can’t be empty
+            </div>
+          )}
         </div>
-
-        <div>
+        <div className={classes.inputWrapper}>
           <InputLabel
             sx={{
               fontFamily: 'Inter',
@@ -93,14 +105,31 @@ const MobileInput = ({ creds, setCreds, handleChange }) => {
 
           {purchaseTypes.map((el) => (
             <div
-              className={classes.chip}
-              onClick={() => setCreds({ ...creds, purchaseType: el })}
+              key={el}
+              className={`${classes.chip} ${
+                creds.ticket.purchaseType === el && classes.active
+              }`}
+              onClick={() => {
+                setCreds({
+                  ...creds,
+                  ticket: { ...creds.ticket, purchaseType: el },
+                });
+              }}
             >
-              <div className={classes.chipRadio}> </div> <span>{el}</span>
+              <div className={classes.chipRadio}> </div>{' '}
+              <span>{makeUpperCase(el)}</span>
             </div>
           ))}
+          {!checkIsValid({
+            nameOfData: 'isEmpty',
+            data: creds.ticket.purchaseType,
+          }) && (
+            <div className={classes.errorMessage}>
+              Purchase type can’t be empty
+            </div>
+          )}
         </div>
-        <div>
+        <div className={classes.inputWrapper}>
           <InputLabel
             sx={{
               fontFamily: 'Inter',
@@ -115,13 +144,29 @@ const MobileInput = ({ creds, setCreds, handleChange }) => {
 
           {paymentMethods.map((el) => (
             <div
-              className={classes.chip}
-              onClick={() => setCreds({ ...creds, paymentMethod: el })}
+              key={el}
+              className={`${classes.chip} ${
+                creds.ticket.paymentMethod === el && classes.active
+              }`}
+              onClick={() => {
+                setCreds({
+                  ...creds,
+                  ticket: { ...creds.ticket, paymentMethod: el },
+                });
+              }}
             >
-              {' '}
-              <div className={classes.chipRadio}> </div> <span>{el}</span>
+              <div className={classes.chipRadio}> </div>
+              <span>{makeUpperCase(el)}</span>
             </div>
           ))}
+          {!checkIsValid({
+            nameOfData: 'isEmpty',
+            data: creds.ticket.paymentMethod,
+          }) && (
+            <div className={classes.errorMessage}>
+              Payment method ca’t be empty
+            </div>
+          )}
         </div>
         <div className={classes.contentTextWrapper}>
           <InputLabel
@@ -159,21 +204,25 @@ const MobileInput = ({ creds, setCreds, handleChange }) => {
             id='contained-button-file'
             multiple
             type='file'
-            name='image'
+            name='paymentProof'
             hidden
-            // onChange={onChange}
+            onChange={handleChange}
           />
           <img
             className={classes.uploadPhotoIcon}
             src={uploadPhoto}
             alt='img'
-          />{' '}
+          />
           <span>Upload Photo</span>
         </div>
+        {!checkIsValid({
+          nameOfData: 'isPaymentProof',
+          data: creds.paymentProof.name,
+        }) && <div className={classes.errorMessage}>Please upload proof</div>}
       </label>
       <div className={classes.submitWrapper}>
         {' '}
-        <SubmitButton title='Submit for review' />{' '}
+        <SubmitButton title='Submit for review' onSubmit={onSubmit} />
       </div>
     </div>
   );
@@ -189,8 +238,8 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
   },
   contentWrapper: {
-    marginTop: '64px',
-    height: '900px',
+    marginTop: '30px',
+    height: '950px',
     display: 'flex',
     justifyContent: 'space-between',
     flexDirection: 'column',
@@ -209,7 +258,13 @@ const useStyles = makeStyles(() => ({
   },
 
   inputWrapper: {
-    height: '76px',
+    // height: '76px',
+    position: 'relative',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+  },
+  purchaseInputWrapper: {
     position: 'relative',
     display: 'flex',
     flexDirection: 'column',
@@ -271,9 +326,16 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '0.01em',
     marginTop: '24px',
   },
-
-  activeBorder: {
+  active: {
     border: '1px solid #33CC55',
+    '& div': {
+      width: '12px',
+      height: '12px',
+      position: 'absolute',
+      left: '12px',
+      borderRadius: '50px',
+      border: '5px solid #33CC55',
+    },
   },
   chipRadio: {
     width: '20px',
@@ -291,13 +353,12 @@ const useStyles = makeStyles(() => ({
     borderRadius: '50px',
     border: '5px solid #33CC55',
   },
-
   uploadPhotoLabel: {
     width: '272px',
   },
   uploadPhoto: {
     marginTop: '16px',
-    marginBottom: '32px',
+    marginBottom: '16px',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -319,5 +380,14 @@ const useStyles = makeStyles(() => ({
   },
   submitWrapper: {
     width: '272px',
+  },
+  errorMessage: {
+    marginTop: '12px',
+    color: 'red',
+    textAlign: 'start',
+    fontFamily: 'Inter',
+    fontSize: '14px',
+    width: '100%',
+    height: '20px',
   },
 }));
