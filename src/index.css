@@ -1,5 +1,7 @@
 body {
   margin: 0;
+  padding-right: 0!important;
+  overflow: unset!important;
   /* min-height: -webkit-fill-available; */
   
 }
