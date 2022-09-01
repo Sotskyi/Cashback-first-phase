@@ -45,6 +45,7 @@ const UnloginedHeader = () => {
             //   dispatch(reset());
             // }
             navigate('/');
+            window.location.reload();
           }}
         >
           <img className={classes.logo} src={logo} alt='logo' />

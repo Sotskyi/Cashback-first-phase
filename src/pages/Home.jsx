@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 
 import StoreIconSlider from '../components/lib/StoreIconSlider';
 import StoreCard from '../components/StoreCard';
@@ -15,7 +15,7 @@ import { useObserver } from '../hooks/useObserver';
 
 const Home = () => {
   const classes = useStyles();
-  const location = useLocation();
+  // const location = useLocation();
 
   const dispatch = useDispatch();
   // useDebounce(searchTerm, 500);
@@ -89,17 +89,17 @@ const Home = () => {
     }
   }, [categoryId, page, search, filters]);
 
-  useEffect(() => {
-    if (filters.length > 0) {
-      setFilters([]);
-    }
-    if (page > 1) {
-      dispatch(reset());
-    }
-    setPage(1);
-    setCategoryId('favoritesPosition');
-    setIsShowFilter(false);
-  }, [location]);
+  // useEffect(() => {
+  //   if (filters.length > 0) {
+  //     setFilters([]);
+  //   }
+  //   if (page > 1) {
+  //     dispatch(reset());
+  //   }
+  //   setPage(1);
+  //   setCategoryId('favoritesPosition');
+  //   setIsShowFilter(false);
+  // }, [location]);
 
   return (
     <div className={classes.homeContainer}>
