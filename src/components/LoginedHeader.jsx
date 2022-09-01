@@ -6,7 +6,7 @@ import Input from '@mui/material/Input';
 import LanguageSwitcher from './lib/LanguageSwitcher';
 import logo from '../assets/images/logos/logo.svg';
 
-import search from '../assets/images/icons/search.svg';
+import searchIcon from '../assets/images/icons/searchIcon.svg';
 import { setSearch } from '../redux/slices/storesSlice';
 import UserMenu from './lib/UserMenu';
 import useDebounce from '../hooks/useDebounce';
@@ -43,8 +43,12 @@ const LoginedHeader = ({ availableBalance }) => {
       >
         <img className={classes.logo} src={logo} alt='logo' />
       </div>
-      <div className={classes.searchContainer}>
-        <img className={classes.searchIcon} src={search} alt='menu' />
+      <div
+        className={`${classes.searchContainer} ${
+          searchTerm.length > 0 && classes.activeSearch
+        }`}
+      >
+        <img className={classes.searchIcon} src={searchIcon} alt='menu' />
         <Input
           onChange={(e) => handleChange(e)}
           onKeyDown={handleKeyDown}
@@ -83,6 +87,9 @@ const useStyles = makeStyles((theme) => ({
       height: '64px',
       paddingInline: '16px',
     },
+  },
+  activeSearch: {
+    border: '1px solid #33CC55!important',
   },
   logo: {
     width: '154px',

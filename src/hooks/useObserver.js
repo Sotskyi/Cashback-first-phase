@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
 
-export const useObserver = (ref, canLoad, isLoading, callback) => {
+export const useObserver = (ref, canLoad, dependencies, callback) => {
   const observer = useRef();
 
   useEffect(() => {
-    if (isLoading) return;
+    if (dependencies[0]) return;
     if (observer.current) observer.current.disconnect();
 
     const cb = (entries) => {
@@ -14,5 +14,5 @@ export const useObserver = (ref, canLoad, isLoading, callback) => {
     };
     observer.current = new IntersectionObserver(cb);
     observer.current.observe(ref.current);
-  }, [isLoading]);
+  }, [...dependencies]);
 };

@@ -28,3 +28,17 @@ export const makeUpperCase = (str) =>
     .split(' ')
     .map((el) => el[0].toUpperCase() + el.substring(1))
     .join(' ');
+
+export function debounce(func, timeout = 500) {
+  let timeoutId;
+  return wrapper;
+  function wrapper(...args) {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+    timeoutId = setTimeout(() => {
+      timeoutId = null;
+      func(...args);
+    }, timeout);
+  }
+}

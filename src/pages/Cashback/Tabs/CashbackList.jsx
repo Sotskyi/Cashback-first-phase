@@ -23,7 +23,7 @@ const CashbackList = () => {
   useObserver(
     lastElement,
     Math.ceil(totalCashback / 8) > page,
-    isLoading,
+    [isLoading],
     () => {
       setPage((prev) => prev + 1);
     },

@@ -113,7 +113,11 @@ const storesSlice = createSlice({
 
   extraReducers: {
     [getStores.fulfilled]: (state, action) => {
-      state.storesList = [...state.storesList, ...action.payload.items];
+      if (action.meta.arg.page === 1) {
+        state.storesList = action.payload.items;
+      } else {
+        state.storesList = [...state.storesList, ...action.payload.items];
+      }
       state.isLoading = false;
       state.itemsCount = action.payload.count;
     },
@@ -126,13 +130,6 @@ const storesSlice = createSlice({
 
     [getStoresBySearch.fulfilled]: (state, action) => {
       state.storesList = action.payload.items;
-      state.isLoading = false;
-    },
-    [getStoresBySearch.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [getStoresBySearch.rejected]: (state) => {
-      state.isLoading = false;
     },
 
     // [getStore.fulfilled]: (state, action) => {

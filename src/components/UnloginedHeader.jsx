@@ -5,7 +5,7 @@ import Input from '@mui/material/Input';
 
 import LanguageSwitcher from './lib/LanguageSwitcher';
 import logo from '../assets/images/logos/logo.svg';
-import search from '../assets/images/icons/search.svg';
+import searchIcon from '../assets/images/icons/searchIcon.svg';
 import { setSearch } from '../redux/slices/storesSlice';
 import UserMenu from './lib/UserMenu';
 
@@ -50,8 +50,12 @@ const UnloginedHeader = () => {
         >
           <img className={classes.logo} src={logo} alt='logo' />
         </div>
-        <div className={classes.searchContainer}>
-          <img className={classes.searchIcon} src={search} alt='menu' />
+        <div
+          className={`${classes.searchContainer} ${
+            searchTerm.length > 0 && classes.active
+          }`}
+        >
+          <img className={classes.searchIcon} src={searchIcon} alt='menu' />
           <Input
             onKeyDown={handleKeyDown}
             onChange={handleChange}
@@ -149,5 +153,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
+  },
+  active: {
+    border: '1px solid #33CC55',
   },
 }));

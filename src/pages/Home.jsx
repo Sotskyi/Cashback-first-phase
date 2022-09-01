@@ -31,9 +31,16 @@ const Home = () => {
     (state) => state.stores,
   );
 
-  useObserver(lastElement, Math.ceil(itemsCount / 16) > page, isLoading, () => {
-    setPage((prev) => prev + 1);
-  });
+  useObserver(
+    lastElement,
+    Math.ceil(itemsCount / 16) > page &&
+      search.length === 0 &&
+      filters.length === 0,
+    [isLoading, filters, search],
+    () => {
+      setPage((prev) => prev + 1);
+    },
+  );
 
   useEffect(() => {
     if (search.length > 0 || filters.length > 0) {
@@ -49,9 +56,8 @@ const Home = () => {
           filter: filters.length > 0 ? filters.join() : '',
         }),
       );
-    } else {
-      setPage(1);
     }
+
     return () => {
       dispatch(reset());
       setPage(1);

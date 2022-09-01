@@ -225,7 +225,11 @@ const StoreIconSlider = ({
         </div>
       </div>
       {isShowFilter && (
-        <CheckboxesFilter filters={filters} setFilters={setFilters} />
+        <CheckboxesFilter
+          filters={filters}
+          setFilters={setFilters}
+          setPage={setPage}
+        />
       )}
     </div>
   );

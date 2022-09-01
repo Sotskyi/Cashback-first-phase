@@ -21,7 +21,7 @@ const WithdrawalsList = () => {
   useObserver(
     lastElement,
     Math.ceil(totalWithdrawals / 8) > page,
-    isLoading,
+    [isLoading],
     () => {
       setPage((prev) => prev + 1);
     },
