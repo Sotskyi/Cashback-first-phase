@@ -8,7 +8,7 @@ const Tab3 = () => {
       <div className={classes.contentContainer}>
         <div className={classes.title}>Receive cashback</div>
         <div className={classes.subTitle}>
-          Get part of the money you spent back
+          Get part of the money you spent back!
         </div>
       </div>
     </div>

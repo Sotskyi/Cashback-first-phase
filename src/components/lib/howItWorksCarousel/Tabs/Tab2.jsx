@@ -8,7 +8,7 @@ const Tab2 = () => {
       <div className={classes.contentContainer}>
         <div className={classes.title}>Complete purchase</div>
         <div className={classes.subTitle}>
-          Purchase goods and services as usual
+          Make a purchase like you normally would from our retail partner.
         </div>
       </div>
     </div>
@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    height: '72px',
+    height: '90px',
   },
   title: {
     fontFamily: 'Inter',

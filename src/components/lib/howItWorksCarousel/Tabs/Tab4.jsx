@@ -1,37 +1,34 @@
 import { makeStyles } from '@material-ui/core/styles';
 
-import appStore from '../../../../assets/images/widgets/appStore.svg';
-import googlePlay from '../../../../assets/images/widgets/googlePlay.svg';
-
-const Tab4 = () => {
+const Tab3 = () => {
   const classes = useStyles();
 
   return (
-    <div className={classes.firthTabContainer}>
+    <div className={classes.thirdTabContainer}>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Download the App</div>
-        <div className={classes.widgetsContainer}>
-          <img src={appStore} alt='appstore' />
-          <img src={googlePlay} alt='googleStore' />
+        <div className={classes.title}>Pay down your pre-paid phone bill.</div>
+        <div className={classes.subTitle}>
+          Once you have accumulated enough cash-back, pay-down your phone-bill.
         </div>
       </div>
     </div>
   );
 };
 const useStyles = makeStyles(() => ({
-  firthTabContainer: {
+  thirdTabContainer: {
     minWidth: '216px',
-    minHeight: '130px',
-    alignItems: 'center',
+    minHeight: '124px',
     display: 'flex',
+    alignItems: 'center',
     flexDirection: 'column',
+    justifyContent: 'center',
   },
   contentContainer: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-
-    height: '72px',
+    justifyContent: 'space-between',
+    height: '132px',
   },
   title: {
     fontFamily: 'Inter',
@@ -40,15 +37,18 @@ const useStyles = makeStyles(() => ({
     fontSize: '20px',
     lineHeight: '120%',
     color: '#000000',
-    width: '100%',
     letterSpacing: '-0.02em',
+    textAlign: 'center',
   },
-  widgetsContainer: {
-    marginTop: '13px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    minHeight: '88px',
+  subTitle: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: '16px',
+    lineHeight: '125%',
+    color: '#6A6A6A',
+    letterSpacing: '0.01em',
+    textAlign: 'center',
   },
 }));
-export default Tab4;
+export default Tab3;

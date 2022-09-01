@@ -7,7 +7,9 @@ const Tab1 = () => {
     <div className={classes.firstTabContainer}>
       <div className={classes.contentContainer}>
         <div className={classes.title}>Select an online shop</div>
-        <div className={classes.subTitle}>Go to one of 2930+ stores</div>
+        <div className={classes.subTitle}>
+          Log-in.Select an online shop.Click on Shop Now.
+        </div>
       </div>
     </div>
   );
@@ -26,7 +28,7 @@ const useStyles = makeStyles(() => ({
     alignItems: 'center',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    height: '52px',
+    height: '70px',
   },
   title: {
     fontFamily: 'Inter',
@@ -45,6 +47,7 @@ const useStyles = makeStyles(() => ({
     lineHeight: '125%',
     color: '#6A6A6A',
     letterSpacing: '0.01em',
+    textAlign: 'center',
   },
 }));
 export default Tab1;
