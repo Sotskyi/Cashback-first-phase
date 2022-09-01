@@ -37,28 +37,18 @@ const Home = () => {
 
   useEffect(() => {
     if (search.length > 0 || filters.length > 0) {
-      if (categoryId === 'favoritesPosition' || categoryId === 'title') {
-        dispatch(
-          getStoresBySearch({
-            sortingKey: categoryId,
-            page: '1',
-            limit: 1000,
-            languageCode: 'en',
-            title: search,
-            filter: filters.length > 0 ? filters.join() : '',
-          }),
-        );
-      } else
-        dispatch(
-          getStoresBySearch({
-            category: categoryId,
-            page: '1',
-            limit: 1000,
-            languageCode: 'en',
-            title: search,
-            filter: filters.length > 0 ? filters.join() : '',
-          }),
-        );
+      dispatch(
+        getStoresBySearch({
+          ...(categoryId === 'favoritesPosition' || categoryId === 'title'
+            ? { sortingKey: categoryId }
+            : { category: categoryId }),
+          page: '1',
+          limit: 1000,
+          languageCode: 'en',
+          title: search,
+          filter: filters.length > 0 ? filters.join() : '',
+        }),
+      );
     } else {
       setPage(1);
     }
@@ -70,22 +60,15 @@ const Home = () => {
 
   useEffect(() => {
     if (search.length === 0 && filters.length === 0) {
-      if (categoryId === 'favoritesPosition' || categoryId === 'title') {
-        dispatch(
-          getStores({
-            sortingKey: categoryId,
-            page,
-            limit: 16,
-          }),
-        );
-      } else
-        dispatch(
-          getStores({
-            category: categoryId,
-            page,
-            limit: 16,
-          }),
-        );
+      dispatch(
+        getStores({
+          ...(categoryId === 'favoritesPosition' || categoryId === 'title'
+            ? { sortingKey: categoryId }
+            : { category: categoryId }),
+          page,
+          limit: 16,
+        }),
+      );
     }
   }, [categoryId, page, search, filters]);
 

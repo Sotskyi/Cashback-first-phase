@@ -3,13 +3,10 @@ import { useDispatch } from 'react-redux/es/exports';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-// import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import { makeStyles } from '@material-ui/core';
 
-// import userMenu from '../../assets/images/icons/forHeaderMenu/userMenu.svg';
-import getHelp from '../../assets/images/icons/forHeaderMenu/getHelp.svg';
 import howTelcoWorks from '../../assets/images/icons/forHeaderMenu/howTelcoWorks.svg';
 import logOut from '../../assets/images/icons/forHeaderMenu/logOut.svg';
 import login from '../../assets/images/icons/forHeaderMenu/login.svg';
@@ -39,11 +36,6 @@ const UserMenu = () => {
       id: 'howItWorks',
       name: 'How Telco Rewards work',
       iconSrc: howTelcoWorks,
-    },
-    {
-      id: 'getHelp',
-      name: 'Get help',
-      iconSrc: getHelp,
     },
     {
       id: 'missingTransaction',
@@ -76,11 +68,6 @@ const UserMenu = () => {
       id: 'howItWorks',
       name: 'How Telco Rewards work',
       iconSrc: howTelcoWorks,
-    },
-    {
-      id: 'getHelp',
-      name: 'Get help',
-      iconSrc: getHelp,
     },
     {
       id: 'termsConditions',
