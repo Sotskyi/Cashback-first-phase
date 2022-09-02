@@ -92,6 +92,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
+    [theme.breakpoints.down('sm')]: {
+      height: '430px',
+    },
   },
   title: {
     fontFamily: 'Inter',

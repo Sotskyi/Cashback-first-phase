@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 import flag from '../../assets/images/flags/ca.png';
 
@@ -7,28 +8,38 @@ const PhoneNumberInput = ({ handleChange, data, isError }) => {
   return (
     <div className={classes.phoneNumberContainer}>
       <label className={classes.phoneNumberLabel}>Phone number</label>
-      <div className={classes.phoneNumberInputContainer}>
-        <img className={classes.flag} src={flag} alt='menu' />
-        <div className={classes.divider} />
-        <input
-          onChange={(e) => {
-            if (
-              (data.length <= 9 && /^[0-9]*$/.test(e.target.value)) ||
-              e.nativeEvent.inputType === 'deleteContentBackward'
-            ) {
-              handleChange(e);
-            }
-          }}
-          onKeyDown={(e) => handleChange(e)}
-          className={classes.phoneNumberInput}
-          id='phoneNumber'
-          type='tel'
-          value={data}
-        />
-      </div>
+      <OutlinedInput
+        className={classes.phoneNumberInputContainer}
+        error={isError}
+        onChange={(e) => {
+          if (
+            (data.length <= 9 && /^[0-9]*$/.test(e.target.value)) ||
+            e.nativeEvent.inputType === 'deleteContentBackward'
+          ) {
+            handleChange(e);
+          }
+        }}
+        onKeyDown={(e) => handleChange(e)}
+        id='phoneNumber'
+        type='tel'
+        sx={{
+          '&>input.MuiInputBase-inputAdornedStart': {
+            paddingLeft: '8px',
+            height: '10px',
+            borderRadius: '0px',
+          },
+        }}
+        value={data}
+        startAdornment={
+          <>
+            <img className={classes.flag} src={flag} alt='menu' />
+            <div className={classes.divider} />
+          </>
+        }
+      />
       {isError && (
         <div className={classes.phoneNumberError}>
-          Please enter valid phone number format 0987654321
+          Please enter valid phone number in format 0987654321
         </div>
       )}
     </div>
@@ -53,14 +64,12 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
   },
   phoneNumberInputContainer: {
-    border: '1px solid #EAEAEA',
     borderRadius: '8px',
     height: '46px',
-    display: 'flex',
-    alignItems: 'center',
+    paddingLeft: '16px',
   },
   flag: {
-    margin: '16px',
+    marginRight: '16px',
   },
   divider: {
     top: '50%',
@@ -89,5 +98,8 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       bottom: '-42px',
     },
+  },
+  errorBorder: {
+    border: '1px solid #d32f2f',
   },
 }));

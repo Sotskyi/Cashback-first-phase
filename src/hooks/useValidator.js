@@ -8,8 +8,8 @@ export const validationRules = {
     ),
 
   isPhoneNumber: (data) => /^\d{10}$/.test(data),
-  isFirstName: (data) => /^[A-Za-z]+$/.test(data) && data.length > 2,
-  isLastName: (data) => /^[A-Za-z]+$/.test(data) && data.length > 2,
+  isFirstName: (data) => /^[A-Za-z]+$/.test(data) && data.length > 1,
+  isLastName: (data) => /^[A-Za-z]+$/.test(data) && data.length > 1,
   isPassword: (data) => /^\S{7,20}$/.test(data),
   isPasswordEqual: (data) => {
     const { password, confirmPassword } = data;

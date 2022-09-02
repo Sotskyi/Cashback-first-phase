@@ -57,6 +57,12 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
             onChange={(e) => setCreds({ ...creds, carrier: e.target.value })}
             displayEmpty
             inputProps={{ 'aria-label': 'Without label' }}
+            error={
+              !checkIsValid({
+                nameOfData: 'carrier',
+                data: creds.carrier,
+              })
+            }
             sx={{
               width: '100%',
               padding: '0px 14px',
@@ -80,7 +86,7 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
             data: creds.carrier,
           }) && (
             <div className={classes.errorMessage}>
-              Please enter valid mobile network carrier
+              Please select valid mobile network carrier
             </div>
           )}
         </div>
@@ -212,8 +218,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
     fontFamily: 'Inter',
     fontSize: '14px',
-    position: 'absolute',
-    bottom: '-24px',
+    marginTop: '8px',
     width: '100%',
     [theme.breakpoints.down('xs')]: {
       bottom: '-36px',

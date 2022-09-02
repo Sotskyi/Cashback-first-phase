@@ -75,7 +75,7 @@ const PasswordInput = ({
 
 export default PasswordInput;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   inputWrapper: {
     height: '76px',
     display: 'flex',
@@ -91,5 +91,8 @@ const useStyles = makeStyles(() => ({
     position: 'absolute',
     bottom: '-24px',
     width: '100%',
+    [theme.breakpoints.down('xs')]: {
+      bottom: '-42px',
+    },
   },
 }));

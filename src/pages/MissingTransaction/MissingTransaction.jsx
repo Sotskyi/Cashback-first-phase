@@ -36,7 +36,6 @@ const MissingTransaction = () => {
 
   const onSubmit = () => {
     setIsShowError(true);
-
     if (
       checkIsValid({
         nameOfData: 'isEmpty',
@@ -105,6 +104,12 @@ const MissingTransaction = () => {
                 value={creds.ticket.store}
                 name='store'
                 onChange={handleChange}
+                error={
+                  !checkIsValid({
+                    nameOfData: 'isEmpty',
+                    data: creds.ticket.store,
+                  })
+                }
                 sx={{
                   width: { xs: '136px', sm: '368px' },
                   height: '48px',
@@ -141,6 +146,12 @@ const MissingTransaction = () => {
                 Date of purchase
               </InputLabel>
               <TextField
+                error={
+                  !checkIsValid({
+                    nameOfData: 'isEmpty',
+                    data: creds.ticket.purchasedAt,
+                  })
+                }
                 value={creds.ticket.purchasedAt}
                 name='purchasedAt'
                 type='date'
@@ -172,6 +183,12 @@ const MissingTransaction = () => {
                 Purchase type
               </InputLabel>
               <Select
+                error={
+                  !checkIsValid({
+                    nameOfData: 'isEmpty',
+                    data: creds.ticket.purchaseType,
+                  })
+                }
                 value={creds.ticket.purchaseType}
                 name='purchaseType'
                 onChange={handleChange}
@@ -223,6 +240,12 @@ const MissingTransaction = () => {
                 Payment method
               </InputLabel>
               <Select
+                error={
+                  !checkIsValid({
+                    nameOfData: 'isEmpty',
+                    data: creds.ticket.paymentMethod,
+                  })
+                }
                 value={creds.ticket.paymentMethod}
                 name='paymentMethod'
                 onChange={handleChange}
@@ -255,7 +278,7 @@ const MissingTransaction = () => {
                 data: creds.ticket.paymentMethod,
               }) && (
                 <div className={classes.errorMessage}>
-                  Payment method ca’t be empty
+                  Payment method can’t be empty
                 </div>
               )}
             </div>

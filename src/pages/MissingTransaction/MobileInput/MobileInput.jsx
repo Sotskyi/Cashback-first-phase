@@ -37,6 +37,12 @@ const MobileInput = ({
           <OutlinedInput
             value={creds.ticket.store}
             name='store'
+            error={
+              !checkIsValid({
+                nameOfData: 'isEmpty',
+                data: creds.ticket.store,
+              })
+            }
             onChange={handleChange}
             sx={{
               width: '300px',
@@ -73,13 +79,21 @@ const MobileInput = ({
           >
             Date of purchase
           </InputLabel>
+
           <TextField
+            open={true}
             value={creds.ticket.purchasedAt}
             name='purchasedAt'
             type='date'
             variant='outlined'
             onChange={handleChange}
             className={classes.calendar}
+            error={
+              !checkIsValid({
+                nameOfData: 'isEmpty',
+                data: creds.ticket.purchasedAt,
+              })
+            }
           />
           {!checkIsValid({
             nameOfData: 'isEmpty',
