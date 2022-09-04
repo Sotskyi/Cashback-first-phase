@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
   - deploy
 
 cache:
@@ -17,6 +18,15 @@ build:
     paths:
       - build/
     expire_in: 20 mins
+  only:
+    - main
+    - production
+
+packages-vulnerability: 
+  stage: test
+  image: node:16-alpine
+  script:
+    - npm audit --audit-level=critical
   only:
     - main
     - production
