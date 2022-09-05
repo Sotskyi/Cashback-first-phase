@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 export const validationRules = {
   isEmpty: (data) => data.length > 0,
+  isId: (data) => /^-?\d+$/.test(data),
   isEmail: (data) =>
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
       data,
@@ -60,6 +61,9 @@ export const useValidator = () => {
         nameOfData === 'isPaymentProof' &&
         !validationRules.isPaymentProof(data)
       ) {
+        return false;
+      }
+      if (nameOfData === 'isId' && !validationRules.isId(data)) {
         return false;
       }
     }

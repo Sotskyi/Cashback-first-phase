@@ -1,9 +1,9 @@
 import { makeStyles, TextField } from '@material-ui/core';
 import InputLabel from '@mui/material/InputLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
 
 import { purchaseTypes, paymentMethods } from '../../../utils/constants';
 import SubmitButton from '../../../components/form/SubmitButton';
+import AutocompleteInput from '../../../components/lib/AutocompleteInput';
 import uploadPhoto from '../../../assets/images/icons/uploadPhoto.svg';
 import { makeUpperCase } from '../../../utils/helpers';
 
@@ -34,32 +34,19 @@ const MobileInput = ({
           >
             Store
           </InputLabel>
-          <OutlinedInput
-            value={creds.ticket.store}
-            name='store'
-            error={
+
+          <AutocompleteInput
+            creds={creds}
+            setCreds={setCreds}
+            isError={
               !checkIsValid({
-                nameOfData: 'isEmpty',
+                nameOfData: 'isId',
                 data: creds.ticket.store,
               })
             }
-            onChange={handleChange}
-            sx={{
-              width: '300px',
-              height: '48px',
-              fontFamily: 'Inter',
-              fontStyle: 'normal',
-              fontWeight: '500',
-              fontSize: '20px',
-              border: '1px solid #EAEAEA',
-              borderRadius: '8px!important',
-              '& input': {
-                padding: '8px 8px 8px 16px',
-              },
-            }}
           />
           {!checkIsValid({
-            nameOfData: 'isEmpty',
+            nameOfData: 'isId',
             data: creds.ticket.store,
           }) && (
             <div className={classes.errorMessage}>

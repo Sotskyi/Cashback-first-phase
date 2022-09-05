@@ -3,11 +3,11 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { makeStyles, TextField } from '@material-ui/core';
-import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { useNavigate } from 'react-router-dom';
 
 import SubmitButton from '../../components/form/SubmitButton';
 import uploadPhoto from '../../assets/images/icons/uploadPhoto.svg';
@@ -15,10 +15,12 @@ import MobileInput from './MobileInput/MobileInput';
 import { purchaseTypes, paymentMethods } from '../../utils/constants';
 import { useValidator } from '../../hooks/useValidator';
 import { getError, makeUpperCase } from '../../utils/helpers';
+import AutocompleteInput from '../../components/lib/AutocompleteInput';
 
 const MissingTransaction = () => {
   const [checkIsValid, setIsShowError] = useValidator();
   const matches = useMediaQuery('(max-width:700px)');
+  const navigate = useNavigate();
   const classes = useStyles();
   const [creds, setCreds] = useState({
     ticket: { store: '', purchasedAt: '', purchaseType: '', paymentMethod: '' },
@@ -34,11 +36,11 @@ const MissingTransaction = () => {
     return setCreds({ ...creds, ticket: { ...creds.ticket, [name]: value } });
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     setIsShowError(true);
     if (
       checkIsValid({
-        nameOfData: 'isEmpty',
+        nameOfData: 'id',
         data: creds.ticket.store,
         showErrorSync: true,
       }) &&
@@ -68,7 +70,9 @@ const MissingTransaction = () => {
         const formData = new FormData();
         formData.append('ticket', credsToJson);
         formData.append('paymentProof', creds.paymentProof);
-        axios.post('/tickets', formData);
+        await axios.post('/tickets', formData);
+        toast.success('Missing transaction created');
+        navigate('/');
       } catch (error) {
         toast.error(getError(error));
       }
@@ -100,32 +104,18 @@ const MissingTransaction = () => {
               >
                 Store
               </InputLabel>
-              <OutlinedInput
-                value={creds.ticket.store}
-                name='store'
-                onChange={handleChange}
-                error={
+              <AutocompleteInput
+                setCreds={setCreds}
+                creds={creds}
+                isError={
                   !checkIsValid({
-                    nameOfData: 'isEmpty',
+                    nameOfData: 'isId',
                     data: creds.ticket.store,
                   })
                 }
-                sx={{
-                  width: { xs: '136px', sm: '368px' },
-                  height: '48px',
-                  fontFamily: 'Inter',
-                  fontStyle: 'normal',
-                  fontWeight: '500',
-                  fontSize: '20px',
-                  border: '1px solid #EAEAEA',
-                  borderRadius: '8px!important',
-                  '& input': {
-                    padding: '8px 8px 8px 16px',
-                  },
-                }}
               />
               {!checkIsValid({
-                nameOfData: 'isEmpty',
+                nameOfData: 'isId',
                 data: creds.ticket.store,
               }) && (
                 <div className={classes.errorMessage}>
@@ -362,6 +352,9 @@ const useStyles = makeStyles((theme) => ({
     width: '752px',
     height: '612px',
     [theme.breakpoints.down('sm')]: {
+      height: '720px',
+    },
+    [theme.breakpoints.down('xs')]: {
       paddingInline: '16px',
       height: '1292px',
     },
