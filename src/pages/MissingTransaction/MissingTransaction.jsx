@@ -326,7 +326,7 @@ const MissingTransaction = () => {
               nameOfData: 'isPaymentProof',
               data: creds.paymentProof.name,
             }) && (
-              <div className={classes.errorMessage}>Please upload proof</div>
+              <div className={classes.errorMessage}>Please upload photo</div>
             )}
           </label>
 

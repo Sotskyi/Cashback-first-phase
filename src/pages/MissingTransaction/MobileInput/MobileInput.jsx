@@ -219,7 +219,7 @@ const MobileInput = ({
         {!checkIsValid({
           nameOfData: 'isPaymentProof',
           data: creds.paymentProof.name,
-        }) && <div className={classes.errorMessage}>Please upload proof</div>}
+        }) && <div className={classes.errorMessage}>Please upload photo</div>}
       </label>
       <div className={classes.submitWrapper}>
         {' '}

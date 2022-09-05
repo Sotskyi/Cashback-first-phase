@@ -50,7 +50,7 @@ const UserMenu = () => {
     {
       id: 'privacyPolicy',
       name: 'Privacy Policy',
-      iconSrc: termsAndConditions,
+      iconSrc: privacyPolicy,
     },
     {
       id: 'logout',
@@ -118,9 +118,10 @@ const UserMenu = () => {
           onClick={handleClose}
           sx={(theme) => ({
             [theme.breakpoints.up('md')]: { display: 'none' },
+            display: !isAuth ? 'none' : '',
           })}
         >
-          {isAuth ? (
+          {isAuth && (
             <div id='cashback' className={classes.availableMenuItem}>
               <div id='cashback' className={classes.availableMenuItemTitle}>
                 AVAILABLE
@@ -129,8 +130,6 @@ const UserMenu = () => {
                 $ {user?.wallet?.balance || 0}
               </div>
             </div>
-          ) : (
-            <></>
           )}
         </MenuItem>
         {(isAuth ? loginedMenuItems : unloginedMenuItems).map((el) => (
@@ -168,6 +167,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menu: {
     cursor: 'pointer',
+    display: 'flex',
   },
   availableMenuItem: {
     display: 'flex',
