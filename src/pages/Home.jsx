@@ -10,6 +10,7 @@ import {
   getStores,
   reset,
   getStoresBySearch,
+  setIsShowHowItWorks,
 } from '../redux/slices/storesSlice';
 import { useObserver } from '../hooks/useObserver';
 
@@ -23,13 +24,12 @@ const Home = () => {
   const [categoryId, setCategoryId] = useState('favoritesPosition');
   const [step, setStep] = useState(0);
   const [page, setPage] = useState(1);
-  const [isShowCarousel, setIsShowCarousel] = useState(true);
+  // const [isShowCarousel, setIsShowHowItWorks] = useState(true);
   const [isShowFilter, setIsShowFilter] = useState(false);
   const [filters, setFilters] = useState([]);
 
-  const { storesList, isLoading, itemsCount, search } = useSelector(
-    (state) => state.stores,
-  );
+  const { storesList, isLoading, itemsCount, search, showHowItWorks } =
+    useSelector((state) => state.stores);
 
   useObserver(
     lastElement,
@@ -121,9 +121,9 @@ const Home = () => {
             <div>
               <div>
                 <div className={classes.carouselContainer}>
-                  {isShowCarousel && (
+                  {showHowItWorks && (
                     <HowItWorksCarousel
-                      onClose={() => setIsShowCarousel(false)}
+                      onClose={() => dispatch(setIsShowHowItWorks(false))}
                     />
                   )}
                 </div>

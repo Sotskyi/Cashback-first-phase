@@ -8,6 +8,7 @@ import { getError } from '../../utils/helpers';
 const initialState = {
   storesList: [],
   itemsCount: 0,
+  showHowItWorks: true,
   store: {
     backgroundImage: { url: '' },
     baseReward: '',
@@ -109,6 +110,9 @@ const storesSlice = createSlice({
     setSearch: (state, action) => {
       state.search = action.payload;
     },
+    setIsShowHowItWorks: (state, action) => {
+      state.showHowItWorks = action.payload;
+    },
   },
 
   extraReducers: {
@@ -154,5 +158,5 @@ const storesSlice = createSlice({
   },
 });
 
-export const { reset, setSearch } = storesSlice.actions;
+export const { reset, setSearch, setIsShowHowItWorks } = storesSlice.actions;
 export default storesSlice.reducer;

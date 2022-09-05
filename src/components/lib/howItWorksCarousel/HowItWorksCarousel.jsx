@@ -130,7 +130,7 @@ const useStyles = makeStyles(() => ({
   },
   contentContainer: {
     width: '216px',
-    height: '124px',
+    height: '144px',
     overflow: 'hidden',
     display: 'flex',
     justifyContent: 'space-between',

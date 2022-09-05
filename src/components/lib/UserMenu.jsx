@@ -17,6 +17,7 @@ import missingTransaction from '../../assets/images/icons/forHeaderMenu/missingT
 import settings1 from '../../assets/images/icons/forHeaderMenu/settings1.svg';
 
 import { logoutUser } from '../../redux/slices/authSlice';
+import { setIsShowHowItWorks } from '../../redux/slices/storesSlice';
 
 const UserMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -97,6 +98,8 @@ const UserMenu = () => {
       navigate('/missing_transaction');
     } else if (id === 'login') {
       navigate('/login');
+    } else if (id === 'howItWorks') {
+      dispatch(setIsShowHowItWorks(true));
     }
   };
   /* eslint-disable */
