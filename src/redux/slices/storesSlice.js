@@ -132,16 +132,16 @@ const storesSlice = createSlice({
       state.storesList = action.payload.items;
     },
 
-    // [getStore.fulfilled]: (state, action) => {
-    //   state.store = action.payload;
-    //   state.isLoading = false;
-    // },
-    // [getStore.pending]: (state) => {
-    //   state.isLoading = true;
-    // },
-    // [getStore.rejected]: (state) => {
-    //   state.isLoading = false;
-    // },
+    [getStore.fulfilled]: (state, action) => {
+      state.store = action.payload;
+      state.isLoading = false;
+    },
+    [getStore.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getStore.rejected]: (state) => {
+      state.isLoading = false;
+    },
     [redirectToStore.fulfilled]: (state) => {
       state.isLoading = false;
     },
