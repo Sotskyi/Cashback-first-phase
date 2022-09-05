@@ -46,83 +46,30 @@ const Store = () => {
   };
 
   const classes = useStyles(store);
-
+  if (isLoading) {
+    return <Loader />;
+  }
   return (
     <div className={classes.storeContainer}>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <div className={classes.bodyHeaderContainer}>
-          <div className={classes.storeBackground} />
-          <div className={classes.middleLine}>
-            <img
-              className={classes.storeAvatar}
-              src={store?.logoImage?.url}
-              alt='avatar'
-            />
-          </div>
-          <div className={classes.contentContainer}>
-            <div className={classes.leftContent}>
-              <div className={classes.title}>
-                {store?.translations[0]?.title}
-              </div>
-              <div className={classes.subTitle}>
-                {store?.translations[0]?.description}
-              </div>
-              <div
-                className={classes.discountPercentCardContainerForMobileWrapper}
-              >
-                <div className={classes.discountPercentCardContainerForMobile}>
-                  <div className={classes.percentWrapper}>
-                    <div className={classes.filledPercent}>
-                      {store?.baseReward}%
-                    </div>
-                    <div className={classes.percentSubTitle}>Base reward</div>
-                  </div>
-                  <div className={classes.percentWrapper}>
-                    <div className={classes.outlinedPercent}>6%</div>
-                    <div className={classes.percentSubTitle}>
-                      On purchases over $30
-                    </div>
-                  </div>
-                  <div
-                    className={classes.shopButton}
-                    onClick={handleRedirectToStore}
-                  >
-                    {triggerLoader && (
-                      <Loader
-                        delay={3000}
-                        setTriggerLoader={setTriggerLoader}
-                      />
-                    )}
-                    {!triggerLoader && (isAuth ? 'Shop Now' : 'Log in to shop')}
-                  </div>{' '}
-                </div>
-              </div>
-
-              <div className={classes.specialOffersContainer}>
-                {store.specialOffers.length > 0 ? (
-                  store.specialOffers.map((el) => (
-                    <SpecialOffer
-                      key={el.id}
-                      title={el.translations[0].title}
-                      description={el.translations[0].description}
-                      offerId={el.id}
-                      reward={el.reward}
-                      storeId={id}
-                      isAuth={isAuth}
-                      redirectToSpecialOffer={redirectToSpecialOffer}
-                    />
-                  ))
-                ) : (
-                  <div className={classes.noOffersTitle}>
-                    No offers for this store
-                  </div>
-                )}
-              </div>
+      <div className={classes.bodyHeaderContainer}>
+        <div className={classes.storeBackground} />
+        <div className={classes.middleLine}>
+          <img
+            className={classes.storeAvatar}
+            src={store?.logoImage?.url}
+            alt='avatar'
+          />
+        </div>
+        <div className={classes.contentContainer}>
+          <div className={classes.leftContent}>
+            <div className={classes.title}>{store?.translations[0]?.title}</div>
+            <div className={classes.subTitle}>
+              {store?.translations[0]?.description}
             </div>
-            <div className={classes.rightContent}>
-              <div className={classes.discountPercentCardContainer}>
+            <div
+              className={classes.discountPercentCardContainerForMobileWrapper}
+            >
+              <div className={classes.discountPercentCardContainerForMobile}>
                 <div className={classes.percentWrapper}>
                   <div className={classes.filledPercent}>
                     {store?.baseReward}%
@@ -143,12 +90,58 @@ const Store = () => {
                     <Loader delay={3000} setTriggerLoader={setTriggerLoader} />
                   )}
                   {!triggerLoader && (isAuth ? 'Shop Now' : 'Log in to shop')}
+                </div>{' '}
+              </div>
+            </div>
+
+            <div className={classes.specialOffersContainer}>
+              {store.specialOffers.length > 0 ? (
+                store.specialOffers.map((el) => (
+                  <SpecialOffer
+                    key={el.id}
+                    title={el.translations[0].title}
+                    description={el.translations[0].description}
+                    offerId={el.id}
+                    reward={el.reward}
+                    storeId={id}
+                    isAuth={isAuth}
+                    redirectToSpecialOffer={redirectToSpecialOffer}
+                  />
+                ))
+              ) : (
+                <div className={classes.noOffersTitle}>
+                  No offers for this store
                 </div>
+              )}
+            </div>
+          </div>
+          <div className={classes.rightContent}>
+            <div className={classes.discountPercentCardContainer}>
+              <div className={classes.percentWrapper}>
+                <div className={classes.filledPercent}>
+                  {store?.baseReward}%
+                </div>
+                <div className={classes.percentSubTitle}>Base reward</div>
+              </div>
+              <div className={classes.percentWrapper}>
+                <div className={classes.outlinedPercent}>6%</div>
+                <div className={classes.percentSubTitle}>
+                  On purchases over $30
+                </div>
+              </div>
+              <div
+                className={classes.shopButton}
+                onClick={handleRedirectToStore}
+              >
+                {triggerLoader && (
+                  <Loader delay={3000} setTriggerLoader={setTriggerLoader} />
+                )}
+                {!triggerLoader && (isAuth ? 'Shop Now' : 'Log in to shop')}
               </div>
             </div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

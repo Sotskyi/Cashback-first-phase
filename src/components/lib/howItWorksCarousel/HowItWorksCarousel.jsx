@@ -102,7 +102,6 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
-    cursor: 'pointer',
   },
   title: {
     fontFamily: 'Inter',
@@ -121,6 +120,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    cursor: 'pointer',
   },
   bodyContainer: {
     display: 'flex',

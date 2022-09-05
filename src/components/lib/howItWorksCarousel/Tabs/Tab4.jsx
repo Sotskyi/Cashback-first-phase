@@ -6,7 +6,7 @@ const Tab3 = () => {
   return (
     <div className={classes.thirdTabContainer}>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Pay down your pre-paid phone bill.</div>
+        <div className={classes.title}>Pay down your pre-paid phone bill</div>
         <div className={classes.subTitle}>
           Once you have accumulated enough cash-back, pay-down your phone-bill.
         </div>
