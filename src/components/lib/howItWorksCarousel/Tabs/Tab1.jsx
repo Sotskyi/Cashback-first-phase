@@ -31,6 +31,8 @@ const useStyles = makeStyles(() => ({
     height: '70px',
   },
   title: {
+    width: '100%',
+    textAlign: 'center',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '600',
