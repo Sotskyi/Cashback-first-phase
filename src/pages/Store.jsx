@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 
 import SpecialOffer from '../components/SpecialOffer';
@@ -14,16 +14,20 @@ import Loader from '../components/lib/Loader';
 const Store = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const { state } = useLocation();
+
   const navigate = useNavigate();
+  // eslint-disable-next-line no-shadow
   const { isAuth } = useSelector((state) => state.auth);
-  const { isLoading } = useSelector((state) => state.stores);
+  // eslint-disable-next-line no-shadow
+  // const { isLoading } = useSelector((state) => state.stores);
 
   const [triggerLoader, setTriggerLoader] = useState(false);
   const [store, setStore] = useState({
     backgroundImage: { url: '' },
     baseReward: '',
     translations: [
-      { id: '', title: 'store', description: '', specialRewardTitle: null },
+      { id: '', title: '', description: '', specialRewardTitle: null },
     ],
     specialOffers: [],
   });
@@ -45,10 +49,10 @@ const Store = () => {
     return navigate('/login');
   };
 
-  const classes = useStyles(store);
-  if (isLoading) {
-    return <Loader />;
-  }
+  const classes = useStyles(state.data || store.backgroundImage.url);
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
   return (
     <div className={classes.storeContainer}>
       <div className={classes.bodyHeaderContainer}>
@@ -56,15 +60,18 @@ const Store = () => {
         <div className={classes.middleLine}>
           <img
             className={classes.storeAvatar}
-            src={store?.logoImage?.url}
+            src={state.data.logoImage.url || store?.logoImage?.url}
             alt='avatar'
+            onError={state.logo}
           />
         </div>
         <div className={classes.contentContainer}>
           <div className={classes.leftContent}>
-            <div className={classes.title}>{store?.translations[0]?.title}</div>
+            <div className={classes.title}>
+              {state.data?.translations[0]?.title}
+            </div>
             <div className={classes.subTitle}>
-              {store?.translations[0]?.description}
+              {state.data?.translations[0]?.description}
             </div>
             <div
               className={classes.discountPercentCardContainerForMobileWrapper}
@@ -72,7 +79,7 @@ const Store = () => {
               <div className={classes.discountPercentCardContainerForMobile}>
                 <div className={classes.percentWrapper}>
                   <div className={classes.filledPercent}>
-                    {store?.baseReward}%
+                    {state.data?.baseReward}%
                   </div>
                   <div className={classes.percentSubTitle}>Base reward</div>
                 </div>

@@ -110,6 +110,7 @@ const Home = () => {
           <div className={classes.cardsWrapper}>
             {storesList.map((el) => (
               <StoreCard
+                data={el}
                 key={el.id}
                 name={el.translations[0].title}
                 background={el.backgroundImage.url}

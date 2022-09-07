@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 
-const StoreCard = ({ name, percent, id, logo, background }) => {
+const StoreCard = ({ name, percent, id, logo, background, data }) => {
   const classes = useStyles();
   const navigate = useNavigate();
 
@@ -9,7 +9,7 @@ const StoreCard = ({ name, percent, id, logo, background }) => {
     <div
       id={id}
       className={classes.storeCardWrapper}
-      onClick={() => navigate(`/store/${id}`)}
+      onClick={() => navigate(`/store/${id}`, { state: { data } })}
     >
       <div
         className={classes.storeCardTop}
