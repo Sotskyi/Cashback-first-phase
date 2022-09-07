@@ -29,7 +29,7 @@ const UserMenu = () => {
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const { user, isAuth } = useSelector((state) => state.auth);
-  console.log(isOpenCarousel, setIsOpenCarousel);
+
   const loginedMenuItems = [
     {
       id: 'personalInfo',
