@@ -10,7 +10,7 @@ import Tab3 from './Tabs/Tab3';
 import Tab4 from './Tabs/Tab4';
 import Tab5 from './Tabs/Tab5';
 
-const HowItWorksCarousel = ({ onClose }) => {
+const Carousel = ({ onClose }) => {
   const classes = useStyles();
   const [step, setStep] = useState(0);
   const [xPos, setXpos] = useState(0);
@@ -168,4 +168,4 @@ const useStyles = makeStyles(() => ({
     background: '#33CC55',
   },
 }));
-export default HowItWorksCarousel;
+export default Carousel;

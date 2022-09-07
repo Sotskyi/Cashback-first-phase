@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux/es/exports';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -17,16 +17,19 @@ import missingTransaction from '../../assets/images/icons/forHeaderMenu/missingT
 import settings1 from '../../assets/images/icons/forHeaderMenu/settings1.svg';
 
 import { logoutUser } from '../../redux/slices/authSlice';
-import { setIsShowHowItWorks } from '../../redux/slices/storesSlice';
+import { HowItWorksCarouselContext } from './howItWorksCarousel/HowItWorksCarouselProvider';
 
 const UserMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { isOpenCarousel, setIsOpenCarousel } = useContext(
+    HowItWorksCarouselContext,
+  );
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const { user, isAuth } = useSelector((state) => state.auth);
-
+  console.log(isOpenCarousel, setIsOpenCarousel);
   const loginedMenuItems = [
     {
       id: 'personalInfo',
@@ -99,7 +102,9 @@ const UserMenu = () => {
     } else if (id === 'login') {
       navigate('/login');
     } else if (id === 'howItWorks') {
-      dispatch(setIsShowHowItWorks(true));
+      setIsOpenCarousel(true);
+    } else if (id === 'personalInfo') {
+      navigate('/personal_info');
     }
   };
   /* eslint-disable */

@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import StoreIconSlider from '../components/lib/StoreIconSlider';
 import StoreCard from '../components/StoreCard';
-import HowItWorksCarousel from '../components/lib/howItWorksCarousel/HowItWorksCarousel';
+// import HowItWorksCarousel from '../components/lib/howItWorksCarousel/Carousel';
 import {
   getStores,
   reset,
   getStoresBySearch,
-  setIsShowHowItWorks,
+  // setIsShowHowItWorks,
 } from '../redux/slices/storesSlice';
 import { useObserver } from '../hooks/useObserver';
 
@@ -28,8 +28,9 @@ const Home = () => {
   const [isShowFilter, setIsShowFilter] = useState(false);
   const [filters, setFilters] = useState([]);
 
-  const { storesList, isLoading, itemsCount, search, showHowItWorks } =
-    useSelector((state) => state.stores);
+  const { storesList, isLoading, itemsCount, search } = useSelector(
+    (state) => state.stores,
+  );
 
   useObserver(
     lastElement,
@@ -121,11 +122,11 @@ const Home = () => {
             <div>
               <div>
                 <div className={classes.carouselContainer}>
-                  {showHowItWorks && (
+                  {/* {showHowItWorks && (
                     <HowItWorksCarousel
                       onClose={() => dispatch(setIsShowHowItWorks(false))}
                     />
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>

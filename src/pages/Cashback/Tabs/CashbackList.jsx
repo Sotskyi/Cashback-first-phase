@@ -174,15 +174,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '125%',
     letterSpacing: '0.01em',
   },
-  storeCashback: {
-    // fontFamily: 'Source Sans Pro, sans-serif',
-    // fontStyle: 'normal',
-    // fontWeight: '600',
-    // fontSize: '16px',
-    // lineHeight: '100%',
-    // letterSpacing: '0.02em',
-    // color: '#6A6A6A',
-  },
   totalCashback: {
     fontFamily: 'Source Sans Pro, sans-serif',
     fontStyle: 'normal',

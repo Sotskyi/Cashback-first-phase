@@ -6,9 +6,11 @@ import { getSavedAuthData } from '../../api/requestsInterceptor';
 import { checkAuth } from '../../redux/slices/authSlice';
 import UnloginedHeader from '../UnloginedHeader';
 import LoginedHeader from '../LoginedHeader';
+import { HowItWorksCarouselProvider } from '../lib/howItWorksCarousel/HowItWorksCarouselProvider';
 
 const AuthLayout = () => {
   const dispatch = useDispatch();
+
   const { isAuth, user } = useSelector((state) => state.auth);
 
   const { refresh_token } = getSavedAuthData();
@@ -21,12 +23,15 @@ const AuthLayout = () => {
 
   return (
     <div>
-      {isAuth ? (
-        <LoginedHeader availableBalance={user.wallet.balance} />
-      ) : (
-        <UnloginedHeader />
-      )}
-      <Outlet />
+      <HowItWorksCarouselProvider>
+        {isAuth ? (
+          <LoginedHeader availableBalance={user.wallet.balance} />
+        ) : (
+          <UnloginedHeader />
+        )}
+
+        <Outlet />
+      </HowItWorksCarouselProvider>
     </div>
   );
 };

@@ -22,6 +22,9 @@ const Cashback = React.lazy(() => import('./pages/Cashback/Cashback'));
 const MissingTransaction = React.lazy(() =>
   import('./pages/MissingTransaction/MissingTransaction'),
 );
+const PersonalInformation = React.lazy(() =>
+  import('./pages/PersonalInformation'),
+);
 
 const App = () => {
   return (
@@ -60,6 +63,10 @@ const App = () => {
                 <Route
                   path='/missing_transaction'
                   element={<MissingTransaction />}
+                />
+                <Route
+                  path='/personal_info'
+                  element={<PersonalInformation />}
                 />
               </Route>
             </Route>
