@@ -31,8 +31,10 @@ const useStyles = makeStyles((theme) => ({
       left: '0px',
     },
     [theme.breakpoints.down('xs')]: {
-      transform: 'translate(11%,-30px)',
-      left: '0px',
+      transform: 'translate(0px,-60px)',
+      display: 'flex',
+      justifyContent: 'center',
+      width: '100%',
     },
   },
 }));
