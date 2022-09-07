@@ -21,9 +21,7 @@ import { HowItWorksCarouselContext } from './howItWorksCarousel/HowItWorksCarous
 
 const UserMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { isOpenCarousel, setIsOpenCarousel } = useContext(
-    HowItWorksCarouselContext,
-  );
+  const { setIsOpenCarousel } = useContext(HowItWorksCarouselContext);
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
