@@ -64,7 +64,12 @@ const cashbackSlice = createSlice({
   reducers: {},
   extraReducers: {
     [getCashback.fulfilled]: (state, action) => {
-      state.cashbackList = action.payload;
+      if (action.meta.arg.page === 1) {
+        state.cashbackList = action.payload;
+      } else {
+        state.cashbackList = [...state.cashbackList, ...action.payload];
+      }
+
       state.totalCashback = action.payload.count;
       state.isLoading = false;
     },
@@ -75,7 +80,14 @@ const cashbackSlice = createSlice({
       state.isLoading = false;
     },
     [getWithdrawals.fulfilled]: (state, action) => {
-      state.withdrawalsList = action.payload.withdrawals;
+      if (action.meta.arg.page === 1) {
+        state.withdrawalsList = action.payload.withdrawals;
+      } else {
+        state.withdrawalsList = [
+          ...state.withdrawalsList,
+          ...action.payload.withdrawals,
+        ];
+      }
       state.totalWithdrawals = action.payload.count;
       state.isLoading = false;
     },
