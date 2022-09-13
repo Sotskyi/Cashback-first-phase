@@ -316,7 +316,7 @@ const MissingTransaction = () => {
                 src={uploadPhoto}
                 alt='img'
               />{' '}
-              <span>Upload Photo</span>
+              <span>{t('UPLOAD_PHOTO')}</span>
             </div>
             {!checkIsValid({
               nameOfData: 'isPaymentProof',
