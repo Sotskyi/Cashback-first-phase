@@ -22,7 +22,7 @@ const UnloginedCashback = () => {
             onClick={() => navigate('/signup')}
             className={classes.navigateLink}
           >
-            {t('SIGNUP')}
+            {t('SIGN_UP')}
           </span>
         </div>
       </div>

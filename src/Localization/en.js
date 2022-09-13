@@ -14,7 +14,7 @@ export const en = {
   FIRST_NAME: 'First name',
   EMAIL: 'Email',
   LAST_NAME: 'Last name',
-  PASSWORD: 'Password',
+
   ADD_NETWORK_DETAILS: 'Add network details',
   MOBILE_NETWORK_CARRIER: 'Mobile network carrier',
   PHONE_PLAN: 'Phone plan',
@@ -23,6 +23,7 @@ export const en = {
   SIGN_UP: 'Sign Up',
   // LOGIN
   FORGOT_PASSWORD: 'Forgot password?',
+  PASSWORD: 'Password',
   NEW_TO_TELCOREWARDS: 'New to Telco Rewards?',
   // RESET PASSWORD BY PHONE
   DO_NOT_HAVE_ACCESS_TO_PHONE: 'Do not have access to this phone?',

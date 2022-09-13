@@ -31,7 +31,7 @@ const PasswordInput = ({
           color: 'black',
         }}
       >
-        {title || 'Password'}
+        {title || t('PASSWORD')}
       </InputLabel>
       <OutlinedInput
         onChange={handleChange}

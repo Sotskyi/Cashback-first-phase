@@ -108,9 +108,6 @@ export const fr = {
     "Veuillez télécharger un reçu ou un relevé bancaire pour montrer la preuve de la valeur de l'achat, la date de la transaction, les détails de la carte de paiement et le détaillant.",
   FOR_SECURITY:
     'For security, please do not include your full card number, expiry date of card or any other account information other than the last 4 digits of the card, transaction date, amount and retailers',
-
-  //   'Please upload a receipt or bank statement to show the proof of purchase value, transaction date, payment card details and retailer. We need to see all this information to confirm your transaction with the retailer.For security, please do not include your full card number, expiry date of card or any other account information other than the last 4 digits of the card, transaction date, amount and retailers',
-  // 'Veuillez télécharger un reçu ou un relevé bancaire pour montrer la preuve de la valeur de l'achat, la date de la transaction, les détails de la carte de paiement et le détaillant.’
   UPLOAD_PHOTO: 'Télécharger le reçu',
   SUBMIT_FOR_REVIEW: 'Soumettre',
   PURCHASE_TYPE: "Type d'achat",
