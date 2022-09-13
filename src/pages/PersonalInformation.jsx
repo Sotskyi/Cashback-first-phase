@@ -80,7 +80,8 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('xs')]: {
       paddingInline: '16px',
-      height: '1292px',
+      // height: '1292px',
+      alignItems: 'center',
     },
     marginTop: '48px',
     // justifyContent: 'space-between',
