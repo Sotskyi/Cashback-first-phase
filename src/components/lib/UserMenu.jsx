@@ -18,6 +18,7 @@ import missingTransaction from '../../assets/images/icons/forHeaderMenu/missingT
 import settings1 from '../../assets/images/icons/forHeaderMenu/settings1.svg';
 
 import { logoutUser } from '../../redux/slices/authSlice';
+import { reset } from '../../redux/slices/cashbackSlice';
 import { HowItWorksCarouselContext } from './howItWorksCarousel/HowItWorksCarouselProvider';
 
 const UserMenu = () => {
@@ -94,6 +95,7 @@ const UserMenu = () => {
     const { id } = event.target;
     if (id === 'logout') {
       dispatch(logoutUser());
+      dispatch(reset());
       navigate('/login');
     } else if (id === 'cashback') {
       navigate('/cashback');

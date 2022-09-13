@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
-
 import { getCashback } from '../../../redux/slices/cashbackSlice';
 import timer from '../../../assets/images/icons/timer.svg';
 import {
@@ -35,73 +34,60 @@ const CashbackList = () => {
     dispatch(getCashback({ page, limit: 8 }));
   }, [page]);
 
+  if (isLoading) {
+    return <Loader />;
+  }
+
   return (
     <div className={classes.cashbackListContainer}>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          {cashbackList?.map((el) => (
-            <div key={el?.date}>
-              <div className={classes.dateContainer}>
-                <div className={classes.date}>
-                  {getDateForCashback(el?.date)}{' '}
+      {cashbackList?.map((el) => (
+        <div key={el?.date}>
+          <div className={classes.dateContainer}>
+            <div className={classes.date}>{getDateForCashback(el?.date)} </div>
+            <div className={classes.totalCashback}>
+              $ {parseFloat(el?.dailyTotal)}
+            </div>
+          </div>
+          {el.items.map((item) => (
+            <div
+              className={classes.storeContainer}
+              key={item.saleAmount + item.cashbackId}
+            >
+              <img
+                className={classes.storeAvatar}
+                src={item.logoImageUrl}
+                alt='avatar'
+              />
+              <div className={classes.storeContentContainer}>
+                <div className={classes.storeContentWrapper}>
+                  <div className={classes.storeTitle}>{item.storeTitle}</div>
+                  <div className={classes.storeCashback}>$ {item.reward}</div>
                 </div>
-                <div className={classes.totalCashback}>
-                  $ {parseFloat(el?.dailyTotal)}
-                </div>
-              </div>
-              {el.items.map((item) => (
-                <div
-                  className={classes.storeContainer}
-                  key={item.saleAmount + item.cashbackId}
-                >
-                  <img
-                    className={classes.storeAvatar}
-                    src={item.logoImageUrl}
-                    alt='avatar'
-                  />
-                  <div className={classes.storeContentContainer}>
-                    <div className={classes.storeContentWrapper}>
-                      <div className={classes.storeTitle}>
-                        {item.storeTitle}
-                      </div>
-                      <div className={classes.storeCashback}>
-                        $ {item.reward}
-                      </div>
-                    </div>
-                    <div className={classes.storeContentWrapper}>
-                      <div className={classes.storeAvailableCashback}>
-                        $ {item.saleAmount}
-                      </div>
-                      <div className={classes.storeAvailableCashbackTime}>
-                        {differenceDatesInDays(new Date(), new Date(el.date)) >
-                          0 && (
-                          <>
-                            {differenceDatesInDays(
-                              new Date(),
-                              new Date(el.date),
-                            )}{' '}
-                            {t('DAYS')}
-                            <img
-                              className={
-                                classes.storeAvailableCashbackTimerIcon
-                              }
-                              src={timer}
-                              alt='timer'
-                            />{' '}
-                          </>
-                        )}
-                      </div>
-                    </div>
+                <div className={classes.storeContentWrapper}>
+                  <div className={classes.storeAvailableCashback}>
+                    $ {item.saleAmount}
+                  </div>
+                  <div className={classes.storeAvailableCashbackTime}>
+                    {differenceDatesInDays(new Date(), new Date(el.date)) >
+                      0 && (
+                      <>
+                        {differenceDatesInDays(new Date(), new Date(el.date))}{' '}
+                        {t('DAYS')}
+                        <img
+                          className={classes.storeAvailableCashbackTimerIcon}
+                          src={timer}
+                          alt='timer'
+                        />{' '}
+                      </>
+                    )}
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
           ))}
-          <div ref={lastElement} className={classes.lastElement} />
-        </>
-      )}
+        </div>
+      ))}
+      <div ref={lastElement} className={classes.lastElement} />
     </div>
   );
 };
@@ -112,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
   cashbackListContainer: {
     // height: '500px',
     width: '680px',
-    maxHeight: '700px',
+    maxHeight: '600px',
     paddingRight: '15px',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {

@@ -34,50 +34,42 @@ const WithdrawalsList = () => {
   }, [page]);
 
   const getTotalWithdrawal = (items) => items.reduce((a, b) => a + b.amount, 0);
-
+  if (isLoading) {
+    <Loader />;
+  }
   return (
     <div className={classes.withdrawalsListContainer}>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <>
-          {withdrawalsList?.map((el) => (
-            <div key={el.date}>
-              <div className={classes.dateContainer}>
-                <div className={classes.date}>
-                  {getDateForCashback(el.date)}{' '}
-                </div>
-                <div className={classes.totalCashback}>
-                  $ {getTotalWithdrawal(el.items)}
+      {withdrawalsList?.map((el) => (
+        <div key={el.date}>
+          <div className={classes.dateContainer}>
+            <div className={classes.date}>{getDateForCashback(el.date)} </div>
+            <div className={classes.totalCashback}>
+              $ {getTotalWithdrawal(el.items)}
+            </div>
+          </div>
+          {el.items.map((item) => (
+            <div key={item.amount} className={classes.withdrawalContainer}>
+              <div className={classes.withdrawalAvatar}>
+                {' '}
+                <img
+                  src={withdrawalsSuccess}
+                  // className={classes.withdrawalsIconSuccess}
+                  alt='cash'
+                />{' '}
+              </div>
+              <div className={classes.withdrawalContentContainer}>
+                <div className={classes.withdrawalContentWrapper}>
+                  <div className={classes.withdrawalTitle}>{t('WITHDRAW')}</div>
+                  <div className={classes.withdrawalCashback}>
+                    $ {item.amount}
+                  </div>
                 </div>
               </div>
-              {el.items.map((item) => (
-                <div key={item.amount} className={classes.withdrawalContainer}>
-                  <div className={classes.withdrawalAvatar}>
-                    {' '}
-                    <img
-                      src={withdrawalsSuccess}
-                      // className={classes.withdrawalsIconSuccess}
-                      alt='cash'
-                    />{' '}
-                  </div>
-                  <div className={classes.withdrawalContentContainer}>
-                    <div className={classes.withdrawalContentWrapper}>
-                      <div className={classes.withdrawalTitle}>
-                        {t('WITHDRAW')}
-                      </div>
-                      <div className={classes.withdrawalCashback}>
-                        $ {item.amount}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
             </div>
           ))}
-          <div ref={lastElement} className={classes.lastElement} />
-        </>
-      )}
+        </div>
+      ))}
+      <div ref={lastElement} className={classes.lastElement} />
     </div>
   );
 };
@@ -85,7 +77,7 @@ export default WithdrawalsList;
 
 const useStyles = makeStyles((theme) => ({
   withdrawalsListContainer: {
-    maxHeight: '700px',
+    maxHeight: '600px',
     width: '680px',
     paddingRight: '15px',
     overflowY: 'scroll',

@@ -16,8 +16,8 @@ const Loader = ({ delay, setTriggerLoader }) => {
         // ...(hideLoader === true && {
         //   display: 'none',
         // }),
-        height: delay ? '30px' : '100vh',
-        width: delay ? '30px' : '100vw',
+        height: delay ? '30px' : '100%',
+        width: delay ? '30px' : '100%',
         alignItems: 'center',
         justifyContent: 'center',
       }}

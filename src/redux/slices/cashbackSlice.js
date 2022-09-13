@@ -42,7 +42,9 @@ export const getWithdrawals = createAsyncThunk(
 const cashbackSlice = createSlice({
   name: 'cashback',
   initialState,
-  reducers: {},
+  reducers: {
+    reset: () => initialState,
+  },
   extraReducers: {
     [getCashback.fulfilled]: (state, action) => {
       if (action.meta.arg.page === 1) {
