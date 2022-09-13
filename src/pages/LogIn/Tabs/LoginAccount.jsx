@@ -80,7 +80,7 @@ const LoginAccount = ({ creds, handleChange }) => {
           onClick={() => navigate('/signup')}
           className={classes.navigateLink}
         >
-          {t('Sign Up')}
+          {t('SIGN_UP')}
         </span>
       </div>
     </div>
