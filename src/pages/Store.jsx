@@ -102,7 +102,7 @@ const Store = () => {
                     <Loader delay={3000} setTriggerLoader={setTriggerLoader} />
                   )}
                   {!triggerLoader &&
-                    (isAuth ? t('SHOP_NOV') : t('LOG_IN_TO_SHOP'))}
+                    (isAuth ? t('SHOP_NOW') : t('LOG_IN_TO_SHOP'))}
                 </div>{' '}
               </div>
             </div>
@@ -152,7 +152,7 @@ const Store = () => {
                   <Loader delay={3000} setTriggerLoader={setTriggerLoader} />
                 )}
                 {!triggerLoader &&
-                  (isAuth ? t('SHOP_NOV') : t('LOG_IN_TO_SHOP'))}
+                  (isAuth ? t('SHOP_NOW') : t('LOG_IN_TO_SHOP'))}
               </div>
             </div>
           </div>
@@ -398,8 +398,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     background: '#33CC55',
     borderRadius: '26px',
-    padding: '12px 10px',
+    // padding: '12px 10px',
     color: 'white',
+    height: '44px',
     fontFamily: 'Source Sans Pro, sans-serif',
     fontStyle: 'normal',
     fontWeight: '600',
