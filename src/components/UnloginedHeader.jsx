@@ -2,19 +2,20 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import Input from '@mui/material/Input';
+import { useTranslation } from 'react-i18next';
 
 import LanguageSwitcher from './lib/LanguageSwitcher';
 import logo from '../assets/images/logos/logo.svg';
 import searchIcon from '../assets/images/icons/searchIcon.svg';
 import { setSearch } from '../redux/slices/storesSlice';
 import UserMenu from './lib/UserMenu';
-
 import useDebounce from '../hooks/useDebounce';
 
 const UnloginedHeader = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const classes = useStyles();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useDebounce(searchTerm, 500, setSearch);
 
@@ -36,7 +37,7 @@ const UnloginedHeader = () => {
         className={classes.headerButtonForMobile}
         onClick={() => navigate('/login')}
       >
-        Log in to shop
+        {t('LOG_IN_TO_SHOP')}
       </div>
       <div className={classes.headerContainer}>
         <div
@@ -59,7 +60,7 @@ const UnloginedHeader = () => {
           <Input
             onKeyDown={handleKeyDown}
             onChange={handleChange}
-            placeholder='Search stores'
+            placeholder={t('Search stores')}
             disableUnderline
             fullWidth
             sx={{ marginLeft: '8px' }}

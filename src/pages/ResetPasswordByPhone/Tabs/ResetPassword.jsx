@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import SubmitButton from '../../../components/form/SubmitButton';
 import PhoneNumberInput from '../../../components/form/PhoneNumberInput';
@@ -10,6 +11,7 @@ import { insertString } from '../../../utils/helpers';
 
 const ResetPassword = ({ next, creds, handleChange }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const [checkIsValid, setIsShowError] = useValidator();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,7 +41,7 @@ const ResetPassword = ({ next, creds, handleChange }) => {
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Reset your password</div>
+        <div className={classes.title}>{t('RESET_YOUR_PASSWORD')}</div>
         <PhoneNumberInput
           handleChange={handleChange}
           data={creds.phoneNumber}
@@ -48,12 +50,12 @@ const ResetPassword = ({ next, creds, handleChange }) => {
           }
         />
         <div className={classes.alreadyHaveAccount}>
-          Do not have access to this phone?&nbsp;
+          <span>{t('DO_NOT_HAVE_ACCESS_TO_PHONE')}&nbsp;</span>
           <div
             onClick={() => navigate('/reset_password_by_email')}
             className={classes.navigateLink}
           >
-            Use email
+            {t('USE_EMAIL')}
           </div>
         </div>
         <div className={classes.navigateLink}>
@@ -61,10 +63,10 @@ const ResetPassword = ({ next, creds, handleChange }) => {
             onClick={() => navigate('/login')}
             className={classes.navigateLinkBackToLogin}
           >
-            Back to Log in
+            {t('BACK_TO_LOGIN')}
           </div>{' '}
           <div className={classes.submitWrapper}>
-            <SubmitButton onSubmit={onSubmit} title='Send code' />
+            <SubmitButton onSubmit={onSubmit} title={t('SEND_CODE')} />
           </div>
         </div>
       </div>

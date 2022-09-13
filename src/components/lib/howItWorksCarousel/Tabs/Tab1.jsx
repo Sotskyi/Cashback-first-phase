@@ -1,15 +1,14 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
 
 const Tab1 = () => {
   const classes = useStyles();
-
+  const { t } = useTranslation();
   return (
     <div className={classes.firstTabContainer}>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Select an online shop</div>
-        <div className={classes.subTitle}>
-          Log-in.Select an online shop.Click on Shop Now.
-        </div>
+        <div className={classes.title}>{t('SELECT_ONLINE_SHOP')}</div>
+        <div className={classes.subTitle}>{t('LOGIN_SELECT_ONLINE_SHOP')}</div>
       </div>
     </div>
   );
@@ -27,8 +26,8 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '70px',
+    // justifyContent: 'space-between',
+    height: '150px',
   },
   title: {
     width: '100%',
@@ -43,6 +42,7 @@ const useStyles = makeStyles(() => ({
   },
   subTitle: {
     fontFamily: 'Inter',
+    marginTop: '10px',
     fontStyle: 'normal',
     fontWeight: '500',
     fontSize: '16px',

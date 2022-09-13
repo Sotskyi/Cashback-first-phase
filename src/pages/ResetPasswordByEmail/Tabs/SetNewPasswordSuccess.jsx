@@ -1,16 +1,16 @@
 import { makeStyles } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 const SetNewPasswordSuccess = ({ email }) => {
   const classes = useStyles();
-
+  const { t } = useTranslation();
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Check your inbox</div>
+        <div className={classes.title}>{t('CHECK_YOUR_INBOX')}</div>
 
         <div className={classes.subTitle}>
-          A link was sent to {email} to reset your password. If you don’t see it
-          in your inbox, remember to check your spam folder.
+          {t('LINK_WAS_SENT_TO', { email })}
         </div>
       </div>
     </div>

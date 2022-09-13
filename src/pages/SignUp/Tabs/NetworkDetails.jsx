@@ -4,13 +4,14 @@ import { makeStyles } from '@material-ui/core';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
+import { useTranslation } from 'react-i18next';
 
 import SubmitButton from '../../../components/form/SubmitButton';
 import { useValidator } from '../../../hooks/useValidator';
 
 const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
   const classes = useStyles();
-
+  const { t } = useTranslation();
   const [data, setData] = useState([]);
   const [checkIsValid, setIsShowError] = useValidator();
 
@@ -39,7 +40,7 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Add network details</div>
+        <div className={classes.title}>{t('ADD_NETWORK_DETAILS')}</div>
         <div className={classes.inputWrapper}>
           <InputLabel
             sx={{
@@ -50,7 +51,7 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
               color: 'black',
             }}
           >
-            Mobile network carrier
+            {t('MOBILE_NETWORK_CARRIER')}
           </InputLabel>
           <Select
             value={creds.carrier}
@@ -86,7 +87,7 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
             data: creds.carrier,
           }) && (
             <div className={classes.errorMessage}>
-              Please select valid mobile network carrier
+              {t('PLEASE_SELECT_VALID_MOBILE_NETWORK')}
             </div>
           )}
         </div>
@@ -101,7 +102,7 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
                 color: 'black',
               }}
             >
-              Phone plan
+              {t('PHONE_PLAN')}
             </InputLabel>
             <div
               onClick={() => setCreds({ ...creds, phonePlan: 'monthly' })}
@@ -116,7 +117,7 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
                     : classes.phonePlanRadio
                 }
               />
-              <span> Monthly</span>
+              <span> {t('MONTHLY')}</span>
             </div>
           </div>
           <div
@@ -132,10 +133,10 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
                   : classes.phonePlanRadio
               }
             />
-            <span> Prepaid</span>
+            <span> {t('PREPAID')}</span>
           </div>
         </div>
-        <SubmitButton title='Sign Up' onSubmit={handleSubmit} />
+        <SubmitButton title={t('SIGN_UP')} onSubmit={handleSubmit} />
       </div>
     </div>
   );

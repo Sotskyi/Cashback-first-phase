@@ -48,9 +48,9 @@ export const getStoresBySearch = createAsyncThunk(
 
 export const getStore = createAsyncThunk(
   'stores/getStore',
-  async (id, thunkAPI) => {
+  async (params, thunkAPI) => {
     try {
-      const response = await StoresService.getStore(id);
+      const response = await StoresService.getStore(params);
       return await response.data;
     } catch (error) {
       toast.error(getError(error));

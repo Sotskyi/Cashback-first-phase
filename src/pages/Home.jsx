@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
 // import { useLocation } from 'react-router-dom';
 
 import StoreIconSlider from '../components/lib/StoreIconSlider';
@@ -16,18 +18,16 @@ import { useObserver } from '../hooks/useObserver';
 
 const Home = () => {
   const classes = useStyles();
-  // const location = useLocation();
+  const { i18n } = useTranslation();
 
   const dispatch = useDispatch();
-  // useDebounce(searchTerm, 500);
   const lastElement = useRef();
   const [categoryId, setCategoryId] = useState('favoritesPosition');
   const [step, setStep] = useState(0);
   const [page, setPage] = useState(1);
-  // const [isShowCarousel, setIsShowHowItWorks] = useState(true);
   const [isShowFilter, setIsShowFilter] = useState(false);
   const [filters, setFilters] = useState([]);
-
+  const [currentLanguage, setCurrentLanguage] = useState(i18n.language);
   const { storesList, isLoading, itemsCount, search } = useSelector(
     (state) => state.stores,
   );
@@ -44,6 +44,13 @@ const Home = () => {
   );
 
   useEffect(() => {
+    if (i18n.language !== currentLanguage) {
+      setPage(() => 1);
+      setCurrentLanguage(i18n.language);
+    }
+  }, [i18n.language]);
+
+  useEffect(() => {
     if (search.length > 0 || filters.length > 0) {
       dispatch(
         getStoresBySearch({
@@ -52,7 +59,7 @@ const Home = () => {
             : { category: categoryId }),
           page: '1',
           limit: 1000,
-          languageCode: 'en',
+          languageCode: currentLanguage,
           title: search,
           filter: filters.length > 0 ? filters.join() : '',
         }),
@@ -63,7 +70,7 @@ const Home = () => {
       dispatch(reset());
       setPage(1);
     };
-  }, [search, filters, categoryId]);
+  }, [search, filters, categoryId, currentLanguage]);
 
   useEffect(() => {
     if (search.length === 0 && filters.length === 0) {
@@ -74,10 +81,11 @@ const Home = () => {
             : { category: categoryId }),
           page,
           limit: 16,
+          languageCode: currentLanguage,
         }),
       );
     }
-  }, [categoryId, page, search, filters]);
+  }, [categoryId, page, search, filters, currentLanguage]);
 
   // useEffect(() => {
   //   if (filters.length > 0) {
@@ -103,6 +111,7 @@ const Home = () => {
         isShowFilter={isShowFilter}
         filters={filters}
         setFilters={setFilters}
+        currentLanguage={currentLanguage}
       />
 
       <div className={classes.bodyContainer}>

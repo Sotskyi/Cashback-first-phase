@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 import Loader from './lib/Loader';
 import {
@@ -16,6 +17,7 @@ import { insertString } from '../utils/helpers';
 const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { confirmSms, isLoading } = useSelector((state) => state.auth);
   const [isShowError, setIsShowError] = useState(false);
@@ -154,10 +156,10 @@ const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Verify phone number</div>
+        <div className={classes.title}>{t('VERIFY_PHONE_NUMBER')}</div>
         <div className={classes.subTitleContainer}>
           <div className={classes.subTitle}>
-            Enter the code we’ve sent by SMS to{' '}
+            {t('ENTER_THE_CODE_WE_HAVE_SEND')}
           </div>
           <div className={classes.phoneNumber}>{creds.phoneNumber}</div>
         </div>
@@ -231,7 +233,7 @@ const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
         </form>
       </div>
       <div className={classes.haventSms}>
-        Haven’t received SMS?
+        {t('HAVE_NOT_RECEIVED_SMS')}
         <span
           className={classes.sendAgain}
           onClick={() => {
@@ -240,7 +242,7 @@ const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
               : dispatch(verifyPhone(insertString('+1', creds.phoneNumber)));
           }}
         >
-          Send again
+          {t('SEND_AGAIN')}
         </span>
       </div>
     </div>

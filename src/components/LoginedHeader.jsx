@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import Input from '@mui/material/Input';
+import { useTranslation } from 'react-i18next';
 
 import LanguageSwitcher from './lib/LanguageSwitcher';
 import logo from '../assets/images/logos/logo.svg';
-
 import searchIcon from '../assets/images/icons/searchIcon.svg';
 import { setSearch } from '../redux/slices/storesSlice';
 import UserMenu from './lib/UserMenu';
@@ -13,7 +13,7 @@ import useDebounce from '../hooks/useDebounce';
 
 const LoginedHeader = ({ availableBalance }) => {
   const [searchTerm, setSearchTerm] = useState('');
-
+  const { t } = useTranslation();
   const classes = useStyles();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -52,7 +52,7 @@ const LoginedHeader = ({ availableBalance }) => {
         <Input
           onChange={(e) => handleChange(e)}
           onKeyDown={handleKeyDown}
-          placeholder='Search stores'
+          placeholder={t('SEARCH_STORES')}
           disableUnderline
           fullWidth
           sx={{ marginLeft: '8px' }}
@@ -65,7 +65,7 @@ const LoginedHeader = ({ availableBalance }) => {
         }`}
         onClick={() => navigate('/cashback')}
       >
-        <div className={classes.priceTitle}>AVAILABLE</div>
+        <div className={classes.priceTitle}>{t('AVAILABLE')}</div>
         <div className={classes.price}>{`$ ${availableBalance || 0.0}`}</div>
       </div>
       <UserMenu />

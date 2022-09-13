@@ -1,5 +1,6 @@
 import { makeStyles, TextField } from '@material-ui/core';
 import InputLabel from '@mui/material/InputLabel';
+import { useTranslation } from 'react-i18next';
 
 import { purchaseTypes, paymentMethods } from '../../../utils/constants';
 import SubmitButton from '../../../components/form/SubmitButton';
@@ -14,6 +15,7 @@ const MobileInput = ({
   onSubmit,
   checkIsValid,
 }) => {
+  const { t } = useTranslation();
   const classes = useStyles();
   return (
     <div className={classes.container}>
@@ -32,7 +34,7 @@ const MobileInput = ({
               color: 'black',
             }}
           >
-            Store
+            {t('STORE')}
           </InputLabel>
 
           <AutocompleteInput
@@ -49,9 +51,7 @@ const MobileInput = ({
             nameOfData: 'isId',
             data: creds.ticket.store,
           }) && (
-            <div className={classes.errorMessage}>
-              Store name can’t be empty
-            </div>
+            <div className={classes.errorMessage}>{t('STORE_CANT_EMPTY')}</div>
           )}
         </div>
         <div className={classes.inputWrapper}>
@@ -64,7 +64,7 @@ const MobileInput = ({
               color: 'black',
             }}
           >
-            Date of purchase
+            {t('DATE_OF_PURCHASE')}
           </InputLabel>
 
           <TextField
@@ -87,7 +87,7 @@ const MobileInput = ({
             data: creds.ticket.purchasedAt,
           }) && (
             <div className={classes.errorMessage}>
-              Date of purchase can’t be empty
+              {t('DATE_OF_PURCHASE_CANT_EMPTY')}
             </div>
           )}
         </div>
@@ -101,7 +101,7 @@ const MobileInput = ({
               color: 'black',
             }}
           >
-            Purchase type
+            {t('PURCHASE_TYPE')}
           </InputLabel>
 
           {purchaseTypes.map((el) => (
@@ -126,7 +126,7 @@ const MobileInput = ({
             data: creds.ticket.purchaseType,
           }) && (
             <div className={classes.errorMessage}>
-              Purchase type can’t be empty
+              {t('PURCHASE_TYPE_CANT_EMPTY')}
             </div>
           )}
         </div>
@@ -140,7 +140,7 @@ const MobileInput = ({
               color: 'black',
             }}
           >
-            Payment method
+            {t('PAYMENT_METHOD')}
           </InputLabel>
 
           {paymentMethods.map((el) => (
@@ -165,7 +165,7 @@ const MobileInput = ({
             data: creds.ticket.paymentMethod,
           }) && (
             <div className={classes.errorMessage}>
-              Payment method ca’t be empty
+              {t('PAYMENT_METHOD_CANT_EMPTY')}
             </div>
           )}
         </div>
@@ -180,17 +180,12 @@ const MobileInput = ({
               width: '100%',
             }}
           >
-            Proof of payment
+            {t('PROOF_OF_PAYMENT')}
           </InputLabel>
           <div className={classes.contentFirstParagraph}>
-            Please upload a receipt or bank statement to show the proof of
-            purchase value, transaction date, payment card details and retailer.
-            We need to see all this information to confirm your transaction with
-            the retailer.
+            {t('PLEASE_UPLOAD_RECEIPT')}
             <div className={classes.contentSecondParagraph}>
-              For security, please do not include your full card number, expiry
-              date of card or any other account information other than the last
-              4 digits of the card, transaction date, amount and retailers
+              {t('FOR_SECURITY')}
             </div>
           </div>
         </div>
@@ -214,16 +209,16 @@ const MobileInput = ({
             src={uploadPhoto}
             alt='img'
           />
-          <span>Upload Photo</span>
+          <span>{t('UPLOAD_PHOTO')}</span>
         </div>
         {!checkIsValid({
           nameOfData: 'isPaymentProof',
           data: creds.paymentProof.name,
-        }) && <div className={classes.errorMessage}>Please upload photo</div>}
+        }) && <div className={classes.errorMessage}>{t('UPLOAD_PHOTO')}</div>}
       </label>
       <div className={classes.submitWrapper}>
         {' '}
-        <SubmitButton title='Submit for review' onSubmit={onSubmit} />
+        <SubmitButton title={t('SUBMIT_FOR_REVIEW')} onSubmit={onSubmit} />
       </div>
     </div>
   );

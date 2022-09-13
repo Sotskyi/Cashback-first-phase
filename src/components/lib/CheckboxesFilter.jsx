@@ -8,11 +8,11 @@ import { makeStyles } from '@material-ui/core';
 const CheckboxesFilter = ({ filters, setFilters }) => {
   const classes = useStyles();
 
-  const handleChange = (e) => {
-    if (filters.includes(e.target.id)) {
-      return setFilters(filters.filter((el) => el !== e.target.id));
+  const handleChange = (el) => {
+    if (filters.includes(el)) {
+      return setFilters(filters.filter((elem) => elem !== el));
     }
-    return setFilters([...filters, e.target.id]);
+    return setFilters([...filters, el]);
   };
 
   const filtersList = [
@@ -37,9 +37,8 @@ const CheckboxesFilter = ({ filters, setFilters }) => {
           <FormControlLabel
             control={
               <Checkbox
-                id={el}
                 checked={filters.includes(el)}
-                onChange={handleChange}
+                onChange={() => handleChange(el)}
                 sx={{
                   '&.Mui-checked': {
                     color: '#33CC55',

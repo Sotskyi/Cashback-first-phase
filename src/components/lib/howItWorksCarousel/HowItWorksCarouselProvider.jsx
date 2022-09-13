@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useState, createContext, useMemo } from 'react';
+import { useState, createContext } from 'react';
 
 import HowItWorksCarousel from '.';
 

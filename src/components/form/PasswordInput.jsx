@@ -4,6 +4,7 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
+import { useTranslation } from 'react-i18next';
 
 import visibilityOn from '../../assets/images/icons/visibilityOn.svg';
 import visibilityOff from '../../assets/images/icons/visibilityOff.svg';
@@ -18,6 +19,7 @@ const PasswordInput = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
   const classes = useStyles();
+  const { t } = useTranslation();
   return (
     <div className={classes.inputWrapper}>
       <InputLabel
@@ -66,7 +68,7 @@ const PasswordInput = ({
       />
       {isError && (
         <div className={classes.errorMessage}>
-          {errorMessage || 'Should contain minimum 7 symbols maximum 20'}
+          {errorMessage || t('SHOULD_CONTAIN_MINIMUM_7SYMBOLS')}
         </div>
       )}
     </div>

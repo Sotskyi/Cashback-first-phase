@@ -1,13 +1,16 @@
 import { makeStyles } from '@material-ui/core';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import { useTranslation } from 'react-i18next';
 
 import flag from '../../assets/images/flags/ca.png';
 
 const PhoneNumberInput = ({ handleChange, data, isError }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
+
   return (
     <div className={classes.phoneNumberContainer}>
-      <label className={classes.phoneNumberLabel}>Phone number</label>
+      <label className={classes.phoneNumberLabel}>{t('PHONE')}</label>
       <OutlinedInput
         className={classes.phoneNumberInputContainer}
         error={isError}
@@ -39,7 +42,7 @@ const PhoneNumberInput = ({ handleChange, data, isError }) => {
       />
       {isError && (
         <div className={classes.phoneNumberError}>
-          Please enter valid phone number in format 0987654321
+          {t('PLEASE_ENTER_PHONE_NUMBER_IN_FORMAT')}
         </div>
       )}
     </div>

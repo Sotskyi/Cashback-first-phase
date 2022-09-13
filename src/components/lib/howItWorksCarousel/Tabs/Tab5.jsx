@@ -1,15 +1,17 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
 
 import appStore from '../../../../assets/images/widgets/appStore.svg';
 import googlePlay from '../../../../assets/images/widgets/googlePlay.svg';
 
 const Tab4 = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.firthTabContainer}>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Download the App</div>
+        <div className={classes.title}>{t('DOWNLOAD_THE_APP')}</div>
         <div className={classes.widgetsContainer}>
           <img src={appStore} alt='appstore' />
           <img src={googlePlay} alt='googleStore' />

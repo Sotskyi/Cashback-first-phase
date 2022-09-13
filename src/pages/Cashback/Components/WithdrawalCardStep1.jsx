@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 import withdrawalsWhite from '../../../assets/images/icons/withdrawalsWhite.svg';
 
@@ -8,21 +9,22 @@ const WithdrawalCardStep1 = ({
   availableCashPending,
 }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.withdrawalCardContainer}>
-      <div className={classes.availableCashTitle}>AVAILABLE</div>
+      <div className={classes.availableCashTitle}>{t('AVAILABLE')}</div>
       <div className={classes.availableCash}>$ {availableCash}</div>
       <div className={classes.titleContainers}>
-        <div>PENDING</div>
-        <div>TOTAL</div>
+        <div>{t('PENDING')}</div>
+        <div>{t('TOTAL')}</div>
       </div>
       <div className={classes.priceContainers}>
         <div>$ {availableCashPending}</div>
         <div>$ {availableCash + availableCashPending}</div>
       </div>
       <div className={classes.withdrawButton} onClick={handleSubmit} id='1'>
-        Withdraw
+        {t('WITHDRAW')}
         <img
           src={withdrawalsWhite}
           className={classes.withdrawalsIcon}

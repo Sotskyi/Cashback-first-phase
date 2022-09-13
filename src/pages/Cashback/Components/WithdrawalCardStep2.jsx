@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 import withdrawals from '../../../assets/images/icons/withdrawals.svg';
 import withdrawalsGrey from '../../../assets/images/icons/withdrawalsGrey.svg';
@@ -13,11 +14,11 @@ const WithdrawalCardStep2 = ({
   setActiveCell,
 }) => {
   const classes = useStyles(data.length);
-
+  const { t } = useTranslation();
   return (
     <div className={classes.withdrawalCardContainer}>
       <div className={classes.headerContainer}>
-        <div className={classes.availableCashTitle}>AVAILABLE</div>
+        <div className={classes.availableCashTitle}>{t('AVAILABLE')}</div>
         <div className={classes.backButton} onClick={handleBackButton}>
           <img
             src={arrowBackWhite}
@@ -73,7 +74,7 @@ const WithdrawalCardStep2 = ({
           return null;
         }}
       >
-        Withdraw
+        {t('WITHDRAW')}
         <img
           src={activeCell ? withdrawals : withdrawalsGrey}
           className={classes.withdrawalsIcon}

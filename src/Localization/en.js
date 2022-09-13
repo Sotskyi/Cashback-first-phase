@@ -1,4 +1,4 @@
-const locale = {
+export const en = {
   // SIGNUP
   CREATE_ACCOUNT: 'Create an account',
   PHONE: 'Phone Number',
@@ -12,8 +12,8 @@ const locale = {
   BACK: 'Back',
   ADD_PERSONAL_DETAILS: 'Add personal details',
   FIRST_NAME: 'First name',
-  LAST_NAME: 'Last name',
   EMAIL: 'Email',
+  LAST_NAME: 'Last name',
   PASSWORD: 'Password',
   ADD_NETWORK_DETAILS: 'Add network details',
   MOBILE_NETWORK_CARRIER: 'Mobile network carrier',
@@ -27,18 +27,17 @@ const locale = {
   // RESET PASSWORD BY PHONE
   DO_NOT_HAVE_ACCESS_TO_PHONE: 'Do not have access to this phone?',
   USE_EMAIL: 'Use email',
-  BACK_TO_LOGIN: 'Back to Log in',
   SEND_CODE: 'Send code',
   SET_NEW_PASSWORD: 'Set new password',
   CONFIRM_NEW_PASSWORD: 'Confirm new password',
   // RESET PASSWORD BY EMAIL
+  DO_NOT_HAVE_ACCESS_TO_EMAIL: 'Do not have access to this email?',
   ENTER_THE_EMAIL_ADDRESS_YOU_REGISTER_WITH:
     'Enter the email address you used to register with.',
   BACK_TO_LOGIN: 'Back to Log in',
   CHECK_YOUR_INBOX: 'Check your inbox',
-  LINK_WAS_SENT_TO: 'A link was sent to',
-  TO_RESET_YOUR_PASSWORD_CHECK_SPAM_FOLDER:
-    'to reset your password. If you don’t see it in your inbox, remember to check your spam folder.',
+  LINK_WAS_SENT_TO:
+    'A link was sent to {{email}} to reset your password. If you don’t see it in your inbox, remember to check your spam folder.',
   // HOME PAGE
   SEARCH_STORES: 'Search stores',
   FEATURES_STORES: 'Featured Stores',
@@ -67,6 +66,7 @@ const locale = {
   // SETTINGS
   PERSONAL_INFORMATION: 'Personal information',
   MISSING_TRANSACTION: 'Missing transaction',
+  HOW_TELCO_REWARDS_WORK: 'How Telco Rewards work',
   GET_HELP: 'Get help',
   TERMS_AND_CONDITIONS: 'Terms & Conditions',
   PRIVACY_POLICY: 'Privacy Policy',
@@ -76,7 +76,6 @@ const locale = {
   SHOP_NOW: 'Shop Now',
   LOG_IN_TO_SHOP: 'Log in to shop',
   BASE_REWARD: 'Base reward',
-  SHOP_NOW: 'Shop Now',
   // CASHBACK
   NO_REWARDS_YET: 'No rewards yet',
   REDUCE_YOUR_MOBILE_BILL: 'Reduce your mobile bill with cash-back.',
@@ -85,6 +84,7 @@ const locale = {
   WITHDRAWALS: 'Withdrawals',
   PENDING: 'PENDING',
   TOTAL: 'TOTAL',
+  DAYS: 'days',
   WITHDROW: 'Withdrow',
   ADDED_TO_MOBILE_BALANCE: 'ADDED TO MOBILE BALANCE',
   STILL_AVAILABLE: 'STILL AVAILABLE',
@@ -95,16 +95,61 @@ const locale = {
   DATE_OF_PURCHASE: 'Date of purchase',
   PURCHASE_TYPE: 'Purchase type',
   PAYMENT_METHOD: 'Payment method',
-  PROOF_OF_PAYMENT:
-    'Please upload a receipt or bank statement to show the proof of purchase value, transaction date, payment card details and retailer. We need to see all this information to confirm your transaction with the retailer.For security, please do not include your full card number, expiry date of card or any other account information other than the last 4 digits of the card, transaction date, amount and retailers',
+  PROOF_OF_PAYMENT: 'Proof of payment',
+  PLEASE_UPLOAD_RECEIPT:
+    'Please upload a receipt or bank statement to show the proof of purchase value, transaction date, payment card details and retailer. We need to see all this information to confirm your transaction with the retailer',
+  FOR_SECURITY:
+    'For security, please do not include your full card number, expiry date of card or any other account information other than the last 4 digits of the card, transaction date, amount and retailers',
+
   UPLOAD_PHOTO: 'Upload Photo',
   SUBMIT_FOR_REVIEW: 'Submit for review',
-  PURCHASE_TYPE: 'Purchase type',
   MOBILE: 'Mobile',
   DESKTOP: 'Desktop',
   CREDIT_CARD: 'Credit Card',
   DEBIT_CARD: 'Debit Card',
   INSTALLMENT_PAYMENTS: 'Installment payments',
-};
 
-export default locale;
+  // TO DO
+
+  PLEASE_ENTER_PHONE_NUMBER_IN_FORMAT:
+    'Please enter phone number in format 0987654321',
+  SHOULD_CONTAIN_MINIMUM_7SYMBOLS:
+    'Should contain minimum 7 symbols maximum 20',
+  PLEASE_ENTER_VALID_EMAIL: 'Please enter valid email example@gmail.com',
+  RESET_YOUR_PASSWORD: 'Reset your password',
+  PLEASE_SELECT_VALID_MOBILE_NETWORK:
+    'Please select valid mobile network carrier',
+  THE_FIRST_NAME_MIN: 'The first name min 2 symbols',
+  THE_LAST_NAME_MIN: 'The last name min 2 symbols',
+  LOGIN_SELECT_ONLINE_SHOP: 'Log-in.Select an online shop.Click on Shop Now.',
+  MAKE_PURCHASE_LIKE_NORMALLY:
+    'Make a purchase like you normally would from our retail partner.',
+  GET_PART_MONEY: 'Get part of the money you spent back!',
+  PAY_DOWN_YOUR_PHONE: 'Pay down your pre-paid phone bill',
+  ONCE_YOU_HAVE_ACCUMULATED:
+    'Once you have accumulated enough cash-back, pay-down your phone-bill.',
+  NO_OFFERS_FOR_STORE: ' No offers for this store',
+  STORE_CANT_EMPTY: 'Store name can’t be empty',
+  DATE_OF_PURCHASE_CANT_EMPTY: 'Date of purchase can’t be empty',
+  PURCHASE_TYPE_CANT_EMPTY: 'Purchase type can’t be empty',
+  PAYMENT_METHOD_CANT_EMPTY: 'Payment method can’t be empty',
+
+  // For security, please do not include your full card number,expiry date of card or any other account information other thanthe last 4 digits of the card, transaction date, amount andretailers
+  CARRIER: 'Carrier',
+  CURRENT_BALANCE: 'Current balance',
+  BILLING_NUMBER: 'Billing number',
+  // Billing number
+
+  //  new to do
+
+  // New password successfully created
+  // Passwords do not match
+  // New user successfully created
+  // Missing transaction created
+  // Please fill out this form for our review, if you believe you have a missing transaction
+  // Go back to change
+  // 'Increased cash-back'
+  // 'Top store'
+  // 'Recently added store'
+  // 'Ships from Canada'
+};

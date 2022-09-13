@@ -1,15 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
 
 const Tab3 = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.thirdTabContainer}>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Receive cashback</div>
-        <div className={classes.subTitle}>
-          Get part of the money you spent back!
-        </div>
+        <div className={classes.title}>{t('RECEIVE_CASHBACK')}</div>
+        <div className={classes.subTitle}>{t('GET_PART_MONEY')}</div>
       </div>
     </div>
   );
@@ -21,7 +21,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
   contentContainer: {
     display: 'flex',
@@ -38,8 +38,10 @@ const useStyles = makeStyles(() => ({
     lineHeight: '120%',
     color: '#000000',
     letterSpacing: '-0.02em',
+    textAlign: 'center',
   },
   subTitle: {
+    marginTop: '10px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',

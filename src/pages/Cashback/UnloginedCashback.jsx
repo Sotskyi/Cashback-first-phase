@@ -1,28 +1,28 @@
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 import SubmitButton from '../../components/form/SubmitButton';
 
 const UnloginedCashback = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <div className={classes.cashbackContainer}>
       <div className={classes.cashbackBodyContainer}>
-        <div className={classes.title}>No rewards yet</div>
-        <div className={classes.subTitle}>
-          Reduce your mobile bill with cash-back.
-        </div>
+        <div className={classes.title}>{t('NO_REWARDS_YET')}</div>
+        <div className={classes.subTitle}>{t('REDUCE_YOUR_MOBILE_BILL')}</div>
         <div className={classes.submitButtonWrapper}>
           <SubmitButton title='Log in' onSubmit={() => navigate('/login')} />
         </div>
         <div className={classes.dontHaveAccount}>
-          Don’t have an account?{' '}
+          {t('DONT_HAVE_ACCOUNT')}{' '}
           <span
             onClick={() => navigate('/signup')}
             className={classes.navigateLink}
           >
-            Sign Up
+            {t('SIGNUP')}
           </span>
         </div>
       </div>

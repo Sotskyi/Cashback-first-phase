@@ -8,13 +8,14 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import SubmitButton from '../../components/form/SubmitButton';
 import uploadPhoto from '../../assets/images/icons/uploadPhoto.svg';
 import MobileInput from './MobileInput/MobileInput';
 import { purchaseTypes, paymentMethods } from '../../utils/constants';
 import { useValidator } from '../../hooks/useValidator';
-import { getError, makeUpperCase } from '../../utils/helpers';
+import { getError } from '../../utils/helpers';
 import AutocompleteInput from '../../components/lib/AutocompleteInput';
 
 const MissingTransaction = () => {
@@ -22,6 +23,7 @@ const MissingTransaction = () => {
   const matches = useMediaQuery('(max-width:700px)');
   const navigate = useNavigate();
   const classes = useStyles();
+  const { t } = useTranslation();
   const [creds, setCreds] = useState({
     ticket: { store: '', purchasedAt: '', purchaseType: '', paymentMethod: '' },
     paymentProof: '',
@@ -90,7 +92,7 @@ const MissingTransaction = () => {
         />
       ) : (
         <div className={classes.contentWrapper}>
-          <div className={classes.title}>Report a missing transaction</div>
+          <div className={classes.title}>{t('REPORT_MISSING_TRANSACTION')}</div>
           <div className={classes.inputContainer}>
             <div className={classes.inputWrapper}>
               <InputLabel
@@ -102,7 +104,7 @@ const MissingTransaction = () => {
                   color: 'black',
                 }}
               >
-                Store
+                {t('STORE')}
               </InputLabel>
               <AutocompleteInput
                 setCreds={setCreds}
@@ -119,7 +121,7 @@ const MissingTransaction = () => {
                 data: creds.ticket.store,
               }) && (
                 <div className={classes.errorMessage}>
-                  Store name can’t be empty
+                  {t('STORE_CANT_EMPTY')}
                 </div>
               )}
             </div>
@@ -133,7 +135,7 @@ const MissingTransaction = () => {
                   color: 'black',
                 }}
               >
-                Date of purchase
+                {t('DATE_OF_PURCHASE')}
               </InputLabel>
               <TextField
                 error={
@@ -154,7 +156,7 @@ const MissingTransaction = () => {
                 data: creds.ticket.purchasedAt,
               }) && (
                 <div className={classes.errorMessage}>
-                  Date of purchase can’t be empty
+                  {t('DATE_OF_PURCHASE_CANT_EMPTY')}
                 </div>
               )}
             </div>
@@ -170,7 +172,7 @@ const MissingTransaction = () => {
                   color: 'black',
                 }}
               >
-                Purchase type
+                {t('PURCHASE_TYPE')}
               </InputLabel>
               <Select
                 error={
@@ -203,8 +205,8 @@ const MissingTransaction = () => {
                 }}
               >
                 {purchaseTypes.map((el) => (
-                  <MenuItem key={el} value={el}>
-                    {makeUpperCase(el)}
+                  <MenuItem key={el} value={el.value}>
+                    {t(el.forTranslate)}
                   </MenuItem>
                 ))}
               </Select>
@@ -213,7 +215,7 @@ const MissingTransaction = () => {
                 data: creds.ticket.purchaseType,
               }) && (
                 <div className={classes.errorMessage}>
-                  Purchase type can’t be empty
+                  {t('PURCHASE_TYPE_CANT_EMPTY')}
                 </div>
               )}
             </div>
@@ -227,7 +229,7 @@ const MissingTransaction = () => {
                   color: 'black',
                 }}
               >
-                Payment method
+                {t('PAYMENT_METHOD')}
               </InputLabel>
               <Select
                 error={
@@ -258,8 +260,8 @@ const MissingTransaction = () => {
                 }}
               >
                 {paymentMethods.map((el) => (
-                  <MenuItem key={el} value={el}>
-                    {makeUpperCase(el)}
+                  <MenuItem key={el} value={el.value}>
+                    {t(el.forTranslate)}
                   </MenuItem>
                 ))}
               </Select>
@@ -268,7 +270,7 @@ const MissingTransaction = () => {
                 data: creds.ticket.paymentMethod,
               }) && (
                 <div className={classes.errorMessage}>
-                  Payment method can’t be empty
+                  {t('PAYMENT_METHOD_CANT_EMPTY')}
                 </div>
               )}
             </div>
@@ -285,18 +287,12 @@ const MissingTransaction = () => {
                 width: '100%',
               }}
             >
-              Proof of payment
+              {t('PROOF_OF_PAYMENT')}
             </InputLabel>
             <div className={classes.contentFirstParagraph}>
-              Please upload a receipt or bank statement to show the proof of
-              purchase value, transaction date, payment card details and
-              retailer. We need to see all this information to confirm your
-              transaction with the retailer.
+              {t('PLEASE_UPLOAD_RECEIPT')}
               <div className={classes.contentSecondParagraph}>
-                For security, please do not include your full card number,
-                expiry date of card or any other account information other than
-                the last 4 digits of the card, transaction date, amount and
-                retailers
+                {t('FOR_SECURITY')}
               </div>
             </div>
           </div>
@@ -326,13 +322,16 @@ const MissingTransaction = () => {
               nameOfData: 'isPaymentProof',
               data: creds.paymentProof.name,
             }) && (
-              <div className={classes.errorMessage}>Please upload photo</div>
+              <div className={classes.errorMessage}>{t('UPLOAD_PHOTO')}</div>
             )}
           </label>
 
           <div className={classes.submitWrapper}>
             {' '}
-            <SubmitButton title='Submit for review' onSubmit={onSubmit} />{' '}
+            <SubmitButton
+              title={t('SUBMIT_FOR_REVIEW')}
+              onSubmit={onSubmit}
+            />{' '}
           </div>
         </div>
       )}

@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
+import { useTranslation } from 'react-i18next';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/form/SubmitButton';
@@ -8,7 +9,7 @@ import PasswordInput from '../../../components/form/PasswordInput';
 
 const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
   const classes = useStyles();
-
+  const { t } = useTranslation();
   const [checkIsValid, setIsShowError] = useValidator();
   const onSubmit = () => {
     setIsShowError(true);
@@ -48,7 +49,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Add personal details</div>
+        <div className={classes.title}>{t('ADD_PERSONAL_DETAILS')}</div>
         <div className={classes.inputContainer}>
           <div className={classes.inputWrapper}>
             <InputLabel
@@ -60,7 +61,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
                 color: 'black',
               }}
             >
-              First name
+              {t('FIRST_NAME')}
             </InputLabel>
             <OutlinedInput
               onChange={handleChange}
@@ -92,7 +93,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               data: creds.firstName,
             }) && (
               <div className={classes.errorMessage}>
-                The first name min 2 symbols
+                {t('THE_FIRST_NAME_MIN')}
               </div>
             )}
           </div>
@@ -106,7 +107,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
                 color: 'black',
               }}
             >
-              Last name
+              {t('LAST_NAME')}
             </InputLabel>
             <OutlinedInput
               onChange={handleChange}
@@ -137,7 +138,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               data: creds.lastName,
             }) && (
               <div className={classes.errorMessage}>
-                The last name min 2 symbols
+                {t('THE_LAST_NAME_MIN')}
               </div>
             )}
           </div>
@@ -152,7 +153,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               color: 'black',
             }}
           >
-            Email
+            {t('EMAIL')}
           </InputLabel>
           <OutlinedInput
             onChange={handleChange}
@@ -182,7 +183,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
             data: creds.email,
           }) && (
             <div className={classes.errorMessage}>
-              Please enter valid email example@gmail.com
+              {t('PLEASE_ENTER_VALID_EMAIL')}
             </div>
           )}
         </div>
@@ -196,7 +197,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
             })
           }
         />
-        <SubmitButton onSubmit={onSubmit} title='Continue' />
+        <SubmitButton onSubmit={onSubmit} title={t('CONTINUE')} />
       </div>
     </div>
   );

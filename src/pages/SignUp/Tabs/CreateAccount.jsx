@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/form/SubmitButton';
@@ -11,6 +12,7 @@ import { insertString } from '../../../utils/helpers';
 const CreateAccount = ({ next, handleChange, creds }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [checkIsValid, setIsShowError] = useValidator();
 
@@ -31,7 +33,7 @@ const CreateAccount = ({ next, handleChange, creds }) => {
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Create an account</div>
+        <div className={classes.title}>{t('CREATE_ACCOUNT')}</div>
         <PhoneNumberInput
           handleChange={handleChange}
           data={creds.phoneNumber}
@@ -39,15 +41,15 @@ const CreateAccount = ({ next, handleChange, creds }) => {
             !checkIsValid({ nameOfData: 'phone', data: creds.phoneNumber })
           }
         />
-        <SubmitButton onSubmit={onSubmit} title='Continue' />
+        <SubmitButton onSubmit={onSubmit} title={t('CONTINUE')} />
       </div>
       <div className={classes.alreadyHaveAccount}>
-        Already have an account?{' '}
+        {t('ALREADY_HAVE_ACCOUNT')}&nbsp;
         <span
           onClick={() => navigate('/login')}
           className={classes.alreadyHaveAccountLogIn}
         >
-          Log In
+          {t('LOGIN')}
         </span>
       </div>
     </div>

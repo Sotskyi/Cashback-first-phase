@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
+import { useTranslation } from 'react-i18next';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/form/SubmitButton';
@@ -11,6 +12,7 @@ import { resetPasswordByEmail } from '../../../redux/slices/authSlice';
 const ResetPassword = ({ next, email, setEmail }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
+  const { t } = useTranslation();
   const [checkIsValid, setIsShowError] = useValidator();
   const navigate = useNavigate();
 
@@ -34,9 +36,9 @@ const ResetPassword = ({ next, email, setEmail }) => {
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Reset your password</div>
+        <div className={classes.title}>{t('RESET_YOUR_PASSWORD')}</div>
         <div className={classes.subTitle}>
-          Enter the email address you used to register with.
+          {t('ENTER_THE_EMAIL_ADDRESS_YOU_REGISTER_WITH')}
         </div>
         <div className={classes.inputWrapper}>
           <InputLabel
@@ -48,7 +50,7 @@ const ResetPassword = ({ next, email, setEmail }) => {
               color: 'black',
             }}
           >
-            Email
+            {t('Email')}
           </InputLabel>
           <OutlinedInput
             onChange={handleChange}
@@ -77,7 +79,7 @@ const ResetPassword = ({ next, email, setEmail }) => {
             data: email,
           }) && (
             <div className={classes.errorMessage}>
-              Please enter valid email example@gmail.com
+              {t('PLEASE_ENTER_VALID_EMAIL')}
             </div>
           )}
         </div>
@@ -85,17 +87,17 @@ const ResetPassword = ({ next, email, setEmail }) => {
           onClick={() => navigate('/reset_password_by_phone')}
           className={classes.navigateLink}
         >
-          Do not have access to this email?
+          {t('DO_NOT_HAVE_ACCESS_TO_EMAIL')}
         </span>
         <div className={classes.navigateLink}>
           <div
             onClick={() => navigate('/login')}
             className={classes.navigateLinkBackToLogin}
           >
-            Back to Log in
+            {t('BACK_TO_LOGIN')}
           </div>
           <div className={classes.submitWrapper}>
-            <SubmitButton onSubmit={onSubmit} title='Send code' />
+            <SubmitButton onSubmit={onSubmit} title={t('SEND_CODE')} />
           </div>
         </div>
       </div>

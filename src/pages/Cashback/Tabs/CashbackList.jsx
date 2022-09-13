@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 import { getCashback } from '../../../redux/slices/cashbackSlice';
 import timer from '../../../assets/images/icons/timer.svg';
@@ -14,6 +15,7 @@ import { useObserver } from '../../../hooks/useObserver';
 const CashbackList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const { cashbackList, isLoading, totalCashback } = useSelector(
     (state) => state.cashback,
   );
@@ -80,7 +82,7 @@ const CashbackList = () => {
                               new Date(),
                               new Date(el.date),
                             )}{' '}
-                            days
+                            {t('DAYS')}
                             <img
                               className={
                                 classes.storeAvailableCashbackTimerIcon

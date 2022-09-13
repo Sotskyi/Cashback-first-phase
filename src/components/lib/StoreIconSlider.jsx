@@ -3,6 +3,7 @@ import Tab from '@mui/material/Tab';
 // import Box from '@mui/material/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import CheckboxesFilter from './CheckboxesFilter';
 import featuredStores from '../../assets/images/icons/forSlider/featuredStores.svg';
@@ -35,10 +36,11 @@ const StoreIconSlider = ({
   isShowFilter,
   filters,
   setFilters,
+  currentLanguage,
 }) => {
-  const classes = useStyles();
+  const classes = useStyles({ currentLanguage });
   const dispatch = useDispatch();
-
+  const { t } = useTranslation();
   const handleChange = (event, newValue) => {
     setCategoryId(newValue);
     setPage(1);
@@ -57,7 +59,6 @@ const StoreIconSlider = ({
     dispatch(reset());
     setPage(1);
   };
-
   const handleClickRightArrow = () => {
     // setStep((prev) => (+prev + 4).toString());
     if (step === 0) {
@@ -73,84 +74,79 @@ const StoreIconSlider = ({
 
   const tabs = [
     {
-      name: 'Featured Stores',
+      name: t('FEATURES_STORES'),
       icon: featuredStores,
       value: 'favoritesPosition',
     },
     {
-      name: 'All Stores',
+      name: t('ALL_STORES'),
       icon: allStores,
       value: 'title',
     },
     {
-      name: 'Fashion',
+      name: t('FASHION'),
       icon: fashion,
       value: '1',
     },
     {
-      name: 'Entertainment',
+      name: t('ENTERTAINMENT'),
       icon: entertainment,
       value: '2',
     },
     {
-      name: 'Electronics',
+      name: t('ELECTRONICS'),
       icon: electronics,
       value: '3',
     },
     {
-      name: 'Food & Grocery',
+      name: t('FOOD_AND_GROCERY'),
       icon: foodGrocery,
       value: '4',
     },
     {
-      name: 'Baby, Kids & Toys',
+      name: t('BABY_KIDS_TOYS'),
       icon: babyKidsToys,
       value: '5',
     },
     {
-      name: 'Books',
+      name: t('BOOKS'),
       icon: books,
       value: '6',
     },
     {
-      name: 'Home & Garden',
+      name: t('HOME_AND_GARDEN'),
       icon: homeGarden,
       value: '7',
     },
     {
-      name: 'Beauty & Health',
+      name: t('BEAUTY_AND_HEALTH'),
       icon: beautyHealth,
       value: '8',
     },
     {
-      name: 'Sports & Outdoor',
+      name: t('SPORTS_AND_OUTDOOR'),
       icon: sportsOutdoor,
       value: '9',
     },
     {
-      name: 'Auto',
+      name: t('AUTO'),
       icon: auto,
       value: '10',
     },
     {
-      name: 'Pet Supplies',
+      name: t('PET_SUPPLIES'),
       icon: petSupplies,
       value: '11',
     },
     {
-      name: 'Hardware & Tools',
+      name: t('HARDWARE_AND_TOOLS'),
       icon: hardwareTools,
       value: '12',
     },
   ];
   return (
     <div className={classes.container}>
-      <div
-        className={classes.carouselWrapper}
-        // onTouchStart={onTouchStart}
-        // onTouchMove={onTouchMove}
-        // onTouchEnd={onTouchEnd}
-      >
+      <div className={classes.carouselWrapper}>
         {step !== 0 && (
           <div
             className={classes.arrowContainer}
@@ -168,7 +164,6 @@ const StoreIconSlider = ({
               value={categoryId}
               onChange={handleChange}
               textColor='secondary'
-              // aria-label='secondary tabs example'
               TabIndicatorProps={{
                 style: {
                   backgroundColor: 'black',
@@ -202,14 +197,13 @@ const StoreIconSlider = ({
           >
             <img src={rightArrow} alt='menu' />
           </div>
-
           {isShowFilter && filters.length > 0 ? (
             <div
               className={`${classes.filter} ${classes.filledFilter}`}
               onClick={() => setFilters([])}
             >
               <img src={resetFilter} alt='menu' />
-              <span className={classes.filterTitle}>Filter</span>
+              <span className={classes.filterTitle}>{t('FILTER')}</span>
             </div>
           ) : (
             <div
@@ -219,7 +213,7 @@ const StoreIconSlider = ({
               onClick={() => setIsShowFilter((prev) => !prev)}
             >
               <img src={filter} alt='menu' />
-              <span className={classes.filterTitle}>Filter</span>
+              <span className={classes.filterTitle}>{t('FILTER')}</span>
             </div>
           )}
         </div>
@@ -271,6 +265,16 @@ const useStyles = makeStyles((theme) => ({
     },
     '& .MuiTab-root.Mui-selected': {
       color: 'black',
+    },
+    '& .MuiTab-root.MuiTab-labelIcon': {
+      marginRight: (currentLanguage) => {
+        if (currentLanguage.currentLanguage === 'fr') return '23px';
+        return '34px';
+      },
+      letterSpacing: (currentLanguage) => {
+        if (currentLanguage.currentLanguage === 'fr') return '-.02em';
+        return '0';
+      },
     },
     '& .MuiTab-root>.MuiTab-iconWrapper': {
       width: '48px',

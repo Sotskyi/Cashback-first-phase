@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import withdrawalsSuccess from '../../../assets/images/icons/withdrawalsSuccess.svg';
 import { getWithdrawals } from '../../../redux/slices/cashbackSlice';
@@ -10,6 +11,7 @@ import { useObserver } from '../../../hooks/useObserver';
 
 const WithdrawalsList = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const lastElement = useRef();
   const [page, setPage] = useState(1);
@@ -61,7 +63,9 @@ const WithdrawalsList = () => {
                   </div>
                   <div className={classes.withdrawalContentContainer}>
                     <div className={classes.withdrawalContentWrapper}>
-                      <div className={classes.withdrawalTitle}>Withdrawal</div>
+                      <div className={classes.withdrawalTitle}>
+                        {t('WITHDRAW')}
+                      </div>
                       <div className={classes.withdrawalCashback}>
                         $ {item.amount}
                       </div>

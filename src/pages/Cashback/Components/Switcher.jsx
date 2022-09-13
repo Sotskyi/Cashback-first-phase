@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 import cashback from '../../../assets/images/icons/cashback.svg';
 import cashbackOutlined from '../../../assets/images/icons/cashbackOutlined.svg';
@@ -7,6 +8,7 @@ import withdrawalsOutlined from '../../../assets/images/icons/withdrawalsOutline
 
 const Switcher = ({ activeTab, setActiveTab }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.switcherContainer}>
@@ -16,7 +18,7 @@ const Switcher = ({ activeTab, setActiveTab }) => {
         }`}
         onClick={() => setActiveTab('cashback')}
       >
-        <div>Cash-back</div>
+        <div>{t('CASHBACK')}</div>
         <img
           src={activeTab === 'cashback' ? cashback : cashbackOutlined}
           className={classes.switchIcon}
@@ -29,7 +31,7 @@ const Switcher = ({ activeTab, setActiveTab }) => {
         }`}
         onClick={() => setActiveTab('withdrawals')}
       >
-        <div>Withdrawals</div>
+        <div>{t('WITHDRAWALS')}</div>
         <img
           src={activeTab === 'withdrawals' ? withdrawals : withdrawalsOutlined}
           className={classes.switchIcon}

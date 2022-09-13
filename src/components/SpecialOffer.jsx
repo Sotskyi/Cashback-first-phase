@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import { makeStyles } from '@material-ui/core';
 import { redirectToSpecialOffer } from '../redux/slices/storesSlice';
@@ -8,6 +9,7 @@ import Loader from './lib/Loader';
 
 const SpecialOffer = ({ title, description, offerId, isAuth, reward }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [triggerLoader, setTriggerLoader] = useState(false);
@@ -39,7 +41,7 @@ const SpecialOffer = ({ title, description, offerId, isAuth, reward }) => {
           {triggerLoader && (
             <Loader delay={3000} setTriggerLoader={setTriggerLoader} />
           )}
-          {!triggerLoader && (isAuth ? 'Shop Now' : 'Log in to shop')}
+          {!triggerLoader && (isAuth ? t('SHOP_NOW') : t('LOG_IN_TO_SHOP'))}
         </div>{' '}
       </div>
     </div>

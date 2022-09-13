@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 import SpecialOffer from '../components/SpecialOffer';
 import {
@@ -15,13 +16,14 @@ const Store = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { state } = useLocation();
-
+  const { i18n, t } = useTranslation();
   const navigate = useNavigate();
   // eslint-disable-next-line no-shadow
   const { isAuth } = useSelector((state) => state.auth);
   // eslint-disable-next-line no-shadow
   // const { isLoading } = useSelector((state) => state.stores);
-
+  // const languageFromState = state.data.translations[0].language.code;
+  const currentLanguage = i18n.language;
   const [triggerLoader, setTriggerLoader] = useState(false);
   const [store, setStore] = useState({
     backgroundImage: { url: '' },
@@ -33,13 +35,15 @@ const Store = () => {
   });
 
   useEffect(async () => {
-    const resultAction = await dispatch(getStore(id));
+    const resultAction = await dispatch(
+      getStore({ id, languageCode: currentLanguage }),
+    );
     if (getStore.rejected.match(resultAction)) {
       navigate('/home');
     } else {
       setStore(resultAction.payload);
     }
-  }, []);
+  }, [currentLanguage]);
 
   const handleRedirectToStore = () => {
     setTriggerLoader(true);
@@ -53,6 +57,7 @@ const Store = () => {
   // if (isLoading) {
   //   return <Loader />;
   // }
+
   return (
     <div className={classes.storeContainer}>
       <div className={classes.bodyHeaderContainer}>
@@ -67,11 +72,9 @@ const Store = () => {
         </div>
         <div className={classes.contentContainer}>
           <div className={classes.leftContent}>
-            <div className={classes.title}>
-              {state.data?.translations[0]?.title}
-            </div>
+            <div className={classes.title}>{store?.translations[0]?.title}</div>
             <div className={classes.subTitle}>
-              {state.data?.translations[0]?.description}
+              {store.translations[0]?.description}
             </div>
             <div
               className={classes.discountPercentCardContainerForMobileWrapper}
@@ -79,9 +82,11 @@ const Store = () => {
               <div className={classes.discountPercentCardContainerForMobile}>
                 <div className={classes.percentWrapper}>
                   <div className={classes.filledPercent}>
-                    {state.data?.baseReward}%
+                    {state.data?.baseReward || store.baseReward}%
                   </div>
-                  <div className={classes.percentSubTitle}>Base reward</div>
+                  <div className={classes.percentSubTitle}>
+                    {t('BASE_REWARD')}
+                  </div>
                 </div>
                 <div className={classes.percentWrapper}>
                   <div className={classes.outlinedPercent}>6%</div>
@@ -96,7 +101,8 @@ const Store = () => {
                   {triggerLoader && (
                     <Loader delay={3000} setTriggerLoader={setTriggerLoader} />
                   )}
-                  {!triggerLoader && (isAuth ? 'Shop Now' : 'Log in to shop')}
+                  {!triggerLoader &&
+                    (isAuth ? t('SHOP_NOV') : t('LOG_IN_TO_SHOP'))}
                 </div>{' '}
               </div>
             </div>
@@ -117,7 +123,7 @@ const Store = () => {
                 ))
               ) : (
                 <div className={classes.noOffersTitle}>
-                  No offers for this store
+                  {t('NO_OFFERS_FOR_STORE')}
                 </div>
               )}
             </div>
@@ -128,7 +134,9 @@ const Store = () => {
                 <div className={classes.filledPercent}>
                   {store?.baseReward}%
                 </div>
-                <div className={classes.percentSubTitle}>Base reward</div>
+                <div className={classes.percentSubTitle}>
+                  {t('BASE_REWARD')}
+                </div>
               </div>
               <div className={classes.percentWrapper}>
                 <div className={classes.outlinedPercent}>6%</div>
@@ -143,7 +151,8 @@ const Store = () => {
                 {triggerLoader && (
                   <Loader delay={3000} setTriggerLoader={setTriggerLoader} />
                 )}
-                {!triggerLoader && (isAuth ? 'Shop Now' : 'Log in to shop')}
+                {!triggerLoader &&
+                  (isAuth ? t('SHOP_NOV') : t('LOG_IN_TO_SHOP'))}
               </div>
             </div>
           </div>

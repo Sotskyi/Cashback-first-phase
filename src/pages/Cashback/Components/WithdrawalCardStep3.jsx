@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
 import arrowBackWhite from '../../../assets/images/icons/arrowBackWhite.svg';
 
@@ -9,6 +10,7 @@ const WithdrawalCardStep3 = ({
   withdrawalMoney,
 }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.withdrawalCardContainer}>
@@ -25,14 +27,16 @@ const WithdrawalCardStep3 = ({
 
       <div className={classes.availableCashbodyContainer}>
         <div className={classes.addedCash}>$ {withdrawalMoney}</div>
-        <div className={classes.addedCashTitle}>ADDED TO MOBILE BALANCE</div>
+        <div className={classes.addedCashTitle}>
+          {t('ADDED_TO_MOBILE_BALANCE')}
+        </div>
         <div className={classes.stillAvailableCashContainer}>
           <div className={classes.stillAvailableCash}>$ {stillAvailable}</div>
-          <div className={classes.addedCashTitle}>STILL AVAILABLE</div>
+          <div className={classes.addedCashTitle}>{t('STILL_AVAILABLE')}</div>
         </div>
       </div>
       <div className={classes.withdrawButton} onClick={handleSubmit}>
-        Shop for more cash-back
+        {t('SHOP_FOR_MORE_CASH_BACK')}
       </div>
     </div>
   );

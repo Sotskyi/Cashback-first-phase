@@ -1,14 +1,16 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
 
 const Tab2 = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.secondTabContainer}>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Complete purchase</div>
+        <div className={classes.title}>{t('COMPLETE_PURCHASE')}</div>
         <div className={classes.subTitle}>
-          Make a purchase like you normally would from our retail partner.
+          {t('MAKE_PURCHASE_LIKE_NORMALLY')}
         </div>
       </div>
     </div>
@@ -21,13 +23,13 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
   contentContainer: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     height: '90px',
   },
   title: {
@@ -40,6 +42,7 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '-0.02em',
   },
   subTitle: {
+    marginTop: '10px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',

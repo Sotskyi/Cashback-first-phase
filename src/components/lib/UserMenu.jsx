@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useDispatch } from 'react-redux/es/exports';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -22,6 +23,7 @@ import { HowItWorksCarouselContext } from './howItWorksCarousel/HowItWorksCarous
 const UserMenu = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { setIsOpenCarousel } = useContext(HowItWorksCarouselContext);
+  const { t } = useTranslation();
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,7 +33,7 @@ const UserMenu = () => {
   const loginedMenuItems = [
     {
       id: 'personalInfo',
-      name: 'Personal information',
+      name: t('PERSONAL_INFORMATION'),
       iconSrc: personalInfo,
     },
     {
@@ -41,29 +43,29 @@ const UserMenu = () => {
     },
     {
       id: 'missingTransaction',
-      name: 'Missing transaction',
+      name: t('MISSING_TRANSACTION'),
       iconSrc: missingTransaction,
     },
     {
       id: 'termsConditions',
-      name: 'Terms & Conditions',
+      name: t('TERMS_AND_CONDITIONS'),
       iconSrc: termsAndConditions,
     },
     {
       id: 'privacyPolicy',
-      name: 'Privacy Policy',
+      name: t('PRIVACY_POLICY'),
       iconSrc: privacyPolicy,
     },
     {
       id: 'logout',
-      name: 'Log out',
+      name: t('LOGOUT'),
       iconSrc: logOut,
     },
   ];
   const unloginedMenuItems = [
     {
       id: 'login',
-      name: 'Login',
+      name: t('LOGIN'),
       iconSrc: login,
     },
     {
@@ -73,12 +75,12 @@ const UserMenu = () => {
     },
     {
       id: 'termsConditions',
-      name: 'Terms & Conditions',
+      name: t('TERMS_AND_CONDITIONS'),
       iconSrc: termsAndConditions,
     },
     {
       id: 'privacyPolicy',
-      name: 'Privacy Policy',
+      name: t('PRIVACY_POLICY'),
       iconSrc: privacyPolicy,
     },
   ];
@@ -130,7 +132,7 @@ const UserMenu = () => {
           {isAuth && (
             <div id='cashback' className={classes.availableMenuItem}>
               <div id='cashback' className={classes.availableMenuItemTitle}>
-                AVAILABLE
+                {t('AVAILABLE')}
               </div>
               <div id='cashback' className={classes.availableMenuItemCash}>
                 $ {user?.wallet?.balance || 0}

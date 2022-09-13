@@ -59,7 +59,7 @@ const SignUp = () => {
       );
 
       if (register.fulfilled.match(resultAction)) {
-        toast.success('new user successfully created');
+        toast.success('New user successfully created');
         navigate('/home');
         dispatch(reset());
       }

@@ -7,8 +7,10 @@ export default class StoresService {
     });
   }
 
-  static async getStore(id) {
-    return axios.get(`/stores/${id}`);
+  static async getStore(params) {
+    const { id, ...rest } = params;
+    console.log(rest);
+    return axios.get(`/stores/${params.id}`, { params: { ...params } });
   }
 
   static async redirectToStore(id) {

@@ -1,15 +1,15 @@
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
 
 const Tab3 = () => {
   const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.thirdTabContainer}>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Pay down your pre-paid phone bill</div>
-        <div className={classes.subTitle}>
-          Once you have accumulated enough cash-back, pay-down your phone-bill.
-        </div>
+        <div className={classes.title}>{t('PAY_DOWN_YOUR_PHONE')}</div>
+        <div className={classes.subTitle}>{t('ONCE_YOU_HAVE_ACCUMULATED')}</div>
       </div>
     </div>
   );
@@ -21,14 +21,14 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
   contentContainer: {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: '132px',
+    // justifyContent: 'space-between',
+    height: '152px',
   },
   title: {
     fontFamily: 'Inter',
@@ -41,13 +41,14 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center',
   },
   subTitle: {
+    marginTop: '10px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',
     fontSize: '16px',
     lineHeight: '125%',
     color: '#6A6A6A',
-    letterSpacing: '0.01em',
+    letterSpacing: '-0.03em',
     textAlign: 'center',
   },
 }));

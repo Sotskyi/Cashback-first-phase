@@ -1,12 +1,14 @@
 import 'react-toastify/dist/ReactToastify.css';
 import { makeStyles } from '@material-ui/core';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { makeUpperCase } from '../utils/helpers';
 
 const PersonalInformation = () => {
   const classes = useStyles();
   const { user } = useSelector((state) => state.auth);
+  const { t } = useTranslation();
 
   return (
     <div className={classes.container}>
@@ -22,31 +24,35 @@ const PersonalInformation = () => {
           <div className={classes.bodyContainer}>
             <div className={classes.phoneNumberContainer}>
               <div className={classes.phoneNumber}>{user.phoneNumber}</div>
-              <div className={classes.subTitle}>Phone number</div>
+              <div className={classes.subTitle}>{t('PHONE')}</div>
             </div>
             <div className={classes.phonePlanContainer}>
               <div className={classes.phonePlanName}>
                 <div className={classes.phonePlanTitle}>
                   {user.carrierInfo.carrierTitle}{' '}
                 </div>
-                <div className={classes.subTitle}>Carrier </div>
+                <div className={classes.subTitle}>{t('CARRIER')} </div>
               </div>
               <div className={classes.phonePlanName}>
                 <div className={classes.phonePlanTitle}>
                   {makeUpperCase(user.phonePlan)}
                 </div>
-                <div className={classes.subTitle}>Phone plan </div>
+                <div className={classes.subTitle}>{t('PHONE_PLAN')}</div>
               </div>
             </div>
             <div className={classes.currentBalanceContainer}>
-              <div className={classes.currentBalanceLabel}>Current balance</div>
+              <div className={classes.currentBalanceLabel}>
+                {t('CURRENT_BALANCE')}
+              </div>
               <div className={classes.currentBalanceNumbers}>
                 $ {user.wallet.balance || 0}
               </div>
             </div>
             <div className={classes.billingNumberContainer}>
               <div className={classes.billingNumber}>{user.billingNumber}</div>
-              <div className={classes.billingNumberTitle}>Billing number</div>
+              <div className={classes.billingNumberTitle}>
+                {t('BILLING_NUMBER')}
+              </div>
             </div>
           </div>
         </div>
@@ -82,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   leftContent: {
     display: 'flex',
     justifyContent: 'center',
-    // alignItems: 'center',
+
     flexDirection: 'column',
     padding: '32px 16px 16px 16px',
     width: '304px',

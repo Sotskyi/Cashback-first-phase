@@ -1,6 +1,7 @@
 import { makeStyles } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 import { useValidator } from '../../../hooks/useValidator';
 import { insertString } from '../../../utils/helpers';
@@ -12,6 +13,8 @@ import { login } from '../../../redux/slices/authSlice';
 const LoginAccount = ({ creds, handleChange }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
+
   const [checkIsValid, setIsShowError] = useValidator();
   const navigate = useNavigate();
 
@@ -42,7 +45,7 @@ const LoginAccount = ({ creds, handleChange }) => {
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Log In</div>
+        <div className={classes.title}>{t('LOGIN')}</div>
         <PhoneNumberInput
           handleChange={handleChange}
           data={creds.phoneNumber}
@@ -67,17 +70,17 @@ const LoginAccount = ({ creds, handleChange }) => {
           onClick={() => navigate('/reset_password_by_phone')}
           className={classes.navigateLink}
         >
-          Forgot password?
+          {t('FORGOT_PASSWORD')}
         </div>
-        <SubmitButton onSubmit={onSubmit} title='Continue' />
+        <SubmitButton onSubmit={onSubmit} title={t('CONTINUE')} />
       </div>
       <div className={classes.newAccount}>
-        New to Telco Rewards?{' '}
+        {t('NEW_TO_TELCOREWARDS')}&nbsp;
         <span
           onClick={() => navigate('/signup')}
           className={classes.navigateLink}
         >
-          Sign Up
+          {t('Sign Up')}
         </span>
       </div>
     </div>

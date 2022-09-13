@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useValidator } from '../hooks/useValidator';
@@ -19,6 +20,7 @@ const SetNewPassword = ({ creds, token }) => {
     password: '',
     confirmPassword: '',
   });
+  const { t } = useTranslation();
   const classes = useStyles();
   const navigate = useNavigate();
   const [checkIsValid, setIsShowError] = useValidator();
@@ -68,7 +70,7 @@ const SetNewPassword = ({ creds, token }) => {
   return (
     <div>
       <div className={classes.contentContainer}>
-        <div className={classes.title}>Set new password</div>
+        <div className={classes.title}>{t('SET_NEW_PASSWORD')}</div>
         <PasswordInput
           handleChange={handleChange}
           isError={
@@ -79,7 +81,7 @@ const SetNewPassword = ({ creds, token }) => {
           }
         />
         <PasswordInput
-          title='Confirm new password'
+          title={t('CONFIRM_NEW_PASSWORD')}
           handleChange={handleChange}
           errorMessage='Passwords do not match'
           id='confirmPassword'
@@ -90,7 +92,7 @@ const SetNewPassword = ({ creds, token }) => {
             })
           }
         />
-        <SubmitButton onSubmit={onSubmit} title='Continue' />
+        <SubmitButton onSubmit={onSubmit} title={t('CONTINUE')} />
       </div>
     </div>
   );

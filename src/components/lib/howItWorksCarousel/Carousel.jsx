@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTranslation } from 'react-i18next';
 
 import leftArrow from '../../../assets/images/icons/forSlider/leftArrow.svg';
 import rightArrow from '../../../assets/images/icons/forSlider/rightArrow.svg';
@@ -12,6 +13,7 @@ import Tab5 from './Tabs/Tab5';
 
 const Carousel = ({ onClose }) => {
   const classes = useStyles();
+  const { t } = useTranslation();
   const [step, setStep] = useState(0);
   const [xPos, setXpos] = useState(0);
   const steps = [0, 1, 2, 3, 4];
@@ -33,7 +35,7 @@ const Carousel = ({ onClose }) => {
   return (
     <div className={classes.carouselContainer}>
       <div className={classes.headerContainer}>
-        <div className={classes.title}>HOW TO USE TELCO REWARDS?</div>
+        <div className={classes.title}>{t('HOW_TO_USE_TELCOREWARDS')}</div>
         <div className={classes.closeButton} onClick={onClose}>
           <img src={closeX} alt='X' />
         </div>
@@ -110,7 +112,7 @@ const useStyles = makeStyles(() => ({
     fontSize: '12px',
     lineHeight: '0.16em',
     color: '#AAAAAA',
-    letterSpacing: '0.16em',
+    letterSpacing: '0.06em',
   },
   closeButton: {
     width: '32px',
