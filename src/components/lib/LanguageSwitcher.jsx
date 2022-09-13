@@ -165,7 +165,6 @@ import { makeStyles } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 
 import language from '../../assets/images/icons/language.svg';
-
 // import us from '../../assets/images/icons/language.svg';
 // import fr from '../../assets/images/icons/language.svg';
 
@@ -173,8 +172,8 @@ const LanguageSwitcher = () => {
   const { i18n } = useTranslation();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [currentLanguage, setCurrentLanguage] = useState({
-    id: 'en',
-    title: 'EN',
+    id: i18n.language,
+    title: i18n.language.toUpperCase(),
   });
   const classes = useStyles();
 
