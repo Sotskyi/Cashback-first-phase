@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 // import useMediaQuery from '@mui/material/useMediaQuery';
 
 import logo from '../../assets/images/logos/logo.svg';
@@ -11,6 +12,7 @@ import LanguageSwitcher from '../lib/LanguageSwitcher';
 const AuthLandingLayout = ({ children, back, activeStep }) => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const { t } = useTranslation();
   // const isMediumScreen = useMediaQuery('(max-width:1200px)');
 
   return (
@@ -40,7 +42,7 @@ const AuthLandingLayout = ({ children, back, activeStep }) => {
                   src={leftVector}
                   alt='menu'
                 />{' '}
-                <div>Back</div>
+                <div>{t('BACK')}</div>
               </div>
             )}
           </div>

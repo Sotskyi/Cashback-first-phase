@@ -6,7 +6,7 @@ export const en = {
   ALREADY_HAVE_ACCOUNT: 'Already have an account?',
   LOGIN: 'Log In',
   VERIFY_PHONE_NUMBER: 'Verify phone number',
-  ENTER_THE_CODE_WE_HAVE_SEND: 'Enter the code we’ve sent by SMS to',
+  ENTER_THE_CODE_WE_HAVE_SENT: 'Enter the code we’ve sent by SMS to',
   HAVE_NOT_RECEIVED_SMS: 'Haven’t received SMS?',
   SEND_AGAIN: 'Send again',
   BACK: 'Back',
@@ -152,4 +152,7 @@ export const en = {
   // 'Top store'
   // 'Recently added store'
   // 'Ships from Canada'
+  // New user successfully created
+  // 13.09
+  // verification code is incorrect
 };

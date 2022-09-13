@@ -159,7 +159,7 @@ const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
         <div className={classes.title}>{t('VERIFY_PHONE_NUMBER')}</div>
         <div className={classes.subTitleContainer}>
           <div className={classes.subTitle}>
-            {t('ENTER_THE_CODE_WE_HAVE_SEND')}
+            {t('ENTER_THE_CODE_WE_HAVE_SENT')}
           </div>
           <div className={classes.phoneNumber}>{creds.phoneNumber}</div>
         </div>
