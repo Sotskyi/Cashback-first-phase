@@ -38,7 +38,7 @@ const LoginedHeader = ({ availableBalance }) => {
         className={classes.logoContainer}
         onClick={() => {
           navigate('/');
-          window.location.reload();
+          // window.location.reload();
         }}
       >
         <img className={classes.logo} src={logo} alt='logo' />

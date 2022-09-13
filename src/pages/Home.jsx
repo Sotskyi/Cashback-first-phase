@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import StoreIconSlider from '../components/lib/StoreIconSlider';
 import StoreCard from '../components/StoreCard';
@@ -19,7 +19,7 @@ import { useObserver } from '../hooks/useObserver';
 const Home = () => {
   const classes = useStyles();
   const { i18n } = useTranslation();
-
+  const location = useLocation();
   const dispatch = useDispatch();
   const lastElement = useRef();
   const [categoryId, setCategoryId] = useState('favoritesPosition');
@@ -87,17 +87,17 @@ const Home = () => {
     }
   }, [categoryId, page, search, filters, currentLanguage]);
 
-  // useEffect(() => {
-  //   if (filters.length > 0) {
-  //     setFilters([]);
-  //   }
-  //   if (page > 1) {
-  //     dispatch(reset());
-  //   }
-  //   setPage(1);
-  //   setCategoryId('favoritesPosition');
-  //   setIsShowFilter(false);
-  // }, [location]);
+  useEffect(() => {
+    if (filters.length > 0) {
+      setFilters([]);
+    }
+    if (page > 1) {
+      dispatch(reset());
+    }
+    setPage(1);
+    setCategoryId('favoritesPosition');
+    setIsShowFilter(false);
+  }, [location]);
 
   return (
     <div className={classes.homeContainer}>
