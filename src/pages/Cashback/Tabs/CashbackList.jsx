@@ -41,7 +41,7 @@ const CashbackList = () => {
         <Loader />
       ) : (
         <>
-          {cashbackList.cashback.map((el) => (
+          {cashbackList?.map((el) => (
             <div key={el?.date}>
               <div className={classes.dateContainer}>
                 <div className={classes.date}>
@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
   cashbackListContainer: {
     // height: '500px',
     width: '680px',
-    height: '500px',
+    maxHeight: '700px',
     paddingRight: '15px',
     overflowY: 'scroll',
     '&::-webkit-scrollbar': {

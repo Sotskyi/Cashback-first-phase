@@ -6,26 +6,7 @@ import CashbackService from '../../api/services/CashbackService';
 import { getError } from '../../utils/helpers';
 
 const initialState = {
-  cashbackList: {
-    cashback: [
-      {
-        date: '',
-        dailyTotal: '',
-        items: [
-          {
-            cashbackId: '',
-            logoImageId: '',
-            logoImageUrl: '',
-            reward: '',
-            saleAmount: '',
-            storeTitle: '',
-            withdrawalAt: '',
-          },
-        ],
-      },
-    ],
-    cashbackTotals: [],
-  },
+  cashbackList: [],
   withdrawalsList: [],
   totalWithdrawals: 0,
   totalCashback: 0,
@@ -65,9 +46,12 @@ const cashbackSlice = createSlice({
   extraReducers: {
     [getCashback.fulfilled]: (state, action) => {
       if (action.meta.arg.page === 1) {
-        state.cashbackList = action.payload;
+        state.cashbackList = action.payload.cashback;
       } else {
-        state.cashbackList = [...state.cashbackList, ...action.payload];
+        state.cashbackList = [
+          ...state.cashbackList,
+          ...action.payload.CashbackService,
+        ];
       }
 
       state.totalCashback = action.payload.count;

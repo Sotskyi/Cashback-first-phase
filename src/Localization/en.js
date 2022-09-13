@@ -85,7 +85,7 @@ export const en = {
   PENDING: 'PENDING',
   TOTAL: 'TOTAL',
   DAYS: 'days',
-  WITHDROW: 'Withdrow',
+  WITHDRAW: 'Withdraw',
   ADDED_TO_MOBILE_BALANCE: 'ADDED TO MOBILE BALANCE',
   STILL_AVAILABLE: 'STILL AVAILABLE',
   SHOP_FOR_MORE_CASH_BACK: 'Shop for more cash-back',

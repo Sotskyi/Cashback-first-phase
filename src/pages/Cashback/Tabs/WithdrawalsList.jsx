@@ -85,7 +85,7 @@ export default WithdrawalsList;
 
 const useStyles = makeStyles((theme) => ({
   withdrawalsListContainer: {
-    height: '500px',
+    maxHeight: '700px',
     width: '680px',
     paddingRight: '15px',
     overflowY: 'scroll',

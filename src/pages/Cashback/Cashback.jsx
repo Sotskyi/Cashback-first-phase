@@ -19,7 +19,7 @@ const Cashback = () => {
   const { cashbackList } = useSelector((state) => state.cashback);
   const availableMoney = user?.wallet?.balance || 0;
 
-  const cashbackPending = cashbackList.cashbackTotals.filter(
+  const cashbackPending = cashbackList?.cashbackTotals?.filter(
     (el) => el.title === 'pending',
   )[0];
 
@@ -80,12 +80,12 @@ export default Cashback;
 
 const useStyles = makeStyles((theme) => ({
   cashbackContainer: {
-    // height: '720px',
+    height: '720px',
     boxSizing: 'border-box',
     padding: '32px 72px 0px 72px',
     display: 'flex',
     justifyContent: 'center',
-    height: '100%',
+    // height: '100%',
     [theme.breakpoints.down('sm')]: {
       display: 'flex',
       flexDirection: 'column',
@@ -94,6 +94,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('md')]: {
       display: 'flex',
       flexDirection: 'column',
+      height: '100%',
       // display: 'flex',
       // flexDirection: 'column',
       // padding: '16px 16px 0px 16px',

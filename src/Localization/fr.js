@@ -92,7 +92,7 @@ export const fr = {
   WITHDRAWALS: 'Retraits',
   PENDING: 'EN ATTENTE',
   TOTAL: 'Totale',
-  WITHDROW: 'Retrait',
+  WITHDRAW: 'Retrait',
   ADDED_TO_MOBILE_BALANCE: 'AJOUTÉ AU SOLDE MOBILE',
   STILL_AVAILABLE: 'TOUJOURS DISPONIBLE',
   SHOP_FOR_MORE_CASH_BACK: 'Magasiner pour plus de remises $',
