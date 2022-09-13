@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { useTranslation } from 'react-i18next';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
+
 import StoresService from '../../api/services/StoresService';
 
 const AutocompleteInput = ({ setCreds, creds, isError }) => {
@@ -9,6 +11,7 @@ const AutocompleteInput = ({ setCreds, creds, isError }) => {
   const [options, setOptions] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [name, setName] = React.useState('');
+  const { i18n } = useTranslation();
 
   const handleChange = (e) => {
     setName(e.target.value);
@@ -26,7 +29,7 @@ const AutocompleteInput = ({ setCreds, creds, isError }) => {
         const response = await StoresService.getStores({
           page: 1,
           limit: 10000,
-          languageCode: 'en',
+          languageCode: i18n.language,
           title: name,
         });
         setOptions(response.data.items);
