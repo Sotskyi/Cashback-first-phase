@@ -99,6 +99,11 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignContent: 'center',
+    fontFamily: 'Inter',
+    fontSize: '16px',
+    fontWeight: '400',
+    lineHeight: '125%',
+    letterSpacing: '0.01em',
   },
   navigationContainer: {
     display: 'flex',
