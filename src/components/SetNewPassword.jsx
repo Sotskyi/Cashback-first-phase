@@ -49,7 +49,7 @@ const SetNewPassword = ({ creds, token }) => {
           }),
         );
         if (setNewPasswordByEmail.fulfilled.match(resultAction)) {
-          toast.success('New password successfully created');
+          toast.success(t('NEW_PASSWORD_CREATED'));
         }
       } else {
         const resultAction = await dispatch(
@@ -59,7 +59,7 @@ const SetNewPassword = ({ creds, token }) => {
           }),
         );
         if (setNewPasswordByPhone.fulfilled.match(resultAction)) {
-          toast.success('New password successfully created');
+          toast.success(t('NEW_PASSWORD_CREATED'));
         }
       }
 
@@ -83,7 +83,7 @@ const SetNewPassword = ({ creds, token }) => {
         <PasswordInput
           title={t('CONFIRM_NEW_PASSWORD')}
           handleChange={handleChange}
-          errorMessage='Passwords do not match'
+          errorMessage={t('PASSWORD_NOT_MATCH')}
           id='confirmPassword'
           isError={
             !checkIsValid({

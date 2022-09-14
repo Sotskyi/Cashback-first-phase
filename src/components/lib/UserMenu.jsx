@@ -39,7 +39,7 @@ const UserMenu = () => {
     },
     {
       id: 'howItWorks',
-      name: 'How Telco Rewards work',
+      name: t('HOW_TELCO_REWARDS_WORK'),
       iconSrc: howTelcoWorks,
     },
     {
@@ -71,7 +71,7 @@ const UserMenu = () => {
     },
     {
       id: 'howItWorks',
-      name: 'How Telco Rewards work',
+      name: t('HOW_TELCO_REWARDS_WORK'),
       iconSrc: howTelcoWorks,
     },
     {
@@ -147,7 +147,11 @@ const UserMenu = () => {
             <span id={el.id} className={classes.menuIconWrapper}>
               <img id={el.id} src={el.iconSrc} alt='logo' />
             </span>
-            <span id={el.id} className={classes.menuTitle}>
+            <span
+              id={el.id}
+              className={classes.menuTitle}
+              style={{ letterSpacing: '-0.04em' }}
+            >
               {el.name}
             </span>
           </MenuItem>

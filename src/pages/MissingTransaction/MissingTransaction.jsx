@@ -73,7 +73,7 @@ const MissingTransaction = () => {
         formData.append('ticket', credsToJson);
         formData.append('paymentProof', creds.paymentProof);
         await axios.post('/tickets', formData);
-        toast.success('Missing transaction created');
+        toast.success(t('MISSING_TRANSACTION_CREATED'));
         navigate('/');
       } catch (error) {
         toast.error(getError(error));

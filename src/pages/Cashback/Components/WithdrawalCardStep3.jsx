@@ -22,7 +22,7 @@ const WithdrawalCardStep3 = ({
             alt='cash'
           />
         </div>
-        <div className={classes.headerTitle}>Go back to change</div>
+        <div className={classes.headerTitle}>{t('GO_BACK_TO_CHANGE')}</div>
       </div>
 
       <div className={classes.availableCashbodyContainer}>

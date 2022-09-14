@@ -139,21 +139,17 @@ export const en = {
   CARRIER: 'Carrier',
   CURRENT_BALANCE: 'Current balance',
   BILLING_NUMBER: 'Billing number',
-  // Billing number
+  NEW_PASSWORD_CREATED: 'New password successfully created',
+  PASSWORD_NOT_MATCH: 'Passwords do not match',
+  NEW_USER_CREATED: 'New user successfully created',
+  MISSING_TRANSACTION_CREATED: 'Missing transaction created',
+  FILL_OUT_THIS_FORM:
+    'Please fill out this form for our review, if you believe you have a missing transaction',
+  GO_BACK_TO_CHANGE: 'Go back to change',
+  INCREASED_CASHBACK: 'Increased cash-back',
+  TOP_STORE: 'Top store',
+  RECENTLY_ADDED_STORE: 'Recently added store',
+  SHIPS_FROM_CANADA: 'Ships from Canada',
 
-  //  new to do
-
-  // New password successfully created
-  // Passwords do not match
-  // New user successfully created
-  // Missing transaction created
-  // Please fill out this form for our review, if you believe you have a missing transaction
-  // Go back to change
-  // 'Increased cash-back'
-  // 'Top store'
-  // 'Recently added store'
-  // 'Ships from Canada'
-  // New user successfully created
-  // 13.09
   // verification code is incorrect
 };

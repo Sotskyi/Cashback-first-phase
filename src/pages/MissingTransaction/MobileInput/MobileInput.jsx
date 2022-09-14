@@ -19,10 +19,7 @@ const MobileInput = ({
   const classes = useStyles();
   return (
     <div className={classes.container}>
-      <div className={classes.title}>
-        Please fill out this form for our review, if you believe you have a
-        missing transaction.
-      </div>
+      <div className={classes.title}>{t('FILL_OUT_THIS_FORM')}</div>
       <div className={classes.contentWrapper}>
         <div className={classes.inputWrapper}>
           <InputLabel

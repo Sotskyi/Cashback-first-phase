@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import 'react-toastify/dist/ReactToastify.css';
 
 import AuthLandingLayout from '../../components/layouts/AuthLandingLayout';
@@ -15,6 +16,7 @@ import { insertString } from '../../utils/helpers';
 
 const SignUp = () => {
   const [activeStep, setActiveStep] = useState(0);
+  const { t } = useTranslation();
   const [creds, setCreds] = useState({
     phoneNumber: '',
     firstName: '',
@@ -59,7 +61,7 @@ const SignUp = () => {
       );
 
       if (register.fulfilled.match(resultAction)) {
-        toast.success('New user successfully created');
+        toast.success(t('NEW_USER_CREATED'));
         navigate('/home');
         dispatch(reset());
       }

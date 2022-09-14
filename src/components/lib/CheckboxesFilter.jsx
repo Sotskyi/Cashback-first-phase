@@ -4,22 +4,23 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { makeStyles } from '@material-ui/core';
+import { t } from 'i18next';
 
 const CheckboxesFilter = ({ filters, setFilters }) => {
   const classes = useStyles();
 
   const handleChange = (el) => {
-    if (filters.includes(el)) {
-      return setFilters(filters.filter((elem) => elem !== el));
+    if (filters.includes(el.value)) {
+      return setFilters(filters.filter((elem) => elem !== el.value));
     }
-    return setFilters([...filters, el]);
+    return setFilters([...filters, el.value]);
   };
 
   const filtersList = [
-    'Increased cash-back',
-    'Top store',
-    'Recently added store',
-    'Ships from Canada',
+    { value: 'Increased cash-back', title: t('INCREASED_CASHBACK') },
+    { value: 'Top store', title: t('TOP_STORE') },
+    { value: 'Recently added store', title: t('RECENTLY_ADDED_STORE') },
+    { value: 'Ships from Canada', title: t('SHIPS_FROM_CANADA') },
   ];
 
   return (
@@ -37,7 +38,7 @@ const CheckboxesFilter = ({ filters, setFilters }) => {
           <FormControlLabel
             control={
               <Checkbox
-                checked={filters.includes(el)}
+                checked={filters.includes(el.value)}
                 onChange={() => handleChange(el)}
                 sx={{
                   '&.Mui-checked': {
@@ -46,7 +47,7 @@ const CheckboxesFilter = ({ filters, setFilters }) => {
                 }}
               />
             }
-            label={el}
+            label={el.title}
           />
         ))}
       </FormGroup>

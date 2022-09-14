@@ -144,4 +144,16 @@ export const fr = {
   CARRIER: 'Opérateur de réseau mobile',
   CURRENT_BALANCE: 'Solde actuel',
   BILLING_NUMBER: 'Numéro de facturation',
+  NEW_PASSWORD_CREATED: 'Nouveau mot de passe créé',
+  PASSWORD_NOT_MATCH: 'Les mots de passe ne correspondent pas',
+  NEW_USER_CREATED: 'Nouveau compte créé',
+  MISSING_TRANSACTION_CREATED: 'Transaction manquante créée',
+  FILL_OUT_THIS_FORM:
+    "Si vous pensez qu'il vous manque une transaction, veuillez remplir ce formulaire pour notre examen",
+  GO_BACK_TO_CHANGE: 'Retourne pour changer',
+  INCREASED_CASHBACK: 'Remises $$ accrue',
+  TOP_STORE: 'Magasin en vedette',
+  RECENTLY_ADDED_STORE: 'Nouveau magasin',
+  SHIPS_FROM_CANADA: 'Expédié du Canada',
+  HOW_TELCO_REWARDS_WORK: 'Comment fonctionne Les Récompenses Telco',
 };
