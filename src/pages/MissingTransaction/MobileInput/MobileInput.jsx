@@ -6,7 +6,6 @@ import { purchaseTypes, paymentMethods } from '../../../utils/constants';
 import SubmitButton from '../../../components/form/SubmitButton';
 import AutocompleteInput from '../../../components/lib/AutocompleteInput';
 import uploadPhoto from '../../../assets/images/icons/uploadPhoto.svg';
-import { makeUpperCase } from '../../../utils/helpers';
 
 const MobileInput = ({
   creds,
@@ -115,7 +114,7 @@ const MobileInput = ({
               }}
             >
               <div className={classes.chipRadio}> </div>{' '}
-              <span>{makeUpperCase(el)}</span>
+              <span>{t(el.forTranslate)}</span>
             </div>
           ))}
           {!checkIsValid({
@@ -154,7 +153,7 @@ const MobileInput = ({
               }}
             >
               <div className={classes.chipRadio}> </div>
-              <span>{makeUpperCase(el)}</span>
+              <span>{t(el.forTranslate)}</span>
             </div>
           ))}
           {!checkIsValid({
