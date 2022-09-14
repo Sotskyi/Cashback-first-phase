@@ -65,8 +65,8 @@ export const redirectToStore = createAsyncThunk(
     try {
       const response = await StoresService.redirectToStore(id);
       const data = await response.data;
-      if (data.url && data.url.includes('https')) {
-        window.location.href = `${data.url}`;
+      if (data.url && data.url.includes('http')) {
+        window.open(data.url, '_blank', 'noopener,noreferrer');
       }
       return data;
     } catch (error) {
@@ -82,8 +82,8 @@ export const redirectToSpecialOffer = createAsyncThunk(
     try {
       const response = await StoresService.redirectToSpecialOffer(offerId);
       const data = await response.data;
-      if (data.url && data.url.includes('https')) {
-        window.location.href = `${data.url}`;
+      if (data.url && data.url.includes('http')) {
+        window.open(data.url, '_blank', 'noopener,noreferrer');
       }
       return data;
     } catch (error) {
