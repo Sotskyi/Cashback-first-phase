@@ -143,15 +143,18 @@ const UserMenu = () => {
           )}
         </MenuItem>
         {(isAuth ? loginedMenuItems : unloginedMenuItems).map((el) => (
-          <MenuItem key={el.id} id={el.id} onClick={handleClose}>
+          <MenuItem
+            key={el.id}
+            id={el.id}
+            onClick={handleClose}
+            sx={(theme) => ({
+              [theme.breakpoints.up('xs')]: { paddingLeft: '10px' },
+            })}
+          >
             <span id={el.id} className={classes.menuIconWrapper}>
               <img id={el.id} src={el.iconSrc} alt='logo' />
             </span>
-            <span
-              id={el.id}
-              className={classes.menuTitle}
-              style={{ letterSpacing: '-0.04em' }}
-            >
+            <span id={el.id} className={classes.menuTitle}>
               {el.name}
             </span>
           </MenuItem>
@@ -228,6 +231,11 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '125%',
     letterSpacing: '0.01em',
     paddingLeft: '19px',
+    [theme.breakpoints.down('xs')]: {
+      paddingLeft: '10px',
+      letterSpacing: '-0.04em',
+      fontSize: '14px',
+    },
   },
   avatar: {
     width: '24px',
