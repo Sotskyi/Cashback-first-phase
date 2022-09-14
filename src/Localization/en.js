@@ -150,6 +150,5 @@ export const en = {
   TOP_STORE: 'Top store',
   RECENTLY_ADDED_STORE: 'Recently added store',
   SHIPS_FROM_CANADA: 'Ships from Canada',
-
-  // verification code is incorrect
+  VERIFICATION_CODE_IS_NOT_CORRECT: 'verification code is incorrect',
 };

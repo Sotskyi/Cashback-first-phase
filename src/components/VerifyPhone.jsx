@@ -165,7 +165,7 @@ const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
         </div>
         {isShowError && (
           <div className={classes.errorMessage}>
-            verification code is incorrect
+            {t('VERIFICATION_CODE_IS_NOT_CORRECT')}
           </div>
         )}
         <form className={classes.verificationSquaresContainer}>
