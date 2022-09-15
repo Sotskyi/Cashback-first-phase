@@ -91,7 +91,7 @@ const Store = () => {
                 <div className={classes.percentWrapper}>
                   <div className={classes.outlinedPercent}>6%</div>
                   <div className={classes.percentSubTitle}>
-                    On purchases over $30
+                    {t('ON_PURCHASES_OVER')} $30
                   </div>
                 </div>
                 <div
@@ -141,7 +141,7 @@ const Store = () => {
               <div className={classes.percentWrapper}>
                 <div className={classes.outlinedPercent}>6%</div>
                 <div className={classes.percentSubTitle}>
-                  On purchases over $30
+                  {t('ON_PURCHASES_OVER')} $30
                 </div>
               </div>
               <div

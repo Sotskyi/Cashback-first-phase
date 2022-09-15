@@ -157,4 +157,5 @@ export const fr = {
   SHIPS_FROM_CANADA: 'Expédié du Canada',
   HOW_TELCO_REWARDS_WORK: 'Comment fonctionne Les Récompenses Telco',
   VERIFICATION_CODE_IS_NOT_CORRECT: 'le code de vérification est incorrect',
+  ON_PURCHASES_OVER: 'Sur les achats de plus',
 };

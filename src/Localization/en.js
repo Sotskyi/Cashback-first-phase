@@ -151,4 +151,5 @@ export const en = {
   RECENTLY_ADDED_STORE: 'Recently added store',
   SHIPS_FROM_CANADA: 'Ships from Canada',
   VERIFICATION_CODE_IS_NOT_CORRECT: 'verification code is incorrect',
+  ON_PURCHASES_OVER: 'On purchases over',
 };
