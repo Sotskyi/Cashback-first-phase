@@ -15,7 +15,7 @@ import Loader from '../../components/lib/Loader';
 import { insertString } from '../../utils/helpers';
 
 const SignUp = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(2);
   const { t } = useTranslation();
   const [creds, setCreds] = useState({
     phoneNumber: '',
@@ -27,6 +27,8 @@ const SignUp = () => {
     billingNumber: '+13213212222',
     phonePlan: 'monthly',
     carrier: '',
+    language: 'en',
+    acceptEmails: false,
   });
   const dispatch = useDispatch();
   const navigate = useNavigate();

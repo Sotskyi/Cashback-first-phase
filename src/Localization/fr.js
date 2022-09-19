@@ -16,7 +16,7 @@ export const fr = {
   ADD_PERSONAL_DETAILS: 'Ajouter des détails personnels',
   FIRST_NAME: 'Prénom',
   LAST_NAME: 'Nom de famille',
-  EMAIL: 'courriel',
+  EMAIL: 'Courriel',
   PASSWORD: 'Mot de passe',
   ADD_NETWORK_DETAILS: 'Ajouter les détails du réseau mobile',
   MOBILE_NETWORK_CARRIER: 'Opérateur de réseau mobile',

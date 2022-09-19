@@ -2,14 +2,24 @@ import { makeStyles } from '@material-ui/core';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import { useTranslation } from 'react-i18next';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 import { useValidator } from '../../../hooks/useValidator';
 import SubmitButton from '../../../components/form/SubmitButton';
 import PasswordInput from '../../../components/form/PasswordInput';
+import MobileViewInputs from '../components/MobileViewInput';
 
 const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const matches = useMediaQuery('(max-width:700px)');
+
+  const language = [
+    { value: 'en', title: 'English' },
+    { value: 'fr', title: 'French' },
+  ];
   const [checkIsValid, setIsShowError] = useValidator();
   const onSubmit = () => {
     setIsShowError(true);
@@ -197,6 +207,73 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
             })
           }
         />
+
+        {matches ? (
+          <MobileViewInputs creds={creds} setCreds={setCreds} />
+        ) : (
+          <div className={classes.inputWrapper}>
+            <InputLabel
+              sx={{
+                fontFamily: 'Inter',
+                fontStyle: 'normal',
+                fontWeight: '700',
+                fontSize: '16px',
+                color: 'black',
+              }}
+            >
+              Communication preferences
+            </InputLabel>
+            <Select
+              value={creds.language}
+              onChange={(e) => setCreds({ ...creds, language: e.target.value })}
+              displayEmpty
+              inputProps={{ 'aria-label': 'Without label' }}
+              defaultValue='en'
+              sx={{
+                width: '100%',
+                padding: '0px 14px',
+                height: '48px',
+                fontFamily: 'Inter',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: '20px',
+                border: '1px solid #EAEAEA',
+                borderRadius: '8px',
+              }}
+            >
+              {language.map((el) => (
+                <MenuItem key={el.title} value={el.value} id='language'>
+                  {el.title}
+                </MenuItem>
+              ))}
+            </Select>
+            {!checkIsValid({
+              nameOfData: 'carrier',
+              data: creds.carrier,
+            }) && (
+              <div className={classes.errorMessage}>
+                {t('PLEASE_SELECT_VALID_MOBILE_NETWORK')}
+              </div>
+            )}
+          </div>
+        )}
+        <div
+          onClick={() => {
+            return setCreds({ ...creds, acceptEmails: !creds.acceptEmails });
+          }}
+          className={`${classes.chip} ${
+            creds.acceptEmails && classes.activeBorder
+          }`}
+        >
+          <div
+            className={
+              creds.acceptEmails ? classes.chipRadioActive : classes.chipRadio
+            }
+          />
+          <span className={classes.receiveEmail}>
+            Yes, please sign me up to receive offers by email
+          </span>
+        </div>
         <SubmitButton onSubmit={onSubmit} title={t('CONTINUE')} />
       </div>
     </div>
@@ -207,12 +284,12 @@ export default PersonalDetails;
 const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '28px',
-    height: '468px',
+    height: '580px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     [theme.breakpoints.down('xs')]: {
-      height: '520px',
+      height: '580px',
     },
   },
   title: {
@@ -227,6 +304,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '20px',
     },
   },
+
   inputContainer: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -249,6 +327,51 @@ const useStyles = makeStyles((theme) => ({
     height: '20px',
     [theme.breakpoints.down('xs')]: {
       bottom: '-28px',
+    },
+  },
+  chip: {
+    // width: '422px',
+    height: '44px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '0px 12px',
+    isolation: 'isolate',
+    border: '1px solid #EAEAEA',
+    borderRadius: '24px',
+    position: 'relative',
+    cursor: 'pointer',
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: '16px',
+  },
+  chipRadio: {
+    width: '20px',
+    height: '20px',
+    border: '1px solid #EAEAEA',
+    position: 'absolute',
+    left: '12px',
+    borderRadius: '50px',
+  },
+
+  chipRadioActive: {
+    width: '12px',
+    height: '12px',
+    position: 'absolute',
+    left: '12px',
+    borderRadius: '50px',
+    border: '5px solid #33CC55',
+  },
+  activeBorder: {
+    border: '1px solid #33CC55',
+  },
+  receiveEmail: {
+    [theme.breakpoints.down('xs')]: {
+      width: '180px',
+      textAlign: 'center',
+      fontSize: '14px',
     },
   },
 }));
