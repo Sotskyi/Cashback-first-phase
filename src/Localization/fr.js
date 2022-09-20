@@ -158,4 +158,7 @@ export const fr = {
   HOW_TELCO_REWARDS_WORK: 'Comment fonctionne Les Récompenses Telco',
   VERIFICATION_CODE_IS_NOT_CORRECT: 'le code de vérification est incorrect',
   ON_PURCHASES_OVER: 'Sur les achats de plus',
+  COMUNICATION_PREFERENCE: 'Préférences de communication',
+  RECEIVE_OFFERS:
+    "Oui, veuillez m'inscrire pour recevoir des offres par e-mail",
 };

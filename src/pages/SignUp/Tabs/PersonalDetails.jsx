@@ -12,9 +12,10 @@ import PasswordInput from '../../../components/form/PasswordInput';
 import MobileViewInputs from '../components/MobileViewInput';
 
 const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
-  const classes = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
   const matches = useMediaQuery('(max-width:700px)');
+  const classes = useStyles({ language: i18n.language, isMatches: matches });
 
   const language = [
     { value: 'en', title: 'English' },
@@ -221,7 +222,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
                 color: 'black',
               }}
             >
-              Communication preferences
+              {t('COMUNICATION_PREFERENCE')}
             </InputLabel>
             <Select
               value={creds.language}
@@ -270,9 +271,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               creds.acceptEmails ? classes.chipRadioActive : classes.chipRadio
             }
           />
-          <span className={classes.receiveEmail}>
-            Yes, please sign me up to receive offers by email
-          </span>
+          <span className={classes.receiveEmail}>{t('RECEIVE_OFFERS')}</span>
         </div>
         <SubmitButton onSubmit={onSubmit} title={t('CONTINUE')} />
       </div>
@@ -297,11 +296,18 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Source Sans Pro, sans-serif',
     fontStyle: 'normal',
     fontWeight: '600',
-    fontSize: '40px',
+    // fontSize: '34px',
     lineHeight: '140%',
     letterSpacing: '-0.02em',
-    [theme.breakpoints.down('xs')]: {
-      fontSize: '20px',
+
+    fontSize: (props) => {
+      if (props.isMatches) {
+        return '25px';
+      }
+      if (props.language === 'fr') {
+        return '34px';
+      }
+      return '40px';
     },
   },
 
@@ -368,10 +374,23 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #33CC55',
   },
   receiveEmail: {
+    fontSize: (props) => {
+      if (props.language === 'fr') {
+        return '14px';
+      }
+      return '16px';
+    },
+    letterSpacing: (props) => {
+      if (props.language === 'fr') {
+        return '-0.03em';
+      }
+      return '0';
+    },
+
     [theme.breakpoints.down('xs')]: {
-      width: '180px',
+      width: '200px',
       textAlign: 'center',
-      fontSize: '14px',
+      fontSize: '13px',
     },
   },
 }));

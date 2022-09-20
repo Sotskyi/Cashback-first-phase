@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 export const en = {
   // SIGNUP
   CREATE_ACCOUNT: 'Create an account',
@@ -152,4 +154,9 @@ export const en = {
   SHIPS_FROM_CANADA: 'Ships from Canada',
   VERIFICATION_CODE_IS_NOT_CORRECT: 'verification code is incorrect',
   ON_PURCHASES_OVER: 'On purchases over',
+  COMUNICATION_PREFERENCE: 'Communication preferences',
+  RECEIVE_OFFERS: 'Yes, please sign me up to recieve offers by email',
+  // to do
+  // Communication preferences
+  // Yes, please sign me up to receive offers by email
 };

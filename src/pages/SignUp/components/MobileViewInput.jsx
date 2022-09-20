@@ -1,10 +1,10 @@
 import { makeStyles } from '@material-ui/core';
 import InputLabel from '@mui/material/InputLabel';
-// import { useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const MobileViewInputs = ({ creds, setCreds }) => {
   const classes = useStyles();
-  //   const { t } = useTranslation();
+  const { t } = useTranslation();
 
   return (
     <div className={classes.inputContainer}>
@@ -18,7 +18,7 @@ const MobileViewInputs = ({ creds, setCreds }) => {
             color: 'black',
           }}
         >
-          Communication preference
+          {t('COMUNICATION_PREFERENCE')}
         </InputLabel>
         <div
           onClick={() => setCreds({ ...creds, language: 'en' })}

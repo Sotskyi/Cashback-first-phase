@@ -15,7 +15,7 @@ import Loader from '../../components/lib/Loader';
 import { insertString } from '../../utils/helpers';
 
 const SignUp = () => {
-  const [activeStep, setActiveStep] = useState(2);
+  const [activeStep, setActiveStep] = useState(0);
   const { t } = useTranslation();
   const [creds, setCreds] = useState({
     phoneNumber: '',
