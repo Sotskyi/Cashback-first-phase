@@ -9,7 +9,8 @@ const initialState = {
   cashbackList: [],
   withdrawalsList: [],
   totalWithdrawals: 0,
-  totalCashback: 0,
+  cashbackCount: 0,
+  totalCashback: [],
   isLoading: false,
 };
 
@@ -56,7 +57,9 @@ const cashbackSlice = createSlice({
         ];
       }
 
-      state.totalCashback = action.payload.count;
+      state.totalCashback = action.payload.cashbackTotals;
+      state.cashbackCount = action.payload.count;
+
       state.isLoading = false;
     },
     [getCashback.pending]: (state) => {

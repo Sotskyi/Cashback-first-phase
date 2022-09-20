@@ -15,7 +15,7 @@ const CashbackList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const { cashbackList, isLoading, totalCashback } = useSelector(
+  const { cashbackList, isLoading, cashbackCount } = useSelector(
     (state) => state.cashback,
   );
   const lastElement = useRef();
@@ -23,7 +23,7 @@ const CashbackList = () => {
 
   useObserver(
     lastElement,
-    Math.ceil(totalCashback / 8) > page,
+    Math.ceil(cashbackCount / 8) > page,
     [isLoading],
     () => {
       setPage((prev) => prev + 1);

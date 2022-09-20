@@ -16,10 +16,10 @@ const Cashback = () => {
   const [stepWithdrawalCard, setStepWithdrawalCard] = useState(1);
   const [activeCell, setActiveCell] = useState(false);
   const { isAuth, user } = useSelector((state) => state.auth);
-  const { cashbackList } = useSelector((state) => state.cashback);
+  const { totalCashback } = useSelector((state) => state.cashback);
   const availableMoney = user?.wallet?.balance || 0;
 
-  const cashbackPending = cashbackList?.cashbackTotals?.filter(
+  const cashbackPending = totalCashback?.filter(
     (el) => el.title === 'pending',
   )[0];
 
