@@ -4,15 +4,17 @@ import { useTranslation } from 'react-i18next';
 // import useMediaQuery from '@mui/material/useMediaQuery';
 
 import logo from '../../assets/images/logos/logo.svg';
+import frenchLogo from '../../assets/images/logos/frenchLogo.svg';
 import leftVector from '../../assets/images/icons/leftVector.svg';
 import authLeftPhone from '../../assets/images/images/authLeftPhone.jpg';
+import authLeftPhoneFrench from '../../assets/images/images/authLeftPhoneFrench.jpg';
 import authRightPhone from '../../assets/images/images/authRightPhone.jpg';
 import LanguageSwitcher from '../lib/LanguageSwitcher';
 
 const AuthLandingLayout = ({ children, back, activeStep }) => {
   const classes = useStyles();
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   // const isMediumScreen = useMediaQuery('(max-width:1200px)');
 
   return (
@@ -25,7 +27,7 @@ const AuthLandingLayout = ({ children, back, activeStep }) => {
           >
             <img
               className={classes.logo}
-              src={logo}
+              src={i18n.language === 'en' ? logo : frenchLogo}
               alt='logo'
               role='presentation'
             />
@@ -52,14 +54,16 @@ const AuthLandingLayout = ({ children, back, activeStep }) => {
           <div className={classes.contentSide}>{children}</div>
           <div className={classes.artSide}>
             <div className={classes.imageContainer}>
-              <div>
+              <div className={classes.leftImageWrapper}>
                 <img
                   className={classes.leftImagePhone}
-                  src={authLeftPhone}
+                  src={
+                    i18n.language === 'en' ? authLeftPhone : authLeftPhoneFrench
+                  }
                   alt='menu'
                 />
               </div>
-              <div>
+              <div className={classes.rightImageWrapper}>
                 <img
                   className={classes.rightImagePhone}
                   src={authRightPhone}
@@ -92,6 +96,7 @@ const useStyles = makeStyles((theme) => ({
     height: '720px',
     padding: '40px 56px 48px',
     boxSizing: 'border-box',
+    overflow: 'hidden',
   },
   header: {
     height: '68px',
@@ -113,8 +118,8 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
   },
   logo: {
-    width: '154px',
-    height: '16px',
+    // width: '154px',
+    height: '20px',
   },
   backButtonContainer: {
     display: 'flex',
@@ -166,12 +171,18 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
+  leftImagePhone: {
+    width: '300px',
+    height: '700px',
+  },
+
   imageContainer: {
     width: '624px',
     display: 'flex',
     justifyContent: 'space-between',
   },
-  rightImagePhone: { marginTop: '36px' },
+  rightImageWrapperL: { display: 'flex' },
+  rightImagePhone: { marginTop: '36px', width: '300px' },
   contentSide: {
     minWidth: '448px',
     display: 'flex',

@@ -121,6 +121,7 @@ const Home = () => {
               <StoreCard
                 data={el}
                 key={el.id}
+                banner={el.bannerImage.url}
                 name={el.translations[0].title}
                 background={el.backgroundImage.url}
                 percent={el.baseReward}

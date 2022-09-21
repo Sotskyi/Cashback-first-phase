@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 
 import LanguageSwitcher from './lib/LanguageSwitcher';
 import logo from '../assets/images/logos/logo.svg';
+import frenchLogo from '../assets/images/logos/frenchLogo.svg';
+
 import searchIcon from '../assets/images/icons/searchIcon.svg';
 import { setSearch } from '../redux/slices/storesSlice';
 import UserMenu from './lib/UserMenu';
@@ -13,7 +15,7 @@ import useDebounce from '../hooks/useDebounce';
 
 const LoginedHeader = ({ availableBalance }) => {
   const [searchTerm, setSearchTerm] = useState('');
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const classes = useStyles();
   const navigate = useNavigate();
   const { pathname } = useLocation();
@@ -41,7 +43,11 @@ const LoginedHeader = ({ availableBalance }) => {
           // window.location.reload();
         }}
       >
-        <img className={classes.logo} src={logo} alt='logo' />
+        <img
+          className={classes.logo}
+          src={i18n.language === 'en' ? logo : frenchLogo}
+          alt='logo'
+        />
       </div>
       <div
         className={`${classes.searchContainer} ${
@@ -92,8 +98,8 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #33CC55!important',
   },
   logo: {
-    width: '154px',
-    height: '16px',
+    // width: '154px',
+    height: '20px',
     cursor: 'pointer',
     [theme.breakpoints.down('sm')]: {
       width: '116px',

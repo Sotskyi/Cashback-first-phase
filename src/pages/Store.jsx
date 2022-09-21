@@ -17,6 +17,7 @@ const Store = () => {
   const { id } = useParams();
   const { state } = useLocation();
   const { i18n, t } = useTranslation();
+
   const navigate = useNavigate();
   // eslint-disable-next-line no-shadow
   const { isAuth } = useSelector((state) => state.auth);
@@ -72,9 +73,13 @@ const Store = () => {
         </div>
         <div className={classes.contentContainer}>
           <div className={classes.leftContent}>
-            <div className={classes.title}>{store?.translations[0]?.title}</div>
+            <div className={classes.title}>
+              {state.data.translations[0].title ||
+                store?.translations[0]?.title}
+            </div>
             <div className={classes.subTitle}>
-              {store.translations[0]?.description}
+              {state.data.translations[0].description ||
+                store.translations[0]?.description}
             </div>
             <div
               className={classes.discountPercentCardContainerForMobileWrapper}
@@ -132,7 +137,7 @@ const Store = () => {
             <div className={classes.discountPercentCardContainer}>
               <div className={classes.percentWrapper}>
                 <div className={classes.filledPercent}>
-                  {store?.baseReward}%
+                  {state.data?.baseReward || store.baseReward}%
                 </div>
                 <div className={classes.percentSubTitle}>
                   {t('BASE_REWARD')}
