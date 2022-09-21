@@ -3,10 +3,13 @@ stages:
   - test
   - deploy
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - node_modules
+.staging_variables: &staging_variables
+  DISTRIBUTION_ID: $STAGING_DISTRIBUTION_ID
+  S3_BUCKET_NAME: $STAGING_S3_BUCKET_NAME
+
+.production_variables: &production_variables
+  DISTRIBUTION_ID: $PRODUCTION_DISTRIBUTION_ID
+  S3_BUCKET_NAME: $PRODUCTION_S3_BUCKET_NAME
 
 build:
   stage: build
@@ -31,39 +34,30 @@ packages-vulnerability:
     - main
     - production
 
-deployment-staging:
+.deployment:
   stage: deploy
-  variables:
-    S3_BUCKET_NAME: $STAGING_S3_BUCKET_NAME
-    DISTRIBUTION_ID: $STAGING_DISTRIBUTION_ID
   image:
-    name: amazon/aws-cli:latest
-    entrypoint: ['']
-  dependencies:
-    - build
+     name: amazon/aws-cli:latest
+     entrypoint: [""]
   script:
     - echo "Deployment to $S3_BUCKET_NAME"
     - aws s3 sync build/ s3://$S3_BUCKET_NAME --delete
     - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
+
+deployment:staging:
+  extends: .deployment
+  variables:
+    <<: *staging_variables
   environment:
     name: staging
   only:
     - main
 
-deployment-production:
-  stage: deploy
+deployment:production:
+  extends: .deployment
   variables:
-    S3_BUCKET_NAME: $PRODUCTION_S3_BUCKET_NAME
-    DISTRIBUTION_ID: $PRODUCTION_DISTRIBUTION_ID
-  image:
-    name: amazon/aws-cli:latest
-    entrypoint: ['']
-  dependencies:
-    - build
-  script:
-    - echo "Deployment to $S3_BUCKET_NAME"
-    - aws s3 sync build/ s3://$S3_BUCKET_NAME --delete
-    - aws cloudfront create-invalidation --distribution-id $DISTRIBUTION_ID --paths '/*'
-  environment: production
+    <<: *production_variables
+  environment:
+    name: production
   only:
     - production
