@@ -92,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: '-24px',
     width: '100%',
-    textAlign: 'start',
+    textAlign: 'center',
     [theme.breakpoints.down('xs')]: {
       bottom: '-42px',
     },

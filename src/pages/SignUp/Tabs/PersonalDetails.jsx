@@ -58,101 +58,54 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
   };
 
   return (
-    <div>
-      <div className={classes.contentContainer}>
-        <div className={classes.title}>{t('ADD_PERSONAL_DETAILS')}</div>
-        <div className={classes.inputContainer}>
-          <div className={classes.inputWrapper}>
-            <InputLabel
-              sx={{
-                fontFamily: 'Inter',
-                fontStyle: 'normal',
-                fontWeight: '700',
-                fontSize: '16px',
-                color: 'black',
-              }}
-            >
-              {t('FIRST_NAME')}
-            </InputLabel>
-            <OutlinedInput
-              onChange={handleChange}
-              id='firstName'
-              value={creds.firstName}
-              error={
-                !checkIsValid({
-                  nameOfData: 'firstName',
-                  data: creds.firstName,
-                })
-              }
-              sx={{
-                width: { xs: '136px', sm: '216px' },
-                height: '48px',
-                fontFamily: 'Inter',
-                fontStyle: 'normal',
-                fontWeight: '500',
-                fontSize: '20px',
-                border: '1px solid #EAEAEA',
-                borderRadius: '8px',
-                '& input': {
-                  padding: '8px 8px 8px 16px',
-                },
-              }}
-            />
+    <div className={classes.contentContainer}>
+      <div className={classes.title}>{t('ADD_PERSONAL_DETAILS')}</div>
+      <div className={classes.inputContainer}>
+        <div className={classes.inputWrapper}>
+          <InputLabel
+            sx={{
+              fontFamily: 'Inter',
+              fontStyle: 'normal',
+              fontWeight: '700',
+              fontSize: '16px',
+              color: 'black',
+            }}
+          >
+            {t('FIRST_NAME')}
+          </InputLabel>
+          <OutlinedInput
+            onChange={handleChange}
+            id='firstName'
+            value={creds.firstName}
+            error={
+              !checkIsValid({
+                nameOfData: 'firstName',
+                data: creds.firstName,
+              })
+            }
+            sx={{
+              width: { xs: '136px', sm: '216px' },
+              height: '48px',
+              fontFamily: 'Inter',
+              fontStyle: 'normal',
+              fontWeight: '500',
+              fontSize: '20px',
+              border: '1px solid #EAEAEA',
+              borderRadius: '8px',
+              '& input': {
+                padding: '8px 8px 8px 16px',
+              },
+            }}
+          />
 
-            {!checkIsValid({
-              nameOfData: 'firstName',
-              data: creds.firstName,
-            }) && (
-              <div className={classes.errorMessage}>
-                {t('THE_FIRST_NAME_MIN')}
-              </div>
-            )}
-          </div>
-          <div className={classes.inputWrapper}>
-            <InputLabel
-              sx={{
-                fontFamily: 'Inter',
-                fontStyle: 'normal',
-                fontWeight: '700',
-                fontSize: '16px',
-                color: 'black',
-              }}
-            >
-              {t('LAST_NAME')}
-            </InputLabel>
-            <OutlinedInput
-              onChange={handleChange}
-              id='lastName'
-              value={creds.lastName}
-              sx={{
-                width: { xs: '136px', sm: '216px' },
-                height: '48px',
-                fontFamily: 'Inter',
-                fontStyle: 'normal',
-                fontWeight: '500',
-                fontSize: '20px',
-                border: '1px solid #EAEAEA',
-                borderRadius: '8px',
-                '& input': {
-                  padding: '8px 8px 8px 16px',
-                },
-              }}
-              error={
-                !checkIsValid({
-                  nameOfData: 'lastName',
-                  data: creds.lastName,
-                })
-              }
-            />
-            {!checkIsValid({
-              nameOfData: 'lastName',
-              data: creds.lastName,
-            }) && (
-              <div className={classes.errorMessage}>
-                {t('THE_LAST_NAME_MIN')}
-              </div>
-            )}
-          </div>
+          {!checkIsValid({
+            nameOfData: 'firstName',
+            data: creds.firstName,
+          }) && (
+            <div className={classes.errorMessage}>
+              {t('THE_FIRST_NAME_MIN')}
+            </div>
+          )}
         </div>
         <div className={classes.inputWrapper}>
           <InputLabel
@@ -164,13 +117,14 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               color: 'black',
             }}
           >
-            {t('EMAIL')}
+            {t('LAST_NAME')}
           </InputLabel>
           <OutlinedInput
             onChange={handleChange}
-            id='email'
-            value={creds.email}
+            id='lastName'
+            value={creds.lastName}
             sx={{
+              width: { xs: '136px', sm: '216px' },
               height: '48px',
               fontFamily: 'Inter',
               fontStyle: 'normal',
@@ -184,97 +138,139 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
             }}
             error={
               !checkIsValid({
-                nameOfData: 'email',
-                data: creds.email,
+                nameOfData: 'lastName',
+                data: creds.lastName,
               })
             }
           />
           {!checkIsValid({
-            nameOfData: 'email',
-            data: creds.email,
+            nameOfData: 'lastName',
+            data: creds.lastName,
           }) && (
-            <div className={classes.errorMessage}>
-              {t('PLEASE_ENTER_VALID_EMAIL')}
-            </div>
+            <div className={classes.errorMessage}>{t('THE_LAST_NAME_MIN')}</div>
           )}
         </div>
-        <PasswordInput
-          handleChange={handleChange}
-          value={creds.password}
-          isError={
+      </div>
+      <div className={classes.inputWrapper}>
+        <InputLabel
+          sx={{
+            fontFamily: 'Inter',
+            fontStyle: 'normal',
+            fontWeight: '700',
+            fontSize: '16px',
+            color: 'black',
+          }}
+        >
+          {t('EMAIL')}
+        </InputLabel>
+        <OutlinedInput
+          onChange={handleChange}
+          id='email'
+          value={creds.email}
+          sx={{
+            height: '48px',
+            fontFamily: 'Inter',
+            fontStyle: 'normal',
+            fontWeight: '500',
+            fontSize: '20px',
+            border: '1px solid #EAEAEA',
+            borderRadius: '8px',
+            '& input': {
+              padding: '8px 8px 8px 16px',
+            },
+          }}
+          error={
             !checkIsValid({
-              nameOfData: 'password',
-              data: creds.password,
+              nameOfData: 'email',
+              data: creds.email,
             })
           }
         />
-
-        {matches ? (
-          <MobileViewInputs creds={creds} setCreds={setCreds} />
-        ) : (
-          <div className={classes.inputWrapper}>
-            <InputLabel
-              sx={{
-                fontFamily: 'Inter',
-                fontStyle: 'normal',
-                fontWeight: '700',
-                fontSize: '16px',
-                color: 'black',
-              }}
-            >
-              {t('COMUNICATION_PREFERENCE')}
-            </InputLabel>
-            <Select
-              value={creds.language}
-              onChange={(e) => setCreds({ ...creds, language: e.target.value })}
-              displayEmpty
-              inputProps={{ 'aria-label': 'Without label' }}
-              defaultValue='en'
-              sx={{
-                width: '100%',
-                padding: '0px 14px',
-                height: '48px',
-                fontFamily: 'Inter',
-                fontStyle: 'normal',
-                fontWeight: '500',
-                fontSize: '20px',
-                border: '1px solid #EAEAEA',
-                borderRadius: '8px',
-              }}
-            >
-              {language.map((el) => (
-                <MenuItem key={el.title} value={el.value} id='language'>
-                  {el.title}
-                </MenuItem>
-              ))}
-            </Select>
-            {!checkIsValid({
-              nameOfData: 'carrier',
-              data: creds.carrier,
-            }) && (
-              <div className={classes.errorMessage}>
-                {t('PLEASE_SELECT_VALID_MOBILE_NETWORK')}
-              </div>
-            )}
+        {!checkIsValid({
+          nameOfData: 'email',
+          data: creds.email,
+        }) && (
+          <div className={classes.errorMessage}>
+            {t('PLEASE_ENTER_VALID_EMAIL')}
           </div>
         )}
-        <div
-          onClick={() => {
-            return setCreds({ ...creds, acceptEmails: !creds.acceptEmails });
-          }}
-          className={`${classes.chip} ${
-            creds.acceptEmails && classes.activeBorder
-          }`}
-        >
-          <div
-            className={
-              creds.acceptEmails ? classes.chipRadioActive : classes.chipRadio
-            }
-          />
-          <span className={classes.receiveEmail}>{t('RECEIVE_OFFERS')}</span>
-        </div>
-        <SubmitButton onSubmit={onSubmit} title={t('CONTINUE')} />
       </div>
+      <PasswordInput
+        handleChange={handleChange}
+        value={creds.password}
+        isError={
+          !checkIsValid({
+            nameOfData: 'password',
+            data: creds.password,
+          })
+        }
+      />
+
+      {matches ? (
+        <MobileViewInputs creds={creds} setCreds={setCreds} />
+      ) : (
+        <div className={classes.inputWrapper}>
+          <InputLabel
+            sx={{
+              fontFamily: 'Inter',
+              fontStyle: 'normal',
+              fontWeight: '700',
+              fontSize: '16px',
+              color: 'black',
+            }}
+          >
+            {t('COMUNICATION_PREFERENCE')}
+          </InputLabel>
+          <Select
+            value={creds.language}
+            onChange={(e) => setCreds({ ...creds, language: e.target.value })}
+            displayEmpty
+            inputProps={{ 'aria-label': 'Without label' }}
+            defaultValue='en'
+            sx={{
+              width: '100%',
+              padding: '0px 14px',
+              height: '48px',
+              fontFamily: 'Inter',
+              fontStyle: 'normal',
+              fontWeight: '500',
+              fontSize: '20px',
+              border: '1px solid #EAEAEA',
+              borderRadius: '8px',
+            }}
+          >
+            {language.map((el) => (
+              <MenuItem key={el.title} value={el.value} id='language'>
+                {el.title}
+              </MenuItem>
+            ))}
+          </Select>
+          {!checkIsValid({
+            nameOfData: 'carrier',
+            data: creds.carrier,
+          }) && (
+            <div className={classes.errorMessage}>
+              {t('PLEASE_SELECT_VALID_MOBILE_NETWORK')}
+            </div>
+          )}
+        </div>
+      )}
+      <div
+        onClick={() => {
+          return setCreds({ ...creds, acceptEmails: !creds.acceptEmails });
+        }}
+        className={`${classes.chip} ${
+          creds.acceptEmails && classes.activeBorder
+        }`}
+      >
+        <div
+          className={
+            creds.acceptEmails ? classes.chipRadioActive : classes.chipRadio
+          }
+        />
+        <span className={classes.receiveEmail}>{t('RECEIVE_OFFERS')}</span>
+      </div>
+      <SubmitButton onSubmit={onSubmit} title={t('CONTINUE')} />
     </div>
   );
 };
@@ -328,12 +324,12 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Inter',
     fontSize: '14px',
     position: 'absolute',
-    bottom: '-28px',
+    bottom: '-24px',
     width: '100%',
     height: '20px',
-    [theme.breakpoints.down('xs')]: {
-      bottom: '-28px',
-    },
+    // [theme.breakpoints.down('xs')]: {
+    //   bottom: '-24px',
+    // },
   },
   chip: {
     // width: '422px',

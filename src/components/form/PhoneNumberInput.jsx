@@ -94,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   phoneNumberError: {
-    textAlign: 'start',
+    textAlign: 'center',
     fontFamily: 'Inter',
     fontSize: '14px',
     position: 'absolute',
