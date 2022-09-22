@@ -87,12 +87,12 @@ const useStyles = makeStyles((theme) => ({
   },
   errorMessage: {
     color: 'red',
-    textAlign: 'center',
     fontFamily: 'Inter',
     fontSize: '14px',
     position: 'absolute',
     bottom: '-24px',
     width: '100%',
+    textAlign: 'start',
     [theme.breakpoints.down('xs')]: {
       bottom: '-42px',
     },

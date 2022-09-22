@@ -117,7 +117,7 @@ export const fr = {
   DEBIT_CARD: 'Carte de débit',
   INSTALLMENT_PAYMENTS: 'Par versements',
   PLEASE_ENTER_PHONE_NUMBER_IN_FORMAT:
-    'Veuillez saisir votre numéro de téléphone au format 0987654321',
+    'Veuillez saisir votre numéro de téléphone au format 4165551212',
   SHOULD_CONTAIN_MINIMUM_7SYMBOLS:
     'Doit contenir au minimum 7 symboles maximum 20',
   PLEASE_ENTER_VALID_EMAIL:

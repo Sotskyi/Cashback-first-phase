@@ -115,7 +115,7 @@ export const en = {
   // TO DO
 
   PLEASE_ENTER_PHONE_NUMBER_IN_FORMAT:
-    'Please enter phone number in format 0987654321',
+    'Please enter phone number in format 4165551212',
   SHOULD_CONTAIN_MINIMUM_7SYMBOLS:
     'Should contain minimum 7 symbols maximum 20',
   PLEASE_ENTER_VALID_EMAIL: 'Please enter valid email example@gmail.com',

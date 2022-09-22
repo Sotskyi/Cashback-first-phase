@@ -36,15 +36,18 @@ const PhoneNumberInput = ({ handleChange, data, isError }) => {
         startAdornment={
           <>
             <img className={classes.flag} src={flag} alt='menu' />
+            <span>+1</span>
             <div className={classes.divider} />
           </>
         }
       />
-      {isError && (
-        <div className={classes.phoneNumberError}>
-          {t('PLEASE_ENTER_PHONE_NUMBER_IN_FORMAT')}
-        </div>
-      )}
+
+      <div
+        className={classes.phoneNumberError}
+        style={{ color: isError && 'red' }}
+      >
+        {isError ? t('PLEASE_ENTER_PHONE_NUMBER_IN_FORMAT') : 'ex: 4165551212'}
+      </div>
     </div>
   );
 };
@@ -72,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: '16px',
   },
   flag: {
-    marginRight: '16px',
+    marginRight: '9px',
   },
   divider: {
     top: '50%',
@@ -91,8 +94,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
   },
   phoneNumberError: {
-    color: 'red',
-    textAlign: 'center',
+    textAlign: 'start',
     fontFamily: 'Inter',
     fontSize: '14px',
     position: 'absolute',

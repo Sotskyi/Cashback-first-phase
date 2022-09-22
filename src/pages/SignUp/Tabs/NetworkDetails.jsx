@@ -105,10 +105,11 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
               {t('PHONE_PLAN')}
             </InputLabel>
             <div
-              onClick={() => setCreds({ ...creds, phonePlan: 'monthly' })}
+              // onClick={() => setCreds({ ...creds, phonePlan: 'monthly' })}
               className={`${classes.phonePlan} ${
                 creds.phonePlan === 'monthly' ? classes.activeBorder : ''
               }`}
+              style={{ cursor: 'unset' }}
             >
               <div
                 className={
