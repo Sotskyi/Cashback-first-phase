@@ -106,9 +106,8 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
             </InputLabel>
             <div
               // onClick={() => setCreds({ ...creds, phonePlan: 'monthly' })}
-              className={`${classes.phonePlan} ${
-                creds.phonePlan === 'monthly' ? classes.activeBorder : ''
-              }`}
+              className={`${classes.phonePlan} 
+              ${creds.phonePlan === 'monthly' ? classes.activeBorder : ''}`}
               style={{ cursor: 'unset' }}
             >
               <div
@@ -147,7 +146,7 @@ export default NetworkDetails;
 const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '28px',
-    height: '416px',
+    height: '460px',
     // width: '448px',
     display: 'flex',
     flexDirection: 'column',
@@ -159,7 +158,7 @@ const useStyles = makeStyles((theme) => ({
     fontStyle: 'normal',
     fontWeight: '600',
     fontSize: '40px',
-    lineHeight: '140%',
+    // lineHeight: '140%',
     letterSpacing: '-0.02em',
     [theme.breakpoints.down('xs')]: {
       fontSize: '20px',
@@ -216,6 +215,8 @@ const useStyles = makeStyles((theme) => ({
     border: '5px solid #33CC55',
   },
   errorMessage: {
+    position: 'absolute',
+    top: '80px',
     color: 'red',
     textAlign: 'center',
     fontFamily: 'Inter',

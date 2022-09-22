@@ -15,7 +15,7 @@ import Loader from '../../components/lib/Loader';
 import { insertString } from '../../utils/helpers';
 
 const SignUp = () => {
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(3);
   const { t } = useTranslation();
   const [creds, setCreds] = useState({
     phoneNumber: '',
@@ -25,7 +25,7 @@ const SignUp = () => {
     password: '',
     verificationCode: '',
     billingNumber: '+13213212222',
-    phonePlan: 'monthly',
+    phonePlan: 'prepaid',
     carrier: '',
     language: 'en',
     acceptEmails: false,
