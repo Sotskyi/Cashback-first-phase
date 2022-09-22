@@ -13,6 +13,7 @@ const PhoneNumberInput = ({ handleChange, data, isError }) => {
       <label className={classes.phoneNumberLabel}>{t('PHONE')}</label>
       <OutlinedInput
         className={classes.phoneNumberInputContainer}
+        placeholder='ex: 4165551212'
         error={isError}
         onChange={(e) => {
           if (
@@ -101,7 +102,8 @@ const useStyles = makeStyles((theme) => ({
     bottom: '-24px',
     width: '100%',
     [theme.breakpoints.down('xs')]: {
-      bottom: '-42px',
+      bottom: '-24px',
+      fontSize: '12px',
     },
   },
   errorBorder: {

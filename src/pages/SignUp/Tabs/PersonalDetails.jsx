@@ -245,14 +245,6 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
               </MenuItem>
             ))}
           </Select>
-          {!checkIsValid({
-            nameOfData: 'carrier',
-            data: creds.carrier,
-          }) && (
-            <div className={classes.errorMessage}>
-              {t('PLEASE_SELECT_VALID_MOBILE_NETWORK')}
-            </div>
-          )}
         </div>
       )}
       <div
@@ -284,7 +276,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     [theme.breakpoints.down('xs')]: {
-      height: '580px',
+      height: '674px',
     },
   },
   title: {
@@ -324,12 +316,12 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Inter',
     fontSize: '14px',
     position: 'absolute',
-    bottom: '-24px',
+    bottom: '-25px',
     width: '100%',
     height: '20px',
-    // [theme.breakpoints.down('xs')]: {
-    //   bottom: '-24px',
-    // },
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '12px',
+    },
   },
   chip: {
     // width: '422px',

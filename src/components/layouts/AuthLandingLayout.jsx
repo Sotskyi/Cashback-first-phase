@@ -93,10 +93,13 @@ const useStyles = makeStyles((theme) => ({
   },
   bodyContainer: {
     width: '1280px',
-    height: '720px',
+    height: '820px',
     padding: '40px 56px 48px',
     boxSizing: 'border-box',
     overflow: 'hidden',
+    [theme.breakpoints.down('xs')]: {
+      padding: '40px 36px 48px',
+    },
   },
   header: {
     height: '68px',

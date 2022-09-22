@@ -94,7 +94,8 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     textAlign: 'center',
     [theme.breakpoints.down('xs')]: {
-      bottom: '-42px',
+      bottom: '-22px',
+      fontSize: '12px',
     },
   },
 }));

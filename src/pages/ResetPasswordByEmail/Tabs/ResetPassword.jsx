@@ -129,9 +129,9 @@ const useStyles = makeStyles((theme) => ({
     color: 'red',
     textAlign: 'center',
     fontFamily: 'Inter',
-    fontSize: '14px',
+    fontSize: '12px',
     position: 'absolute',
-    bottom: '-24px',
+    bottom: '-17px',
     width: '100%',
   },
   inputWrapper: {
