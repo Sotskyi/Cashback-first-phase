@@ -321,6 +321,7 @@ const useStyles = makeStyles((theme) => ({
     height: '20px',
     [theme.breakpoints.down('xs')]: {
       fontSize: '12px',
+      bottom: '-21px',
     },
   },
   chip: {

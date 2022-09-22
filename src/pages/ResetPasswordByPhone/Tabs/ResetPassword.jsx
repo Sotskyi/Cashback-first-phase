@@ -78,12 +78,12 @@ export default ResetPassword;
 const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '68px',
-    height: '324px',
+    height: '400px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     [theme.breakpoints.down('xs')]: {
-      height: '380px',
+      height: '411px',
     },
   },
   title: {

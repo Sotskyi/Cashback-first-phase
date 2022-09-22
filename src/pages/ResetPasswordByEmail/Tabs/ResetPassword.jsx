@@ -109,7 +109,7 @@ export default ResetPassword;
 const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '68px',
-    height: '356px',
+    height: '439px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -131,8 +131,12 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Inter',
     fontSize: '12px',
     position: 'absolute',
-    bottom: '-17px',
+    bottom: '-24px',
     width: '100%',
+    height: '20px',
+    [theme.breakpoints.down('xs')]: {
+      bottom: '-21px',
+    },
   },
   inputWrapper: {
     height: '76px',
