@@ -9,7 +9,6 @@ import {
   getStore,
   redirectToStore,
   redirectToSpecialOffer,
-  reset,
 } from '../redux/slices/storesSlice';
 import Loader from '../components/lib/Loader';
 
@@ -46,9 +45,9 @@ const Store = () => {
     }
   }, [currentLanguage]);
 
-  useEffect(() => {
-    return () => dispatch(reset());
-  }, []);
+  // useEffect(() => {
+  //   return () => dispatch(reset());
+  // }, []);
 
   const handleRedirectToStore = () => {
     setTriggerLoader(true);
