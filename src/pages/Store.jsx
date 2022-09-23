@@ -9,6 +9,7 @@ import {
   getStore,
   redirectToStore,
   redirectToSpecialOffer,
+  reset,
 } from '../redux/slices/storesSlice';
 import Loader from '../components/lib/Loader';
 
@@ -17,7 +18,6 @@ const Store = () => {
   const { id } = useParams();
   const { state } = useLocation();
   const { i18n, t } = useTranslation();
-
   const navigate = useNavigate();
   // eslint-disable-next-line no-shadow
   const { isAuth } = useSelector((state) => state.auth);
@@ -45,6 +45,10 @@ const Store = () => {
       setStore(resultAction.payload);
     }
   }, [currentLanguage]);
+
+  useEffect(() => {
+    return () => dispatch(reset());
+  }, []);
 
   const handleRedirectToStore = () => {
     setTriggerLoader(true);

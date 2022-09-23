@@ -1,10 +1,10 @@
 import { makeStyles } from '@material-ui/core';
 
-const SubmitButton = ({ title, onSubmit }) => {
+const SubmitButton = ({ title, onSubmit, children }) => {
   const classes = useStyles();
   return (
     <div onClick={() => onSubmit()} className={classes.submitButton}>
-      {title}
+      {title || children}
     </div>
   );
 };

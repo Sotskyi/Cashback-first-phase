@@ -1,21 +1,20 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-// import { useNavigate } from 'react-router-dom';
 
 import LoginAccount from './Tabs/LoginAccount';
-// import VerifyPhone from '../../components/VerifyPhone';
 import AuthLandingLayout from '../../components/layouts/AuthLandingLayout';
 import Loader from '../../components/lib/Loader';
-// import { loginConfirm } from '../../redux/slices/authSlice';
 
 const LogIn = () => {
   const [activeStep, setActiveStep] = useState(0);
+
   const [creds, setCreds] = useState({
     phoneNumber: '',
     password: '',
   });
 
   const { isLoading } = useSelector((state) => state.auth);
+  const { store } = useSelector((state) => state.stores);
 
   const next = () => {
     if (activeStep !== 2) {
@@ -35,7 +34,7 @@ const LogIn = () => {
     });
   };
 
-  if (isLoading) {
+  if (isLoading && !store?.id?.length > 1) {
     return <Loader />;
   }
 
@@ -47,16 +46,9 @@ const LogIn = () => {
           setCreds={setCreds}
           next={next}
           handleChange={handleChange}
+          storeId={store.id}
         />
       )}
-      {/* {activeStep === 1 && (
-        <VerifyPhone
-          next={false}
-          setCreds={setCreds}
-          creds={creds}
-          useFor='login'
-        />
-      )} */}
     </AuthLandingLayout>
   );
 };

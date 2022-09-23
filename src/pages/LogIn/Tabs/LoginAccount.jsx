@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -6,15 +7,17 @@ import { useTranslation } from 'react-i18next';
 import { useValidator } from '../../../hooks/useValidator';
 import { insertString } from '../../../utils/helpers';
 import SubmitButton from '../../../components/form/SubmitButton';
+import Loader from '../../../components/lib/Loader';
 import PhoneNumberInput from '../../../components/form/PhoneNumberInput';
 import PasswordInput from '../../../components/form/PasswordInput';
 import { login } from '../../../redux/slices/authSlice';
+import { redirectToStoreFromLogin } from '../../../redux/slices/storesSlice';
 
-const LoginAccount = ({ creds, handleChange }) => {
+const LoginAccount = ({ creds, handleChange, storeId }) => {
   const classes = useStyles();
+  const [triggerLoader, setTriggerLoader] = useState(false);
   const dispatch = useDispatch();
   const { t } = useTranslation();
-
   const [checkIsValid, setIsShowError] = useValidator();
   const navigate = useNavigate();
 
@@ -36,8 +39,11 @@ const LoginAccount = ({ creds, handleChange }) => {
       const resultAction = await dispatch(
         login({ ...creds, phoneNumber: insertString('+1', creds.phoneNumber) }),
       );
+      setTriggerLoader(true);
       if (login.fulfilled.match(resultAction)) {
-        navigate('/home');
+        if (storeId) {
+          dispatch(redirectToStoreFromLogin(storeId));
+        } else navigate('/home');
       }
     }
   };
@@ -72,7 +78,15 @@ const LoginAccount = ({ creds, handleChange }) => {
         >
           {t('FORGOT_PASSWORD')}
         </div>
-        <SubmitButton onSubmit={onSubmit} title={t('CONTINUE')} />
+
+        <SubmitButton
+          onSubmit={onSubmit}
+          title={!triggerLoader && t('CONTINUE')}
+        >
+          {triggerLoader && storeId && (
+            <Loader delay={3000} setTriggerLoader={setTriggerLoader} />
+          )}
+        </SubmitButton>
       </div>
       <div className={classes.newAccount}>
         {t('NEW_TO_TELCOREWARDS')}&nbsp;
