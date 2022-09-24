@@ -76,23 +76,6 @@ export const redirectToStore = createAsyncThunk(
   },
 );
 
-export const redirectToStoreFromLogin = createAsyncThunk(
-  'stores/redirectToStore',
-  async (id, thunkAPI) => {
-    try {
-      const response = await StoresService.redirectToStore(id);
-      const data = await response.data;
-      if (data.url && data.url.includes('http')) {
-        window.location.href = `${data.url}`;
-      }
-      return data;
-    } catch (error) {
-      toast.error('This store is not connected to Telcorewards');
-      return thunkAPI.rejectWithValue(error);
-    }
-  },
-);
-
 export const redirectToSpecialOffer = createAsyncThunk(
   'stores/redirectToStore',
   async (offerId, thunkAPI) => {

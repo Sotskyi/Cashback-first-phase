@@ -7,14 +7,12 @@ import Loader from '../../components/lib/Loader';
 
 const LogIn = () => {
   const [activeStep, setActiveStep] = useState(0);
-
   const [creds, setCreds] = useState({
     phoneNumber: '',
     password: '',
   });
 
   const { isLoading } = useSelector((state) => state.auth);
-  const { store } = useSelector((state) => state.stores);
 
   const next = () => {
     if (activeStep !== 2) {
@@ -34,7 +32,7 @@ const LogIn = () => {
     });
   };
 
-  if (isLoading && !store?.id?.length > 1) {
+  if (isLoading) {
     return <Loader />;
   }
 
@@ -46,7 +44,6 @@ const LogIn = () => {
           setCreds={setCreds}
           next={next}
           handleChange={handleChange}
-          storeId={store.id}
         />
       )}
     </AuthLandingLayout>

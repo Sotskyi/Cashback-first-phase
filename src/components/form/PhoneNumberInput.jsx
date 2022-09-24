@@ -47,7 +47,7 @@ const PhoneNumberInput = ({ handleChange, data, isError }) => {
         className={classes.phoneNumberError}
         style={{ color: isError && 'red' }}
       >
-        {isError ? t('PLEASE_ENTER_PHONE_NUMBER_IN_FORMAT') : 'ex: 4165551212'}
+        {isError && t('PLEASE_ENTER_PHONE_NUMBER_IN_FORMAT')}
       </div>
     </div>
   );
