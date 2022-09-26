@@ -181,6 +181,8 @@ const useStyles = makeStyles((theme) => ({
 
   imageContainer: {
     width: '624px',
+    height: '570px',
+    overflow: 'hidden',
     display: 'flex',
     justifyContent: 'space-between',
   },
