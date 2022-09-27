@@ -88,9 +88,12 @@ export const en = {
   PENDING: 'PENDING',
   TOTAL: 'TOTAL',
   DAYS: 'days',
+  DAY: 'day',
   WITHDRAW: 'Withdraw',
   ADDED_TO_MOBILE_BALANCE: 'ADDED TO MOBILE BALANCE',
   STILL_AVAILABLE: 'STILL AVAILABLE',
+  AVAILABLE_CASHBACK: 'Available',
+  RETURNED: 'Returned',
   SHOP_FOR_MORE_CASH_BACK: 'Shop for more cash-back',
   // MISSING TRANSACTION
   REPORT_MISSING_TRANSACTION: 'Report a missing transaction',

@@ -2,19 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+
 import { getCashback } from '../../../redux/slices/cashbackSlice';
 import timer from '../../../assets/images/icons/timer.svg';
-import {
-  getDateForCashback,
-  differenceDatesInDays,
-} from '../../../utils/helpers';
+import revertArrow from '../../../assets/images/icons/revertArrow.svg';
+import { getDateForCashback } from '../../../utils/helpers';
 import Loader from '../../../components/lib/Loader';
 import { useObserver } from '../../../hooks/useObserver';
 
 const CashbackList = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { cashbackList, isLoading, cashbackCount } = useSelector(
     (state) => state.cashback,
   );
@@ -43,7 +42,9 @@ const CashbackList = () => {
       {cashbackList?.map((el) => (
         <div key={el?.date}>
           <div className={classes.dateContainer}>
-            <div className={classes.date}>{getDateForCashback(el?.date)} </div>
+            <div className={classes.date}>
+              {getDateForCashback(el?.date, i18n.language)}{' '}
+            </div>
             <div className={classes.totalCashback}>
               $ {parseFloat(el?.dailyTotal)}
             </div>
@@ -58,27 +59,68 @@ const CashbackList = () => {
                 src={item.logoImageUrl}
                 alt='avatar'
               />
+              {item.status === 'reverted' && (
+                <div className={classes.revertArrow}>
+                  <img
+                    src={revertArrow}
+                    className={classes.revertArrowIcon}
+                    alt='avatar'
+                  />
+                </div>
+              )}
               <div className={classes.storeContentContainer}>
                 <div className={classes.storeContentWrapper}>
-                  <div className={classes.storeTitle}>{item.storeTitle}</div>
-                  <div className={classes.storeCashback}>$ {item.reward}</div>
+                  <div
+                    className={classes.storeTitle}
+                    style={{
+                      color: item.status === 'reverted' && '#aaaaaae8',
+                    }}
+                  >
+                    {item.storeTitle}
+                  </div>
+                  <div
+                    className={classes.storeCashback}
+                    style={{
+                      color:
+                        (item.status === 'available' && '#33CC55') ||
+                        (item.status === 'reverted' && '#aaaaaae8'),
+                    }}
+                  >
+                    $ {item.reward}
+                  </div>
                 </div>
                 <div className={classes.storeContentWrapper}>
-                  <div className={classes.storeAvailableCashback}>
+                  <div
+                    className={classes.storeAvailableCashback}
+                    style={{
+                      color: item.status === 'reverted' && '#aaaaaae8',
+                    }}
+                  >
                     $ {item.saleAmount}
                   </div>
                   <div className={classes.storeAvailableCashbackTime}>
-                    {differenceDatesInDays(new Date(), new Date(el.date)) >
-                      0 && (
+                    {item.status === 'pending' && (
                       <>
-                        {differenceDatesInDays(new Date(), new Date(el.date))}{' '}
-                        {t('DAYS')}
+                        <span>{item.daysToWithdrawal}&nbsp;</span>
+                        <span>
+                          {item.daysToWithdrawal === 0 ? t('DAY') : t('DAYS')}
+                        </span>
                         <img
                           className={classes.storeAvailableCashbackTimerIcon}
                           src={timer}
                           alt='timer'
-                        />{' '}
+                        />
                       </>
+                    )}
+                    {item.status === 'available' && (
+                      <span className={classes.availableTitle}>
+                        {t('AVAILABLE_CASHBACK')}
+                      </span>
+                    )}
+                    {item.status === 'reverted' && (
+                      <span className={classes.returnedTitle}>
+                        {t('RETURNED')}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -129,6 +171,13 @@ const useStyles = makeStyles((theme) => ({
     borderBottom: '1px solid #EAEAEA',
     marginTop: '32px',
   },
+  storeCashback: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontSize: '16px',
+    fontWeight: '500',
+    color: '#6A6A6A',
+  },
   storeContainer: {
     display: 'flex',
     alignItems: 'center',
@@ -140,13 +189,44 @@ const useStyles = makeStyles((theme) => ({
     background: '#EAEAEA',
     borderRadius: '100px',
   },
+  revertArrow: {
+    width: '17px',
+    height: '15px',
+    background: '#33CC55',
+    borderRadius: '30px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'relative',
+    left: '-15px',
+    top: '14px',
+  },
+  revertArrowIcon: {
+    width: '10px',
+    height: '8.5px',
+  },
+  availableTitle: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontSize: '12px',
+    fontWeight: '400',
+    color: '#33CC55',
+    letterSpacing: '0.05em',
+  },
+  returnedTitle: {
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontSize: '12px',
+    color: '#aaaaaae8',
+    letterSpacing: '0.05em',
+  },
   storeContentContainer: {
     display: 'flex',
     marginLeft: '16px',
     flexDirection: 'column',
     width: '100%',
     height: '100%',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
     borderBottom: '1px solid #EAEAEA',
   },
   storeContentWrapper: {
@@ -165,11 +245,11 @@ const useStyles = makeStyles((theme) => ({
   totalCashback: {
     fontFamily: 'Source Sans Pro, sans-serif',
     fontStyle: 'normal',
-    fontWeight: '600',
-    fontSize: '16px',
+    fontWeight: '400',
+    fontSize: '15px',
     lineHeight: '100%',
     letterSpacing: '0.02em',
-    color: '#33CC55',
+    color: '#6A6A6A',
   },
   storeAvailableCashback: {
     fontFamily: 'Inter',
