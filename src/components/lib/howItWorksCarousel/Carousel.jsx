@@ -9,14 +9,14 @@ import Tab1 from './Tabs/Tab1';
 import Tab2 from './Tabs/Tab2';
 import Tab3 from './Tabs/Tab3';
 import Tab4 from './Tabs/Tab4';
-import Tab5 from './Tabs/Tab5';
+// import Tab5 from './Tabs/Tab5';
 
 const Carousel = ({ onClose }) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const [step, setStep] = useState(0);
   const [xPos, setXpos] = useState(0);
-  const steps = [0, 1, 2, 3, 4];
+  const steps = [0, 1, 2, 3];
 
   const handleLeftClick = () => {
     if (step > 0) {
@@ -26,7 +26,7 @@ const Carousel = ({ onClose }) => {
   };
 
   const handleRightClick = () => {
-    if (step < 4) {
+    if (step < 3) {
       setStep((prev) => prev + 1);
       setXpos((prev) => prev - 216);
     }
@@ -58,11 +58,11 @@ const Carousel = ({ onClose }) => {
             <Tab2 />
             <Tab3 />
             <Tab4 />
-            <Tab5 />
+            {/* <Tab5 /> */}
           </div>
         </div>
         <div onClick={handleRightClick}>
-          {step < 4 && (
+          {step < 3 && (
             <img className={classes.rightArrow} src={rightArrow} alt='icon' />
           )}
         </div>

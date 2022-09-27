@@ -106,7 +106,7 @@ export const en = {
     'Please upload a receipt or bank statement to show the proof of purchase value, transaction date, payment card details and retailer. We need to see all this information to confirm your transaction with the retailer',
   FOR_SECURITY:
     'For security, please do not include your full card number, expiry date of card or any other account information other than the last 4 digits of the card, transaction date, amount and retailers',
-
+  ORDER_AMOUNT: 'Order amount',
   UPLOAD_PHOTO: 'Upload Photo',
   SUBMIT_FOR_REVIEW: 'Submit for review',
   MOBILE: 'Mobile',
@@ -114,7 +114,9 @@ export const en = {
   CREDIT_CARD: 'Credit Card',
   DEBIT_CARD: 'Debit Card',
   INSTALLMENT_PAYMENTS: 'Installment payments',
-
+  PLEASE_ENTER_VALID_AMOUNT: 'Please enter valid order amount',
+  PLEASE_ENTER_VALID_COMMENT: 'Please enter valid comment',
+  COMMENT: 'Comment',
   // TO DO
 
   PLEASE_ENTER_PHONE_NUMBER_IN_FORMAT:

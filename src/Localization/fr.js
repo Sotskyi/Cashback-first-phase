@@ -102,11 +102,14 @@ export const fr = {
   // // MISSING TRANSACTION TRANSACTION MANQUANTE
   REPORT_MISSING_TRANSACTION: 'Où sont mes remises en argent?',
   STORE: 'Magasin',
+  COMMENT: 'Commentaire',
   DATE_OF_PURCHASE: "Date d'achat",
   PURCHASE_TYPE: "Type d'achat",
   PAYMENT_METHOD: 'Mode de paiement',
   PROOF_OF_PAYMENT: 'PREUVE DE PAIEMENT',
-
+  ORDER_AMOUNT: 'Montant de la commande',
+  PLEASE_ENTER_VALID_AMOUNT: 'Please enter valid amount',
+  PLEASE_ENTER_VALID_COMMENT: 'Please enter valid description',
   PLEASE_UPLOAD_RECEIPT:
     "Veuillez télécharger un reçu ou un relevé bancaire pour montrer la preuve de la valeur de l'achat, la date de la transaction, les détails de la carte de paiement et le détaillant.",
   FOR_SECURITY:

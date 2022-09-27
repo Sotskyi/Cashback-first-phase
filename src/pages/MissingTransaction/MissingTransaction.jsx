@@ -3,6 +3,8 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { makeStyles, TextField } from '@material-ui/core';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -25,7 +27,13 @@ const MissingTransaction = () => {
   const classes = useStyles();
   const { t } = useTranslation();
   const [creds, setCreds] = useState({
-    ticket: { store: '', purchasedAt: '', purchaseType: '', paymentMethod: '' },
+    ticket: {
+      store: '',
+      purchasedAt: '',
+      purchaseType: '',
+      paymentMethod: '',
+      amount: '',
+    },
     paymentProof: '',
   });
 
@@ -205,7 +213,7 @@ const MissingTransaction = () => {
                 }}
               >
                 {purchaseTypes.map((el) => (
-                  <MenuItem key={el} value={el.value}>
+                  <MenuItem key={el.value} value={el.value}>
                     {t(el.forTranslate)}
                   </MenuItem>
                 ))}
@@ -260,7 +268,7 @@ const MissingTransaction = () => {
                 }}
               >
                 {paymentMethods.map((el) => (
-                  <MenuItem key={el} value={el.value}>
+                  <MenuItem key={el.value} value={el.value}>
                     {t(el.forTranslate)}
                   </MenuItem>
                 ))}
@@ -275,7 +283,94 @@ const MissingTransaction = () => {
               )}
             </div>
           </div>
-
+          <div className={classes.inputWrapper}>
+            <InputLabel
+              sx={{
+                fontFamily: 'Inter',
+                fontStyle: 'normal',
+                fontWeight: '700',
+                fontSize: '16px',
+                color: 'black',
+              }}
+            >
+              {t('ORDER_AMOUNT')}
+            </InputLabel>
+            <OutlinedInput
+              onChange={handleChange}
+              name='amount'
+              value={creds.ticket.amount}
+              sx={{
+                width: { xs: '136px', sm: '368px' },
+                height: '48px',
+                fontFamily: 'Inter',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: '20px',
+                border: '1px solid #EAEAEA',
+                borderRadius: '8px',
+                '& input': {
+                  padding: '8px 8px 8px 16px',
+                },
+              }}
+              // error={
+              //   !checkIsValid({
+              //     nameOfData: 'isEmpty',
+              //     data: creds.ticket.amount,
+              //   })
+              // }
+            />
+            {/* {!checkIsValid({
+              nameOfData: 'isEmpty',
+              data: creds.ticket.amount,
+            }) && (
+              <div className={classes.errorMessage}>
+                {t('PLEASE_ENTER_VALID_AMOUNT')}
+              </div>
+            )} */}
+          </div>
+          <div className={classes.inputWrapper} style={{ height: '143px' }}>
+            <InputLabel
+              sx={{
+                fontFamily: 'Inter',
+                fontStyle: 'normal',
+                fontWeight: '700',
+                fontSize: '16px',
+                color: 'black',
+              }}
+            >
+              {t('COMMENT')}
+            </InputLabel>
+            <TextareaAutosize
+              onChange={handleChange}
+              name='comment'
+              value={creds.ticket.comment}
+              style={{
+                height: '93px',
+                fontFamily: 'Inter',
+                fontStyle: 'normal',
+                fontWeight: '500',
+                fontSize: '20px',
+                border: '1px solid #EAEAEA',
+                borderRadius: '8px',
+                padding: '8px 8px 8px 16px',
+                '& input': {},
+              }}
+              // error={
+              //   !checkIsValid({
+              //     nameOfData: 'isEmpty',
+              //     data: creds.ticket.comment,
+              //   })
+              // }
+            />
+            {/* {!checkIsValid({
+              nameOfData: 'isEmpty',
+              data: creds.ticket.comment,
+            }) && (
+              <div className={classes.errorMessage}>
+                {t('PLEASE_ENTER_VALID_COMMENT')}
+              </div>
+            )} */}
+          </div>
           <div className={classes.contentTextWrapper}>
             <InputLabel
               sx={{
@@ -349,7 +444,7 @@ const useStyles = makeStyles((theme) => ({
   },
   contentWrapper: {
     width: '752px',
-    height: '612px',
+    height: '877px',
     [theme.breakpoints.down('sm')]: {
       height: '720px',
     },

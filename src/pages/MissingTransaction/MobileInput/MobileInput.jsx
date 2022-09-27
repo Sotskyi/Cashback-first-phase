@@ -1,6 +1,8 @@
 import { makeStyles, TextField } from '@material-ui/core';
 import InputLabel from '@mui/material/InputLabel';
 import { useTranslation } from 'react-i18next';
+import TextareaAutosize from '@mui/material/TextareaAutosize';
+import OutlinedInput from '@mui/material/OutlinedInput';
 
 import { purchaseTypes, paymentMethods } from '../../../utils/constants';
 import SubmitButton from '../../../components/form/SubmitButton';
@@ -28,6 +30,7 @@ const MobileInput = ({
               fontWeight: '700',
               fontSize: '16px',
               color: 'black',
+              marginBottom: '7px',
             }}
           >
             {t('STORE')}
@@ -58,6 +61,7 @@ const MobileInput = ({
               fontWeight: '700',
               fontSize: '16px',
               color: 'black',
+              marginBottom: '7px',
             }}
           >
             {t('DATE_OF_PURCHASE')}
@@ -94,6 +98,7 @@ const MobileInput = ({
               fontStyle: 'normal',
               fontWeight: '700',
               fontSize: '16px',
+              marginBottom: '7px',
               color: 'black',
             }}
           >
@@ -102,7 +107,7 @@ const MobileInput = ({
 
           {purchaseTypes.map((el) => (
             <div
-              key={el}
+              key={el.value}
               className={`${classes.chip} ${
                 creds.ticket.purchaseType === el && classes.active
               }`}
@@ -134,6 +139,7 @@ const MobileInput = ({
               fontWeight: '700',
               fontSize: '16px',
               color: 'black',
+              marginBottom: '7px',
             }}
           >
             {t('PAYMENT_METHOD')}
@@ -141,7 +147,7 @@ const MobileInput = ({
 
           {paymentMethods.map((el) => (
             <div
-              key={el}
+              key={el.value}
               className={`${classes.chip} ${
                 creds.ticket.paymentMethod === el && classes.active
               }`}
@@ -165,6 +171,97 @@ const MobileInput = ({
             </div>
           )}
         </div>
+        <div className={classes.inputWrapper}>
+          <InputLabel
+            sx={{
+              fontFamily: 'Inter',
+              fontStyle: 'normal',
+              fontWeight: '700',
+              fontSize: '16px',
+              color: 'black',
+              marginBottom: '7px',
+            }}
+          >
+            {t('ORDER_AMOUNT')}
+          </InputLabel>
+          <OutlinedInput
+            onChange={handleChange}
+            name='amount'
+            value={creds.ticket.amount}
+            sx={{
+              // width: { xs: '136px', sm: '368px' },
+              height: '48px',
+              fontFamily: 'Inter',
+              fontStyle: 'normal',
+              fontWeight: '500',
+              fontSize: '20px',
+              border: '1px solid #EAEAEA',
+              borderRadius: '8px',
+              '& input': {
+                padding: '8px 8px 8px 16px',
+              },
+            }}
+            // error={
+            //   !checkIsValid({
+            //     nameOfData: 'isEmpty',
+            //     data: creds.ticket.amount,
+            //   })
+            // }
+          />
+          {/* {!checkIsValid({
+              nameOfData: 'isEmpty',
+              data: creds.ticket.amount,
+            }) && (
+              <div className={classes.errorMessage}>
+                {t('PLEASE_ENTER_VALID_AMOUNT')}
+              </div>
+            )} */}
+        </div>
+        <div className={classes.inputWrapper} style={{ height: '143px' }}>
+          <InputLabel
+            sx={{
+              fontFamily: 'Inter',
+              fontStyle: 'normal',
+              fontWeight: '700',
+              fontSize: '16px',
+              color: 'black',
+              marginBottom: '7px',
+            }}
+          >
+            {t('COMMENT')}
+          </InputLabel>
+          <TextareaAutosize
+            onChange={handleChange}
+            name='comment'
+            value={creds.ticket.comment}
+            style={{
+              height: '93px',
+              fontFamily: 'Inter',
+              fontStyle: 'normal',
+              fontWeight: '500',
+              fontSize: '20px',
+              border: '1px solid #EAEAEA',
+              borderRadius: '8px',
+              padding: '8px 8px 8px 16px',
+              '& input': {},
+            }}
+            // error={
+            //   !checkIsValid({
+            //     nameOfData: 'isEmpty',
+            //     data: creds.ticket.comment,
+            //   })
+            // }
+          />
+          {/* {!checkIsValid({
+              nameOfData: 'isEmpty',
+              data: creds.ticket.comment,
+            }) && (
+              <div className={classes.errorMessage}>
+                {t('PLEASE_ENTER_VALID_COMMENT')}
+              </div>
+            )} */}
+        </div>
+
         <div className={classes.contentTextWrapper}>
           <InputLabel
             sx={{
@@ -174,6 +271,7 @@ const MobileInput = ({
               fontSize: '16px',
               color: 'black',
               width: '100%',
+              marginTop: '7px',
             }}
           >
             {t('PROOF_OF_PAYMENT')}
@@ -231,7 +329,7 @@ const useStyles = makeStyles(() => ({
   },
   contentWrapper: {
     marginTop: '30px',
-    height: '950px',
+    height: '1300px',
     display: 'flex',
     justifyContent: 'space-between',
     flexDirection: 'column',

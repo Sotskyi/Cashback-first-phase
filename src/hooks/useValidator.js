@@ -1,7 +1,12 @@
 import { useState } from 'react';
 
 export const validationRules = {
-  isEmpty: (data) => data.length > 0,
+  isEmpty: (data) => {
+    if (data) {
+      return data.toString().length > 0;
+    }
+    return false;
+  },
   isId: (data) => /^-?\d+$/.test(data),
   isEmail: (data) =>
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
