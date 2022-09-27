@@ -271,7 +271,7 @@ export default PersonalDetails;
 const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '28px',
-    height: '580px',
+    height: '600px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',

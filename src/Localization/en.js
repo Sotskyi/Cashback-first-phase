@@ -16,13 +16,15 @@ export const en = {
   FIRST_NAME: 'First name',
   EMAIL: 'Email',
   LAST_NAME: 'Last name',
-
   ADD_NETWORK_DETAILS: 'Add network details',
   MOBILE_NETWORK_CARRIER: 'Mobile network carrier',
   PHONE_PLAN: 'Phone plan',
   MONTHLY: 'Monthly',
   PREPAID: 'Prepaid',
   SIGN_UP: 'Sign Up',
+  TERMS_CONDITIONS: 'Terms and Conditions',
+  I_AGREE: 'I agree to the Terms and Conditions and Privacy Policy',
+  PLEASE_AGREE: 'Please agree to the Terms and Conditions',
   // LOGIN
   FORGOT_PASSWORD: 'Forgot password?',
   PASSWORD: 'Password',

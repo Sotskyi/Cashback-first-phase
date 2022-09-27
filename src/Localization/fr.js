@@ -7,7 +7,10 @@ export const fr = {
   CONTINUE: 'Continuer',
   ALREADY_HAVE_ACCOUNT: 'Vous avez déjà un compte?',
   LOGIN: 'Se connecter',
-
+  TERMS_CONDITIONS: 'Les termes et conditions',
+  I_AGREE:
+    "J'accepte les termes et conditions et la politique de confidentialité",
+  PLEASE_AGREE: 'Veuillez accepter les termes et conditions',
   VERIFY_PHONE_NUMBER: 'Vérifier le numéro de téléphone',
   ENTER_THE_CODE_WE_HAVE_SENT: 'Entrez le code que nous avons envoyé par SMS à',
   HAVE_NOT_RECEIVED_SMS: "Vous n'avez pas reçu de SMS ?",

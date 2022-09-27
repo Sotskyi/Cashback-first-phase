@@ -12,7 +12,7 @@ export const validationRules = {
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
       data,
     ),
-
+  isAgree: (data) => data,
   isPhoneNumber: (data) => /^\d{10}$/.test(data),
   isFirstName: (data) => /^[A-Za-z]+$/.test(data) && data.length > 1,
   isLastName: (data) => /^[A-Za-z]+$/.test(data) && data.length > 1,
@@ -69,6 +69,9 @@ export const useValidator = () => {
         return false;
       }
       if (nameOfData === 'isId' && !validationRules.isId(data)) {
+        return false;
+      }
+      if (nameOfData === 'isAgree' && !validationRules.isAgree(data)) {
         return false;
       }
     }
