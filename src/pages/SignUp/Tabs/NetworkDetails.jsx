@@ -173,7 +173,7 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
             data: isAgree,
           }) && (
             <div className={classes.errorMessage} style={{ top: '62px' }}>
-              {t('PLEASE_SELECT_VALID_MOBILE_NETWORK')}
+              {t('PLEASE_AGREE')}
             </div>
           )}
         </div>
