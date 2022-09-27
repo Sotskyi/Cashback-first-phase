@@ -19,7 +19,7 @@ const PersonalDetails = ({ next, creds, setCreds, handleChange }) => {
 
   const language = [
     { value: 'en', title: 'English' },
-    { value: 'fr', title: 'French' },
+    { value: 'fr', title: 'Français' },
   ];
   const [checkIsValid, setIsShowError] = useValidator();
   const onSubmit = () => {
