@@ -297,6 +297,7 @@ const MissingTransaction = () => {
             </InputLabel>
             <OutlinedInput
               onChange={handleChange}
+              type='number'
               name='amount'
               value={creds.ticket.amount}
               sx={{
@@ -341,11 +342,17 @@ const MissingTransaction = () => {
               {t('COMMENT')}
             </InputLabel>
             <TextareaAutosize
+              minRows={3}
+              maxRows={3}
               onChange={handleChange}
               name='comment'
               value={creds.ticket.comment}
               style={{
                 height: '93px',
+                minHeight: '93px',
+                maxHeight: '93px',
+                minWidth: '100%',
+                maxWidth: '100%',
                 fontFamily: 'Inter',
                 fontStyle: 'normal',
                 fontWeight: '500',

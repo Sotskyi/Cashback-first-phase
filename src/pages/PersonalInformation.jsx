@@ -54,6 +54,22 @@ const PersonalInformation = () => {
                 {t('BILLING_NUMBER')}
               </div>
             </div>
+            <div className={classes.englishContainer}>
+              <div
+                className={`${classes.chip} ${
+                  user.language === 'en' && classes.activeChip
+                }`}
+              >
+                English
+              </div>
+              <div
+                className={`${classes.chip} ${
+                  user.language === 'fr' && classes.activeChip
+                }`}
+              >
+                French
+              </div>
+            </div>
           </div>
         </div>
         {/* <div className={classes.rightContent}> right!</div> */}
@@ -224,6 +240,33 @@ const useStyles = makeStyles((theme) => ({
     color: '#6A6A6A',
     marginTop: '8px',
     textAlign: 'center',
+  },
+  englishContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: '4px',
+    height: '40px',
+    border: '1px solid #EAEAEA',
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '400',
+    fontSize: '16px',
+    color: '#6A6A6A',
+    borderRadius: '26px',
+  },
+  chip: {
+    width: '49%',
+    height: '32px',
+    borderRadius: '22px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  activeChip: {
+    background: '#33CC55',
+    borderRadius: '22px',
+    color: '#FFFFFF;',
   },
   rightContent: {},
 }));
