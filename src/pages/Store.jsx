@@ -56,8 +56,12 @@ const Store = () => {
     }
     return navigate('/login');
   };
+  // console.log(store.backgroundImage.url);
+  // state?.data?.backgroundImage.url || store?.backgroundImage?.url;
 
-  const classes = useStyles(state.data || store.backgroundImage.url);
+  const classes = useStyles(
+    state?.data?.backgroundImage || store?.backgroundImage,
+  );
   // if (isLoading) {
   //   return <Loader />;
   // }
@@ -69,19 +73,19 @@ const Store = () => {
         <div className={classes.middleLine}>
           <img
             className={classes.storeAvatar}
-            src={state.data.logoImage.url || store?.logoImage?.url}
+            src={state?.data?.logoImage.url || store?.logoImage?.url}
             alt='avatar'
-            onError={state.logo}
+            // onError={state.logo}
           />
         </div>
         <div className={classes.contentContainer}>
           <div className={classes.leftContent}>
             <div className={classes.title}>
-              {state.data.translations[0].title ||
+              {state?.data.translations[0].title ||
                 store?.translations[0]?.title}
             </div>
             <div className={classes.subTitle}>
-              {state.data.translations[0].description ||
+              {state?.data?.translations[0]?.description ||
                 store.translations[0]?.description}
             </div>
             <div
@@ -90,7 +94,7 @@ const Store = () => {
               <div className={classes.discountPercentCardContainerForMobile}>
                 <div className={classes.percentWrapper}>
                   <div className={classes.filledPercent}>
-                    {state.data?.baseReward || store.baseReward}%
+                    {state?.data?.baseReward || store.baseReward}%
                   </div>
                   <div className={classes.percentSubTitle}>
                     {t('BASE_REWARD')}
@@ -126,6 +130,8 @@ const Store = () => {
                     reward={el.reward}
                     storeId={id}
                     isAuth={isAuth}
+                    baseReward={store.baseReward}
+                    banner={el.image.url}
                     redirectToSpecialOffer={redirectToSpecialOffer}
                   />
                 ))
@@ -140,7 +146,7 @@ const Store = () => {
             <div className={classes.discountPercentCardContainer}>
               <div className={classes.percentWrapper}>
                 <div className={classes.filledPercent}>
-                  {state.data?.baseReward || store.baseReward}%
+                  {state?.data?.baseReward || store.baseReward}%
                 </div>
                 <div className={classes.percentSubTitle}>
                   {t('BASE_REWARD')}
@@ -184,7 +190,9 @@ const useStyles = makeStyles((theme) => ({
   },
   storeBackground: {
     height: '256px',
-    backgroundImage: (store) => `url(${store?.backgroundImage?.url})`,
+    backgroundImage: (store) => {
+      return `url(${store.url})`;
+    },
     width: '100%',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -276,7 +284,7 @@ const useStyles = makeStyles((theme) => ({
   specialOffersContainer: {
     marginTop: '16px',
     width: '688px',
-    height: '100%',
+    // height: '100%',
     display: 'flex',
     justifyContent: 'space-between',
     flexWrap: 'wrap',

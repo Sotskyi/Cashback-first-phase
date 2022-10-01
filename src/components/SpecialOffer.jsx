@@ -7,13 +7,19 @@ import { makeStyles } from '@material-ui/core';
 import { redirectToSpecialOffer } from '../redux/slices/storesSlice';
 import Loader from './lib/Loader';
 
-const SpecialOffer = ({ title, description, offerId, isAuth, reward }) => {
+const SpecialOffer = ({
+  title,
+  description,
+  offerId,
+  isAuth,
+  banner,
+  baseReward,
+}) => {
   const classes = useStyles();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [triggerLoader, setTriggerLoader] = useState(false);
-
   const handleRedirectToSpecialOffer = () => {
     if (!triggerLoader) {
       setTriggerLoader(true);
@@ -27,13 +33,16 @@ const SpecialOffer = ({ title, description, offerId, isAuth, reward }) => {
 
   return (
     <div className={classes.specialOfferWrapper} key={offerId}>
-      <div className={classes.titlesWrapper}>
-        <div className={classes.title}>{title}</div>
-        <div className={classes.subTitle}>{description}</div>
+      <div className={classes.titlesContainer}>
+        <img className={classes.banner} src={banner} alt='banner' />
+        <div className={classes.titlesWrapper}>
+          <div className={classes.title}>{title}</div>
+          <div className={classes.subTitle}>{description}</div>{' '}
+        </div>
       </div>
       <div className={classes.bottomWrapper}>
         {' '}
-        <div className={classes.percentage}>{parseFloat(reward)}%</div>
+        <div className={classes.percentage}>{baseReward}%</div>
         <div
           className={classes.shopButton}
           onClick={handleRedirectToSpecialOffer}
@@ -51,8 +60,9 @@ export default SpecialOffer;
 
 const useStyles = makeStyles((theme) => ({
   specialOfferWrapper: {
+    marginTop: '10px',
     width: '336px',
-    height: '100%',
+    height: '195px',
     boxSizing: 'border-box',
     padding: '16px',
     display: 'flex',
@@ -69,12 +79,23 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '8px',
     },
   },
-  titlesWrapper: {
-    height: '44px',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+  titlesContainer: {
+    marginBottom: '10px',
+    // height: '44px',
+    // display: 'flex',
+    // flexDirection: 'row',
+    // justifyContent: 'space-between',
   },
+  banner: {
+    width: '78px',
+    height: '78px',
+    float: 'left',
+    borderRadius: '48px',
+    marginRight: '7px',
+    marginBottom: '2px',
+  },
+  titlesWrapper: {},
+
   title: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
@@ -88,10 +109,11 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',
-    fontSize: '16px',
+    fontSize: '15px',
     lineHeight: '125%',
     letterSpacing: '0.01em',
     color: '#6A6A6A',
+    // wordBreak: 'break-all',
   },
   bottomWrapper: {
     display: 'flex',
