@@ -62,7 +62,7 @@ const useStyles = makeStyles((theme) => ({
   specialOfferWrapper: {
     marginTop: '10px',
     width: '336px',
-    height: '195px',
+    height: '200px',
     boxSizing: 'border-box',
     padding: '16px',
     display: 'flex',
@@ -75,12 +75,12 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.down('sm')]: {
       width: '100%',
-      height: '168px',
+      height: '210px',
       marginTop: '8px',
     },
   },
   titlesContainer: {
-    marginBottom: '10px',
+    // marginBottom: '10px',
     // height: '44px',
     // display: 'flex',
     // flexDirection: 'row',
@@ -109,11 +109,11 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',
-    fontSize: '15px',
+    fontSize: '14px',
     lineHeight: '125%',
     letterSpacing: '0.01em',
     color: '#6A6A6A',
-    // wordBreak: 'break-all',
+    wordBreak: 'break-word',
   },
   bottomWrapper: {
     display: 'flex',
