@@ -9,9 +9,8 @@ export const validationRules = {
   },
   isId: (data) => /^-?\d+$/.test(data),
   isEmail: (data) =>
-    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(
-      data,
-    ),
+    // eslint-disable-next-line
+    /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(data),
   isAgree: (data) => data,
   isPhoneNumber: (data) => /^\d{10}$/.test(data),
   isFirstName: (data) => /^[A-Za-z]+$/.test(data) && data.length > 1,
@@ -45,6 +44,7 @@ export const useValidator = () => {
         return false;
       }
       if (nameOfData === 'email' && !validationRules.isEmail(data)) {
+        console.log(data);
         return false;
       }
       if (nameOfData === 'password' && !validationRules.isPassword(data)) {

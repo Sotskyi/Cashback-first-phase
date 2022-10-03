@@ -313,21 +313,7 @@ const MissingTransaction = () => {
                   padding: '8px 8px 8px 16px',
                 },
               }}
-              // error={
-              //   !checkIsValid({
-              //     nameOfData: 'isEmpty',
-              //     data: creds.ticket.amount,
-              //   })
-              // }
             />
-            {/* {!checkIsValid({
-              nameOfData: 'isEmpty',
-              data: creds.ticket.amount,
-            }) && (
-              <div className={classes.errorMessage}>
-                {t('PLEASE_ENTER_VALID_AMOUNT')}
-              </div>
-            )} */}
           </div>
           <div className={classes.inputWrapper} style={{ height: '143px' }}>
             <InputLabel
