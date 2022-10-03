@@ -185,7 +185,15 @@ const MobileInput = ({
             {t('ORDER_AMOUNT')}
           </InputLabel>
           <OutlinedInput
-            onChange={handleChange}
+            onChange={(e) => {
+              if (
+                /^\d+$/.test(e.target.value) ||
+                e.nativeEvent.inputType === 'deleteContentBackward'
+              ) {
+                handleChange(e);
+              }
+            }}
+            onKeyDown={(e) => handleChange(e)}
             name='amount'
             value={creds.ticket.amount}
             sx={{

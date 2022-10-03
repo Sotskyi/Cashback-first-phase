@@ -43,6 +43,12 @@ const MissingTransaction = () => {
     if (e.target.name === 'paymentProof' && e.target.files[0]) {
       return setCreds({ ...creds, paymentProof: e.target.files[0] });
     }
+    if (e.target.name === 'amount') {
+      return setCreds({
+        ...creds,
+        ticket: { ...creds.ticket, amount: value },
+      });
+    }
     return setCreds({ ...creds, ticket: { ...creds.ticket, [name]: value } });
   };
 
@@ -283,37 +289,50 @@ const MissingTransaction = () => {
               )}
             </div>
           </div>
-          <div className={classes.inputWrapper}>
-            <InputLabel
-              sx={{
-                fontFamily: 'Inter',
-                fontStyle: 'normal',
-                fontWeight: '700',
-                fontSize: '16px',
-                color: 'black',
-              }}
-            >
-              {t('ORDER_AMOUNT')}
-            </InputLabel>
-            <OutlinedInput
-              onChange={handleChange}
-              type='number'
-              name='amount'
-              value={creds.ticket.amount}
-              sx={{
-                width: { xs: '136px', sm: '368px' },
-                height: '48px',
-                fontFamily: 'Inter',
-                fontStyle: 'normal',
-                fontWeight: '500',
-                fontSize: '20px',
-                border: '1px solid #EAEAEA',
-                borderRadius: '8px',
-                '& input': {
-                  padding: '8px 8px 8px 16px',
-                },
-              }}
-            />
+          <div className={classes.inputContainer}>
+            <div className={classes.inputWrapper}>
+              <InputLabel
+                sx={{
+                  fontFamily: 'Inter',
+                  fontStyle: 'normal',
+                  fontWeight: '700',
+                  fontSize: '16px',
+                  color: 'black',
+                }}
+              >
+                {t('ORDER_AMOUNT')}
+              </InputLabel>
+              <OutlinedInput
+                onChange={(e) => {
+                  if (
+                    /^\d+$/.test(e.target.value) ||
+                    e.nativeEvent.inputType === 'deleteContentBackward'
+                  ) {
+                    handleChange(e);
+                  }
+                }}
+                onKeyDown={(e) => handleChange(e)}
+                // type='number'
+                name='amount'
+                value={creds.ticket.amount}
+                sx={{
+                  width: { xs: '136px', sm: '368px' },
+                  height: '48px',
+                  fontFamily: 'Inter',
+                  fontStyle: 'normal',
+                  fontWeight: '500',
+                  fontSize: '20px',
+                  border: '1px solid #EAEAEA',
+                  borderRadius: '8px',
+                  '&.MuiOutlinedInput-root.MuiInputBase-root': {
+                    borderRadius: '8px',
+                  },
+                  '& input': {
+                    padding: '8px 8px 8px 16px',
+                  },
+                }}
+              />
+            </div>
           </div>
           <div className={classes.inputWrapper} style={{ height: '143px' }}>
             <InputLabel
@@ -328,42 +347,15 @@ const MissingTransaction = () => {
               {t('COMMENT')}
             </InputLabel>
             <TextareaAutosize
+              className={classes.textArea}
               minRows={3}
               maxRows={3}
               onChange={handleChange}
               name='comment'
               value={creds.ticket.comment}
-              style={{
-                height: '93px',
-                minHeight: '93px',
-                maxHeight: '93px',
-                minWidth: '100%',
-                maxWidth: '100%',
-                fontFamily: 'Inter',
-                fontStyle: 'normal',
-                fontWeight: '500',
-                fontSize: '20px',
-                border: '1px solid #EAEAEA',
-                borderRadius: '8px',
-                padding: '8px 8px 8px 16px',
-                '& input': {},
-              }}
-              // error={
-              //   !checkIsValid({
-              //     nameOfData: 'isEmpty',
-              //     data: creds.ticket.comment,
-              //   })
-              // }
             />
-            {/* {!checkIsValid({
-              nameOfData: 'isEmpty',
-              data: creds.ticket.comment,
-            }) && (
-              <div className={classes.errorMessage}>
-                {t('PLEASE_ENTER_VALID_COMMENT')}
-              </div>
-            )} */}
           </div>
+
           <div className={classes.contentTextWrapper}>
             <InputLabel
               sx={{
@@ -460,20 +452,24 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.02em',
   },
   inputWrapper: {
-    height: '76px',
+    // height: '76px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
     position: 'relative',
+    [theme.breakpoints.down('xs')]: {
+      alignItems: 'center',
+    },
   },
 
   errorMessage: {
+    marginTop: '10px',
     color: 'red',
     textAlign: 'start',
     fontFamily: 'Inter',
     fontSize: '14px',
-    position: 'absolute',
-    bottom: '-24px',
+    // position: 'absolute',
+    // bottom: '-24px',
     width: '100%',
     height: '20px',
     [theme.breakpoints.down('xs')]: {
@@ -531,6 +527,20 @@ const useStyles = makeStyles((theme) => ({
     color: '#6A6A6A',
     letterSpacing: '0.01em',
     marginTop: '24px',
+  },
+  textArea: {
+    height: '93px',
+    minHeight: '93px',
+    maxHeight: '93px',
+    minWidth: '100%',
+    maxWidth: '100%',
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '500',
+    fontSize: '20px',
+    border: '1px solid #EAEAEA',
+    borderRadius: '8px',
+    padding: '8px 8px 8px 16px',
   },
   uploadPhotoLabel: {
     width: '272px',
