@@ -44,7 +44,6 @@ export const useValidator = () => {
         return false;
       }
       if (nameOfData === 'email' && !validationRules.isEmail(data)) {
-        console.log(data);
         return false;
       }
       if (nameOfData === 'password' && !validationRules.isPassword(data)) {
