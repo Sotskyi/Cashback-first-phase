@@ -251,6 +251,7 @@ const MobileInput = ({
               border: '1px solid #EAEAEA',
               borderRadius: '8px',
               padding: '8px 8px 8px 16px',
+              overflow: 'unset',
               '& input': {},
             }}
             // error={

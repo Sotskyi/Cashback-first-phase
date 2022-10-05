@@ -541,6 +541,10 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #EAEAEA',
     borderRadius: '8px',
     padding: '8px 8px 8px 16px',
+    overflow: 'unset',
+    [theme.breakpoints.down('xs')]: {
+      minHeight: '300px',
+    },
   },
   uploadPhotoLabel: {
     width: '272px',

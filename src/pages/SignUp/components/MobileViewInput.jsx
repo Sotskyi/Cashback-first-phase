@@ -49,7 +49,7 @@ const MobileViewInputs = ({ creds, setCreds }) => {
               : classes.chipRadio
           }
         />
-        <span> French</span>
+        <span> Français</span>
       </div>
     </div>
   );
