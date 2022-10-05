@@ -115,7 +115,7 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
               // onClick={() => setCreds({ ...creds, phonePlan: 'monthly' })}
               className={`${classes.chip} 
               ${creds.phonePlan === 'monthly' ? classes.activeBorder : ''}`}
-              style={{ cursor: 'unset' }}
+              style={{ cursor: 'unset', color: 'grey' }}
             >
               <div
                 className={

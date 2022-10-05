@@ -80,7 +80,7 @@ const PersonalInformation = () => {
             </div>
             {isChangeable && (
               <span className={classes.updateButton} onClick={updateUser}>
-                Update
+                {t('UPDATE')}
               </span>
             )}
           </div>
@@ -236,6 +236,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   updateButton: {
+    paddingInline: '13px',
     cursor: 'pointer',
     width: '100px',
     height: '30px',
@@ -248,6 +249,10 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '14px',
+      width: '90px',
+    },
   },
   changeIcon: {
     cursor: 'pointer',

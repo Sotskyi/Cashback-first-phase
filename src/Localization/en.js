@@ -163,6 +163,7 @@ export const en = {
   ON_PURCHASES_OVER: 'On purchases over',
   COMUNICATION_PREFERENCE: 'Communication preferences',
   RECEIVE_OFFERS: 'Yes, please sign me up to recieve offers by email',
+  UPDATE: 'Update',
   // to do
   // Communication preferences
   // Yes, please sign me up to receive offers by email

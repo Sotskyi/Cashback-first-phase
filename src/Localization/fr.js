@@ -42,9 +42,9 @@ export const fr = {
   DO_NOT_HAVE_ACCESS_TO_EMAIL: "Vous n'avez pas accès à ce courriel ?",
   BACK_TO_LOGIN: 'Retour à la connexion',
   CHECK_YOUR_INBOX: 'Vérifiez votre boîte de réception',
-  LINK_WAS_SENT_TO: 'Un lien a été envoyé à',
-  TO_RESET_YOUR_PASSWORD_CHECK_SPAM_FOLDER:
-    'pour réinitialiser votre mot de passe{{email}}. Si vous ne le voyez pas dans votre boîte de réception, vérifier votre dossier spam.',
+  LINK_WAS_SENT_TO:
+    'Un lien a été envoyé à pour réinitialiser votre mot de passe{{email}}. Si vous ne le voyez pas dans votre boîte de réception, vérifier votre dossier spam.',
+  // TO_RESET_YOUR_PASSWORD_CHECK_SPAM_FOLDER:
   // // HOME PAGE
   SEARCH_STORES: 'Rechercher des magasins',
   FEATURES_STORES: 'Magasins en vedette',
@@ -170,4 +170,5 @@ export const fr = {
   COMUNICATION_PREFERENCE: 'Préférences de communication',
   RECEIVE_OFFERS:
     "Oui, veuillez m'inscrire pour recevoir des offres par e-mail",
+  UPDATE: 'Mettre à jour',
 };
