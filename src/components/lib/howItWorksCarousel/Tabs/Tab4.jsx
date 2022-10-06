@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   subTitle: {
-    marginTop: '10px',
+    marginTop: '7px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',

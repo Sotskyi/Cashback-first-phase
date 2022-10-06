@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
     letterSpacing: '-0.02em',
   },
   subTitle: {
-    marginTop: '10px',
+    marginTop: '7px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',

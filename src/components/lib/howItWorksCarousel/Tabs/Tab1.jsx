@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
   },
   subTitle: {
     fontFamily: 'Inter',
-    marginTop: '10px',
+    marginTop: '7px',
     fontStyle: 'normal',
     fontWeight: '500',
     fontSize: '16px',
