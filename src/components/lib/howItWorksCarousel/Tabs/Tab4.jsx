@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 const Tab3 = () => {
   const { t } = useTranslation();
-  const classes = useStyles({ language: i18n.language });
+  const classes = useStyles();
   return (
     <div className={classes.thirdTabContainer}>
       <div className={classes.contentContainer}>
@@ -13,7 +13,7 @@ const Tab3 = () => {
     </div>
   );
 };
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   thirdTabContainer: {
     minWidth: '216px',
     minHeight: '124px',
