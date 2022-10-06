@@ -61,7 +61,10 @@ const LoginedHeader = ({ availableBalance }) => {
           placeholder={t('SEARCH_STORES')}
           disableUnderline
           fullWidth
-          sx={{ marginLeft: '8px' }}
+          sx={(theme) => ({
+            marginLeft: '8px',
+            [theme.breakpoints.down('sm')]: { paddingLeft: '0px' },
+          })}
         />
       </div>
       <LanguageSwitcher />

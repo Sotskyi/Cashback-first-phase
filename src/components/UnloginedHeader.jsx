@@ -68,10 +68,13 @@ const UnloginedHeader = () => {
           <Input
             onKeyDown={handleKeyDown}
             onChange={handleChange}
-            placeholder={t('Search stores')}
+            placeholder={t('SEARCH_STORES')}
             disableUnderline
             fullWidth
-            sx={{ marginLeft: '8px' }}
+            sx={(theme) => ({
+              marginLeft: '8px',
+              [theme.breakpoints.down('sm')]: { paddingLeft: '0px' },
+            })}
           />
         </div>
         <LanguageSwitcher />
@@ -141,6 +144,10 @@ const useStyles = makeStyles((theme) => ({
       marginRight: '13px',
       marginLeft: '20px',
       height: '35px',
+    },
+    [theme.breakpoints.down('xs')]: {
+      marginRight: '1px',
+      marginLeft: '2px',
     },
   },
   searchIcon: {

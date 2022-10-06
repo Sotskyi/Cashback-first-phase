@@ -181,6 +181,9 @@ const useStyles = makeStyles((theme) => ({
       minWidth: '52px',
       height: '32px',
     },
+    [theme.breakpoints.down('xs')]: {
+      marginLeft: '0px',
+    },
   },
   menu: {
     cursor: 'pointer',
