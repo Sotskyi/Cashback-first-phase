@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { makeStyles, TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -19,6 +19,7 @@ import { purchaseTypes, paymentMethods } from '../../utils/constants';
 import { useValidator } from '../../hooks/useValidator';
 import { getError } from '../../utils/helpers';
 import AutocompleteInput from '../../components/lib/AutocompleteInput';
+import Calendar from '../../components/lib/Calendar';
 
 const MissingTransaction = () => {
   const [checkIsValid, setIsShowError] = useValidator();
@@ -26,17 +27,23 @@ const MissingTransaction = () => {
   const navigate = useNavigate();
   const classes = useStyles();
   const { t } = useTranslation();
+
   const [creds, setCreds] = useState({
     ticket: {
       store: '',
-      purchasedAt: '',
+      purchasedAt: new Date(),
       purchaseType: '',
       paymentMethod: '',
       amount: '',
     },
     paymentProof: '',
   });
-
+  // const handleChangeDate = (date) => {
+  //   setCreds({
+  //     ...creds,
+  //     ticket: { ...creds.ticket, purchasedAt: date },
+  //   });
+  // };
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCreds({ ...creds, [name]: value });
@@ -51,6 +58,12 @@ const MissingTransaction = () => {
     }
     return setCreds({ ...creds, ticket: { ...creds.ticket, [name]: value } });
   };
+
+  const handleChangeDate = (date) =>
+    setCreds({
+      ...creds,
+      ticket: { ...creds.purchasedAt, purchasedAt: date },
+    });
 
   const onSubmit = async () => {
     setIsShowError(true);
@@ -79,6 +92,11 @@ const MissingTransaction = () => {
         nameOfData: 'isPaymentProof',
         data: creds.paymentProof.name,
         showErrorSync: true,
+      }) &&
+      checkIsValid({
+        nameOfData: 'isEmpty',
+        data: creds.ticket.amount,
+        showErrorSync: true,
       })
     ) {
       try {
@@ -103,6 +121,7 @@ const MissingTransaction = () => {
           setCreds={setCreds}
           onSubmit={onSubmit}
           checkIsValid={checkIsValid}
+          handleChangeDate={handleChangeDate}
         />
       ) : (
         <div className={classes.contentWrapper}>
@@ -139,7 +158,7 @@ const MissingTransaction = () => {
                 </div>
               )}
             </div>
-            <div className={classes.inputWrapper}>
+            <div className={classes.inputWrapper} style={{ display: 'block' }}>
               <InputLabel
                 sx={{
                   fontFamily: 'Inter',
@@ -151,28 +170,11 @@ const MissingTransaction = () => {
               >
                 {t('DATE_OF_PURCHASE')}
               </InputLabel>
-              <TextField
-                error={
-                  !checkIsValid({
-                    nameOfData: 'isEmpty',
-                    data: creds.ticket.purchasedAt,
-                  })
-                }
-                value={creds.ticket.purchasedAt}
-                name='purchasedAt'
-                type='date'
-                variant='outlined'
-                onChange={handleChange}
-                className={classes.calendar}
+              <Calendar
+                date={creds.ticket.purchasedAt}
+                handleChangeDate={handleChangeDate}
+                errorMessage={t('DATE_OF_PURCHASE_CANT_EMPTY')}
               />
-              {!checkIsValid({
-                nameOfData: 'isEmpty',
-                data: creds.ticket.purchasedAt,
-              }) && (
-                <div className={classes.errorMessage}>
-                  {t('DATE_OF_PURCHASE_CANT_EMPTY')}
-                </div>
-              )}
             </div>
           </div>
           <div className={classes.inputContainer}>
@@ -331,7 +333,21 @@ const MissingTransaction = () => {
                     padding: '8px 8px 8px 16px',
                   },
                 }}
+                error={
+                  !checkIsValid({
+                    nameOfData: 'isEmpty',
+                    data: creds.ticket.amount,
+                  })
+                }
               />
+              {!checkIsValid({
+                nameOfData: 'isEmpty',
+                data: creds.ticket.paymentMethod,
+              }) && (
+                <div className={classes.errorMessage}>
+                  {t('PLEASE_ENTER_VALID_AMOUNT')}
+                </div>
+              )}
             </div>
           </div>
           <div className={classes.inputWrapper} style={{ height: '143px' }}>
@@ -461,7 +477,6 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
     },
   },
-
   errorMessage: {
     marginTop: '10px',
     color: 'red',

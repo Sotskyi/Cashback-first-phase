@@ -1,8 +1,9 @@
-import { makeStyles, TextField } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core';
 import InputLabel from '@mui/material/InputLabel';
 import { useTranslation } from 'react-i18next';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import OutlinedInput from '@mui/material/OutlinedInput';
+import Calendar from '../../../components/lib/Calendar';
 
 import { purchaseTypes, paymentMethods } from '../../../utils/constants';
 import SubmitButton from '../../../components/form/SubmitButton';
@@ -15,6 +16,7 @@ const MobileInput = ({
   handleChange,
   onSubmit,
   checkIsValid,
+  handleChangeDate,
 }) => {
   const { t } = useTranslation();
   const classes = useStyles();
@@ -66,8 +68,12 @@ const MobileInput = ({
           >
             {t('DATE_OF_PURCHASE')}
           </InputLabel>
-
-          <TextField
+          <Calendar
+            date={creds.ticket.purchasedAt}
+            handleChangeDate={handleChangeDate}
+            errorMessage={t('DATE_OF_PURCHASE_CANT_EMPTY')}
+          />
+          {/* <TextField
             open={true}
             value={creds.ticket.purchasedAt}
             name='purchasedAt'
@@ -89,7 +95,7 @@ const MobileInput = ({
             <div className={classes.errorMessage}>
               {t('DATE_OF_PURCHASE_CANT_EMPTY')}
             </div>
-          )}
+          )} */}
         </div>
         <div className={classes.inputWrapper}>
           <InputLabel
@@ -109,12 +115,12 @@ const MobileInput = ({
             <div
               key={el.value}
               className={`${classes.chip} ${
-                creds.ticket.purchaseType === el && classes.active
+                creds.ticket.purchaseType === el.value && classes.active
               }`}
               onClick={() => {
                 setCreds({
                   ...creds,
-                  ticket: { ...creds.ticket, purchaseType: el },
+                  ticket: { ...creds.ticket, purchaseType: el.value },
                 });
               }}
             >
@@ -149,12 +155,12 @@ const MobileInput = ({
             <div
               key={el.value}
               className={`${classes.chip} ${
-                creds.ticket.paymentMethod === el && classes.active
+                creds.ticket.paymentMethod === el.value && classes.active
               }`}
               onClick={() => {
                 setCreds({
                   ...creds,
-                  ticket: { ...creds.ticket, paymentMethod: el },
+                  ticket: { ...creds.ticket, paymentMethod: el.value },
                 });
               }}
             >
@@ -209,21 +215,21 @@ const MobileInput = ({
                 padding: '8px 8px 8px 16px',
               },
             }}
-            // error={
-            //   !checkIsValid({
-            //     nameOfData: 'isEmpty',
-            //     data: creds.ticket.amount,
-            //   })
-            // }
+            error={
+              !checkIsValid({
+                nameOfData: 'isEmpty',
+                data: creds.ticket.amount,
+              })
+            }
           />
-          {/* {!checkIsValid({
-              nameOfData: 'isEmpty',
-              data: creds.ticket.amount,
-            }) && (
-              <div className={classes.errorMessage}>
-                {t('PLEASE_ENTER_VALID_AMOUNT')}
-              </div>
-            )} */}
+          {!checkIsValid({
+            nameOfData: 'isEmpty',
+            data: creds.ticket.amount,
+          }) && (
+            <div className={classes.errorMessage}>
+              {t('PLEASE_ENTER_VALID_AMOUNT')}
+            </div>
+          )}
         </div>
         <div className={classes.inputWrapper} style={{ height: '143px' }}>
           <InputLabel
