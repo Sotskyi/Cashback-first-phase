@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
 
     [theme.breakpoints.down('sm')]: {
-      fontSize: '19px',
+      fontSize: '18px',
     },
   },
   subTitle: {
@@ -53,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
     color: '#6A6A6A',
     letterSpacing: '-0.03em',
     textAlign: 'center',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '15px',
+    },
   },
 }));
 export default Tab3;
