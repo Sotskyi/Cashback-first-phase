@@ -30,7 +30,7 @@ export const fr = {
   FORGOT_PASSWORD: 'Mot de passe oublié?',
   NEW_TO_TELCOREWARDS: '‘Pas d’identifiant pour Les Remises Telco?',
   // // RESET PASSWORD BY PHONE
-  DO_NOT_HAVE_ACCESS_TO_PHONE: "Vous n'avez pas accès à ce téléphone ?",
+  DO_NOT_HAVE_ACCESS_TO_PHONE: "Vous n'avez pas accès à ce téléphone?",
   USE_EMAIL: 'Utiliser le courrier électronique',
   BACK_TO_LOGIN: 'Retour à la connexion',
   SEND_CODE: 'Envoyer le code',
@@ -39,7 +39,7 @@ export const fr = {
   // RESET PASSWORD BY EMAIL
   ENTER_THE_EMAIL_ADDRESS_YOU_REGISTER_WITH:
     "Entrez l'adresse courriel avec laquelle vous vous êtes inscrit",
-  DO_NOT_HAVE_ACCESS_TO_EMAIL: "Vous n'avez pas accès à ce courriel ?",
+  DO_NOT_HAVE_ACCESS_TO_EMAIL: "Vous n'avez pas accès à ce courriel?",
   BACK_TO_LOGIN: 'Retour à la connexion',
   CHECK_YOUR_INBOX: 'Vérifiez votre boîte de réception',
   LINK_WAS_SENT_TO:

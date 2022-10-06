@@ -50,7 +50,7 @@ const ResetPassword = ({ next, email, setEmail }) => {
               color: 'black',
             }}
           >
-            {t('Email')}
+            {t('EMAIL')}
           </InputLabel>
           <OutlinedInput
             onChange={handleChange}

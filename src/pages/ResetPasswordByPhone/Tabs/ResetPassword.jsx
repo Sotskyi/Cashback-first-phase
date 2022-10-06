@@ -50,7 +50,9 @@ const ResetPassword = ({ next, creds, handleChange }) => {
           }
         />
         <div className={classes.alreadyHaveAccount}>
-          <span>{t('DO_NOT_HAVE_ACCESS_TO_PHONE')}&nbsp;</span>
+          <span style={{ whiteSpace: 'nowrap' }}>
+            {t('DO_NOT_HAVE_ACCESS_TO_PHONE')}&nbsp;
+          </span>
           <div
             onClick={() => navigate('/reset_password_by_email')}
             className={classes.navigateLink}
