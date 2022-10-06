@@ -195,6 +195,9 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '12px',
     height: '48px',
     width: '272px',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
   },
   availableMenuItemTitle: {
     fontSize: '12px',
