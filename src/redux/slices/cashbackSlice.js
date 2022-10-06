@@ -53,7 +53,7 @@ const cashbackSlice = createSlice({
       } else {
         state.cashbackList = [
           ...state.cashbackList,
-          ...action.payload.CashbackService,
+          ...action.payload.cashback,
         ];
       }
 
