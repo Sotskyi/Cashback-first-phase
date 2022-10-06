@@ -42,7 +42,7 @@ const Carousel = ({ onClose }) => {
         </div>
       </div>
       <div className={classes.bodyContainer}>
-        <div onClick={handleLeftClick}>
+        <div onClick={handleLeftClick} className={classes.leftArrowWrapper}>
           {step > 0 && (
             <img className={classes.leftArrow} src={leftArrow} alt='icon' />
           )}
@@ -62,7 +62,7 @@ const Carousel = ({ onClose }) => {
             {/* <Tab5 /> */}
           </div>
         </div>
-        <div onClick={handleRightClick}>
+        <div onClick={handleRightClick} className={classes.rightArrowWrapper}>
           {step < 3 && (
             <img className={classes.rightArrow} src={rightArrow} alt='icon' />
           )}
@@ -153,10 +153,18 @@ const useStyles = makeStyles(() => ({
   leftArrow: {
     width: '10px',
     height: '15px',
-    cursor: 'pointer',
   },
   rightArrow: {
     width: '10px',
+    height: '15px',
+  },
+  rightArrowWrapper: {
+    width: '15px',
+    height: '15px',
+    cursor: 'pointer',
+  },
+  leftArrowWrapper: {
+    width: '15px',
     height: '15px',
     cursor: 'pointer',
   },
