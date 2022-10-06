@@ -63,7 +63,11 @@ const LoginedHeader = ({ availableBalance }) => {
           fullWidth
           sx={(theme) => ({
             marginLeft: '8px',
-            [theme.breakpoints.down('sm')]: { paddingLeft: '0px' },
+
+            [theme.breakpoints.down('sm')]: {
+              paddingLeft: '0px',
+              fontSize: '12px',
+            },
           })}
         />
       </div>

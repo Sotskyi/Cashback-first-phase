@@ -236,9 +236,9 @@ const useStyles = makeStyles((theme) => ({
   },
 
   updateButton: {
-    paddingInline: '13px',
+    paddingInline: '11px',
     cursor: 'pointer',
-    width: '100px',
+    width: '104px',
     height: '30px',
     background: '#33CC55',
     borderRadius: '26px',
@@ -250,7 +250,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     [theme.breakpoints.down('xs')]: {
-      fontSize: '14px',
+      fontSize: '13px',
       width: '90px',
     },
   },
