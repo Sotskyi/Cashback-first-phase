@@ -12,8 +12,9 @@ import Tab4 from './Tabs/Tab4';
 // import Tab5 from './Tabs/Tab5';
 
 const Carousel = ({ onClose }) => {
-  const classes = useStyles();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const classes = useStyles({ language: i18n.language });
+
   const [step, setStep] = useState(0);
   const [xPos, setXpos] = useState(0);
   const steps = [0, 1, 2, 3];
@@ -112,8 +113,15 @@ const useStyles = makeStyles(() => ({
     fontSize: '12px',
     lineHeight: '0.16em',
     color: '#AAAAAA',
-    letterSpacing: '0.06em',
+    wordBreak: 'break-all',
+    letterSpacing: (props) => {
+      if (props.language === 'fr') {
+        return '0';
+      }
+      return '0.06em';
+    },
   },
+
   closeButton: {
     width: '32px',
     height: '32px',
