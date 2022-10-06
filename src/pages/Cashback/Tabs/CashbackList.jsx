@@ -7,7 +7,7 @@ import { getCashback } from '../../../redux/slices/cashbackSlice';
 import timer from '../../../assets/images/icons/timer.svg';
 import revertArrow from '../../../assets/images/icons/revertArrow.svg';
 import { getDateForCashback } from '../../../utils/helpers';
-import Loader from '../../../components/lib/Loader';
+// import Loader from '../../../components/lib/Loader';
 import { useObserver } from '../../../hooks/useObserver';
 
 const CashbackList = () => {
@@ -33,9 +33,9 @@ const CashbackList = () => {
     dispatch(getCashback({ page, limit: 8 }));
   }, [page]);
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
 
   return (
     <div className={classes.cashbackListContainer}>
