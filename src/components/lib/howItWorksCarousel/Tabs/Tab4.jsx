@@ -2,9 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 
 const Tab3 = () => {
-  const classes = useStyles();
   const { t } = useTranslation();
-
+  const classes = useStyles({ language: i18n.language });
   return (
     <div className={classes.thirdTabContainer}>
       <div className={classes.contentContainer}>
@@ -39,6 +38,10 @@ const useStyles = makeStyles(() => ({
     color: '#000000',
     letterSpacing: '-0.02em',
     textAlign: 'center',
+
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '19px',
+    },
   },
   subTitle: {
     marginTop: '10px',
