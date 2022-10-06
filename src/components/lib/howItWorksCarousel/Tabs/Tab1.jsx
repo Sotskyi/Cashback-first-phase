@@ -39,10 +39,10 @@ const useStyles = makeStyles(() => ({
     lineHeight: '120%',
     color: '#000000',
     letterSpacing: '-0.02em',
+    marginBottom: '7px',
   },
   subTitle: {
     fontFamily: 'Inter',
-    marginTop: '7px',
     fontStyle: 'normal',
     fontWeight: '500',
     fontSize: '16px',

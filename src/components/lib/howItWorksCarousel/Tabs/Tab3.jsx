@@ -39,9 +39,9 @@ const useStyles = makeStyles(() => ({
     color: '#000000',
     letterSpacing: '-0.02em',
     textAlign: 'center',
+    marginBottom: '7px',
   },
   subTitle: {
-    marginTop: '7px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',

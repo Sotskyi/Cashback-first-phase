@@ -42,9 +42,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       fontSize: '18px',
     },
+    marginBottom: '7px',
   },
   subTitle: {
-    marginTop: '7px',
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '500',
