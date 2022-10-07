@@ -6,7 +6,7 @@ stages:
 .staging_variables: &staging_variables
   DISTRIBUTION_ID: $STAGING_DISTRIBUTION_ID
   S3_BUCKET_NAME: $STAGING_S3_BUCKET_NAME
-  ENV_FILE: $STAGIN_ENV_FILE
+  ENV_FILE: $STAGING_ENV_FILE
 
 .production_variables: &production_variables
   DISTRIBUTION_ID: $PRODUCTION_DISTRIBUTION_ID
@@ -46,6 +46,8 @@ build:production:
 packages-vulnerability: 
   stage: test
   image: node:16-alpine
+  dependencies:
+    - build
   script:
     - npm audit --audit-level=critical
   only:
