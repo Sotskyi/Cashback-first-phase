@@ -26,7 +26,7 @@ stages:
     expire_in: 20 mins
 
 build:staging:
-  extends: .deployment
+  extends: .build
   variables:
     <<: *staging_variables
   environment:
@@ -35,7 +35,7 @@ build:staging:
     - main
 
 build:production:
-  extends: .deployment
+  extends: .build
   variables:
     <<: *production_variables
   environment:
