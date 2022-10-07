@@ -80,13 +80,9 @@ const Store = () => {
         </div>
         <div className={classes.contentContainer}>
           <div className={classes.leftContent}>
-            <div className={classes.title}>
-              {state?.data.translations[0].title ||
-                store?.translations[0]?.title}
-            </div>
+            <div className={classes.title}>{store?.translations[0]?.title}</div>
             <div className={classes.subTitle}>
-              {state?.data?.translations[0]?.description ||
-                store.translations[0]?.description}
+              {store.translations[0]?.description}
             </div>
             <div
               className={classes.discountPercentCardContainerForMobileWrapper}
