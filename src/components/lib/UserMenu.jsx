@@ -160,8 +160,6 @@ const UserMenu = () => {
           </MenuItem>
         ))}
       </Menu>
-
-      {/* <div className={classes.avatar} /> */}
     </div>
   );
 };
