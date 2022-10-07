@@ -46,8 +46,6 @@ build:production:
 packages-vulnerability: 
   stage: test
   image: node:16-alpine
-  dependencies:
-    - build
   script:
     - npm audit --audit-level=critical
   only:
