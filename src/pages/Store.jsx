@@ -69,7 +69,10 @@ const Store = () => {
   return (
     <div className={classes.storeContainer}>
       <div className={classes.bodyHeaderContainer}>
-        <div className={classes.storeBackground} />
+        <div className={classes.storeBackground}>
+          {/* <img src={store.backgroundImage.url} alt='background' /> */}
+        </div>
+
         <div className={classes.middleLine}>
           <img
             className={classes.storeAvatar}
@@ -199,8 +202,9 @@ const useStyles = makeStyles((theme) => ({
       height: '200px',
     },
     [theme.breakpoints.down('xs')]: {
-      width: '320px',
+      width: 'calc(100% - 40px)',
       height: '160px',
+      backgroundSize: '100% 120px',
     },
   },
   middleLine: {
