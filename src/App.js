@@ -25,6 +25,8 @@ const MissingTransaction = React.lazy(() =>
 const PersonalInformation = React.lazy(() =>
   import('./pages/PersonalInformation'),
 );
+const Terms = React.lazy(() => import('./pages/Terms'));
+const Policy = React.lazy(() => import('./pages/Policy'));
 
 const App = () => {
   return (
@@ -56,6 +58,8 @@ const App = () => {
             />
             {/* public or protected routes */}
             <Route path='/' element={<AuthLayout />}>
+              <Route path='/terms_and_conditions' element={<Terms />} />
+              <Route path='/privacy_policy' element={<Policy />} />
               <Route index element={<Home />} />
               <Route path='/store/:id' element={<Store />} />
               <Route path='/cashback' element={<Cashback />} />

@@ -107,6 +107,10 @@ const UserMenu = () => {
       setIsOpenCarousel(true);
     } else if (id === 'personalInfo') {
       navigate('/personal_info');
+    } else if (id === 'termsConditions') {
+      navigate('/terms_and_conditions');
+    } else if (id === 'privacyPolicy') {
+      navigate('/privacy_policy');
     }
   };
   /* eslint-disable */
