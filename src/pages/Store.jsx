@@ -98,7 +98,7 @@ const Store = () => {
                 </div>
                 <div className={classes.percentWrapper}>
                   <div className={classes.outlinedPercent}>
-                    6% {state?.data?.specialReward || store.specialReward}
+                    {state?.data?.specialReward || store.specialReward}%
                   </div>
                   <div className={classes.percentSubTitle}>
                     {t('ON_PURCHASES_OVER')} $30
