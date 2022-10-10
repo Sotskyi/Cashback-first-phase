@@ -19,6 +19,7 @@ const Policy = () => {
 
   return (
     <div className={classes.policyContainer}>
+      {' '}
       <div className={classes.ResumeContainer}>
         <Document
           loading={<Loader />}
@@ -31,7 +32,7 @@ const Policy = () => {
               <Page
                 pageNumber={page + 1}
                 key={page}
-                scale={1.5}
+                scale={2.5}
                 className={classes.PDFPage}
                 loading=''
               />
@@ -44,9 +45,10 @@ const Policy = () => {
 };
 export default Policy;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   policyContainer: {
     height: '100%',
+    overflow: 'hidden',
   },
   ResumeContainer: {
     margin: 'auto',
@@ -64,6 +66,9 @@ const useStyles = makeStyles(() => ({
 
   PDFWrapper: {
     padding: '2rem',
+    [theme.breakpoints.down('xs')]: {
+      padding: '0px !important',
+    },
   },
 
   PDFPage: {
@@ -72,6 +77,10 @@ const useStyles = makeStyles(() => ({
       height: 'auto',
       border: '1px solid #000',
       marginBottom: '2 rem',
+      [theme.breakpoints.down('xs')]: {
+        marginBottom: '5px',
+        height: '500px !important',
+      },
     },
   },
 }));

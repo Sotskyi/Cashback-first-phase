@@ -32,7 +32,7 @@ const Terms = () => {
               <Page
                 pageNumber={page + 1}
                 key={page}
-                scale={1.5}
+                scale={2.5}
                 className={classes.PDFPage}
                 loading=''
               />
@@ -45,9 +45,10 @@ const Terms = () => {
 };
 export default Terms;
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   policyContainer: {
     height: '100%',
+    overflow: 'hidden',
   },
   ResumeContainer: {
     margin: 'auto',
@@ -65,6 +66,9 @@ const useStyles = makeStyles(() => ({
 
   PDFWrapper: {
     padding: '2rem',
+    [theme.breakpoints.down('xs')]: {
+      padding: '0px !important',
+    },
   },
 
   PDFPage: {
@@ -73,6 +77,10 @@ const useStyles = makeStyles(() => ({
       height: 'auto',
       border: '1px solid #000',
       marginBottom: '2 rem',
+      [theme.breakpoints.down('xs')]: {
+        marginBottom: '5px',
+        height: '500px !important',
+      },
     },
   },
 }));
