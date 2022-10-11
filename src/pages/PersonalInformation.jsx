@@ -236,7 +236,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   updateButton: {
-    padding: ' 0px 11px 0px 11px',
+    padding: ' 0px 9px 0px 9px',
     cursor: 'pointer',
     width: '104px',
     height: '30px',
@@ -250,8 +250,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     [theme.breakpoints.down('xs')]: {
-      fontSize: '13px',
-      width: '90px',
+      fontSize: '12px',
+      width: '94px',
     },
   },
   changeIcon: {
