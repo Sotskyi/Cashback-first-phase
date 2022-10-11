@@ -79,13 +79,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: '8px',
     },
   },
-  titlesContainer: {
-    // marginBottom: '10px',
-    // height: '44px',
-    // display: 'flex',
-    // flexDirection: 'row',
-    // justifyContent: 'space-between',
-  },
+
   banner: {
     width: '78px',
     height: '78px',
@@ -135,7 +129,7 @@ const useStyles = makeStyles((theme) => ({
     cursor: 'pointer',
     width: '234px',
     height: '100%',
-    paddingBlock: '3px',
+    padding: '3px 0px 3px 0px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',

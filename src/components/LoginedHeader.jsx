@@ -184,10 +184,4 @@ const useStyles = makeStyles((theme) => ({
   menu: {
     cursor: 'pointer',
   },
-  avatar: {
-    width: '24px',
-    height: '24px',
-    background: '#EAEAEA',
-    borderRadius: '26px',
-  },
 }));

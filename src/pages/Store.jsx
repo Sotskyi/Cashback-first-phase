@@ -56,29 +56,20 @@ const Store = () => {
     }
     return navigate('/login');
   };
-  // console.log(store.backgroundImage.url);
-  // state?.data?.backgroundImage.url || store?.backgroundImage?.url;
 
   const classes = useStyles(
     state?.data?.backgroundImage || store?.backgroundImage,
   );
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
 
   return (
     <div className={classes.storeContainer}>
       <div className={classes.bodyHeaderContainer}>
-        <div className={classes.storeBackground}>
-          {/* <img src={store.backgroundImage.url} alt='background' /> */}
-        </div>
-
+        <div className={classes.storeBackground} />
         <div className={classes.middleLine}>
           <img
             className={classes.storeAvatar}
             src={state?.data?.logoImage.url || store?.logoImage?.url}
             alt='avatar'
-            // onError={state.logo}
           />
         </div>
         <div className={classes.contentContainer}>
@@ -291,9 +282,6 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     alignContent: 'space-between',
-    // '&>*': {
-    //   flex: '0 0 33.3333%',
-    // },
     [theme.breakpoints.down('md')]: {
       width: '100%',
       justifyContent: 'center',
@@ -416,7 +404,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     background: '#33CC55',
     borderRadius: '26px',
-    // padding: '12px 10px',
     color: 'white',
     height: '44px',
     fontFamily: 'Source Sans Pro, sans-serif',

@@ -173,7 +173,6 @@ const useStyles = makeStyles((theme) => ({
     width: '80px',
     height: '48px',
     background: '#FFFFFF',
-    // border: '1px solid #EAEAEA',
     borderRadius: '26px',
     display: 'flex',
     alignItems: 'center',
@@ -243,16 +242,6 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: '10px',
       letterSpacing: '-0.04em',
       fontSize: '14px',
-    },
-  },
-  avatar: {
-    width: '24px',
-    height: '24px',
-    background: '#EAEAEA',
-    borderRadius: '26px',
-    [theme.breakpoints.down('sm')]: {
-      width: '16px',
-      height: '16px',
     },
   },
 }));

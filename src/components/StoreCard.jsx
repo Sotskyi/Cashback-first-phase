@@ -39,10 +39,6 @@ const useStyles = makeStyles((theme) => ({
       width: '298px',
       height: '272px',
     },
-    // [theme.breakpoints.down('600px')]: {
-    //   width: '100%',
-    //   height: '292px',
-    // },
   },
   storeCardTop: {
     height: '192px',

@@ -236,7 +236,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   updateButton: {
-    paddingInline: '11px',
+    padding: ' 0px 11px 0px 11px',
     cursor: 'pointer',
     width: '104px',
     height: '30px',
@@ -245,7 +245,7 @@ const useStyles = makeStyles((theme) => ({
     color: '#FFFFFF',
     fontFamily: 'Inter',
     fontWeight: '600',
-    fontSize: '16px',
+    fontSize: '14px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -367,9 +367,6 @@ const useStyles = makeStyles((theme) => ({
   select: {
     width: '100%',
     textAlign: 'center',
-    // [theme.breakpoints.down('xs')]: {
-    //   width: '91%',
-    // },
   },
   phonePlanName: {
     display: 'flex',
@@ -415,7 +412,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '16px',
   },
   billingNumberContainer: {
-    // height: '76px',
     width: '100%',
     borderRadius: '8px',
     background: '#FAFAFA',

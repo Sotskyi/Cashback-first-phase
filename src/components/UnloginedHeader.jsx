@@ -51,9 +51,6 @@ const UnloginedHeader = () => {
           }}
         >
           <img
-            // className={`${classes.logo} ${
-            //   i18n.language === 'fr' && classes.scale
-            // }`}
             className={classes.logo}
             src={i18n.language === 'en' ? logo : frenchLogo}
             alt='logo'
@@ -82,9 +79,6 @@ const UnloginedHeader = () => {
         </div>
         <LanguageSwitcher />
 
-        {/* <div className={classes.loginButton} onClick={() => navigate('/login')}>
-          Log In
-        </div> */}
         <UserMenu />
       </div>
     </>
@@ -151,6 +145,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('xs')]: {
       marginRight: '1px',
       marginLeft: '2px',
+      paddingLeft: '10px',
     },
   },
   searchIcon: {

@@ -60,7 +60,6 @@ const StoreIconSlider = ({
     setPage(1);
   };
   const handleClickRightArrow = () => {
-    // setStep((prev) => (+prev + 4).toString());
     if (step === 0) {
       setCategoryId('8');
       setStep(1);
@@ -368,7 +367,6 @@ const useStyles = makeStyles((theme) => ({
     border: '3px solid #33CC55',
     color: 'white',
   },
-
   hidden: {
     visibility: 'hidden',
   },

@@ -13,9 +13,6 @@ const Loader = ({ delay, setTriggerLoader }) => {
     <Box
       sx={{
         display: 'flex',
-        // ...(hideLoader === true && {
-        //   display: 'none',
-        // }),
         height: delay ? '30px' : '100%',
         width: delay ? '30px' : '100%',
         alignItems: 'center',

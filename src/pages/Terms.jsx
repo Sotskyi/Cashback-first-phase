@@ -32,7 +32,7 @@ const Terms = () => {
               <Page
                 pageNumber={page + 1}
                 key={page}
-                scale={2.5}
+                scale={1.5}
                 className={classes.PDFPage}
                 loading=''
               />

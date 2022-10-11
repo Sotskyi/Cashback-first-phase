@@ -38,12 +38,7 @@ const MissingTransaction = () => {
     },
     paymentProof: '',
   });
-  // const handleChangeDate = (date) => {
-  //   setCreds({
-  //     ...creds,
-  //     ticket: { ...creds.ticket, purchasedAt: date },
-  //   });
-  // };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCreds({ ...creds, [name]: value });
@@ -450,7 +445,7 @@ const useStyles = makeStyles((theme) => ({
       height: '720px',
     },
     [theme.breakpoints.down('xs')]: {
-      paddingInline: '16px',
+      padding: '0px 16px 0px 16px',
       height: '1292px',
     },
     marginTop: '48px',
