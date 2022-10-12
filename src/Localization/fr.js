@@ -171,4 +171,6 @@ export const fr = {
   RECEIVE_OFFERS:
     "Oui, veuillez m'inscrire pour recevoir des offres par e-mail",
   UPDATE: 'Mettre à jour',
+  CHECK_EMAIL_FOR_INSTRUCTION:
+    'Vérifiez votre e-mail pour obtenir des instructions',
 };

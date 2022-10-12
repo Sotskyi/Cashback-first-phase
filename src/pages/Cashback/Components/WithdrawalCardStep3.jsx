@@ -34,6 +34,9 @@ const WithdrawalCardStep3 = ({
           <div className={classes.stillAvailableCash}>$ {stillAvailable}</div>
           <div className={classes.addedCashTitle}>{t('STILL_AVAILABLE')}</div>
         </div>
+        <div className={classes.checkEmail}>
+          {t('CHECK_EMAIL_FOR_INSTRUCTION')}
+        </div>
       </div>
       <div className={classes.withdrawButton} onClick={handleSubmit}>
         {t('SHOP_FOR_MORE_CASH_BACK')}
@@ -117,6 +120,13 @@ const useStyles = makeStyles(() => ({
     color: 'rgba(255, 255, 255, 0.72)',
     textAlign: 'center',
     width: '180px',
+  },
+  checkEmail: {
+    margin: '20px 0px 0px 0px',
+    fontFamily: 'Inter',
+    fontWeight: '700',
+    color: '#ffffff',
+    textAlign: 'center',
   },
   cellsContainer: {
     margin: '16px 0 16px 0',

@@ -20,12 +20,12 @@ const PersonalInformation = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [initialValue, setInitialValue] = useState({
-    email: user.email,
-    billingNumber: user.billingNumber,
-    acceptEmails: user.acceptEmails,
-    language: user.language,
-    phoneNumber: user.phoneNumber,
-    carrier: user.carrierInfo.carrierId,
+    email: user?.email,
+    billingNumber: user?.billingNumber,
+    acceptEmails: user?.acceptEmails,
+    language: user?.language,
+    phoneNumber: user?.phoneNumber,
+    carrier: user?.carrierInfo?.carrierId,
   });
   const [isChangeable, setIsChangeable] = useState(false);
 
@@ -158,7 +158,7 @@ const PersonalInformation = () => {
                     </select>
                   ) : (
                     <div className={classes.select}>
-                      {user.carrierInfo.carrierTitle}
+                      {user?.carrierInfo?.carrierTitle}
                     </div>
                   )}
                 </div>
@@ -166,7 +166,7 @@ const PersonalInformation = () => {
               </div>
               <div className={classes.phonePlanName}>
                 <div className={classes.phonePlanTitle}>
-                  {makeUpperCase(user.phonePlan)}
+                  {makeUpperCase(user?.phonePlan)}
                 </div>
                 <div className={classes.subTitle}>{t('PHONE_PLAN')}</div>
               </div>
@@ -176,7 +176,7 @@ const PersonalInformation = () => {
                 {t('CURRENT_BALANCE')}
               </div>
               <div className={classes.currentBalanceNumbers}>
-                $ {user.wallet.balance || 0}
+                $ {user?.wallet?.balance || 0}
               </div>
             </div>
             <div className={classes.billingNumberContainer}>

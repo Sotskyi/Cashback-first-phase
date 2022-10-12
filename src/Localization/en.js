@@ -164,6 +164,7 @@ export const en = {
   COMUNICATION_PREFERENCE: 'Communication preferences',
   RECEIVE_OFFERS: 'Yes, please sign me up to recieve offers by email',
   UPDATE: 'Update',
+  CHECK_EMAIL_FOR_INSTRUCTION: 'Check your email for instructions',
   // to do
   // Communication preferences
   // Yes, please sign me up to receive offers by email

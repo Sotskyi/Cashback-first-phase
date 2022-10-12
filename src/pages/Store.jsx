@@ -20,9 +20,7 @@ const Store = () => {
   const navigate = useNavigate();
   // eslint-disable-next-line no-shadow
   const { isAuth } = useSelector((state) => state.auth);
-  // eslint-disable-next-line no-shadow
-  // const { isLoading } = useSelector((state) => state.stores);
-  // const languageFromState = state.data.translations[0].language.code;
+
   const currentLanguage = i18n.language;
   const [triggerLoader, setTriggerLoader] = useState(false);
   const [store, setStore] = useState({
@@ -39,15 +37,10 @@ const Store = () => {
       getStore({ id, languageCode: currentLanguage }),
     );
     if (getStore.rejected.match(resultAction)) {
-      navigate('/home');
-    } else {
-      setStore(resultAction.payload);
+      return navigate('/home');
     }
+    return setStore(resultAction.payload);
   }, [currentLanguage]);
-
-  // useEffect(() => {
-  //   return () => dispatch(reset());
-  // }, []);
 
   const handleRedirectToStore = () => {
     setTriggerLoader(true);
@@ -95,7 +88,9 @@ const Store = () => {
                     {state?.data?.specialReward || store.specialReward}%
                   </div>
                   <div className={classes.percentSubTitle}>
-                    {t('ON_PURCHASES_OVER')} $30
+                    {t('ON_PURCHASES_OVER')} $
+                    {state?.data?.specialRewardStart ||
+                      store.specialRewardStart}
                   </div>
                 </div>
                 <div
@@ -149,7 +144,8 @@ const Store = () => {
                   {state?.data?.specialReward || store.specialReward}%
                 </div>
                 <div className={classes.percentSubTitle}>
-                  {t('ON_PURCHASES_OVER')} $30
+                  {t('ON_PURCHASES_OVER')} $
+                  {state?.data?.specialRewardStart || store.specialRewardStart}
                 </div>
               </div>
               <div

@@ -23,11 +23,15 @@ export const differenceDatesInDays = (today, date) => {
   return 30 - TotalDays;
 };
 
-export const makeUpperCase = (str) =>
-  str
-    .split(' ')
-    .map((el) => el[0].toUpperCase() + el.substring(1))
-    .join(' ');
+export const makeUpperCase = (str) => {
+  if (str) {
+    return str
+      .split(' ')
+      .map((el) => el[0].toUpperCase() + el.substring(1))
+      .join(' ');
+  }
+  return str;
+};
 
 export function debounce(func, timeout = 500) {
   let timeoutId;
