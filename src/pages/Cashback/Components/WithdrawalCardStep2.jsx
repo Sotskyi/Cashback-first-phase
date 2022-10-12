@@ -67,12 +67,7 @@ const WithdrawalCardStep2 = ({
         className={`${classes.withdrawButton} ${
           activeCell && classes.activeButton
         }`}
-        onClick={() => {
-          if (activeCell) {
-            return handleSubmit();
-          }
-          return null;
-        }}
+        onClick={() => activeCell && handleSubmit()}
       >
         {t('WITHDRAW')}
         <img

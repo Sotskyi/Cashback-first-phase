@@ -48,7 +48,7 @@ const LanguageSwitcher = () => {
       i18n.changeLanguage(el.id);
     }
   };
-  /* eslint-disable */
+
   return (
     <div className={classes.menuContainer}>
       <div className={classes.menu} onClick={handleClick}>
@@ -72,8 +72,6 @@ const LanguageSwitcher = () => {
           </MenuItem>
         ))}
       </Menu>
-
-      {/* <div className={classes.avatar} /> */}
     </div>
   );
 };
