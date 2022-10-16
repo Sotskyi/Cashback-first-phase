@@ -13,7 +13,7 @@ import WithdrawalCardStep3 from './Components/WithdrawalCardStep3';
 const Cashback = () => {
   const classes = useStyles();
   const [activeTab, setActiveTab] = useState('cashback');
-  const [stepWithdrawalCard, setStepWithdrawalCard] = useState(1);
+  const [stepWithdrawalCard, setStepWithdrawalCard] = useState(3);
   const [activeCell, setActiveCell] = useState(false);
   const { isAuth, user } = useSelector((state) => state.auth);
   const { totalCashback } = useSelector((state) => state.cashback);
@@ -87,7 +87,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '32px 72px 0px 72px',
     display: 'flex',
     justifyContent: 'center',
-    // height: '100%',
     [theme.breakpoints.down('sm')]: {
       display: 'flex',
       flexDirection: 'column',
@@ -97,9 +96,6 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       flexDirection: 'column',
       height: '100%',
-      // display: 'flex',
-      // flexDirection: 'column',
-      // padding: '16px 16px 0px 16px',
     },
   },
   bodyContainer: {
@@ -109,7 +105,6 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: 'column-reverse',
     },
   },
-
   leftContentContainer: {
     width: '680px',
     [theme.breakpoints.down('md')]: {

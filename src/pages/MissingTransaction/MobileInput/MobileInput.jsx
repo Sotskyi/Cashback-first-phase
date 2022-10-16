@@ -73,29 +73,6 @@ const MobileInput = ({
             handleChangeDate={handleChangeDate}
             errorMessage={t('DATE_OF_PURCHASE_CANT_EMPTY')}
           />
-          {/* <TextField
-            open={true}
-            value={creds.ticket.purchasedAt}
-            name='purchasedAt'
-            type='date'
-            variant='outlined'
-            onChange={handleChange}
-            className={classes.calendar}
-            error={
-              !checkIsValid({
-                nameOfData: 'isEmpty',
-                data: creds.ticket.purchasedAt,
-              })
-            }
-          />
-          {!checkIsValid({
-            nameOfData: 'isEmpty',
-            data: creds.ticket.purchasedAt,
-          }) && (
-            <div className={classes.errorMessage}>
-              {t('DATE_OF_PURCHASE_CANT_EMPTY')}
-            </div>
-          )} */}
         </div>
         <div className={classes.inputWrapper}>
           <InputLabel
@@ -203,7 +180,6 @@ const MobileInput = ({
             name='amount'
             value={creds.ticket.amount}
             sx={{
-              // width: { xs: '136px', sm: '368px' },
               height: '48px',
               fontFamily: 'Inter',
               fontStyle: 'normal',
@@ -260,23 +236,8 @@ const MobileInput = ({
               overflow: 'unset',
               '& input': {},
             }}
-            // error={
-            //   !checkIsValid({
-            //     nameOfData: 'isEmpty',
-            //     data: creds.ticket.comment,
-            //   })
-            // }
           />
-          {/* {!checkIsValid({
-              nameOfData: 'isEmpty',
-              data: creds.ticket.comment,
-            }) && (
-              <div className={classes.errorMessage}>
-                {t('PLEASE_ENTER_VALID_COMMENT')}
-              </div>
-            )} */}
         </div>
-
         <div className={classes.contentTextWrapper}>
           <InputLabel
             sx={{
@@ -341,6 +302,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     flexDirection: 'column',
     alignItems: 'center',
+    margin: '0px 0px 20px',
   },
   contentWrapper: {
     marginTop: '30px',

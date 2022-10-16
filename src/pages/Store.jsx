@@ -18,8 +18,8 @@ const Store = () => {
   const { state } = useLocation();
   const { i18n, t } = useTranslation();
   const navigate = useNavigate();
-  // eslint-disable-next-line no-shadow
-  const { isAuth } = useSelector((state) => state.auth);
+
+  const { isAuth } = useSelector((authState) => authState.auth);
 
   const currentLanguage = i18n.language;
   const [triggerLoader, setTriggerLoader] = useState(false);

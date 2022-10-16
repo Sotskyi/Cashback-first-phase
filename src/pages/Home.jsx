@@ -113,7 +113,6 @@ const Home = () => {
         setFilters={setFilters}
         currentLanguage={currentLanguage}
       />
-
       <div className={classes.bodyContainer}>
         <div className={classes.cardsContainer}>
           <div className={classes.cardsWrapper}>
@@ -130,17 +129,6 @@ const Home = () => {
               />
             ))}
             <div ref={lastElement} className={classes.lastElement} />
-            <div>
-              <div>
-                <div className={classes.carouselContainer}>
-                  {/* {showHowItWorks && (
-                    <HowItWorksCarousel
-                      onClose={() => dispatch(setIsShowHowItWorks(false))}
-                    />
-                  )} */}
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -193,20 +181,5 @@ const useStyles = makeStyles((theme) => ({
   lastElement: {
     width: '100%',
     height: '1px',
-  },
-  carouselContainer: {
-    position: 'fixed',
-    marginLeft: '-561px',
-    bottom: '20px',
-    left: '50%',
-    [theme.breakpoints.down('md')]: {
-      marginLeft: '-466px',
-    },
-    [theme.breakpoints.down('sm')]: {
-      marginLeft: '-50%',
-    },
-    [theme.breakpoints.down('xs')]: {
-      marginLeft: '-180px',
-    },
   },
 }));

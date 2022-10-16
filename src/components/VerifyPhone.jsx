@@ -120,17 +120,6 @@ const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
 
       const inputValues = Object.values(verifyNumbers);
       inputValues.splice(nextInputIndex - 1, 1);
-      let counter = 0;
-
-      inputValues.forEach((el) => {
-        if (el !== '') {
-          counter += 1;
-        }
-      });
-      if (counter === 5) {
-        // console.log(next());
-        // next();
-      }
     }
   };
 
@@ -148,6 +137,11 @@ const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
       }
     }
   };
+
+  const handleResendSms = () =>
+    useFor === 'login'
+      ? dispatch(resendSms(insertString('+1', creds.phoneNumber)))
+      : dispatch(verifyPhone(insertString('+1', creds.phoneNumber)));
 
   if (isLoading) {
     return <Loader />;
@@ -234,14 +228,7 @@ const VerifyPhone = ({ setCreds, creds, next, useFor }) => {
       </div>
       <div className={classes.haventSms}>
         {t('HAVE_NOT_RECEIVED_SMS')}
-        <span
-          className={classes.sendAgain}
-          onClick={() => {
-            return useFor === 'login'
-              ? dispatch(resendSms(insertString('+1', creds.phoneNumber)))
-              : dispatch(verifyPhone(insertString('+1', creds.phoneNumber)));
-          }}
-        >
+        <span className={classes.sendAgain} onClick={handleResendSms}>
           {t('SEND_AGAIN')}
         </span>
       </div>

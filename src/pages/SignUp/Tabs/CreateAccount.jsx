@@ -31,7 +31,7 @@ const CreateAccount = ({ next, handleChange, creds }) => {
   };
 
   return (
-    <div>
+    <form>
       <div className={classes.contentContainer}>
         <div className={classes.title}>{t('CREATE_ACCOUNT')}</div>
         <PhoneNumberInput
@@ -52,7 +52,7 @@ const CreateAccount = ({ next, handleChange, creds }) => {
           {t('LOGIN')}
         </span>
       </div>
-    </div>
+    </form>
   );
 };
 export default CreateAccount;

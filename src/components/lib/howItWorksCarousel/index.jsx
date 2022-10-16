@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { makeStyles } from '@material-ui/core/styles';
 
 import Carousel from './Carousel';

@@ -63,6 +63,7 @@ const UserMenu = () => {
       iconSrc: logOut,
     },
   ];
+
   const unloginedMenuItems = [
     {
       id: 'login',
@@ -113,7 +114,7 @@ const UserMenu = () => {
       navigate('/privacy_policy');
     }
   };
-  /* eslint-disable */
+
   return (
     <div className={classes.menuContainer}>
       <div className={classes.menu} onClick={handleClick}>

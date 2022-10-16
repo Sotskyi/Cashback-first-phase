@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
 
+import { VoucherModal } from '../../../components/lib/Modal';
 import arrowBackWhite from '../../../assets/images/icons/arrowBackWhite.svg';
 
 const WithdrawalCardStep3 = ({
@@ -11,9 +13,11 @@ const WithdrawalCardStep3 = ({
 }) => {
   const classes = useStyles();
   const { t } = useTranslation();
+  const [open, setOpen] = useState(true);
 
   return (
     <div className={classes.withdrawalCardContainer}>
+      <VoucherModal open={open} setOpen={setOpen} />
       <div className={classes.headerContainer}>
         <div className={classes.backButton} onClick={handleBackButton}>
           <img
@@ -24,7 +28,6 @@ const WithdrawalCardStep3 = ({
         </div>
         <div className={classes.headerTitle}>{t('GO_BACK_TO_CHANGE')}</div>
       </div>
-
       <div className={classes.availableCashbodyContainer}>
         <div className={classes.addedCash}>$ {withdrawalMoney}</div>
         <div className={classes.addedCashTitle}>
@@ -56,7 +59,6 @@ const useStyles = makeStyles(() => ({
     padding: '16px 16px 16px 16px',
     display: 'flex',
     flexDirection: 'column',
-    // justifyContent: 'space-between',
   },
   headerContainer: {
     display: 'flex',

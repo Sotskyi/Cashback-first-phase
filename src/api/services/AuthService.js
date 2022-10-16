@@ -11,14 +11,6 @@ export default class AuthService {
       .then(saveTokens);
   }
 
-  // static async loginConfirm(creds) {
-  //   return axios
-  //     .post('/auth/signin/confirm', {
-  //       ...creds,
-  //     })
-  //     .then(saveTokens);
-  // }
-
   static async register(creds) {
     return axios
       .post('/auth/signup', {

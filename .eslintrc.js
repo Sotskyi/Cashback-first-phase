@@ -61,6 +61,7 @@ module.exports = {
         array: false,
       },
     ],
+    'react/jsx-no-useless-fragment': [2, { allowExpressions: true }],
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'react/jsx-boolean-value': 'off',
     'react/jsx-props-no-spreading': 'off',

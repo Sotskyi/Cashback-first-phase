@@ -108,325 +108,330 @@ const MissingTransaction = () => {
     }
   };
   return (
-    <div className={classes.container}>
-      {matches ? (
-        <MobileInput
-          handleChange={handleChange}
-          creds={creds}
-          setCreds={setCreds}
-          onSubmit={onSubmit}
-          checkIsValid={checkIsValid}
-          handleChangeDate={handleChangeDate}
-        />
-      ) : (
-        <div className={classes.contentWrapper}>
-          <div className={classes.title}>{t('REPORT_MISSING_TRANSACTION')}</div>
-          <div className={classes.inputContainer}>
-            <div className={classes.inputWrapper}>
-              <InputLabel
-                sx={{
-                  fontFamily: 'Inter',
-                  fontStyle: 'normal',
-                  fontWeight: '700',
-                  fontSize: '16px',
-                  color: 'black',
-                }}
-              >
-                {t('STORE')}
-              </InputLabel>
-              <AutocompleteInput
-                setCreds={setCreds}
-                creds={creds}
-                isError={
-                  !checkIsValid({
-                    nameOfData: 'isId',
-                    data: creds.ticket.store,
-                  })
-                }
-              />
-              {!checkIsValid({
-                nameOfData: 'isId',
-                data: creds.ticket.store,
-              }) && (
-                <div className={classes.errorMessage}>
-                  {t('STORE_CANT_EMPTY')}
-                </div>
-              )}
+    <form>
+      <div className={classes.container}>
+        {matches ? (
+          <MobileInput
+            handleChange={handleChange}
+            creds={creds}
+            setCreds={setCreds}
+            onSubmit={onSubmit}
+            checkIsValid={checkIsValid}
+            handleChangeDate={handleChangeDate}
+          />
+        ) : (
+          <div className={classes.contentWrapper}>
+            <div className={classes.title}>
+              {t('REPORT_MISSING_TRANSACTION')}
             </div>
-            <div className={classes.inputWrapper} style={{ display: 'block' }}>
-              <InputLabel
-                sx={{
-                  fontFamily: 'Inter',
-                  fontStyle: 'normal',
-                  fontWeight: '700',
-                  fontSize: '16px',
-                  color: 'black',
-                }}
-              >
-                {t('DATE_OF_PURCHASE')}
-              </InputLabel>
-              <Calendar
-                date={creds.ticket.purchasedAt}
-                handleChangeDate={handleChangeDate}
-                errorMessage={t('DATE_OF_PURCHASE_CANT_EMPTY')}
-              />
-            </div>
-          </div>
-          <div className={classes.inputContainer}>
-            <div className={classes.inputWrapper}>
-              <InputLabel
-                sx={{
-                  fontFamily: 'Inter',
-                  fontStyle: 'normal',
-                  fontWeight: '700',
-                  fontSize: '16px',
-                  color: 'black',
-                }}
-              >
-                {t('PURCHASE_TYPE')}
-              </InputLabel>
-              <Select
-                error={
-                  !checkIsValid({
-                    nameOfData: 'isEmpty',
-                    data: creds.ticket.purchaseType,
-                  })
-                }
-                value={creds.ticket.purchaseType}
-                name='purchaseType'
-                onChange={handleChange}
-                displayEmpty
-                inputProps={{
-                  'aria-label': 'Without label',
-                }}
-                sx={{
-                  width: { xs: '136px', sm: '368px' },
-                  height: '48px',
-                  fontFamily: 'Inter',
-                  fontStyle: 'normal',
-                  fontWeight: '500',
-                  fontSize: '20px',
-                  border: '1px solid #EAEAEA',
-                  borderRadius: '8px!important',
-                  paddingLeft: '2px',
-                  '&.MuiOutlinedInput-root .MuiSelect-select': {
-                    display: 'flex',
-                    alignItems: 'center',
-                  },
-                }}
-              >
-                {purchaseTypes.map((el) => (
-                  <MenuItem key={el.value} value={el.value}>
-                    {t(el.forTranslate)}
-                  </MenuItem>
-                ))}
-              </Select>
-              {!checkIsValid({
-                nameOfData: 'isEmpty',
-                data: creds.ticket.purchaseType,
-              }) && (
-                <div className={classes.errorMessage}>
-                  {t('PURCHASE_TYPE_CANT_EMPTY')}
-                </div>
-              )}
-            </div>
-            <div className={classes.inputWrapper}>
-              <InputLabel
-                sx={{
-                  fontFamily: 'Inter',
-                  fontStyle: 'normal',
-                  fontWeight: '700',
-                  fontSize: '16px',
-                  color: 'black',
-                }}
-              >
-                {t('PAYMENT_METHOD')}
-              </InputLabel>
-              <Select
-                error={
-                  !checkIsValid({
-                    nameOfData: 'isEmpty',
-                    data: creds.ticket.paymentMethod,
-                  })
-                }
-                value={creds.ticket.paymentMethod}
-                name='paymentMethod'
-                onChange={handleChange}
-                displayEmpty
-                inputProps={{ 'aria-label': 'Without label' }}
-                sx={{
-                  width: { xs: '136px', sm: '368px' },
-                  paddingLeft: '2px',
-                  height: '48px',
-                  fontFamily: 'Inter',
-                  fontStyle: 'normal',
-                  fontWeight: '500',
-                  fontSize: '20px',
-                  border: '1px solid #EAEAEA',
-                  borderRadius: '8px!important',
-                  '&.MuiOutlinedInput-root .MuiSelect-select': {
-                    display: 'flex',
-                    alignItems: 'center',
-                  },
-                }}
-              >
-                {paymentMethods.map((el) => (
-                  <MenuItem key={el.value} value={el.value}>
-                    {t(el.forTranslate)}
-                  </MenuItem>
-                ))}
-              </Select>
-              {!checkIsValid({
-                nameOfData: 'isEmpty',
-                data: creds.ticket.paymentMethod,
-              }) && (
-                <div className={classes.errorMessage}>
-                  {t('PAYMENT_METHOD_CANT_EMPTY')}
-                </div>
-              )}
-            </div>
-          </div>
-          <div className={classes.inputContainer}>
-            <div className={classes.inputWrapper}>
-              <InputLabel
-                sx={{
-                  fontFamily: 'Inter',
-                  fontStyle: 'normal',
-                  fontWeight: '700',
-                  fontSize: '16px',
-                  color: 'black',
-                }}
-              >
-                {t('ORDER_AMOUNT')}
-              </InputLabel>
-              <OutlinedInput
-                onChange={(e) => {
-                  if (
-                    /^\d+$/.test(e.target.value) ||
-                    e.nativeEvent.inputType === 'deleteContentBackward'
-                  ) {
-                    handleChange(e);
+            <div className={classes.inputContainer}>
+              <div className={classes.inputWrapper}>
+                <InputLabel
+                  sx={{
+                    fontFamily: 'Inter',
+                    fontStyle: 'normal',
+                    fontWeight: '700',
+                    fontSize: '16px',
+                    color: 'black',
+                  }}
+                >
+                  {t('STORE')}
+                </InputLabel>
+                <AutocompleteInput
+                  setCreds={setCreds}
+                  creds={creds}
+                  isError={
+                    !checkIsValid({
+                      nameOfData: 'isId',
+                      data: creds.ticket.store,
+                    })
                   }
-                }}
-                onKeyDown={(e) => handleChange(e)}
-                // type='number'
-                name='amount'
-                value={creds.ticket.amount}
-                sx={{
-                  width: { xs: '136px', sm: '368px' },
-                  height: '48px',
-                  fontFamily: 'Inter',
-                  fontStyle: 'normal',
-                  fontWeight: '500',
-                  fontSize: '20px',
-                  border: '1px solid #EAEAEA',
-                  borderRadius: '8px',
-                  '&.MuiOutlinedInput-root.MuiInputBase-root': {
-                    borderRadius: '8px',
-                  },
-                  '& input': {
-                    padding: '8px 8px 8px 16px',
-                  },
-                }}
-                error={
-                  !checkIsValid({
-                    nameOfData: 'isEmpty',
-                    data: creds.ticket.amount,
-                  })
-                }
-              />
-              {!checkIsValid({
-                nameOfData: 'isEmpty',
-                data: creds.ticket.paymentMethod,
-              }) && (
-                <div className={classes.errorMessage}>
-                  {t('PLEASE_ENTER_VALID_AMOUNT')}
-                </div>
-              )}
-            </div>
-          </div>
-          <div className={classes.inputWrapper} style={{ height: '143px' }}>
-            <InputLabel
-              sx={{
-                fontFamily: 'Inter',
-                fontStyle: 'normal',
-                fontWeight: '700',
-                fontSize: '16px',
-                color: 'black',
-              }}
-            >
-              {t('COMMENT')}
-            </InputLabel>
-            <TextareaAutosize
-              className={classes.textArea}
-              minRows={3}
-              maxRows={3}
-              onChange={handleChange}
-              name='comment'
-              value={creds.ticket.comment}
-            />
-          </div>
-
-          <div className={classes.contentTextWrapper}>
-            <InputLabel
-              sx={{
-                fontFamily: 'Inter',
-                fontStyle: 'normal',
-                fontWeight: '700',
-                fontSize: '16px',
-                color: 'black',
-                width: '100%',
-              }}
-            >
-              {t('PROOF_OF_PAYMENT')}
-            </InputLabel>
-            <div className={classes.contentFirstParagraph}>
-              {t('PLEASE_UPLOAD_RECEIPT')}
-              <div className={classes.contentSecondParagraph}>
-                {t('FOR_SECURITY')}
+                />
+                {!checkIsValid({
+                  nameOfData: 'isId',
+                  data: creds.ticket.store,
+                }) && (
+                  <div className={classes.errorMessage}>
+                    {t('STORE_CANT_EMPTY')}
+                  </div>
+                )}
+              </div>
+              <div
+                className={classes.inputWrapper}
+                style={{ display: 'block' }}
+              >
+                <InputLabel
+                  sx={{
+                    fontFamily: 'Inter',
+                    fontStyle: 'normal',
+                    fontWeight: '700',
+                    fontSize: '16px',
+                    color: 'black',
+                  }}
+                >
+                  {t('DATE_OF_PURCHASE')}
+                </InputLabel>
+                <Calendar
+                  date={creds.ticket.purchasedAt}
+                  handleChangeDate={handleChangeDate}
+                  errorMessage={t('DATE_OF_PURCHASE_CANT_EMPTY')}
+                />
               </div>
             </div>
-          </div>
-
-          <label
-            htmlFor='contained-button-file'
-            className={classes.uploadPhotoLabel}
-          >
-            <div className={classes.uploadPhoto}>
-              <input
-                accept='image/*'
-                id='contained-button-file'
-                multiple
-                type='file'
-                name='paymentProof'
-                hidden
-                onChange={handleChange}
-              />
-              <img
-                className={classes.uploadPhotoIcon}
-                src={uploadPhoto}
-                alt='img'
-              />{' '}
-              <span>{t('UPLOAD_PHOTO')}</span>
+            <div className={classes.inputContainer}>
+              <div className={classes.inputWrapper}>
+                <InputLabel
+                  sx={{
+                    fontFamily: 'Inter',
+                    fontStyle: 'normal',
+                    fontWeight: '700',
+                    fontSize: '16px',
+                    color: 'black',
+                  }}
+                >
+                  {t('PURCHASE_TYPE')}
+                </InputLabel>
+                <Select
+                  error={
+                    !checkIsValid({
+                      nameOfData: 'isEmpty',
+                      data: creds.ticket.purchaseType,
+                    })
+                  }
+                  value={creds.ticket.purchaseType}
+                  name='purchaseType'
+                  onChange={handleChange}
+                  displayEmpty
+                  inputProps={{
+                    'aria-label': 'Without label',
+                  }}
+                  sx={{
+                    width: { xs: '136px', sm: '368px' },
+                    height: '48px',
+                    fontFamily: 'Inter',
+                    fontStyle: 'normal',
+                    fontWeight: '500',
+                    fontSize: '20px',
+                    border: '1px solid #EAEAEA',
+                    borderRadius: '8px!important',
+                    paddingLeft: '2px',
+                    '&.MuiOutlinedInput-root .MuiSelect-select': {
+                      display: 'flex',
+                      alignItems: 'center',
+                    },
+                  }}
+                >
+                  {purchaseTypes.map((el) => (
+                    <MenuItem key={el.value} value={el.value}>
+                      {t(el.forTranslate)}
+                    </MenuItem>
+                  ))}
+                </Select>
+                {!checkIsValid({
+                  nameOfData: 'isEmpty',
+                  data: creds.ticket.purchaseType,
+                }) && (
+                  <div className={classes.errorMessage}>
+                    {t('PURCHASE_TYPE_CANT_EMPTY')}
+                  </div>
+                )}
+              </div>
+              <div className={classes.inputWrapper}>
+                <InputLabel
+                  sx={{
+                    fontFamily: 'Inter',
+                    fontStyle: 'normal',
+                    fontWeight: '700',
+                    fontSize: '16px',
+                    color: 'black',
+                  }}
+                >
+                  {t('PAYMENT_METHOD')}
+                </InputLabel>
+                <Select
+                  error={
+                    !checkIsValid({
+                      nameOfData: 'isEmpty',
+                      data: creds.ticket.paymentMethod,
+                    })
+                  }
+                  value={creds.ticket.paymentMethod}
+                  name='paymentMethod'
+                  onChange={handleChange}
+                  displayEmpty
+                  inputProps={{ 'aria-label': 'Without label' }}
+                  sx={{
+                    width: { xs: '136px', sm: '368px' },
+                    paddingLeft: '2px',
+                    height: '48px',
+                    fontFamily: 'Inter',
+                    fontStyle: 'normal',
+                    fontWeight: '500',
+                    fontSize: '20px',
+                    border: '1px solid #EAEAEA',
+                    borderRadius: '8px!important',
+                    '&.MuiOutlinedInput-root .MuiSelect-select': {
+                      display: 'flex',
+                      alignItems: 'center',
+                    },
+                  }}
+                >
+                  {paymentMethods.map((el) => (
+                    <MenuItem key={el.value} value={el.value}>
+                      {t(el.forTranslate)}
+                    </MenuItem>
+                  ))}
+                </Select>
+                {!checkIsValid({
+                  nameOfData: 'isEmpty',
+                  data: creds.ticket.paymentMethod,
+                }) && (
+                  <div className={classes.errorMessage}>
+                    {t('PAYMENT_METHOD_CANT_EMPTY')}
+                  </div>
+                )}
+              </div>
             </div>
-            {!checkIsValid({
-              nameOfData: 'isPaymentProof',
-              data: creds.paymentProof.name,
-            }) && (
-              <div className={classes.errorMessage}>{t('UPLOAD_PHOTO')}</div>
-            )}
-          </label>
+            <div className={classes.inputContainer}>
+              <div className={classes.inputWrapper}>
+                <InputLabel
+                  sx={{
+                    fontFamily: 'Inter',
+                    fontStyle: 'normal',
+                    fontWeight: '700',
+                    fontSize: '16px',
+                    color: 'black',
+                  }}
+                >
+                  {t('ORDER_AMOUNT')}
+                </InputLabel>
+                <OutlinedInput
+                  onChange={(e) => {
+                    if (
+                      /^\d+$/.test(e.target.value) ||
+                      e.nativeEvent.inputType === 'deleteContentBackward'
+                    ) {
+                      handleChange(e);
+                    }
+                  }}
+                  onKeyDown={(e) => handleChange(e)}
+                  name='amount'
+                  value={creds.ticket.amount}
+                  sx={{
+                    width: { xs: '136px', sm: '368px' },
+                    height: '48px',
+                    fontFamily: 'Inter',
+                    fontStyle: 'normal',
+                    fontWeight: '500',
+                    fontSize: '20px',
+                    border: '1px solid #EAEAEA',
+                    borderRadius: '8px',
+                    '&.MuiOutlinedInput-root.MuiInputBase-root': {
+                      borderRadius: '8px',
+                    },
+                    '& input': {
+                      padding: '8px 8px 8px 16px',
+                    },
+                  }}
+                  error={
+                    !checkIsValid({
+                      nameOfData: 'isEmpty',
+                      data: creds.ticket.amount,
+                    })
+                  }
+                />
+                {!checkIsValid({
+                  nameOfData: 'isEmpty',
+                  data: creds.ticket.paymentMethod,
+                }) && (
+                  <div className={classes.errorMessage}>
+                    {t('PLEASE_ENTER_VALID_AMOUNT')}
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className={classes.inputWrapper} style={{ height: '143px' }}>
+              <InputLabel
+                sx={{
+                  fontFamily: 'Inter',
+                  fontStyle: 'normal',
+                  fontWeight: '700',
+                  fontSize: '16px',
+                  color: 'black',
+                }}
+              >
+                {t('COMMENT')}
+              </InputLabel>
+              <TextareaAutosize
+                className={classes.textArea}
+                minRows={3}
+                maxRows={3}
+                onChange={handleChange}
+                name='comment'
+                value={creds.ticket.comment}
+              />
+            </div>
 
-          <div className={classes.submitWrapper}>
-            {' '}
-            <SubmitButton
-              title={t('SUBMIT_FOR_REVIEW')}
-              onSubmit={onSubmit}
-            />{' '}
+            <div className={classes.contentTextWrapper}>
+              <InputLabel
+                sx={{
+                  fontFamily: 'Inter',
+                  fontStyle: 'normal',
+                  fontWeight: '700',
+                  fontSize: '16px',
+                  color: 'black',
+                  width: '100%',
+                }}
+              >
+                {t('PROOF_OF_PAYMENT')}
+              </InputLabel>
+              <div className={classes.contentFirstParagraph}>
+                {t('PLEASE_UPLOAD_RECEIPT')}
+                <div className={classes.contentSecondParagraph}>
+                  {t('FOR_SECURITY')}
+                </div>
+              </div>
+            </div>
+
+            <label
+              htmlFor='contained-button-file'
+              className={classes.uploadPhotoLabel}
+            >
+              <div className={classes.uploadPhoto}>
+                <input
+                  accept='image/*'
+                  id='contained-button-file'
+                  multiple
+                  type='file'
+                  name='paymentProof'
+                  hidden
+                  onChange={handleChange}
+                />
+                <img
+                  className={classes.uploadPhotoIcon}
+                  src={uploadPhoto}
+                  alt='img'
+                />{' '}
+                <span>{t('UPLOAD_PHOTO')}</span>
+              </div>
+              {!checkIsValid({
+                nameOfData: 'isPaymentProof',
+                data: creds.paymentProof.name,
+              }) && (
+                <div className={classes.errorMessage}>{t('UPLOAD_PHOTO')}</div>
+              )}
+            </label>
+            <div className={classes.submitWrapper}>
+              {' '}
+              <SubmitButton
+                title={t('SUBMIT_FOR_REVIEW')}
+                onSubmit={onSubmit}
+              />{' '}
+            </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </form>
   );
 };
 export default MissingTransaction;
@@ -435,7 +440,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     width: '100%',
     display: 'flex',
-
     justifyContent: 'center',
   },
   contentWrapper: {
@@ -448,12 +452,11 @@ const useStyles = makeStyles((theme) => ({
       padding: '0px 16px 0px 16px',
       height: '1292px',
     },
-    marginTop: '48px',
+    margin: '48px 0px 48px ',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
-
   title: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
@@ -463,7 +466,6 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '0.02em',
   },
   inputWrapper: {
-    // height: '76px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -478,8 +480,6 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'start',
     fontFamily: 'Inter',
     fontSize: '14px',
-    // position: 'absolute',
-    // bottom: '-24px',
     width: '100%',
     height: '20px',
     [theme.breakpoints.down('xs')]: {

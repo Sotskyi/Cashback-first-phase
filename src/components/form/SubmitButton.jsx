@@ -3,9 +3,13 @@ import { makeStyles } from '@material-ui/core';
 const SubmitButton = ({ title, onSubmit, children }) => {
   const classes = useStyles();
   return (
-    <div onClick={() => onSubmit()} className={classes.submitButton}>
+    <button
+      type='submit'
+      onClick={() => onSubmit()}
+      className={classes.submitButton}
+    >
       {title || children}
-    </div>
+    </button>
   );
 };
 
@@ -13,10 +17,10 @@ export default SubmitButton;
 
 const useStyles = makeStyles((theme) => ({
   submitButton: {
-    height: '20px',
+    height: '52px',
+    width: '100%',
     background: '#33CC55',
     borderRadius: '32px',
-    padding: '16px 10px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -28,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
     letterSpacing: '-0.02em',
     color: '#FFFFFF',
     cursor: 'pointer',
+    border: 'none',
     [theme.breakpoints.down('sm')]: {
       fontSize: '16px',
     },

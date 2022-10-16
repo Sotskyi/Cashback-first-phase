@@ -34,7 +34,7 @@ const ResetPassword = ({ next, email, setEmail }) => {
   };
 
   return (
-    <div>
+    <form>
       <div className={classes.contentContainer}>
         <div className={classes.title}>{t('RESET_YOUR_PASSWORD')}</div>
         <div className={classes.subTitle}>
@@ -101,7 +101,7 @@ const ResetPassword = ({ next, email, setEmail }) => {
           </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 export default ResetPassword;

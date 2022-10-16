@@ -45,7 +45,7 @@ const LoginAccount = ({ creds, handleChange }) => {
   };
 
   return (
-    <div>
+    <form>
       <div className={classes.contentContainer}>
         <div className={classes.title}>{t('LOGIN')}</div>
         <PhoneNumberInput
@@ -86,7 +86,7 @@ const LoginAccount = ({ creds, handleChange }) => {
           {t('SIGN_UP')}
         </span>
       </div>
-    </div>
+    </form>
   );
 };
 export default LoginAccount;

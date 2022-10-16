@@ -15,7 +15,6 @@ const AuthLandingLayout = ({ children, back, activeStep }) => {
   const classes = useStyles();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
-  // const isMediumScreen = useMediaQuery('(max-width:1200px)');
 
   return (
     <div className={classes.container}>

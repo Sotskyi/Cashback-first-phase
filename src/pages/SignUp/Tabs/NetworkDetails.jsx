@@ -45,7 +45,7 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
   };
 
   return (
-    <div>
+    <form>
       <div className={classes.contentContainer}>
         <div className={classes.title}>{t('ADD_NETWORK_DETAILS')}</div>
         <div className={classes.inputWrapper}>
@@ -179,7 +179,7 @@ const NetworkDetails = ({ creds, setCreds, onSubmit }) => {
         </div>
         <SubmitButton title={t('SIGN_UP')} onSubmit={handleSubmit} />
       </div>
-    </div>
+    </form>
   );
 };
 export default NetworkDetails;
@@ -188,7 +188,6 @@ const useStyles = makeStyles((theme) => ({
   contentContainer: {
     marginTop: '28px',
     height: '545px',
-    // width: '448px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -237,7 +236,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   chip: {
-    // width: '422px',
     height: '44px',
     display: 'flex',
     flexDirection: 'row',

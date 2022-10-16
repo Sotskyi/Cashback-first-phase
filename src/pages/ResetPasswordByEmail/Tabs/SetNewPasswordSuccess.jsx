@@ -5,15 +5,14 @@ const SetNewPasswordSuccess = ({ email }) => {
   const classes = useStyles();
   const { t } = useTranslation();
   return (
-    <div>
+    <form>
       <div className={classes.contentContainer}>
         <div className={classes.title}>{t('CHECK_YOUR_INBOX')}</div>
-
         <div className={classes.subTitle}>
           {t('LINK_WAS_SENT_TO', { email })}
         </div>
       </div>
-    </div>
+    </form>
   );
 };
 export default SetNewPasswordSuccess;

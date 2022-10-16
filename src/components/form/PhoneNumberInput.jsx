@@ -8,6 +8,15 @@ const PhoneNumberInput = ({ handleChange, data, isError }) => {
   const classes = useStyles();
   const { t } = useTranslation();
 
+  const handleChangePhoneNumber = (e) => {
+    if (
+      (data.length <= 9 && /^[0-9]*$/.test(e.target.value)) ||
+      e.nativeEvent.inputType === 'deleteContentBackward'
+    ) {
+      handleChange(e);
+    }
+  };
+
   return (
     <div className={classes.phoneNumberContainer}>
       <label className={classes.phoneNumberLabel}>{t('PHONE')}</label>
@@ -15,14 +24,7 @@ const PhoneNumberInput = ({ handleChange, data, isError }) => {
         className={classes.phoneNumberInputContainer}
         placeholder='ex: 4165551212'
         error={isError}
-        onChange={(e) => {
-          if (
-            (data.length <= 9 && /^[0-9]*$/.test(e.target.value)) ||
-            e.nativeEvent.inputType === 'deleteContentBackward'
-          ) {
-            handleChange(e);
-          }
-        }}
+        onChange={handleChangePhoneNumber}
         onKeyDown={(e) => handleChange(e)}
         id='phoneNumber'
         type='tel'
