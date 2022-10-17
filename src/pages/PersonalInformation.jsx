@@ -20,12 +20,12 @@ const PersonalInformation = () => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const [initialValue, setInitialValue] = useState({
-    email: user?.email,
-    billingNumber: user?.billingNumber,
-    acceptEmails: user?.acceptEmails,
-    language: user?.language,
-    phoneNumber: user?.phoneNumber,
-    carrier: user?.carrierInfo?.carrierId,
+    email: '',
+    billingNumber: '',
+    acceptEmails: '',
+    language: '',
+    phoneNumber: '',
+    carrier: '',
   });
   const [isChangeable, setIsChangeable] = useState(false);
 
@@ -47,6 +47,19 @@ const PersonalInformation = () => {
 
     getMobileNetworks();
   }, []);
+
+  useEffect(() => {
+    if (user?.carrierInfo?.carrierTitle && user?.email) {
+      setInitialValue({
+        email: user?.email,
+        billingNumber: user?.billingNumber,
+        acceptEmails: user?.acceptEmails,
+        language: user?.language,
+        phoneNumber: user?.phoneNumber,
+        carrier: user?.carrierInfo?.carrierId,
+      });
+    }
+  }, [user]);
 
   const updateUser = async () => {
     setIsShowError(true);
@@ -134,9 +147,7 @@ const PersonalInformation = () => {
 
           <div className={classes.bodyContainer}>
             <div className={classes.phoneNumberContainer}>
-              <div className={classes.phoneNumber}>
-                {initialValue.phoneNumber}{' '}
-              </div>
+              <div className={classes.phoneNumber}>{user?.phoneNumber} </div>
               <div className={classes.subTitle}>{t('PHONE')}</div>
             </div>
             <div className={classes.phonePlanContainer}>
@@ -180,9 +191,7 @@ const PersonalInformation = () => {
               </div>
             </div>
             <div className={classes.billingNumberContainer}>
-              <div className={classes.billingNumber}>
-                {initialValue.billingNumber}
-              </div>
+              <div className={classes.billingNumber}>{user?.billingNumber}</div>
 
               <div className={classes.billingNumberTitle}>
                 {t('BILLING_NUMBER')}
