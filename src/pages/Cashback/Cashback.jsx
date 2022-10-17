@@ -13,7 +13,7 @@ import WithdrawalCardStep3 from './Components/WithdrawalCardStep3';
 const Cashback = () => {
   const classes = useStyles();
   const [activeTab, setActiveTab] = useState('cashback');
-  const [stepWithdrawalCard, setStepWithdrawalCard] = useState(0);
+  const [stepWithdrawalCard, setStepWithdrawalCard] = useState(1);
   const [activeCell, setActiveCell] = useState(false);
   const { isAuth, user } = useSelector((state) => state.auth);
   const { totalCashback } = useSelector((state) => state.cashback);
