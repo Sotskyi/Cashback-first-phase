@@ -55,11 +55,19 @@ const WithdrawalsList = () => {
                   src={withdrawalsSuccess}
                   // className={classes.withdrawalsIconSuccess}
                   alt='cash'
-                />{' '}
+                />
               </div>
               <div className={classes.withdrawalContentContainer}>
                 <div className={classes.withdrawalContentWrapper}>
-                  <div className={classes.withdrawalTitle}>{t('WITHDRAW')}</div>
+                  <div className={classes.withdrawalTitleContainer}>
+                    <div className={classes.withdrawalTitle}>
+                      {' '}
+                      {t('WITHDRAW')}{' '}
+                    </div>
+                    <div className={classes.pin}>
+                      {t('PIN_NUMBER')} {item.pin}
+                    </div>
+                  </div>
                   <div className={classes.withdrawalCashback}>
                     $ {item.amount}
                   </div>
@@ -143,11 +151,26 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     width: '100%',
   },
+  withdrawalTitleContainer: {
+    position: 'relative',
+  },
   withdrawalTitle: {
     fontFamily: 'Inter',
     fontStyle: 'normal',
     fontWeight: '400',
     fontSize: '16px',
+    lineHeight: '125%',
+    letterSpacing: '0.01em',
+  },
+  pin: {
+    width: '240px',
+    position: 'absolute',
+    top: '30px',
+    color: '#aaaaaae8',
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '300',
+    fontSize: '14px',
     lineHeight: '125%',
     letterSpacing: '0.01em',
   },

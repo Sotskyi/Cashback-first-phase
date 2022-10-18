@@ -21,10 +21,7 @@ const PersonalInformation = () => {
   const { t } = useTranslation();
   const [initialValue, setInitialValue] = useState({
     email: '',
-    billingNumber: '',
-    acceptEmails: '',
     language: '',
-    phoneNumber: '',
     carrier: '',
   });
   const [isChangeable, setIsChangeable] = useState(false);
@@ -52,10 +49,7 @@ const PersonalInformation = () => {
     if (user?.carrierInfo?.carrierTitle && user?.email) {
       setInitialValue({
         email: user?.email,
-        billingNumber: user?.billingNumber,
-        acceptEmails: user?.acceptEmails,
         language: user?.language,
-        phoneNumber: user?.phoneNumber,
         carrier: user?.carrierInfo?.carrierId,
       });
     }
