@@ -166,6 +166,8 @@ export const en = {
   UPDATE: 'Update',
   CHECK_EMAIL_FOR_INSTRUCTION: 'Check your email for instructions',
   PIN_NUMBER: 'Pin number',
+  SERIAL: 'Serial',
+  BATCH: 'Batch',
   // to do
   // Communication preferences
   // Yes, please sign me up to receive offers by email

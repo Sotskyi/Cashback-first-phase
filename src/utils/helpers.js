@@ -17,6 +17,10 @@ export const getDateForCashback = (date, language = 'en') => {
   return new Date(date).toLocaleDateString(language, options);
 };
 
+export const getDateForWithdrawModal = (date) => {
+  return new Date(date).toLocaleDateString('en-CA');
+};
+
 export const differenceDatesInDays = (today, date) => {
   const difference = today.getTime() - date.getTime();
   const TotalDays = Math.ceil(difference / (1000 * 3600 * 24));

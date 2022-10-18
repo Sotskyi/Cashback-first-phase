@@ -24,7 +24,7 @@ const SignUp = () => {
     email: '',
     password: '',
     verificationCode: '',
-    billingNumber: '+13213212222',
+    billingNumber: '+11111111111',
     phonePlan: 'prepaid',
     carrier: '',
     language: 'en',

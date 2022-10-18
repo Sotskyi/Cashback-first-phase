@@ -21,7 +21,9 @@ const WithdrawalCardStep1 = ({
       </div>
       <div className={classes.priceContainers}>
         <div>$ {availableCashPending.toFixed(2)}</div>
-        <div>$ {(availableCash + availableCashPending).toFixed(2)}</div>
+        <div>
+          $ {(Number(availableCash) + Number(availableCashPending)).toFixed(2)}
+        </div>
       </div>
       <div className={classes.withdrawButton} onClick={handleSubmit} id='1'>
         {t('WITHDRAW')}

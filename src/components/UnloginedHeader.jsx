@@ -43,11 +43,7 @@ const UnloginedHeader = () => {
       <div className={classes.headerContainer}>
         <div
           onClick={() => {
-            // if (storesList.length > 0) {
-            //   dispatch(reset());
-            // }
             navigate('/');
-            // window.location.reload();
           }}
         >
           <img

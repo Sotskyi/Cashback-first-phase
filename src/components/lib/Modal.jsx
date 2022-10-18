@@ -1,12 +1,15 @@
 import React from 'react';
-
 import Modal from '@mui/material/Modal';
 import { makeStyles } from '@material-ui/core';
+import { useTranslation } from 'react-i18next';
 
+import { getDateForWithdrawModal } from '../../utils/helpers';
 import closeX from '../../assets/images/icons/closeX.svg';
+import NewLineText from '../NewLineText';
 
-export const VoucherModal = ({ open, setOpen }) => {
+export const VoucherModal = ({ open, setOpen, data }) => {
   const handleClose = () => setOpen(false);
+  const { t } = useTranslation();
   const classes = useStyles();
 
   return (
@@ -23,44 +26,27 @@ export const VoucherModal = ({ open, setOpen }) => {
               <img src={closeX} alt='x' />
             </div>
           </div>
-          <div className={classes.title}>Fido</div>
-          <div className={classes.subTitle}>$10</div>
-          <div className={classes.mainText} style={{ textAlign: 'center' }}>
-            This is your pin:3213213
-          </div>
-          <div className={classes.mainText}>TO TOP UP:</div>
+          <div className={classes.title}>{data.carrier}</div>
+          <div className={classes.subTitle}>$ {data.amount}</div>
           <div className={classes.mainText}>
-            1. Go to my Account on your mobile device. Its free.
+            {t('PIN_NUMBER')}: {data.pin}
           </div>
-          <div className={classes.mainText}>
-            2. Dial *114* (your 14-digit voucher number) followed by # key and
-            press the SEND button on your phone.
-          </div>
-          <div className={classes.mainText}>
-            3. Visit fildo.ca and log into My Account.
-          </div>
-          <div className={classes.mainText}>
-            4. Dial *611 from your Fido phone.
-          </div>
-          <div className={classes.subText}>
-            {' '}
-            Non refundable or exchangeable Subject to Fido Terms and Conditions,
-            www.fido.ca/terms. No credit for unused or expired minutes.
-          </div>
+          <NewLineText text={data.terms} />
           <div className={classes.footer}>
-            <div className={classes.subText}> Trans: 132132131 </div>
-            <div className={classes.subText}> Serial: 132132131 </div>
-            <div className={classes.subText}> Batch: 132132131 </div>
-            <div className={classes.subText}> Date: 2022-10-12 </div>
-            <div className={classes.subText}> Term: TELCO </div>
-            <div className={classes.subText}> Rec. #: 1234 </div>
+            <div className={classes.subText}>
+              {' '}
+              {t('SERIAL')}: {data.serial}{' '}
+            </div>
+            <div className={classes.subText}>
+              {' '}
+              {t('BATCH')}: {data.batch}{' '}
+            </div>
+            <div className={classes.subText}>
+              {' '}
+              Date: {getDateForWithdrawModal(data.createdAt)}
+            </div>
+            <div className={classes.subText}> Ref. #: {data.refNo} </div>
           </div>
-          {/* <Typography id='modal-modal-title' variant='h6' component='h2'>
-            Text in a modal
-          </Typography>
-          <Typography id='modal-modal-description' sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography> */}
         </div>
       </Modal>
     </div>
@@ -132,6 +118,8 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Inter',
     color: '#030303',
     margin: '4px 0px 4px 0px',
+
+    whiteSpace: 'pre-line',
   },
   footer: {
     marginTop: '15px',

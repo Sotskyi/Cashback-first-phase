@@ -64,9 +64,8 @@ const Cashback = () => {
             )}
             {stepWithdrawalCard === 3 && (
               <WithdrawalCardStep3
-                stillAvailable={availableMoney - activeCell}
+                stillAvailable={availableMoney}
                 withdrawalMoney={activeCell}
-                handleSubmit={handleSubmitCard}
                 handleBackButton={handleBackButton}
               />
             )}

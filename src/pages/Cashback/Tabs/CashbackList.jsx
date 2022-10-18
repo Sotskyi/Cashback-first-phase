@@ -33,10 +33,6 @@ const CashbackList = () => {
     dispatch(getCashback({ page, limit: 8 }));
   }, [page]);
 
-  // if (isLoading) {
-  //   return <Loader />;
-  // }
-
   return (
     <div className={classes.cashbackListContainer}>
       {cashbackList?.map((el) => (

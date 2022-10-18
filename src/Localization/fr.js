@@ -173,5 +173,7 @@ export const fr = {
   UPDATE: 'Mettre à jour',
   CHECK_EMAIL_FOR_INSTRUCTION:
     'Vérifiez votre e-mail pour obtenir des instructions',
-  PIN_NUMBER: 'code PIN',
+  PIN_NUMBER: 'Code PIN',
+  SERIAL: 'En série',
+  BATCH: 'Lot',
 };

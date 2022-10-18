@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { makeStyles } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import { VoucherModal } from '../../../components/lib/Modal';
 import arrowBackWhite from '../../../assets/images/icons/arrowBackWhite.svg';
 
 const WithdrawalCardStep3 = ({
-  handleSubmit,
   handleBackButton,
   stillAvailable,
   withdrawalMoney,
@@ -14,10 +15,16 @@ const WithdrawalCardStep3 = ({
   const classes = useStyles();
   const { t } = useTranslation();
   const [open, setOpen] = useState(true);
+  const { withdrawInfo } = useSelector((state) => state.withdrawMoney);
+  const navigate = useNavigate();
+
+  const handleSubmit = () => {
+    navigate('/');
+  };
 
   return (
     <div className={classes.withdrawalCardContainer}>
-      <VoucherModal open={open} setOpen={setOpen} />
+      <VoucherModal data={withdrawInfo} open={open} setOpen={setOpen} />
       <div className={classes.headerContainer}>
         <div className={classes.backButton} onClick={handleBackButton}>
           <img
@@ -34,7 +41,7 @@ const WithdrawalCardStep3 = ({
           {t('ADDED_TO_MOBILE_BALANCE')}
         </div>
         <div className={classes.stillAvailableCashContainer}>
-          <div className={classes.stillAvailableCash}>$ {stillAvailable}</div>
+          <div className={classes.stillAvailableCash}>$ {+stillAvailable}</div>
           <div className={classes.addedCashTitle}>{t('STILL_AVAILABLE')}</div>
         </div>
         <div className={classes.checkEmail}>

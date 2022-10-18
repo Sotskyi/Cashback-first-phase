@@ -1,9 +1,12 @@
 import { makeStyles } from '@material-ui/core';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
 import withdrawals from '../../../assets/images/icons/withdrawals.svg';
 import withdrawalsGrey from '../../../assets/images/icons/withdrawalsGrey.svg';
 import arrowBackWhite from '../../../assets/images/icons/arrowBackWhite.svg';
+import { withdrawMoney } from '../../../redux/slices/withdrawMoneySlice';
+import { setUser } from '../../../redux/slices/authSlice';
 
 const WithdrawalCardStep2 = ({
   handleSubmit,
@@ -14,7 +17,26 @@ const WithdrawalCardStep2 = ({
   setActiveCell,
 }) => {
   const classes = useStyles(data.length);
-  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.auth);
+  const { t, i18n } = useTranslation();
+  const handleWithdraw = async () => {
+    const resultAction = await dispatch(
+      withdrawMoney({
+        amount: activeCell,
+        language: i18n.language,
+      }),
+    );
+    if (withdrawMoney.fulfilled.match(resultAction)) {
+      dispatch(
+        setUser({
+          ...user,
+          wallet: { ...user.wallet, balance: resultAction.payload.balance },
+        }),
+      );
+      handleSubmit();
+    }
+  };
   return (
     <div className={classes.withdrawalCardContainer}>
       <div className={classes.headerContainer}>
@@ -64,10 +86,11 @@ const WithdrawalCardStep2 = ({
       </div>
 
       <div
+        type='submit'
         className={`${classes.withdrawButton} ${
           activeCell && classes.activeButton
         }`}
-        onClick={() => activeCell && handleSubmit()}
+        onClick={() => activeCell && handleWithdraw()}
       >
         {t('WITHDRAW')}
         <img
