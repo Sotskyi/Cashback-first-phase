@@ -176,4 +176,6 @@ export const fr = {
   PIN_NUMBER: 'Code PIN',
   SERIAL: 'En série',
   BATCH: 'Lot',
+  PLEASE_WAIT_WHILE_PROCESSING:
+    'Veuillez patienter pendant que nous traitons votre demande...',
 };

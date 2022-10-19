@@ -7,6 +7,7 @@ import { getError } from '../../utils/helpers';
 
 const initialState = {
   withdrawInfo: {},
+  isLoading: false,
 };
 
 export const withdrawMoney = createAsyncThunk(
@@ -16,7 +17,7 @@ export const withdrawMoney = createAsyncThunk(
       const response = await WithdrawService.withdrawMoney(params);
       return await response.data;
     } catch (error) {
-      toast.error(getError(error));
+      toast.error(getError(error), { autoClose: false });
       return thunkAPI.rejectWithValue(error);
     }
   },
@@ -31,6 +32,13 @@ const withdrawMoneySlice = createSlice({
   extraReducers: {
     [withdrawMoney.fulfilled]: (state, action) => {
       state.withdrawInfo = action.payload;
+      state.isLoading = false;
+    },
+    [withdrawMoney.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [withdrawMoney.rejected]: (state) => {
+      state.isLoading = false;
     },
   },
 });

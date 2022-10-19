@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import withdrawals from '../../../assets/images/icons/withdrawals.svg';
 import withdrawalsGrey from '../../../assets/images/icons/withdrawalsGrey.svg';
 import arrowBackWhite from '../../../assets/images/icons/arrowBackWhite.svg';
+import Loader from '../../../components/lib/Loader';
 import { withdrawMoney } from '../../../redux/slices/withdrawMoneySlice';
 import { setUser } from '../../../redux/slices/authSlice';
 
@@ -19,6 +20,8 @@ const WithdrawalCardStep2 = ({
   const classes = useStyles(data.length);
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
+  const { isLoading } = useSelector((state) => state.withdrawMoney);
+
   const { t, i18n } = useTranslation();
   const handleWithdraw = async () => {
     const resultAction = await dispatch(
@@ -39,66 +42,77 @@ const WithdrawalCardStep2 = ({
   };
   return (
     <div className={classes.withdrawalCardContainer}>
-      <div className={classes.headerContainer}>
-        <div className={classes.availableCashTitle}>{t('AVAILABLE')}</div>
-        <div className={classes.backButton} onClick={handleBackButton}>
-          <img
-            src={arrowBackWhite}
-            className={classes.arrowBackWhite}
-            alt='cash'
-          />
+      {isLoading ? (
+        <div className={classes.loaderContainer}>
+          <div className={classes.waitMessage}>
+            {t('PLEASE_WAIT_WHILE_PROCESSING')}
+          </div>
+          <Loader />
         </div>
-        <div className={classes.availableCash}>$ {availableCash}</div>
-      </div>
-      <div className={classes.cellsContainer}>
-        {data
-          .filter((el) => el !== null)
-          .map((el) => {
-            if (availableCash >= el) {
-              if (activeCell === el) {
+      ) : (
+        <>
+          <div className={classes.headerContainer}>
+            <div className={classes.availableCashTitle}>{t('AVAILABLE')}</div>
+            <div className={classes.backButton} onClick={handleBackButton}>
+              <img
+                src={arrowBackWhite}
+                className={classes.arrowBackWhite}
+                alt='cash'
+              />
+            </div>
+            <div className={classes.availableCash}>$ {availableCash}</div>
+          </div>
+          <div className={classes.cellsContainer}>
+            {data
+              .filter((el) => el !== null)
+              .map((el) => {
+                if (availableCash >= el) {
+                  if (activeCell === el) {
+                    return (
+                      <div
+                        id={el}
+                        className={`${classes.cell} ${classes.activeCell}`}
+                        key={el}
+                      >
+                        ${el}
+                      </div>
+                    );
+                  }
+                  return (
+                    <div
+                      id={el}
+                      className={classes.cell}
+                      key={el}
+                      onClick={(e) => setActiveCell(+e.currentTarget.id)}
+                    >
+                      ${el}
+                    </div>
+                  );
+                }
                 return (
-                  <div
-                    id={el}
-                    className={`${classes.cell} ${classes.activeCell}`}
-                    key={el}
-                  >
+                  <div id={el} className={classes.disabledCell} key={el}>
                     ${el}
                   </div>
                 );
-              }
-              return (
-                <div
-                  id={el}
-                  className={classes.cell}
-                  key={el}
-                  onClick={(e) => setActiveCell(+e.currentTarget.id)}
-                >
-                  ${el}
-                </div>
-              );
-            }
-            return (
-              <div id={el} className={classes.disabledCell} key={el}>
-                ${el}
-              </div>
-            );
-          })}
-      </div>
+              })}
+          </div>
 
-      <div
-        type='submit'
-        className={`${classes.withdrawButton} ${
-          activeCell && classes.activeButton
-        }`}
-        onClick={() => activeCell && handleWithdraw()}
-      >
-        {t('WITHDRAW')}
-        <img
-          src={activeCell ? withdrawals : withdrawalsGrey}
-          className={classes.withdrawalsIcon}
-          alt='cash'
-        />
-      </div>
+          <div
+            type='submit'
+            className={`${classes.withdrawButton} ${
+              activeCell && classes.activeButton
+            }`}
+            onClick={() => activeCell && handleWithdraw()}
+          >
+            {t('WITHDRAW')}
+            <img
+              src={activeCell ? withdrawals : withdrawalsGrey}
+              className={classes.withdrawalsIcon}
+              alt='cash'
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 };
@@ -115,6 +129,17 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     flexDirection: 'column',
     // justifyContent: 'space-between',
+  },
+  loaderContainer: {
+    height: '100%',
+  },
+
+  waitMessage: {
+    marginTop: '50px',
+    color: 'rgba(255, 255, 255, 0.72)',
+    fontFamily: 'Inter',
+    fontStyle: 'normal',
+    fontWeight: '600',
   },
   backButton: {
     background: 'rgba(255, 255, 255, 0.16)',

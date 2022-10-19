@@ -42,7 +42,9 @@ const WithdrawalsList = () => {
       {withdrawalsList?.map((el) => (
         <div key={el.date}>
           <div className={classes.dateContainer}>
-            <div className={classes.date}>{getDateForCashback(el.date)} </div>
+            <div className={classes.date}>
+              {getDateForCashback(el.items[0].withdrawalAt)}{' '}
+            </div>
             <div className={classes.totalCashback}>
               $ {getTotalWithdrawal(el.items)}
             </div>

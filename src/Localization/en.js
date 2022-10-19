@@ -168,6 +168,9 @@ export const en = {
   PIN_NUMBER: 'Pin number',
   SERIAL: 'Serial',
   BATCH: 'Batch',
+  PLEASE_WAIT_WHILE_PROCESSING:
+    ' Please wait while we are processing your request...',
+
   // to do
   // Communication preferences
   // Yes, please sign me up to receive offers by email
