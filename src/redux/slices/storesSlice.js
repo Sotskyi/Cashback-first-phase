@@ -80,10 +80,17 @@ export const redirectToSpecialOffer = createAsyncThunk(
   'stores/redirectToStore',
   async (offerId, thunkAPI) => {
     try {
+      const windowReference = window.open();
+
       const response = await StoresService.redirectToSpecialOffer(offerId);
       const data = await response.data;
+
       if (data.url && data.url.includes('http')) {
-        window.open(data.url, '_blank', 'noopener,noreferrer');
+        // window.open();
+        windowReference.location = data.url;
+        // window.open(data.url, '_blank', 'noopener,noreferrer');
+      } else {
+        windowReference.close();
       }
       return data;
     } catch (error) {
