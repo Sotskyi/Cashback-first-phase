@@ -138,7 +138,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: 'Source Sans Pro, sans-serif',
     fontStyle: 'normal',
     fontWeight: '600',
-    fontSize: '20px',
+    fontSize: '16px',
     lineHeight: '125%',
     letterSpacing: '0.02em',
     color: '#33CC55',

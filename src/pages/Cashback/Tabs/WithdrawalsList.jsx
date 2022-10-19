@@ -50,7 +50,7 @@ const WithdrawalsList = () => {
             </div>
           </div>
           {el.items.map((item) => (
-            <div key={item.amount} className={classes.withdrawalContainer}>
+            <div key={item.id} className={classes.withdrawalContainer}>
               <div className={classes.withdrawalAvatar}>
                 {' '}
                 <img

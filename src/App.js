@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import { ScrollToTop } from './components/lib/ScrollToTop';
 
 // import HeaderLayout from './components/layouts/HeaderLayout';
 // import NotFoundPage from './pages/NotFound';
@@ -43,6 +44,7 @@ const App = () => {
         pauseOnHover
       />
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path='/'>
             {/* public routes */}
