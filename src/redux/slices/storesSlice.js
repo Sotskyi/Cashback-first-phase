@@ -63,10 +63,13 @@ export const redirectToStore = createAsyncThunk(
   'stores/redirectToStore',
   async (id, thunkAPI) => {
     try {
+      const windowReference = window.open();
       const response = await StoresService.redirectToStore(id);
       const data = await response.data;
       if (data.url && data.url.includes('http')) {
-        window.open(data.url, '_blank', 'noopener,noreferrer');
+        windowReference.location = data.url;
+      } else {
+        windowReference.close();
       }
       return data;
     } catch (error) {
