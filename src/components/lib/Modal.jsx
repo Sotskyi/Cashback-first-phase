@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
       width: '280px',
       height: '680px',
       padding: '18px',
-      overflow: 'scroll',
+      overflowY: 'scroll',
     },
   },
   modalHeader: {
