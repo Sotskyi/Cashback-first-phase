@@ -169,7 +169,7 @@ export const en = {
   SERIAL: 'Serial',
   BATCH: 'Batch',
   PLEASE_WAIT_WHILE_PROCESSING:
-    ' Please wait while we are processing your request...',
+    'Please wait while we are processing your request...',
 
   // to do
   // Communication preferences

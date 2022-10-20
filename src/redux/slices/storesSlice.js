@@ -64,6 +64,15 @@ export const redirectToStore = createAsyncThunk(
   async (id, thunkAPI) => {
     try {
       const windowReference = window.open();
+      const text = document.createElement('div');
+      text.style.cssText =
+        'display:flex;justify-content:center;align-items:center;height:100%';
+      text.appendChild(
+        document.createTextNode(
+          'Please wait while we are processing your request...',
+        ),
+      );
+      windowReference.document.body.appendChild(text);
       const response = await StoresService.redirectToStore(id);
       const data = await response.data;
       if (data.url && data.url.includes('http')) {
@@ -84,6 +93,15 @@ export const redirectToSpecialOffer = createAsyncThunk(
   async (offerId, thunkAPI) => {
     try {
       const windowReference = window.open();
+      const text = document.createElement('div');
+      text.style.cssText =
+        'display:flex;justify-content:center;align-items:center;height:100%';
+      text.appendChild(
+        document.createTextNode(
+          'Please wait while we are processing your request...',
+        ),
+      );
+      windowReference.document.body.appendChild(text);
 
       const response = await StoresService.redirectToSpecialOffer(offerId);
       const data = await response.data;
