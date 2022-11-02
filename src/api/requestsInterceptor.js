@@ -81,6 +81,11 @@ const refreshTokenInterceptor = (error) => {
     return Promise.reject(error);
   }
 
+  if (error.response.status === 401) {
+    clearAuthData();
+    <Navigate to='/' replace />;
+  }
+
   return refreshAuthToken()
     .then(saveTokens)
     .then((axiosData) => {
